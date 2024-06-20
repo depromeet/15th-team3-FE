@@ -22,7 +22,7 @@ jobs:
           script: |
             const labels = context.payload.pull_request.labels.map(label => label.name);
             core.setOutput("no_auto_merge", labels.includes("no auto merge"));
-            core.setOutput("auto_merge", labels.includes("auto merge"));
+            core.setOutput("auto_merge", labels.includes("auto approve"));
             core.setOutput("main_merge", labels.includes("main merge"));
 
       - name: Set Environment Variables
