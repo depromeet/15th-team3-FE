@@ -25,18 +25,24 @@ jobs:
             core.setOutput("auto_merge", labels.includes("auto merge"));
             core.setOutput("main_merge", labels.includes("main merge"));
 
+      - name: Set Environment Variables
+        run: |
+          echo "NO_AUTO_MERGE=${{ steps.check-labels.outputs.no_auto_merge }}" >> $GITHUB_ENV
+          echo "AUTO_MERGE=${{ steps.check-labels.outputs.auto_merge }}" >> $GITHUB_ENV
+          echo "MAIN_MERGE=${{ steps.check-labels.outputs.main_merge }}" >> $GITHUB_ENV
+
       - name: Auto Approve if Auto Merge Label Exists
-        if: steps.check-labels.outputs.auto_merge == 'true'
+        if: env.AUTO_MERGE == 'true'
         uses: hmarr/auto-approve-action@v2.0.0
         with:
           github-token: ${{ secrets.PUBLIC_ACCOUNT_TOKEN }}
 
       - name: Merge Pull Request on Review
-        if: github.event.action == 'submitted' && github.event.review.state == 'approved' && steps.check-labels.outputs.no_auto_merge == 'false'
+        if: github.event.action == 'submitted' && github.event.review.state == 'approved' && env.NO_AUTO_MERGE == 'false'
         uses: actions/github-script@v6
         with:
           script: |
-            const targetBranch = steps.check-labels.outputs.main_merge == 'true' ? 'main' : 'dev';
+            const targetBranch = process.env.MAIN_MERGE === 'true' ? 'main' : 'dev';
             await github.rest.pulls.merge({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -51,7 +57,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge Pull Request on Label
-        if: github.event.action == 'labeled' && steps.check-labels.outputs.no_auto_merge == 'false'
+        if: github.event.action == 'labeled' && env.NO_AUTO_MERGE == 'false'
         uses: actions/github-script@v6
         with:
           script: |
@@ -62,7 +68,7 @@ jobs:
             });
 
             const approved = reviews.some(review => review.state === 'APPROVED');
-            const targetBranch = steps.check-labels.outputs.main_merge == 'true' ? 'main' : 'dev';
+            const targetBranch = process.env.MAIN_MERGE === 'true' ? 'main' : 'dev';
 
             if (approved) {
               await github.rest.pulls.merge({
