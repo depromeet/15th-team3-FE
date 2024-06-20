@@ -55,18 +55,20 @@ jobs:
         with:
           script: |
             const targetBranch = process.env.MAIN_MERGE === 'true' ? 'main' : 'dev';
+            const prTitle = context.payload.pull_request.title;
+            const prNumber = context.payload.pull_request.number;
             await github.rest.pulls.merge({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number,
+              pull_number: prNumber,
               merge_method: 'squash',
-              commit_title: `Merge pull request #${context.payload.pull_request.number} into ${targetBranch}`,
+              commit_title: `${prTitle} (#${prNumber})`,
               commit_message: 'Auto-merging PR',
               sha: context.payload.pull_request.head.sha,
               base: targetBranch
             });
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_ACCOUNT_TOKEN }}
 
       - name: Merge Pull Request on Label
         if: |
@@ -83,22 +85,24 @@ jobs:
             });
 
             const approved = reviews.some(review => review.state === 'APPROVED');
+            const prTitle = context.payload.pull_request.title;
+            const prNumber = context.payload.pull_request.number;
             const targetBranch = process.env.MAIN_MERGE === 'true' ? 'main' : 'dev';
 
             if (approved) {
               await github.rest.pulls.merge({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                pull_number: context.payload.pull_request.number,
+                pull_number: prNumber,
                 merge_method: 'squash',
-                commit_title: `Merge pull request #${context.payload.pull_request.number} into ${targetBranch}`,
+                commit_title: `${prTitle} (#${prNumber})`,
                 commit_message: 'Auto-merging PR',
                 sha: context.payload.pull_request.head.sha,
                 base: targetBranch
               });
             }
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_ACCOUNT_TOKEN }}
 
       - name: Merge Pull Request on Unlabel
         if: |
@@ -117,18 +121,20 @@ jobs:
             const approved = reviews.some(review => review.state === 'APPROVED');
             const labels = context.payload.pull_request.labels.map(label => label.name);
             const targetBranch = labels.includes("main merge") ? 'main' : 'dev';
+            const prTitle = context.payload.pull_request.title;
+            const prNumber = context.payload.pull_request.number;
 
             if (approved) {
               await github.rest.pulls.merge({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                pull_number: context.payload.pull_request.number,
+                pull_number: prNumber,
                 merge_method: 'squash',
-                commit_title: `Merge pull request #${context.payload.pull_request.number} into ${targetBranch}`,
+                commit_title: `${prTitle} (#${prNumber})`,
                 commit_message: 'Auto-merging PR',
                 sha: context.payload.pull_request.head.sha,
                 base: targetBranch
               });
             }
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_ACCOUNT_TOKEN }}
