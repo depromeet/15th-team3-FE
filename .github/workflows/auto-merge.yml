@@ -44,7 +44,7 @@ jobs:
               body: '고생했다. 👍🏽'
             });
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_ACCOUNT_TOKEN }}
 
       - name: Merge Pull Request on Review
         if: |
