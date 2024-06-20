@@ -36,15 +36,19 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            const token = process.env.ACCESS_TOKEN;
             await github.rest.pulls.createReview({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
               event: 'APPROVE',
-              body: '고생했다. 👍🏽'
+              body: '고생했다. 👍🏽',
+              headers: {
+                authorization: `token ${token}`
+              }
             });
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Merge Pull Request on Review
         if: |
@@ -68,7 +72,7 @@ jobs:
               base: targetBranch
             });
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Merge Pull Request on Label
         if: |
@@ -102,7 +106,7 @@ jobs:
               });
             }
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Merge Pull Request on Unlabel
         if: |
@@ -137,4 +141,4 @@ jobs:
               });
             }
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
