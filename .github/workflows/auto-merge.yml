@@ -10,7 +10,7 @@ on:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
-    if: github.event.action == 'submitted' || github.event.action == 'labeled' || github.event.action == 'unlabeled'
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -47,7 +47,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge Pull Request on Review
-        if: github.event.action == 'submitted' && github.event.review.state == 'approved' && env.NO_AUTO_MERGE == 'false'
+        if: |
+          github.event_name == 'pull_request_review' &&
+          github.event.review.state == 'approved' &&
+          env.NO_AUTO_MERGE == 'false'
         uses: actions/github-script@v6
         with:
           script: |
@@ -66,7 +69,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge Pull Request on Label
-        if: github.event.action == 'labeled' && env.NO_AUTO_MERGE == 'false'
+        if: |
+          github.event_name == 'pull_request' &&
+          github.event.action == 'labeled' &&
+          env.NO_AUTO_MERGE == 'false'
         uses: actions/github-script@v6
         with:
           script: |
@@ -95,7 +101,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge Pull Request on Unlabel
-        if: github.event.action == 'unlabeled' && github.event.label.name == 'no auto merge'
+        if: |
+          github.event_name == 'pull_request' &&
+          github.event.action == 'unlabeled' &&
+          github.event.label.name == 'no auto merge'
         uses: actions/github-script@v6
         with:
           script: |
