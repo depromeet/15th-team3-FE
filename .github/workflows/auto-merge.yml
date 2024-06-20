@@ -32,7 +32,7 @@ jobs:
           echo "MAIN_MERGE=${{ steps.check-labels.outputs.main_merge }}" >> $GITHUB_ENV
 
       - name: Auto Approve if Auto Merge Label Exists
-        if: env.AUTO_MERGE == 'true'
+        if: env.AUTO_MERGE == 'true' && env.NO_AUTO_MERGE == 'false'
         uses: actions/github-script@v6
         with:
           script: |
