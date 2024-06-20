@@ -33,9 +33,18 @@ jobs:
 
       - name: Auto Approve if Auto Merge Label Exists
         if: env.AUTO_MERGE == 'true'
-        uses: hmarr/auto-approve-action@v2.0.0
+        uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.PUBLIC_ACCOUNT_TOKEN }}
+          script: |
+            await github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              event: 'APPROVE',
+              body: '고생했다. 👍🏽'
+            });
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge Pull Request on Review
         if: github.event.action == 'submitted' && github.event.review.state == 'approved' && env.NO_AUTO_MERGE == 'false'
