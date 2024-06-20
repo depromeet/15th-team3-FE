@@ -42,9 +42,8 @@ jobs:
               pull_number: context.payload.pull_request.number,
               event: 'APPROVE',
               body: '고생했다. 👍🏽'
+              token: ${{ secrets.ACCESS_TOKEN }}
             });
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Merge Pull Request on Review
         if: |
