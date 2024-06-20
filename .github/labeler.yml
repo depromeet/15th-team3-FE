@@ -1,0 +1,23 @@
+enable:
+  issues: false
+  prs: true
+
+labels:
+  "chore":
+    include:
+      - '\bchore\b'
+  "feat":
+    include:
+      - '\bfeat\b'
+  "docs":
+    include:
+      - '\bdocs\b'
+  "fix":
+    include:
+      - '\fix\b'
+  "test":
+    include:
+      - '\brefactor\b'
+  "test":
+    include:
+      - '\btest\b'
