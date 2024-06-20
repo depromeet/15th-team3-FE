@@ -23,6 +23,7 @@ jobs:
             const labels = context.payload.pull_request.labels.map(label => label.name);
             core.setOutput("no_auto_merge", labels.includes("no auto merge"));
             core.setOutput("auto_merge", labels.includes("auto merge"));
+            core.setOutput("main_merge", labels.includes("main merge"));
 
       - name: Auto Approve if Auto Merge Label Exists
         if: steps.check-labels.outputs.auto_merge == 'true'
@@ -35,11 +36,16 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            const targetBranch = steps.check-labels.outputs.main_merge == 'true' ? 'main' : 'dev';
             await github.rest.pulls.merge({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
-              merge_method: 'squash'
+              merge_method: 'squash',
+              commit_title: `Merge pull request #${context.payload.pull_request.number} into ${targetBranch}`,
+              commit_message: 'Auto-merging PR',
+              sha: context.payload.pull_request.head.sha,
+              base: targetBranch
             });
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -56,13 +62,18 @@ jobs:
             });
 
             const approved = reviews.some(review => review.state === 'APPROVED');
+            const targetBranch = steps.check-labels.outputs.main_merge == 'true' ? 'main' : 'dev';
 
             if (approved) {
               await github.rest.pulls.merge({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 pull_number: context.payload.pull_request.number,
-                merge_method: 'squash'
+                merge_method: 'squash',
+                commit_title: `Merge pull request #${context.payload.pull_request.number} into ${targetBranch}`,
+                commit_message: 'Auto-merging PR',
+                sha: context.payload.pull_request.head.sha,
+                base: targetBranch
               });
             }
         env:
