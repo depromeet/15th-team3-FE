@@ -1,5 +1,5 @@
 {
-  "name": "15th-team3-FE",
+  "name": "15th-team3-fe",
   "private": true,
   "scripts": {
     "build": "turbo build",
