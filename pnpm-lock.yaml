@@ -20,9 +20,9 @@ importers:
 
   apps/web:
     dependencies:
-      '@sambad/ui':
+      '@sambad/domains':
         specifier: workspace:*
-        version: link:../../packages/ui
+        version: link:../../packages/domains
       next:
         specifier: 14.2.4
         version: 14.2.4(react-dom@18.2.0)(react@18.2.0)
@@ -35,10 +35,10 @@ importers:
     devDependencies:
       '@sambad/eslint-config':
         specifier: workspace:*
-        version: link:../../packages/eslint-config
+        version: link:../../packages/core/eslint-config
       '@sambad/typescript-config':
         specifier: workspace:*
-        version: link:../../packages/typescript-config
+        version: link:../../packages/core/typescript-config
       '@types/node':
         specifier: ^20
         version: 20.11.24
@@ -58,7 +58,37 @@ importers:
         specifier: ^5
         version: 5.4.5
 
-  packages/eslint-config:
+  packages/bridges:
+    devDependencies:
+      '@sambad/eslint-config':
+        specifier: workspace:*
+        version: link:../core/eslint-config
+      '@sambad/typescript-config':
+        specifier: workspace:*
+        version: link:../core/typescript-config
+      '@types/eslint':
+        specifier: ^8.56.5
+        version: 8.56.5
+      '@types/node':
+        specifier: ^20.11.24
+        version: 20.11.24
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.61
+      '@types/react-dom':
+        specifier: ^18.2.19
+        version: 18.2.19
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      react:
+        specifier: ^18
+        version: 18.2.0
+      typescript:
+        specifier: ^5.3.3
+        version: 5.4.5
+
+  packages/core/eslint-config:
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.1.0
@@ -82,9 +112,39 @@ importers:
         specifier: ^5.3.3
         version: 5.4.5
 
-  packages/typescript-config: {}
+  packages/core/sds:
+    devDependencies:
+      '@sambad/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@sambad/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/eslint':
+        specifier: ^8.56.5
+        version: 8.56.5
+      '@types/node':
+        specifier: ^20.11.24
+        version: 20.11.24
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.61
+      '@types/react-dom':
+        specifier: ^18.2.19
+        version: 18.2.19
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      react:
+        specifier: ^18
+        version: 18.2.0
+      typescript:
+        specifier: ^5.3.3
+        version: 5.4.5
 
-  packages/ui:
+  packages/core/typescript-config: {}
+
+  packages/core/ui:
     devDependencies:
       '@sambad/eslint-config':
         specifier: workspace:*
@@ -112,7 +172,40 @@ importers:
         version: 8.57.0
       react:
         specifier: ^18
-        version: 18.0.0
+        version: 18.2.0
+      typescript:
+        specifier: ^5.3.3
+        version: 5.4.5
+
+  packages/domains:
+    devDependencies:
+      '@sambad/eslint-config':
+        specifier: workspace:*
+        version: link:../core/eslint-config
+      '@sambad/typescript-config':
+        specifier: workspace:*
+        version: link:../core/typescript-config
+      '@sambad/ui':
+        specifier: workspace:*
+        version: link:../core/ui
+      '@types/eslint':
+        specifier: ^8.56.5
+        version: 8.56.5
+      '@types/node':
+        specifier: ^20.11.24
+        version: 20.11.24
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.61
+      '@types/react-dom':
+        specifier: ^18.2.19
+        version: 18.2.19
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      react:
+        specifier: ^18
+        version: 18.2.0
       typescript:
         specifier: ^5.3.3
         version: 5.4.5
@@ -4054,19 +4147,11 @@ packages:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
 
-  /react@18.0.0:
-    resolution: {integrity: sha512-x+VL6wbT4JRVPm7EGxXhZ8w8LTROaxPXOqhlGyVSrv0sB1jkyFGgXxJ8LVoPRLvPR6/CIZGFmfzqUa2NYeMr2A==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
-    dev: true
-
   /react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /read-pkg-up@7.0.1:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==}
