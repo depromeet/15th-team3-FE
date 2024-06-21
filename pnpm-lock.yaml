@@ -20,7 +20,7 @@ importers:
 
   apps/web:
     dependencies:
-      '@repo/ui':
+      '@sambad/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       next:
@@ -33,10 +33,10 @@ importers:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@repo/eslint-config':
+      '@sambad/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@repo/typescript-config':
+      '@sambad/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@types/node':
@@ -86,10 +86,10 @@ importers:
 
   packages/ui:
     devDependencies:
-      '@repo/eslint-config':
+      '@sambad/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@repo/typescript-config':
+      '@sambad/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@turbo/gen':
