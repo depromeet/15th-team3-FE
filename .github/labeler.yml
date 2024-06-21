@@ -14,7 +14,7 @@ labels:
       - '\bdocs\b'
   "fix":
     include:
-      - '\fix\b'
+      - '\bfix\b'
   "test":
     include:
       - '\brefactor\b'
