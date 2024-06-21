@@ -5,7 +5,7 @@ const project = resolve(process.cwd(), 'tsconfig.json');
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   extends: ['eslint:recommended', 'prettier', 'turbo'],
-  plugins: ['only-warn', 'import'],
+  plugins: ['@typescript-eslint', 'only-warn', 'import'],
   globals: {
     React: true,
     JSX: true,
@@ -44,6 +44,7 @@ module.exports = {
       'warn',
       { varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
     ],
+    '@typescript-eslint/consistent-type-imports': 'warn',
   },
   overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],
 };
