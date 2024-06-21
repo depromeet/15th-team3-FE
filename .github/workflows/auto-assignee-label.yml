@@ -1,4 +1,4 @@
-name: Auto Assign Label PR
+name: Auto Assignee Label PR
 
 on:
   pull_request:
