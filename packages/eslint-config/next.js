@@ -10,6 +10,7 @@ module.exports = {
     require.resolve('@vercel/style-guide/eslint/next'),
     'turbo',
   ],
+  plugins: ['only-warn', 'import'],
   globals: {
     React: true,
     JSX: true,
@@ -18,7 +19,6 @@ module.exports = {
     node: true,
     browser: true,
   },
-  plugins: ['only-warn', 'import'],
   settings: {
     'import/resolver': {
       typescript: {
@@ -45,6 +45,10 @@ module.exports = {
         },
         'newlines-between': 'always',
       },
+    ],
+    'no-unused-vars': [
+      'warn',
+      { varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
     ],
   },
   overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],

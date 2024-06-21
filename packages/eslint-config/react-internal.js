@@ -40,6 +40,10 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+    'no-unused-vars': [
+      'warn',
+      { varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
+    ],
   },
   overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],
 };
