@@ -1,0 +1,28 @@
+name: Auto Approve PR
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  auto-approve:
+    if: github.event.label.name == 'auto approve'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Auto approve PR
+        uses: hmarr/auto-approve-action@v2.0.0
+        with:
+          github-token: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Comment on PR
+        run: |
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          curl -s -X POST \
+            -H "Authorization: token ${{ secrets.ACCESS_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"body\":\"고생했다. 🎉👍🏽\"}" \
+            "https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments"
