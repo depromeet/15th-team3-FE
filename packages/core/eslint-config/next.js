@@ -4,7 +4,13 @@ const project = resolve(process.cwd(), 'tsconfig.json');
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: ['eslint:recommended', 'prettier', require.resolve('@vercel/style-guide/eslint/next'), 'turbo'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'prettier',
+    require.resolve('@vercel/style-guide/eslint/next'),
+    'turbo',
+  ],
   plugins: ['@typescript-eslint', 'only-warn', 'import'],
   globals: {
     React: true,
@@ -35,10 +41,11 @@ module.exports = {
       },
     ],
     'no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
+    'react/jsx-curly-brace-presence': ['warn', { props: 'never', children: 'never' }],
     'import/no-cycle': [
       'warn',
       {
-        maxDepth: 1,
+        maxDepth: Infinity,
         ignoreExternal: true,
       },
     ],

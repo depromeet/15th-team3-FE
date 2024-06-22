@@ -34,6 +34,14 @@ module.exports = {
       },
     ],
     'no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
+    'react/jsx-curly-brace-presence': ['warn', { props: 'never', children: 'never' }],
+    'import/no-cycle': [
+      'warn',
+      {
+        maxDepth: Infinity,
+        ignoreExternal: true,
+      },
+    ],
     '@typescript-eslint/consistent-type-imports': 'warn',
   },
   overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],
