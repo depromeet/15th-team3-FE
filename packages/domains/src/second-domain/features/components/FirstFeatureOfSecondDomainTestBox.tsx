@@ -1,5 +1,6 @@
-import { Button } from "@sambad/ui";
-import { PropsWithChildren } from "react";
+import { Button } from '@sambad/ui';
+
+import type { PropsWithChildren } from 'react';
 
 interface FirstFeatureOfSecondDomainBoxProps {
   displayText: string;

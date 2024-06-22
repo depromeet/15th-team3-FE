@@ -3,18 +3,18 @@ enable:
   prs: true
 
 labels:
-  "chore":
+  'chore':
     include:
       - '\bchore\b'
-  "feat":
+  'feat':
     include:
       - '\bfeat\b'
-  "docs":
+  'docs':
     include:
       - '\bdocs\b'
-  "fix":
+  'fix':
     include:
       - '\bfix\b'
-  "test":
+  'test':
     include:
       - '\btest\b'

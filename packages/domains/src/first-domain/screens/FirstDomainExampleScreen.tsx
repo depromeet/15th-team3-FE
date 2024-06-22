@@ -1,4 +1,4 @@
-import { FirstFeatureOfFirstDomainTestContainer } from "../features/containers/FirstFeatureOfFirstDomainTestContainer";
+import { FirstFeatureOfFirstDomainTestContainer } from '../features/containers/FirstFeatureOfFirstDomainTestContainer';
 
 export const FirstDomainExampleScreen = () => {
   return (
