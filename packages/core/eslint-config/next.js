@@ -35,6 +35,13 @@ module.exports = {
       },
     ],
     'no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
+    'import/no-cycle': [
+      'warn',
+      {
+        maxDepth: 1,
+        ignoreExternal: true,
+      },
+    ],
     '@typescript-eslint/consistent-type-imports': 'warn',
   },
   overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],
