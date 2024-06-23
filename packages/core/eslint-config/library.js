@@ -33,6 +33,7 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+    'no-duplicate-imports': 'warn',
     'no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
     'react/jsx-curly-brace-presence': ['warn', { props: 'never', children: 'never' }],
     'import/no-cycle': [
