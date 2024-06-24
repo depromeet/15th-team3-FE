@@ -1,0 +1,39 @@
+name: Slack Notification
+
+on:
+  pull_request:
+    types: [opened]
+  pull_request_review:
+    types: [submitted]
+  pull_request_review_comment:
+    types: [created, edited]
+
+jobs:
+  send_slack_notification:
+    name: Send Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract mentions from comment/review body
+        id: extract_mentions_comment_review
+        if: github.event_name != 'pull_request'
+        run: |
+          echo "::set-output name=mentions::$(echo ${{ github.event.comment.body }} | grep -o '@[^ ]*' | paste -sd ' ' -)"
+
+      - name: Send Slack Notification for comment/review
+        if: steps.extract_mentions_comment_review.outputs.mentions != ''
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest
+          mentions: ${{ steps.extract_mentions_comment_review.outputs.mentions }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Send Slack Notification for PR creation
+        if: github.event_name == 'pull_request'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
