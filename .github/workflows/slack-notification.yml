@@ -35,31 +35,23 @@ jobs:
           mentions=$(echo "${{ github.event.comment.body }}" | grep -o '@[[:alnum:]_-]\+' | paste -sd ' ' -)
           echo "::set-output name=mentions::$mentions"
 
-      - name: Transform mentions to Slack format
-        id: transform_mentions
+      - name: Map GitHub mentions to Slack user IDs
+        id: map_to_slack_ids
         if: github.event_name == 'issue_comment'
         run: |
+          declare -A slack_ids
+          slack_ids=(["@Doeunnkimm"]="U07600UQG3T" ["@semnil5202"]="U075KR29RGR" ["@Andrevile"]="U07545VMS21" ["@LeeJeongHooo"]="U075C1A16LT")
           mentions="${{ steps.extract_mentions_comment.outputs.mentions }}"
-          # Transform specific mentions to desired format
-          transformed_mentions=$(echo "$mentions" | sed -E 's/@Doeunnkimm/@Web_김도은/g; s/@semnil5202/@Web_이세민/g; s/@Andrevile/@Web_장종오/g; s/@LeeJeongHooo/@Web_이정호/g')
-          echo "::set-output name=transformed_mentions::$transformed_mentions"
-
-      - name: Filter mentions for team members
-        id: filter_mentions
-        if: github.event_name == 'issue_comment'
-        run: |
-          mentions="${{ steps.transform_mentions.outputs.transformed_mentions }}"
-          team_members=(@Web_김도은 @Web_이세민 @Web_장종오 @Web_이정호)
-          filtered_mentions=""
+          slack_mentions=""
           for mention in $mentions; do
-            if [[ " ${team_members[@]} " =~ " ${mention} " ]]; then
-              filtered_mentions="$filtered_mentions $mention"
+            if [[ -n "${slack_ids[$mention]}" ]]; then
+              slack_mentions="$slack_mentions <@${slack_ids[$mention]}>"
             fi
           done
-          echo "::set-output name=filtered_mentions::${filtered_mentions}"
+          echo "::set-output name=slack_mentions::$slack_mentions"
 
       - name: Send Slack Notification for comment if team members mentioned
-        if: ${{ github.event_name == 'issue_comment' && steps.filter_mentions.outputs.filtered_mentions != '' }}
+        if: ${{ github.event_name == 'issue_comment' && steps.map_to_slack_ids.outputs.slack_mentions != '' }}
         uses: 8398a7/action-slack@v3
         with:
           status: custom
@@ -68,13 +60,14 @@ jobs:
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `${process.env.AS_PULL_REQUEST}에서 ${{ steps.filter_mentions.outputs.filtered_mentions }} 님을 언급했습니다.
-                꼭 나중에 들어가서 확인하기!\\n메시지: ${{ github.event.comment.body }}`,
+                text: `${process.env.AS_PULL_REQUEST}에서 ${{ steps.map_to_slack_ids.outputs.slack_mentions }} 님을 언급했습니다.
+                꼭 나중에 들어가서 확인하기!
+                메시지: ${{ github.event.comment.body }}`,
               }]
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Debug mentions
-        if: ${{ github.event_name == 'issue_comment' && steps.filter_mentions.outputs.filtered_mentions == '' }}
+        if: ${{ github.event_name == 'issue_comment' && steps.map_to_slack_ids.outputs.slack_mentions == '' }}
         run: echo "No team members mentioned in the comment."
