@@ -21,7 +21,8 @@ jobs:
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `Actor: ${process.env.AS_AUTHOR}\\n PR: ${process.env.AS_PULL_REQUEST}`,
+                text: `Actor: ${process.env.AS_AUTHOR}
+                PR: ${process.env.AS_PULL_REQUEST}`,
               }]
             }
         env:
@@ -67,7 +68,8 @@ jobs:
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `${process.env.AS_PULL_REQUEST}에서 ${{ steps.filter_mentions.outputs.filtered_mentions }} 님을 언급했습니다.\\n꼭 나중에 들어가서 확인하기!\\n메시지: ${{ github.event.comment.body }}`,
+                text: `${process.env.AS_PULL_REQUEST}에서 ${{ steps.filter_mentions.outputs.filtered_mentions }} 님을 언급했습니다.
+                꼭 나중에 들어가서 확인하기!\\n메시지: ${{ github.event.comment.body }}`,
               }]
             }
         env:
