@@ -17,7 +17,7 @@ jobs:
         run: |
           response=$(curl -X POST -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" -H "Content-type: application/json" \
           --data '{
-            "channel": "#general",
+            "channel": "C079A5A8BL0",
             "text": "PR 알림",
             "blocks": [
               {
@@ -63,7 +63,7 @@ jobs:
           ts="${{ steps.send_pr_notification.outputs.ts }}"
           curl -X POST -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" -H "Content-type: application/json" \
           --data '{
-            "channel": "#general",
+            "channel": "C079A5A8BL0",
             "thread_ts": "'$ts'",
             "text": "'${{ steps.map_to_slack_ids.outputs.slack_mentions }}' 님을 언급했습니다.
             꼭 나중에 들어가서 확인하기!
