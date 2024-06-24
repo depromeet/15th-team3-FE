@@ -15,8 +15,15 @@ jobs:
         if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
         uses: 8398a7/action-slack@v3
         with:
-          status: ${{ job.status }}
-          fields: commit,author,pullRequest
+          status: custom
+          fields: author,pullRequest
+          custom_payload: |
+            {
+              attachments: [{
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                text: `Actor: ${process.env.AS_AUTHOR}\\n PR: ${process.env.AS_PULL_REQUEST}`,
+              }]
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
@@ -27,15 +34,24 @@ jobs:
           mentions=$(echo "${{ github.event.comment.body }}" | grep -o '@[[:alnum:]_-]\+' | paste -sd ' ' -)
           echo "::set-output name=mentions::$mentions"
 
+      - name: Transform mentions to Slack format
+        id: transform_mentions
+        if: github.event_name == 'issue_comment'
+        run: |
+          mentions="${{ steps.extract_mentions_comment.outputs.mentions }}"
+          # Transform specific mentions to desired format
+          transformed_mentions=$(echo "$mentions" | sed -E 's/@Doeunnkimm/@Web_김도은/g; s/@semnil5202/@Web_이세민/g; s/@Andrevile/@Web_장종오/g; s/@LeeJeongHooo/@Web_이정호/g')
+          echo "::set-output name=transformed_mentions::$transformed_mentions"
+
       - name: Filter mentions for team members
         id: filter_mentions
         if: github.event_name == 'issue_comment'
         run: |
-          mentions="${{ steps.extract_mentions_comment.outputs.mentions }}"
-          team_members=(Doeunnkimm semnil5202 Andrevile LeeJeongHooo)
+          mentions="${{ steps.transform_mentions.outputs.transformed_mentions }}"
+          team_members=(@Web_김도은 @Web_이세민 @Web_장종오 @Web_이정호)
           filtered_mentions=""
           for mention in $mentions; do
-            if [[ " ${team_members[@]} " =~ " ${mention#@} " ]]; then
+            if [[ " ${team_members[@]} " =~ " ${mention} " ]]; then
               filtered_mentions="$filtered_mentions $mention"
             fi
           done
@@ -51,7 +67,7 @@ jobs:
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `${process.env.AS_PULLREQUEST} - MSG: ${{ github.event.comment.body }}`,
+                text: `${process.env.AS_PULL_REQUEST}에서 ${{ steps.filter_mentions.outputs.filtered_mentions }} 님을 언급했습니다.\\n꼭 나중에 들어가서 확인하기!\\n메시지: ${{ github.event.comment.body }}`,
               }]
             }
         env:
