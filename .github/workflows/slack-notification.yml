@@ -24,6 +24,8 @@ jobs:
                 pull_number : context.issue.pull_number
               })
               return pr.data
+            } catch (err) {
+              core.setFailed('Fail')
             }
       - name: checkout
         uses: actions/checkout@v3
