@@ -11,6 +11,25 @@ jobs:
     name: Send Slack Notification
     runs-on: ubuntu-latest
     steps:
+      - name: fetch branch
+        id: fetch-branch
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            try {
+              const pr = await github.rest.pulls.get({
+                owner : context.repo.owner,
+                repo : context.repo.repo,
+                pull_number : context.issue.pull_number
+              })
+              return pr.data
+            }
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ fromJson(steps.fetch-branch.outputs.result).head.sha }}
+          fetch-depth: 0
       - name: Send Slack Notification for PR creation
         if: github.event_name == 'pull_request'
         uses: 8398a7/action-slack@v3
