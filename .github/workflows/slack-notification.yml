@@ -24,14 +24,13 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "*Actor:* '${{ github.actor }}'
-                  *PR:* '${{ github.event.pull_request.html_url }}'"
+                  "text": "*작성자:* '${{ github.actor }}'
+                  *PR 링크:* '${{ github.event.pull_request.html_url }}'"
                 }
               }
             ]
           }' https://slack.com/api/chat.postMessage)
-          ts=$(echo $response | jq -r '.ts')
-          echo "::set-output name=ts::$ts"
+          echo "$response" > output.json
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
@@ -58,17 +57,17 @@ jobs:
           echo "::set-output name=slack_mentions::$slack_mentions"
 
       - name: Send Slack Notification for comment if team members mentioned
-        if: ${{ github.event_name == 'issue_comment' && steps.map_to_slack_ids.outputs.slack_mentions != '' }}
+        if: github.event_name == 'issue_comment' && steps.map_to_slack_ids.outputs.slack_mentions != ''
         run: |
-          ts="${{ steps.send_pr_notification.outputs.ts }}"
+          ts=$(jq -r '.ts' output.json)  
           curl -X POST -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" -H "Content-type: application/json" \
-          --data '{
-            "channel": "C079A5A8BL0",
-            "thread_ts": "'$ts'",
-            "text": "'${{ steps.map_to_slack_ids.outputs.slack_mentions }}' 님을 언급했습니다.
-            꼭 나중에 들어가서 확인하기!
-            메시지: '${{ github.event.comment.body }}'"
-          }' https://slack.com/api/chat.postMessage
+            --data '{
+              "channel": "C079A5A8BL0",
+              "thread_ts": "'"$ts"'", 
+              "text": "'${{ steps.map_to_slack_ids.outputs.slack_mentions }}' 님을 언급했습니다.
+              꼭 나중에 확인해주세요!
+              메시지: '${{ github.event.comment.body }}'"
+            }' https://slack.com/api/chat.postMessage
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
