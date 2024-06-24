@@ -3,9 +3,7 @@ name: Slack Notification
 on:
   pull_request:
     types: [opened]
-  pull_request_review:
-    types: [submitted]
-  pull_request_review_comment:
+  issue_comment:
     types: [created, edited]
 
 jobs:
@@ -13,22 +11,6 @@ jobs:
     name: Send Slack Notification
     runs-on: ubuntu-latest
     steps:
-      - name: Extract mentions from comment/review body
-        id: extract_mentions_comment_review
-        if: github.event_name != 'pull_request'
-        run: |
-          echo "::set-output name=mentions::$(echo ${{ github.event.comment.body }} | grep -o '@[^ ]*' | paste -sd ' ' -)"
-
-      - name: Send Slack Notification for comment/review
-        if: steps.extract_mentions_comment_review.outputs.mentions != ''
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest
-          mentions: ${{ steps.extract_mentions_comment_review.outputs.mentions }}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
       - name: Send Slack Notification for PR creation
         if: github.event_name == 'pull_request'
         uses: 8398a7/action-slack@v3
@@ -37,3 +19,27 @@ jobs:
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Extract mentions from comment body
+        id: extract_mentions_comment
+        if: github.event_name == 'issue_comment'
+        run: |
+          # Extract mentions in the comment body
+          mentions=$(echo "${{ github.event.comment.body }}" | grep -o '@[[:alnum:]_-]\+' | paste -sd ' ' -)
+
+          # Set outputs to use in subsequent steps
+          echo "::set-output name=mentions::$mentions"
+
+      - name: Send Slack Notification for comment if mentioned users found
+        if: ${{ github.event_name == 'issue_comment' && steps.extract_mentions_comment.outputs.mentions != '' }}
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest
+          mentions: ${{ steps.extract_mentions_comment.outputs.mentions }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Debug mentions
+        if: ${{ github.event_name == 'issue_comment' && steps.extract_mentions_comment.outputs.mentions == '' }}
+        run: echo "No mentioned users found in the comment."
