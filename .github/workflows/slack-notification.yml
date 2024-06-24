@@ -60,7 +60,7 @@ jobs:
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `${process.env.AS_PULL_REQUEST}에서 ${{ steps.map_to_slack_ids.outputs.slack_mentions }} 님을 언급했습니다.
+                text: `${process.env.AS_PULL_REQUEST} 에서 ${{ steps.map_to_slack_ids.outputs.slack_mentions }} 님을 언급했습니다.
                 꼭 나중에 들어가서 확인하기!
                 메시지: ${{ github.event.comment.body }}`,
               }]
