@@ -1,0 +1,62 @@
+name: Slack Notification
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+  send_slack_notification:
+    name: Send Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack Notification for PR creation
+        if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: commit,author,pullRequest
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Extract mentions from comment body
+        id: extract_mentions_comment
+        if: github.event_name == 'issue_comment'
+        run: |
+          mentions=$(echo "${{ github.event.comment.body }}" | grep -o '@[[:alnum:]_-]\+' | paste -sd ' ' -)
+          echo "::set-output name=mentions::$mentions"
+
+      - name: Filter mentions for team members
+        id: filter_mentions
+        if: github.event_name == 'issue_comment'
+        run: |
+          mentions="${{ steps.extract_mentions_comment.outputs.mentions }}"
+          team_members=(Doeunnkimm semnil5202 Andrevile LeeJeongHooo)
+          filtered_mentions=""
+          for mention in $mentions; do
+            if [[ " ${team_members[@]} " =~ " ${mention#@} " ]]; then
+              filtered_mentions="$filtered_mentions $mention"
+            fi
+          done
+          echo "::set-output name=filtered_mentions::${filtered_mentions}"
+
+      - name: Send Slack Notification for comment if team members mentioned
+        if: ${{ github.event_name == 'issue_comment' && steps.filter_mentions.outputs.filtered_mentions != '' }}
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          fields: pullRequest
+          custom_payload: |
+            {
+              attachments: [{
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                text: `${process.env.AS_PULLREQUEST} - MSG: ${{ github.event.comment.body }}`,
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Debug mentions
+        if: ${{ github.event_name == 'issue_comment' && steps.filter_mentions.outputs.filtered_mentions == '' }}
+        run: echo "No team members mentioned in the comment."
