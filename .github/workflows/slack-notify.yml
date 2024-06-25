@@ -21,7 +21,7 @@ jobs:
         run: echo "event_type=${{ github.event_name }}" >> $GITHUB_ENV
 
       - name: Cache Slack message timestamp
-        if: ${{ github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize')}}
+        if: ${{ env.event_type == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') }}
         id: cache_slack_ts
         run: |
           if [ -f slack_ts_${{ github.event.pull_request.number }}.txt ]; then
@@ -31,7 +31,7 @@ jobs:
           fi
 
       - name: Send notification for PR
-        if: ${{ github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') }}
+        if: ${{ env.event_type == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') }}
         id: slack_pr
         run: |
           response=$(curl -X POST -H 'Content-type: application/json' --data '{
@@ -44,7 +44,7 @@ jobs:
           SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
 
       - name: Send notification for review request
-        if: ${{ github.event_name == 'pull_request' && github.event.action == 'review_requested' }}
+        if: ${{ env.event_type == 'pull_request' && github.event.action == 'review_requested' }}
         run: |
           reviewer=${{ github.event.requested_reviewer.login }}
           slack_username=$(cat .github/user-mapping.json | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
@@ -69,7 +69,7 @@ jobs:
           fi
 
       - name: Send notification for comment
-        if: ${{ github.event_name == 'issue_comment' && env.SLACK_MESSAGE_TS == '' }}
+        if: ${{ env.event_type == 'issue_comment' && env.SLACK_MESSAGE_TS == '' }}
         run: |
           commenter=${{ github.event.comment.user.login }}
           slack_username=$(cat .github/user-mapping.json | jq -r --arg commenter "$commenter" '.[$commenter]')
@@ -87,7 +87,7 @@ jobs:
           SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
 
       - name: Send notification for comment in thread
-        if: ${{ github.event_name == 'issue_comment' && env.SLACK_MESSAGE_TS != '' }}
+        if: ${{ env.event_type == 'issue_comment' && env.SLACK_MESSAGE_TS != '' }}
         run: |
           commenter=${{ github.event.comment.user.login }}
           slack_username=$(cat .github/user-mapping.json | jq -r --arg commenter "$commenter" '.[$commenter]')
@@ -103,7 +103,7 @@ jobs:
           SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
 
       - name: Send notification for approval
-        if: ${{ github.event_name == 'pull_request_review' && github.event.review.state == 'approved' && env.SLACK_MESSAGE_TS != '' }}
+        if: ${{ env.event_type == 'pull_request_review' && github.event.review.state == 'approved' && env.SLACK_MESSAGE_TS != '' }}
         run: |
           reviewer=${{ github.event.review.user.login }}
           slack_username=$(cat .github/user-mapping.json | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
