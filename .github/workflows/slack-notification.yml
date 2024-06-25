@@ -23,8 +23,9 @@ jobs:
       - name: Read user mapping from JSON
         id: read_user_mapping
         run: |
-          mapping=$(cat .github/user-mapping.json)
-          echo "mapping=$mapping" >> $GITHUB_ENV
+          echo "Reading user mapping"
+          mapping=$(cat .github/user-mapping.json | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]')
+          echo "$mapping" >> $GITHUB_ENV
 
       - name: Extract mentions from comment body
         id: extract_mentions_comment
@@ -39,13 +40,13 @@ jobs:
         run: |
           mentions="${{ env.mentions }}"
           slack_mentions=""
-          while IFS= read -r mention; do
+          for mention in $mentions; do
             user=$(echo $mention | sed 's/@//')
-            slack_user=$(echo ${{ env.mapping }} | jq -r --arg user "$user" '.[$user]')
+            slack_user=$(eval echo \${$user})
             if [[ -n "$slack_user" ]]; then
               slack_mentions="$slack_mentions $slack_user"
             fi
-          done <<< "$mentions"
+          done
           echo "slack_mentions=$slack_mentions" >> $GITHUB_ENV
 
       - name: Determine color for PR creation
