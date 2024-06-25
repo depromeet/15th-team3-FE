@@ -11,6 +11,37 @@ jobs:
     name: Send Slack Notification
     runs-on: ubuntu-latest
     steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Read user mapping from JSON
+        id: read_user_mapping
+        run: |
+          mapping=$(cat .github/user-mapping.json)
+          echo "mapping=$mapping" >> $GITHUB_ENV
+
+      - name: Extract mentions from comment body
+        id: extract_mentions_comment
+        if: github.event_name == 'issue_comment'
+        run: |
+          mentions=$(echo "${{ github.event.comment.body }}" | grep -o '@[[:alnum:]_-]\+' | paste -sd ' ' -)
+          echo "mentions=$mentions" >> $GITHUB_ENV
+
+      - name: Map GitHub mentions to Slack user IDs
+        id: map_to_slack_ids
+        if: github.event_name == 'issue_comment'
+        run: |
+          mentions="${{ env.mentions }}"
+          slack_mentions=""
+          while IFS= read -r mention; do
+            user=$(echo $mention | sed 's/@//')
+            slack_user=$(echo ${{ env.mapping }} | jq -r --arg user "$user" '.[$user]')
+            if [[ -n "$slack_user" ]]; then
+              slack_mentions="$slack_mentions $slack_user"
+            fi
+          done <<< "$mentions"
+          echo "slack_mentions=$slack_mentions" >> $GITHUB_ENV
+
       - name: Determine color for PR creation
         id: determine_color_pr
         if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
@@ -38,28 +69,6 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-      - name: Extract mentions from comment body
-        id: extract_mentions_comment
-        if: github.event_name == 'issue_comment'
-        run: |
-          mentions=$(echo "${{ github.event.comment.body }}" | grep -o '@[[:alnum:]_-]\+' | paste -sd ' ' -)
-          echo "mentions=$mentions" >> $GITHUB_ENV
-
-      - name: Map GitHub mentions to Slack user IDs
-        id: map_to_slack_ids
-        if: github.event_name == 'issue_comment'
-        run: |
-          declare -A slack_ids
-          slack_ids=(["@Doeunnkimm"]="U07600UQG3T" ["@semnil5202"]="U075KR29RGR" ["@Andrevile"]="U07545VMS21" ["@LeeJeongHooo"]="U075C1A16LT")
-          mentions="${{ env.mentions }}"
-          slack_mentions=""
-          for mention in $mentions; do
-            if [[ -n "${slack_ids[$mention]}" ]]; then
-              slack_mentions="$slack_mentions <@${slack_ids[$mention]}>"
-            fi
-          done
-          echo "slack_mentions=$slack_mentions" >> $GITHUB_ENV
 
       - name: Determine color for comment mention
         id: determine_color_comment
