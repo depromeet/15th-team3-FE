@@ -59,7 +59,7 @@ jobs:
           SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
 
       - name: Restore Slack message timestamp
-        if: ${{ env.event_type == 'issue_comment' || env.event_type == 'pull_request_review' }}
+        id: restore_slack_ts
         run: |
           if [ -f slack_ts_${{ github.event.issue.number || github.event.pull_request.number }}.txt ]; then
             echo "SLACK_MESSAGE_TS=$(cat slack_ts_${{ github.event.issue.number || github.event.pull_request.number }}.txt)" >> $GITHUB_ENV
@@ -67,7 +67,23 @@ jobs:
             echo "SLACK_MESSAGE_TS=" >> $GITHUB_ENV
           fi
 
-      - name: Send notification for comment
+      - name: Send notification for comment in thread
+        if: ${{ env.event_type == 'issue_comment' && env.SLACK_MESSAGE_TS != '' }}
+        run: |
+          commenter=${{ github.event.comment.user.login }}
+          slack_username=$(cat .github/user-mapping.json | jq -r --arg commenter "$commenter" '.[$commenter]')
+          if [ "$slack_username" != "null" ]; then
+            curl -X POST -H 'Content-type: application/json' --data '{
+              "text": "<@'$slack_username'>님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}",
+              "thread_ts": "'${{ env.SLACK_MESSAGE_TS }}'"
+            }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}"
+          else
+            echo "Commenter not found in mapping: $commenter"
+          fi
+        env:
+          SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
+
+      - name: Send notification for comment without thread
         if: ${{ env.event_type == 'issue_comment' && env.SLACK_MESSAGE_TS == '' }}
         run: |
           commenter=${{ github.event.comment.user.login }}
@@ -86,24 +102,18 @@ jobs:
         env:
           SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
 
-      - name: Send notification for comment in thread
-        if: ${{ env.event_type == 'issue_comment' && env.SLACK_MESSAGE_TS != '' }}
-        run: |
-          commenter=${{ github.event.comment.user.login }}
-          slack_username=$(cat .github/user-mapping.json | jq -r --arg commenter "$commenter" '.[$commenter]')
-          if [ "$slack_username" != "null" ]; then
-            curl -X POST -H 'Content-type: application/json' --data '{
-              "text": "<@'$slack_username'>님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}",
-              "thread_ts": "'${{ env.SLACK_MESSAGE_TS }}'"
-            }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}"
-          else
-            echo "Commenter not found in mapping: $commenter"
-          fi
-        env:
-          SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
-
       - name: Send notification for approval
         if: ${{ env.event_type == 'pull_request_review' && github.event.review.state == 'approved' && env.SLACK_MESSAGE_TS != '' }}
         run: |
           reviewer=${{ github.event.review.user.login }}
-          slack_username=$(cat .github/user-mapping.json | jq -r
+          slack_username=$(cat .github/user-mapping.json | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
+          if [ "$slack_username" != "null" ]; then
+            curl -X POST -H 'Content-type: application/json' --data '{
+              "text": "<@'$slack_username'>님이 PR을 승인했습니다 🎉",
+              "thread_ts": "'${{ env.SLACK_MESSAGE_TS }}'"
+            }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}"
+          else
+            echo "Reviewer not found in mapping: $reviewer"
+          fi
+        env:
+          SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
