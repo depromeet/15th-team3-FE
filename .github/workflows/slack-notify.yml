@@ -35,8 +35,8 @@ jobs:
         id: slack_pr
         run: |
           response=$(curl -X POST -H 'Content-type: application/json' --data '{
-            "text": "*🧞‍♂️ PR 드리는 지니가 왔습니다~*\n*<${{ github.event.pull_request.html_url }}|[sambad#${{ github.event.pull_request.number }}] [${{ github.event.pull_request.title }}]>*\n${{ github.event.pull_request.user.login }}님이 생성했어요."
-          }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }})
+            "text": "*🧞‍♂️ PR 드리는 지니가 왔습니다~*\n*<'"${{ github.event.pull_request.html_url }}"'|[sambad#'"${{ github.event.pull_request.number }}"'] [${{ github.event.pull_request.title }}]>*\n${{ github.event.pull_request.user.login }}님이 생성했어요."
+          }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}")
           slack_ts=$(echo $response | jq -r '.ts')
           echo "slack_ts=$slack_ts" >> $GITHUB_ENV
           echo $slack_ts > slack_ts_${{ github.event.pull_request.number }}.txt
@@ -51,7 +51,7 @@ jobs:
           if [ "$slack_username" != "null" ]; then
             curl -X POST -H 'Content-type: application/json' --data '{
               "text": "*🔔 리뷰 요청이 도착했습니다*: @'$slack_username'"
-            }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
+            }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}"
           else
             echo "Reviewer not found in mapping: $reviewer"
           fi
@@ -75,8 +75,8 @@ jobs:
           if [ "$slack_username" != "null" ]; then
             curl -X POST -H 'Content-type: application/json' --data '{
               "text": "@'$slack_username'님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}",
-              "thread_ts": "${{ env.SLACK_MESSAGE_TS }}"
-            }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
+              "thread_ts": "'${{ env.SLACK_MESSAGE_TS }}'"
+            }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}"
           else
             echo "Commenter not found in mapping: $commenter"
           fi
@@ -91,8 +91,8 @@ jobs:
           if [ "$slack_username" != "null" ]; then
             curl -X POST -H 'Content-type: application/json' --data '{
               "text": "✅ @'$slack_username'님이 승인하셨어요 🎉",
-              "thread_ts": "${{ env.SLACK_MESSAGE_TS }}"
-            }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
+              "thread_ts": "'${{ env.SLACK_MESSAGE_TS }}'"
+            }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}"
           else
             echo "Reviewer not found in mapping: $reviewer"
           fi
