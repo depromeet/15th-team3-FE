@@ -106,5 +106,4 @@ jobs:
         run: |
           reviewer=${{ github.event.review.user.login }}
           slack_username=$(cat .github/user-mapping.json | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
-          if [ "$slack_username" != "null" ]; then
-            curl -X POST -
+          if
