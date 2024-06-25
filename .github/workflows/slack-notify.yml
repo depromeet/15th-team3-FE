@@ -1,0 +1,91 @@
+name: Notify Slack on PR and Comment
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, review_requested]
+  issue_comment:
+    types: [created]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Determine event type
+        id: determine_event
+        run: echo "event_type=${{ github.event_name }}" >> $GITHUB_ENV
+
+      - name: Read user mapping
+        id: read_mapping
+        run: |
+          mapping=$(cat .github/user-mapping.json)
+          echo "mapping=$mapping" >> $GITHUB_ENV
+
+      - name: Cache Slack message timestamp
+        if: ${{ env.event_type == 'pull_request' }}
+        uses: actions/cache@v2
+        with:
+          path: slack_ts.txt
+          key: slack-ts-${{ github.event.pull_request.number }}
+
+      - name: Send notification for PR
+        if: ${{ env.event_type == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') }}
+        id: slack_pr
+        run: |
+          response=$(curl -X POST -H 'Content-type: application/json' --data '{
+            "text": "🧞‍♂️ PR 드리는 지니가 왔습니다\n[sambad#${{ github.event.pull_request.number }}] [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})\n${{ github.event.pull_request.user.login }}님이 생성했어요."
+          }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }})
+          echo "slack_ts=$(echo $response | jq -r '.ts')" >> $GITHUB_ENV
+          echo $slack_ts > slack_ts.txt
+        env:
+          SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
+
+      - name: Send notification for review request
+        if: ${{ env.event_type == 'pull_request' && github.event.action == 'review_requested' }}
+        run: |
+          reviewer=${{ github.event.requested_reviewer.login }}
+          slack_username=$(echo ${{ env.mapping }} | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
+          if [ "$slack_username" != "null" ]; then
+            response=$(curl -X POST -H 'Content-type: application/json' --data '{
+              "text": "🔔 리뷰 요청이 도착했습니다: @'$slack_username'"
+            }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }})
+            echo "slack_ts=$(echo $response | jq -r '.ts')" >> $GITHUB_ENV
+            echo $slack_ts > slack_ts.txt
+          else
+            echo "Reviewer not found in mapping: $reviewer"
+          fi
+        env:
+          SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
+
+      - name: Restore Slack message timestamp
+        if: ${{ env.event_type == 'issue_comment' }}
+        id: restore_ts
+        uses: actions/cache@v2
+        with:
+          path: slack_ts.txt
+          key: slack-ts-${{ github.event.issue.number }}
+          restore-keys: |
+            slack-ts-
+
+      - name: Load Slack message timestamp
+        if: ${{ env.event_type == 'issue_comment' && steps.restore_ts.outputs.cache-hit == 'true' }}
+        run: echo "SLACK_MESSAGE_TS=$(cat slack_ts.txt)" >> $GITHUB_ENV
+
+      - name: Send notification for comment
+        if: ${{ env.event_type == 'issue_comment' && env.SLACK_MESSAGE_TS != '' }}
+        run: |
+          commenter=${{ github.event.comment.user.login }}
+          slack_username=$(echo ${{ env.mapping }} | jq -r --arg commenter "$commenter" '.[$commenter]')
+          if [ "$slack_username" != "null" ]; then
+            curl -X POST -H 'Content-type: application/json' --data '{
+              "text": "@'$slack_username'님이 코멘트를 달았습니다:\n${{ github.event.comment.body }}",
+              "thread_ts": "${{ env.SLACK_MESSAGE_TS }}"
+            }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
+          else
+            echo "Commenter not found in mapping: $commenter"
+          fi
+        env:
+          SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
