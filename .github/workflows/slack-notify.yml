@@ -77,7 +77,7 @@ jobs:
           slack_username=$(cat .github/user-mapping.json | jq -r --arg commenter "$commenter" '.[$commenter]')
           if [ "$slack_username" != "null" ]; then
             curl -X POST -H 'Content-type: application/json' --data '{
-              "text": "@'$slack_username'님이 코멘트를 달았습니다:\n${{ github.event.comment.body }}",
+              "text": "@'$slack_username'님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}",
               "thread_ts": "${{ env.SLACK_MESSAGE_TS }}"
             }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
           else
