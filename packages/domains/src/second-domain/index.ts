@@ -1,1 +1,1 @@
-export { SecondDomainExampleScreen } from "./screens/SecondDomainExampleScreen";
+export { SecondDomainExampleScreen } from './screens/SecondDomainExampleScreen';
