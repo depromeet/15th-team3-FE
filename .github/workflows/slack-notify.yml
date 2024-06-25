@@ -50,7 +50,7 @@ jobs:
           slack_username=$(cat .github/user-mapping.json | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
           if [ "$slack_username" != "null" ]; then
             curl -X POST -H 'Content-type: application/json' --data '{
-              "text": "*🔔 리뷰 요청이 도착했습니다*: @'$slack_username'"
+              "text": "*🔔 리뷰 요청이 도착했습니다*: <@'$slack_username'>"
             }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}"
           else
             echo "Reviewer not found in mapping: $reviewer"
@@ -74,7 +74,7 @@ jobs:
           slack_username=$(cat .github/user-mapping.json | jq -r --arg commenter "$commenter" '.[$commenter]')
           if [ "$slack_username" != "null" ]; then
             response=$(curl -X POST -H 'Content-type: application/json' --data '{
-              "text": "@'$slack_username'님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}"
+              "text": "<@'$slack_username'>님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}"
             }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}")
             slack_ts=$(echo $response | jq -r '.ts')
             echo "slack_ts=$slack_ts" >> $GITHUB_ENV
@@ -92,7 +92,7 @@ jobs:
           slack_username=$(cat .github/user-mapping.json | jq -r --arg commenter "$commenter" '.[$commenter]')
           if [ "$slack_username" != "null" ]; then
             curl -X POST -H 'Content-type: application/json' --data '{
-              "text": "@'$slack_username'님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}",
+              "text": "<@'$slack_username'>님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}",
               "thread_ts": "'${{ env.SLACK_MESSAGE_TS }}'"
             }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}"
           else
