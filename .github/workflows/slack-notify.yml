@@ -62,10 +62,29 @@ jobs:
         id: restore_slack_ts
         run: |
           if [ -f slack_ts_${{ github.event.issue.number || github.event.pull_request.number }}.txt ]; then
+            cat slack_ts_${{ github.event.issue.number || github.event.pull_request.number }}.txt
             echo "SLACK_MESSAGE_TS=$(cat slack_ts_${{ github.event.issue.number || github.event.pull_request.number }}.txt)" >> $GITHUB_ENV
           else
             echo "SLACK_MESSAGE_TS=" >> $GITHUB_ENV
           fi
+
+      - name: Send notification for comment
+        if: ${{ env.event_type == 'issue_comment' && env.SLACK_MESSAGE_TS == '' }}
+        run: |
+          commenter=${{ github.event.comment.user.login }}
+          slack_username=$(cat .github/user-mapping.json | jq -r --arg commenter "$commenter" '.[$commenter]')
+          if [ "$slack_username" != "null" ]; then
+            response=$(curl -X POST -H 'Content-type: application/json' --data '{
+              "text": "<@'$slack_username'>님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}"
+            }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}")
+            slack_ts=$(echo $response | jq -r '.ts')
+            echo "slack_ts=$slack_ts" >> $GITHUB_ENV
+            echo $slack_ts > slack_ts_${{ github.event.issue.number || github.event.pull_request.number }}.txt
+          else
+            echo "Commenter not found in mapping: $commenter"
+          fi
+        env:
+          SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
 
       - name: Send notification for comment in thread
         if: ${{ env.event_type == 'issue_comment' && env.SLACK_MESSAGE_TS != '' }}
@@ -77,25 +96,6 @@ jobs:
               "text": "<@'$slack_username'>님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}",
               "thread_ts": "'${{ env.SLACK_MESSAGE_TS }}'"
             }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}"
-          else
-            echo "Commenter not found in mapping: $commenter"
-          fi
-        env:
-          SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
-
-      - name: Send notification for comment without thread
-        if: ${{ env.event_type == 'issue_comment' && env.SLACK_MESSAGE_TS == '' }}
-        run: |
-          commenter=${{ github.event.comment.user.login }}
-          slack_username=$(cat .github/user-mapping.json | jq -r --arg commenter "$commenter" '.[$commenter]')
-          if [ "$slack_username" != "null" ]; then
-            response=$(curl -X POST -H 'Content-type: application/json' --data '{
-              "text": "<@'$slack_username'>님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}",
-              "thread_ts": "'${{ env.SLACK_MESSAGE_TS }}'"
-            }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}")
-            slack_ts=$(echo $response | jq -r '.ts')
-            echo "slack_ts=$slack_ts" >> $GITHUB_ENV
-            echo $slack_ts > slack_ts_${{ github.event.issue.number || github.event.pull_request.number }}.txt
           else
             echo "Commenter not found in mapping: $commenter"
           fi
