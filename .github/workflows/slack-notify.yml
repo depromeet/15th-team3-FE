@@ -20,12 +20,6 @@ jobs:
         id: determine_event
         run: echo "event_type=${{ github.event_name }}" >> $GITHUB_ENV
 
-      - name: Read user mapping
-        id: read_mapping
-        run: |
-          mapping=$(cat .github/user-mapping.json)
-          echo "mapping=$mapping" >> $GITHUB_ENV
-
       - name: Cache Slack message timestamp
         if: ${{ env.event_type == 'pull_request' }}
         uses: actions/cache@v2
@@ -49,7 +43,7 @@ jobs:
         if: ${{ env.event_type == 'pull_request' && github.event.action == 'review_requested' }}
         run: |
           reviewer=${{ github.event.requested_reviewer.login }}
-          slack_username=$(echo ${{ env.mapping }} | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
+          slack_username=$(cat .github/user-mapping.json | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
           if [ "$slack_username" != "null" ]; then
             response=$(curl -X POST -H 'Content-type: application/json' --data '{
               "text": "🔔 리뷰 요청이 도착했습니다: @'$slack_username'"
@@ -80,7 +74,7 @@ jobs:
         if: ${{ env.event_type == 'issue_comment' && env.SLACK_MESSAGE_TS != '' }}
         run: |
           commenter=${{ github.event.comment.user.login }}
-          slack_username=$(echo ${{ env.mapping }} | jq -r --arg commenter "$commenter" '.[$commenter]')
+          slack_username=$(cat .github/user-mapping.json | jq -r --arg commenter "$commenter" '.[$commenter]')
           if [ "$slack_username" != "null" ]; then
             curl -X POST -H 'Content-type: application/json' --data '{
               "text": "@'$slack_username'님이 코멘트를 달았습니다:\n${{ github.event.comment.body }}",
@@ -96,7 +90,7 @@ jobs:
         if: ${{ env.event_type == 'pull_request_review' && github.event.review.state == 'approved' && env.SLACK_MESSAGE_TS != '' }}
         run: |
           reviewer=${{ github.event.review.user.login }}
-          slack_username=$(echo ${{ env.mapping }} | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
+          slack_username=$(cat .github/user-mapping.json | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
           if [ "$slack_username" != "null" ]; then
             curl -X POST -H 'Content-type: application/json' --data '{
               "text": "✅ @'$slack_username'님이 승인하셨어요 🎉",
