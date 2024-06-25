@@ -74,7 +74,8 @@ jobs:
           slack_username=$(cat .github/user-mapping.json | jq -r --arg commenter "$commenter" '.[$commenter]')
           if [ "$slack_username" != "null" ]; then
             response=$(curl -X POST -H 'Content-type: application/json' --data '{
-              "text": "<@'$slack_username'>님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}"
+              "text": "<@'$slack_username'>님이 코멘트를 달았습니다 💌:\n${{ github.event.comment.body }}",
+              "thread_ts": "'${{ env.SLACK_MESSAGE_TS }}'"
             }' https://slack.com/api/chat.postMessage -H "Authorization: Bearer ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}")
             slack_ts=$(echo $response | jq -r '.ts')
             echo "slack_ts=$slack_ts" >> $GITHUB_ENV
@@ -105,5 +106,4 @@ jobs:
         if: ${{ env.event_type == 'pull_request_review' && github.event.review.state == 'approved' && env.SLACK_MESSAGE_TS != '' }}
         run: |
           reviewer=${{ github.event.review.user.login }}
-          slack_username=$(cat .github/user-mapping.json | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
-          if
+          slack_username=$(cat .github/user-mapping.json | jq -r
