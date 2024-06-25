@@ -32,7 +32,7 @@ jobs:
         id: slack_pr
         run: |
           response=$(curl -X POST -H 'Content-type: application/json' --data '{
-            "text": "🧞‍♂️ PR 드리는 지니가 왔습니다\n[sambad#${{ github.event.pull_request.number }}] [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})\n${{ github.event.pull_request.user.login }}님이 생성했어요."
+            "text": "*:남성_지니: PR 드리는 지니가 왔습니다~*\n*<${{ github.event.pull_request.html_url }}|[sambad#${{ github.event.pull_request.number }}] [${{ github.event.pull_request.title }}]>*\n${{ github.event.pull_request.user.login }}님이 생성했어요."
           }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }})
           echo "slack_ts=$(echo $response | jq -r '.ts')" >> $GITHUB_ENV
           echo $slack_ts > slack_ts.txt
@@ -46,7 +46,7 @@ jobs:
           slack_username=$(cat .github/user-mapping.json | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
           if [ "$slack_username" != "null" ]; then
             response=$(curl -X POST -H 'Content-type: application/json' --data '{
-              "text": "🔔 리뷰 요청이 도착했습니다: @'$slack_username'"
+              "text": "*🔔 리뷰 요청이 도착했습니다*: @'$slack_username'"
             }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }})
             echo "slack_ts=$(echo $response | jq -r '.ts')" >> $GITHUB_ENV
             echo $slack_ts > slack_ts.txt
