@@ -1,110 +1,109 @@
-name: Slack Notification
+name: Notify Slack on PR and Comment
 
 on:
   pull_request:
-    types: [opened, ready_for_review]
+    types: [opened, reopened, synchronize, review_requested]
   issue_comment:
-    types: [created, edited]
+    types: [created]
+  pull_request_review:
+    types: [submitted]
 
 jobs:
-  send_slack_notification:
-    name: Send Slack Notification
+  notify:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out the repository
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Debug - List files in .github directory
-        run: ls -la .github
+      - name: Determine event type
+        id: determine_event
+        run: echo "event_type=${{ github.event_name }}" >> $GITHUB_ENV
 
-      - name: Debug - Cat user-mapping.json
-        run: cat .github/user-mapping.json
-
-      - name: Read user mapping from JSON
-        id: read_user_mapping
+      - name: Read user mapping
+        id: read_mapping
         run: |
-          echo "Reading user mapping"
-          while IFS="=" read -r key value; do
-            echo "${key}=${value}" >> $GITHUB_ENV
-          done < <(jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' .github/user-mapping.json)
+          mapping=$(cat .github/user-mapping.json)
+          echo "mapping=$mapping" >> $GITHUB_ENV
 
-      - name: Extract mentions from comment body
-        id: extract_mentions_comment
-        if: github.event_name == 'issue_comment'
-        run: |
-          mentions=$(echo "${{ github.event.comment.body }}" | grep -o '@[[:alnum:]_-]\+' | paste -sd ' ' -)
-          echo "mentions=$mentions" >> $GITHUB_ENV
+      - name: Cache Slack message timestamp
+        if: ${{ env.event_type == 'pull_request' }}
+        uses: actions/cache@v2
+        with:
+          path: slack_ts.txt
+          key: slack-ts-${{ github.event.pull_request.number }}
 
-      - name: Map GitHub mentions to Slack user IDs
-        id: map_to_slack_ids
-        if: github.event_name == 'issue_comment'
+      - name: Send notification for PR
+        if: ${{ env.event_type == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') }}
+        id: slack_pr
         run: |
-          mentions="${{ env.mentions }}"
-          slack_mentions=""
-          for mention in $mentions; do
-            user=$(echo $mention | sed 's/@//')
-            slack_user=$(eval echo \${$user})
-            if [[ -n "$slack_user" ]]; then
-              slack_mentions="$slack_mentions $slack_user"
-            fi
-          done
-          echo "slack_mentions=$slack_mentions" >> $GITHUB_ENV
+          response=$(curl -X POST -H 'Content-type: application/json' --data '{
+            "text": "🧞‍♂️ PR 드리는 지니가 왔습니다\n[sambad#${{ github.event.pull_request.number }}] [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})\n${{ github.event.pull_request.user.login }}님이 생성했어요."
+          }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }})
+          echo "slack_ts=$(echo $response | jq -r '.ts')" >> $GITHUB_ENV
+          echo $slack_ts > slack_ts.txt
+        env:
+          SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
 
-      - name: Determine color for PR creation
-        id: determine_color_pr
-        if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
+      - name: Send notification for review request
+        if: ${{ env.event_type == 'pull_request' && github.event.action == 'review_requested' }}
         run: |
-          if [ "${{ job.status }}" == "success" ]; then
-            echo "color=good" >> $GITHUB_ENV
-          elif [ "${{ job.status }}" == "failure" ]; then
-            echo "color=danger" >> $GITHUB_ENV
+          reviewer=${{ github.event.requested_reviewer.login }}
+          slack_username=$(echo ${{ env.mapping }} | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
+          if [ "$slack_username" != "null" ]; then
+            response=$(curl -X POST -H 'Content-type: application/json' --data '{
+              "text": "🔔 리뷰 요청이 도착했습니다: @'$slack_username'"
+            }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }})
+            echo "slack_ts=$(echo $response | jq -r '.ts')" >> $GITHUB_ENV
+            echo $slack_ts > slack_ts.txt
           else
-            echo "color=warning" >> $GITHUB_ENV
+            echo "Reviewer not found in mapping: $reviewer"
           fi
-
-      - name: Send Slack Notification for PR creation
-        if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
-        uses: 8398a7/action-slack@v3
-        with:
-          status: custom
-          fields: author,pullRequest
-          custom_payload: |
-            {
-              "attachments": [{
-                "color": "${{ env.color }}",
-                "text": "Actor: ${{ github.actor }}\nPR: ${{ github.event.pull_request.html_url }}"
-              }]
-            }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
 
-      - name: Determine color for comment mention
-        id: determine_color_comment
-        if: github.event_name == 'issue_comment' && env.slack_mentions != ''
+      - name: Restore Slack message timestamp
+        if: ${{ env.event_type == 'issue_comment' || env.event_type == 'pull_request_review' }}
+        id: restore_ts
+        uses: actions/cache@v2
+        with:
+          path: slack_ts.txt
+          key: slack-ts-${{ github.event.issue.number || github.event.pull_request.number }}
+          restore-keys: |
+            slack-ts-
+
+      - name: Load Slack message timestamp
+        if: ${{ (env.event_type == 'issue_comment' || env.event_type == 'pull_request_review') && steps.restore_ts.outputs.cache-hit == 'true' }}
+        run: echo "SLACK_MESSAGE_TS=$(cat slack_ts.txt)" >> $GITHUB_ENV
+
+      - name: Send notification for comment
+        if: ${{ env.event_type == 'issue_comment' && env.SLACK_MESSAGE_TS != '' }}
         run: |
-          if [ "${{ job.status }}" == "success" ]; then
-            echo "color=good" >> $GITHUB_ENV
-          elif [ "${{ job.status }}" == "failure" ]; then
-            echo "color=danger" >> $GITHUB_ENV
+          commenter=${{ github.event.comment.user.login }}
+          slack_username=$(echo ${{ env.mapping }} | jq -r --arg commenter "$commenter" '.[$commenter]')
+          if [ "$slack_username" != "null" ]; then
+            curl -X POST -H 'Content-type: application/json' --data '{
+              "text": "@'$slack_username'님이 코멘트를 달았습니다:\n${{ github.event.comment.body }}",
+              "thread_ts": "${{ env.SLACK_MESSAGE_TS }}"
+            }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
           else
-            echo "color=warning" >> $GITHUB_ENV
-
-      - name: Send Slack Notification for comment if team members mentioned
-        if: github.event_name == 'issue_comment' && env.slack_mentions != ''
-        uses: 8398a7/action-slack@v3
-        with:
-          status: custom
-          fields: pullRequest
-          custom_payload: |
-            {
-              "attachments": [{
-                "color": "${{ env.color }}",
-                "text": "${{ github.event.pull_request.html_url }} 에서 ${{ env.slack_mentions }} 님을 언급했습니다.\n꼭 나중에 들어가서 확인하기!\n메시지: ${{ github.event.comment.body }}"
-              }]
-            }
+            echo "Commenter not found in mapping: $commenter"
+          fi
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
 
-      - name: Debug mentions
-        if: github.event_name == 'issue_comment' && env.slack_mentions == ''
-        run: echo "No team members mentioned in the comment."
+      - name: Send notification for approval
+        if: ${{ env.event_type == 'pull_request_review' && github.event.review.state == 'approved' && env.SLACK_MESSAGE_TS != '' }}
+        run: |
+          reviewer=${{ github.event.review.user.login }}
+          slack_username=$(echo ${{ env.mapping }} | jq -r --arg reviewer "$reviewer" '.[$reviewer]')
+          if [ "$slack_username" != "null" ]; then
+            curl -X POST -H 'Content-type: application/json' --data '{
+              "text": "✅ @'$slack_username'님이 승인하셨어요 🎉",
+              "thread_ts": "${{ env.SLACK_MESSAGE_TS }}"
+            }' ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
+          else
+            echo "Reviewer not found in mapping: $reviewer"
+          fi
+        env:
+          SLACK_BOT_ACCESS_TOKEN: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
