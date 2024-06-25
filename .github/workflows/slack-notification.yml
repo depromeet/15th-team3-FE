@@ -24,8 +24,9 @@ jobs:
         id: read_user_mapping
         run: |
           echo "Reading user mapping"
-          mapping=$(cat .github/user-mapping.json | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]')
-          echo "$mapping" >> $GITHUB_ENV
+          while IFS="=" read -r key value; do
+            echo "${key}=${value}" >> $GITHUB_ENV
+          done < <(jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' .github/user-mapping.json)
 
       - name: Extract mentions from comment body
         id: extract_mentions_comment
@@ -87,7 +88,6 @@ jobs:
             echo "color=danger" >> $GITHUB_ENV
           else
             echo "color=warning" >> $GITHUB_ENV
-          fi
 
       - name: Send Slack Notification for comment if team members mentioned
         if: github.event_name == 'issue_comment' && env.slack_mentions != ''
