@@ -23,9 +23,9 @@ importers:
 
   apps/web:
     dependencies:
-      '@sambad/domains':
+      '@sambad/web-domains':
         specifier: workspace:*
-        version: link:../../packages/domains
+        version: link:../../packages/web-domains
       next:
         specifier: 14.2.4
         version: 14.2.4(react-dom@18.2.0)(react@18.2.0)
@@ -145,7 +145,7 @@ importers:
         specifier: ^5.3.3
         version: 5.4.5
 
-  packages/domains:
+  packages/web-domains:
     devDependencies:
       '@sambad/config':
         specifier: workspace:*
