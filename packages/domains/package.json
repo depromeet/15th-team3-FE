@@ -11,7 +11,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@sambad/ui": "workspace:*",
+    "@sambad/sds": "workspace:*",
     "@sambad/config": "workspace:*",
     "@types/node": "^20.11.24",
     "@types/eslint": "^8.56.5",

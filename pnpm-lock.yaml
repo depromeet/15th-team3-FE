@@ -93,6 +93,9 @@ importers:
       '@sambad/config':
         specifier: workspace:*
         version: link:../config
+      '@turbo/gen':
+        specifier: ^1.12.4
+        version: 1.12.4(@types/node@20.11.24)(typescript@5.4.5)
       '@types/eslint':
         specifier: ^8.56.5
         version: 8.56.5
@@ -115,14 +118,11 @@ importers:
         specifier: ^5.3.3
         version: 5.4.5
 
-  packages/core/ui:
+  packages/core/theme:
     devDependencies:
       '@sambad/config':
         specifier: workspace:*
         version: link:../config
-      '@turbo/gen':
-        specifier: ^1.12.4
-        version: 1.12.4(@types/node@20.11.24)(typescript@5.4.5)
       '@types/eslint':
         specifier: ^8.56.5
         version: 8.56.5
@@ -150,9 +150,9 @@ importers:
       '@sambad/config':
         specifier: workspace:*
         version: link:../core/config
-      '@sambad/ui':
+      '@sambad/sds':
         specifier: workspace:*
-        version: link:../core/ui
+        version: link:../core/sds
       '@types/eslint':
         specifier: ^8.56.5
         version: 8.56.5

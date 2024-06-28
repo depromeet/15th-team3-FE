@@ -1,5 +1,5 @@
 {
-  "name": "@sambad/ui",
+  "name": "@sambad/theme",
   "version": "0.0.0",
   "private": true,
   "exports": {
@@ -10,7 +10,6 @@
   },
   "devDependencies": {
     "@sambad/config": "workspace:*",
-    "@turbo/gen": "^1.12.4",
     "@types/node": "^20.11.24",
     "@types/eslint": "^8.56.5",
     "@types/react": "^18.2.61",
