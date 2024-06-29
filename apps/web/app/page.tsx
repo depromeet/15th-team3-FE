@@ -1,5 +1,6 @@
+'use client';
+
 import { FirstDomainExampleScreen } from '@sambad/domains/first-domain';
-import Image from 'next/image';
 
 import styles from './page.module.css';
 
