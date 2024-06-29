@@ -1,0 +1,39 @@
+name: PR Slack Notification
+
+on:
+  pull_request:
+    types: [review_requested]
+  issue_comment:
+    types: [created]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      - name: Notify Slack
+        uses: ./
+        with:
+          github_token: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
+          slack_token: ${{ secrets.SLACK_BOT_ACCESS_TOKEN }}
+          slack_channel: C079A5A8BL0
+          slack_workspace: 'DEPROMEET 15th'
+          reviewers_file: .github/workflows/reviewers.yml
+          slack_merge_emoji_name: check
