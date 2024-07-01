@@ -23,9 +23,9 @@ importers:
 
   apps/web:
     dependencies:
-      '@sambad/domains':
+      '@sambad/web-domains':
         specifier: workspace:*
-        version: link:../../packages/domains
+        version: link:../../packages/web-domains
       next:
         specifier: 14.2.4
         version: 14.2.4(react-dom@18.2.0)(react@18.2.0)
@@ -36,12 +36,9 @@ importers:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@sambad/eslint-config':
+      '@sambad/config':
         specifier: workspace:*
-        version: link:../../packages/core/eslint-config
-      '@sambad/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/core/typescript-config
+        version: link:../../packages/core/config
       '@types/node':
         specifier: ^20
         version: 20.11.24
@@ -61,7 +58,7 @@ importers:
         specifier: ^5
         version: 5.4.5
 
-  packages/core/eslint-config:
+  packages/core/config:
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.1.0
@@ -93,44 +90,9 @@ importers:
 
   packages/core/sds:
     devDependencies:
-      '@sambad/eslint-config':
+      '@sambad/config':
         specifier: workspace:*
-        version: link:../eslint-config
-      '@sambad/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      '@types/eslint':
-        specifier: ^8.56.5
-        version: 8.56.5
-      '@types/node':
-        specifier: ^20.11.24
-        version: 20.11.24
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.2.61
-      '@types/react-dom':
-        specifier: ^18.2.19
-        version: 18.2.19
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      react:
-        specifier: ^18
-        version: 18.2.0
-      typescript:
-        specifier: ^5.3.3
-        version: 5.4.5
-
-  packages/core/typescript-config: {}
-
-  packages/core/ui:
-    devDependencies:
-      '@sambad/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@sambad/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
+        version: link:../config
       '@turbo/gen':
         specifier: ^1.12.4
         version: 1.12.4(@types/node@20.11.24)(typescript@5.4.5)
@@ -156,17 +118,41 @@ importers:
         specifier: ^5.3.3
         version: 5.4.5
 
-  packages/domains:
+  packages/core/theme:
     devDependencies:
-      '@sambad/eslint-config':
+      '@sambad/config':
         specifier: workspace:*
-        version: link:../core/eslint-config
-      '@sambad/typescript-config':
+        version: link:../config
+      '@types/eslint':
+        specifier: ^8.56.5
+        version: 8.56.5
+      '@types/node':
+        specifier: ^20.11.24
+        version: 20.11.24
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.61
+      '@types/react-dom':
+        specifier: ^18.2.19
+        version: 18.2.19
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      react:
+        specifier: ^18
+        version: 18.2.0
+      typescript:
+        specifier: ^5.3.3
+        version: 5.4.5
+
+  packages/web-domains:
+    devDependencies:
+      '@sambad/config':
         specifier: workspace:*
-        version: link:../core/typescript-config
-      '@sambad/ui':
+        version: link:../core/config
+      '@sambad/sds':
         specifier: workspace:*
-        version: link:../core/ui
+        version: link:../core/sds
       '@types/eslint':
         specifier: ^8.56.5
         version: 8.56.5

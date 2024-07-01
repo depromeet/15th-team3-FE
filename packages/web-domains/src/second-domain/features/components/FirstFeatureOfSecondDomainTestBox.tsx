@@ -1,21 +1,21 @@
-import { Button } from '@sambad/ui';
+import { Button } from '@sambad/sds';
 
 import type { PropsWithChildren } from 'react';
 
-interface FirstFeatureOfFirstDomainBoxProps {
+interface FirstFeatureOfSecondDomainBoxProps {
   displayText: string;
   onClick?: () => void;
 }
 
-export const FirstFeatureOfFirstDomainBox = ({
+export const FirstFeatureOfSecondDomainTestBox = ({
   displayText,
   onClick,
   children,
-}: PropsWithChildren<FirstFeatureOfFirstDomainBoxProps>) => {
+}: PropsWithChildren<FirstFeatureOfSecondDomainBoxProps>) => {
   return (
     <div>
       <Button appName="Container Box Button" onClick={onClick}>
-        FirstDomainTestBox
+        SecondDomainTestBox
       </Button>
       {displayText}
       {children}

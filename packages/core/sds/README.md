@@ -1,1 +1,1 @@
-# `sds`
+# `@sambad/sds`

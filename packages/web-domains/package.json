@@ -1,17 +1,18 @@
 {
-  "name": "@sambad/ui",
+  "name": "@sambad/web-domains",
   "version": "0.0.0",
   "private": true,
   "exports": {
-    ".": "./src/index.ts"
+    "./first-domain": "./src/first-domain/index.ts",
+    "./second-domain": "./src/second-domain/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0"
   },
+  "dependencies": {},
   "devDependencies": {
-    "@sambad/eslint-config": "workspace:*",
-    "@sambad/typescript-config": "workspace:*",
-    "@turbo/gen": "^1.12.4",
+    "@sambad/sds": "workspace:*",
+    "@sambad/config": "workspace:*",
     "@types/node": "^20.11.24",
     "@types/eslint": "^8.56.5",
     "@types/react": "^18.2.61",

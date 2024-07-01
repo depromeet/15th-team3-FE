@@ -1,5 +1,4 @@
-import { SecondDomainExampleScreen } from '@sambad/domains/second-domain';
-import Image from 'next/image';
+import { SecondDomainExampleScreen } from '@sambad/web-domains/second-domain';
 
 import styles from '../page.module.css';
 
