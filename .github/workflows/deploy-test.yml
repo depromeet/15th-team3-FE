@@ -1,0 +1,38 @@
+name: Deploy Test??
+
+on:
+  workflow_dispatch:
+    inputs:
+      user_name:
+        description: 배포한 사용자
+        required: true
+        type: string
+      stage_choice:
+        description: 배포 유형 (production,devleop)
+        type: choice
+        options:
+          - develop
+          - production
+  workflow_call:
+    inputs:
+      user_name:
+        description: 배포한 사용자
+        required: true
+        type: string
+
+run-name: '${{inputs.user_name}} runs workflow for ${{inputs.stage_choice}} deploy'
+
+jobs:
+  env:
+    name: setup environment variables
+    runs-on: ubuntu-latest
+    env:
+      stage: ${{inputs.stage_choice}}
+      build_script_path: ./tools/build.sh
+    steps:
+      - name: Get variables
+        id: variables
+        run: |
+          is_DEV=false
+    outputs:
+      stage: ${{env.stage}}
