@@ -9,7 +9,8 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check:spell": "cspell '**' --gitignore --no-progress"
+    "check:spell": "cspell '**' --gitignore --no-progress",
+    "husky:install": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4"
