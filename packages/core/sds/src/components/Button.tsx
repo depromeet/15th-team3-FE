@@ -1,5 +1,7 @@
 'use client';
 
+import { css } from '@emotion/react';
+
 import type { HTMLAttributes, ReactNode } from 'react';
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
@@ -10,7 +12,14 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
 
 export const Button = ({ children, className, appName, ...rest }: ButtonProps) => {
   return (
-    <button className={className} onClick={() => alert(`Hello from your ${appName} app!`)} {...rest}>
+    <button
+      css={css`
+        background: red;
+      `}
+      className={className}
+      onClick={() => alert(`Hello from your ${appName} app!`)}
+      {...rest}
+    >
       {children}
     </button>
   );

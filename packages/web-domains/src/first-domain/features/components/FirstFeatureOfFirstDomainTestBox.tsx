@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import { Button } from '@sambad/sds';
 
 import type { PropsWithChildren } from 'react';
@@ -14,7 +15,7 @@ export const FirstFeatureOfFirstDomainBox = ({
 }: PropsWithChildren<FirstFeatureOfFirstDomainBoxProps>) => {
   return (
     <div>
-      <Button appName="Container Box Button" onClick={onClick}>
+      <Button css={css``} appName="Container Box Button" onClick={onClick}>
         FirstDomainTestBox
       </Button>
       {displayText}
