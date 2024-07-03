@@ -12,7 +12,8 @@
   "dependencies": {},
   "devDependencies": {
     "@sambad/sds": "workspace:*",
-    "@sambad/config": "workspace:*",
+    "@sambad/eslint-config": "workspace:*",
+    "@sambad/typescript-config": "workspace:*",
     "@types/node": "^20.11.24",
     "@types/eslint": "^8.56.5",
     "@types/react": "^18.2.61",
