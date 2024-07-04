@@ -1,5 +1,5 @@
 {
-  "extends": "@sambad/config/typescript/nextjs.json",
+  "extends": "@sambad/typescript-config/nextjs.json",
   "compilerOptions": {
     "plugins": [
       {
@@ -7,6 +7,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "next.config.js", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/B.js", "app/A.js"],
+  "include": ["next-env.d.ts", "next.config.js", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

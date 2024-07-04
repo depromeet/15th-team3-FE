@@ -4,14 +4,10 @@ const project = resolve(process.cwd(), 'tsconfig.json');
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier', 'turbo'],
-  plugins: ['@typescript-eslint', 'only-warn', 'import'],
+  plugins: ['@typescript-eslint', 'import'],
   globals: {
     React: true,
     JSX: true,
-  },
-  env: {
-    node: true,
   },
   settings: {
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
@@ -21,12 +17,11 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: ['.*.js', 'node_modules/', 'dist/'],
   rules: {
     'import/order': [
       'warn',
       {
-        groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index'], 'object', 'type'],
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,
@@ -45,10 +40,7 @@ module.exports = {
     'no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
     'react/jsx-curly-brace-presence': ['warn', { props: 'never', children: 'never' }],
     '@typescript-eslint/consistent-type-imports': 'warn',
+    'react/no-unknown-property': ['error', { ignore: ['css'] }],
   },
-  overrides: [
-    {
-      files: ['*.js?(x)', '*.ts?(x)'],
-    },
-  ],
+  overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],
 };
