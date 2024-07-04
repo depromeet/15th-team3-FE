@@ -1,0 +1,4 @@
+{
+  "words": ["sambad", "doeunnkimm", "semnil5202", "LeeJeongHooo", "Andrevile", "vercel", "Turborepo"],
+  "ignorePaths": ["pnpm-lock.yaml", "**/node_modules/**", "**/dist/**", "**/build/**", ".git/**"]
+}
