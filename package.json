@@ -11,12 +11,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5"
+    "@emotion/react": "^11.11.4"
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "^11.11.0",
-    "@emotion/babel-preset-css-prop": "^11.11.0",
     "next": "14.2.4",
     "prettier": "^3.2.5",
     "turbo": "^2.0.4",
