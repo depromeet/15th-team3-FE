@@ -19,6 +19,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: pandoc/latex
+    outputs:
+      destination-repository: ${{ steps.deploy-information.outputs.target-repository }}
+      target-branch: ${{steps.deploy-information.outputs.target-branch}}
     steps:
       - uses: actions/checkout@v4
       - name: Install mustache (to update the date)
@@ -26,7 +29,6 @@ jobs:
       - name: creates ouput
         run: sh ./tools/build.sh
       - name: Pushes to another repository
-        id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
@@ -37,5 +39,18 @@ jobs:
           user-email: ${{secrets.EMAIL}}
           commit-message: ${{github.event.commits[0].message}}
           target-branch: ${{inputs.stage == 'prodction' && 'main' || 'develop' }}
-      - name: Test get variable exported by push-to-another-repository
-        run: echo $DESTINATION_CLONED_DIRECTORY
+      - name: get deploy information
+        id: deploy-information
+        run: echo "target-repository=deploy-sambad" >> "$GITHUB_OUTPUT" |
+          echo "target-branch= ${{inputs.stage == 'prodction' && 'main' || 'develop' }}"
+  info:
+    name: get deploy information
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - env:
+          destination-repository: ${{needs.build.outputs.destination-repository}}
+          target-branch: ${{needs.build.outputs.target-branch}}
+        run: |
+          echo "$destination-repository" |
+          echo "$target-branch"
