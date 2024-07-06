@@ -15,10 +15,27 @@ on:
       ACCESS_TOKEN:
         required: true
 
+env:
+  DEVELOP_REPOSITORY: deploy-sambad-develop
+  PRODUCTION_REPOSITORY: deploy-sambad
+
 jobs:
+  variable:
+    name: set the target STAGE
+    runs-on: ubuntu-latest
+    outputs:
+      destination-repository: ${{inputs.stage == 'production' && env.PRODUCTION_REPOSITORY && env.DEVELOP_REPOSITORY}}
+    steps:
+      - name: get variables
+        run: echo $destination-repository
+
   build:
+    needs: variable
     runs-on: ubuntu-latest
     container: pandoc/latex
+    outputs:
+      destination-repository: ${{needs.variable.outputs.destination-repository}}
+      target-branch: ${{steps.deploy-information.outputs.target-branch}}
     steps:
       - uses: actions/checkout@v4
       - name: Install mustache (to update the date)
@@ -26,16 +43,28 @@ jobs:
       - name: creates ouput
         run: sh ./tools/build.sh
       - name: Pushes to another repository
-        id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
         with:
           source-directory: 'output'
           destination-github-username: 'sambad-adventure'
-          destination-repository-name: 'deploy-sambad'
+          destination-repository-name: ${{needs.variable.outputs.destination-repository}}
           user-email: ${{secrets.EMAIL}}
           commit-message: ${{github.event.commits[0].message}}
-          target-branch: ${{inputs.stage == 'prodction' && 'main' || 'develop' }}
-      - name: Test get variable exported by push-to-another-repository
-        run: echo $DESTINATION_CLONED_DIRECTORY
+          target-branch: ${{inputs.stage == 'prodction' && 'main' || 'main' }}
+      - name: get deploy information
+        id: deploy-information
+        run: echo "target-repository=${{needs.variable.outputs.destination-repository}}" >> "$GITHUB_OUTPUT" |
+          echo "target-branch=${{inputs.stage == 'prodction' && 'main' || 'main' }}" >> "$GITHUB_OUTPUT"
+  info:
+    name: get deploy information
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - env:
+          destination-repository: ${{needs.build.outputs.destination-repository}}
+          target-branch: ${{needs.build.outputs.target-branch}}
+        run: |
+          echo "$destination-repository" |
+          echo "$target-branch"
