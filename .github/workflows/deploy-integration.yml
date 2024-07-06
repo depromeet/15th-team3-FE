@@ -1,0 +1,38 @@
+name: Push branch & deploy On remote repository only for Vercel
+
+on:
+  workflow_call:
+    inputs:
+      user_name:
+        description: 배포한 사용자
+        required: true
+        type: string
+      stage:
+        description: 배포 유형(production,develop)
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: pandoc/latex
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install mustache (to update the date)
+        run: apk add ruby && gem install mustache
+      - name: creates ouput
+        run: sh ./tools/build.sh
+      - name: Pushes to another repository
+        id: push_directory
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
+        with:
+          source-directory: 'output'
+          destination-github-username: 'sambad-adventure'
+          destination-repository-name: 'deploy-sambad'
+          user-email: ${{secrets.EMAIL}}
+          commit-message: ${{github.event.commits[0].message}}
+          target-branch: ${{inputs.stage == 'prodction' && 'main' || 'develop' }}
+      - name: Test get variable exported by push-to-another-repository
+        run: echo $DESTINATION_CLONED_DIRECTORY
