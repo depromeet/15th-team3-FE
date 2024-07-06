@@ -18,6 +18,13 @@ on:
 env:
   DEVELOP_REPOSITORY: deploy-sambad-develop
   PRODUCTION_REPOSITORY: deploy-sambad
+    secrets:
+      ACCESS_TOKEN:
+        required: true
+
+env:
+  DEVELOP_REPOSITORY: deploy-sambad-develop
+  PRODUCTION_REPOSITORY: deploy-sambad
 
 jobs:
   variable:
@@ -33,6 +40,9 @@ jobs:
     needs: variable
     runs-on: ubuntu-latest
     container: pandoc/latex
+    outputs:
+      destination-repository: ${{needs.variable.outputs.destination-repository}}
+      target-branch: ${{steps.deploy-information.outputs.target-branch}}
     outputs:
       destination-repository: ${{needs.variable.outputs.destination-repository}}
       target-branch: ${{steps.deploy-information.outputs.target-branch}}
