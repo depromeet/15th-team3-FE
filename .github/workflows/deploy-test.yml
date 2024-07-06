@@ -1,4 +1,4 @@
-name: Deploy Test??
+name: Deploy
 
 on:
   workflow_dispatch:
@@ -13,12 +13,6 @@ on:
         options:
           - develop
           - production
-  workflow_call:
-    inputs:
-      user_name:
-        description: 배포한 사용자
-        required: true
-        type: string
 
 run-name: '${{inputs.user_name}} runs workflow for ${{inputs.stage_choice}} deploy'
 
@@ -33,6 +27,9 @@ jobs:
       - name: Get variables
         id: variables
         run: |
-          is_DEV=false
-    outputs:
-      stage: ${{env.stage}}
+          echo STAGE : ${{inputs.stage_choice}}
+  deploy:
+    uses: './.github/workflows/deploy-integration.yml'
+    with:
+      user_name: ${{inputs.user_name}}
+      stage: ${{inputs.stage_choice}}
