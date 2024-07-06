@@ -1,4 +1,4 @@
-name: Push branch & deploy On remote repository only for Vercel
+name: Push branch & deploy
 
 on:
   workflow_call:
@@ -21,7 +21,7 @@ env:
 
 jobs:
   variable:
-    name: set the target STAGE
+    name: set target
     runs-on: ubuntu-latest
     outputs:
       destination-repository: ${{inputs.stage == 'production' && env.PRODUCTION_REPOSITORY && env.DEVELOP_REPOSITORY}}
@@ -51,7 +51,7 @@ jobs:
           destination-github-username: 'sambad-adventure'
           destination-repository-name: ${{needs.variable.outputs.destination-repository}}
           user-email: ${{secrets.EMAIL}}
-          commit-message: ${{github.event.commits[0].message}}
+          commit-message: ${{github.event.commits.message}}
           target-branch: ${{inputs.stage == 'prodction' && 'main' || 'main' }}
       - name: get deploy information
         id: deploy-information
