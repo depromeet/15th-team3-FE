@@ -17,19 +17,10 @@ on:
 run-name: '${{inputs.user_name}} runs workflow for ${{inputs.stage_choice}} deploy'
 
 jobs:
-  env:
-    name: setup environment variables
-    runs-on: ubuntu-latest
-    env:
-      stage: ${{inputs.stage_choice}}
-      build_script_path: ./tools/build.sh
-    steps:
-      - name: Get variables
-        id: variables
-        run: |
-          echo STAGE : ${{inputs.stage_choice}}
   deploy:
     uses: './.github/workflows/deploy-integration.yml'
     with:
       user_name: ${{inputs.user_name}}
       stage: ${{inputs.stage_choice}}
+    secrets:
+      ACCESS_TOKEN: ${{secrets.ACCESS_TOKEN}}
