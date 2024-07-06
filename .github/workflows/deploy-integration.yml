@@ -1,6 +1,18 @@
-name: Push branch & deploy On remote repository only for Vercel
+name: Push branch & Deploy
 
 on:
+  workflow_dispatch:
+    inputs:
+      user_name:
+        description: 배포한 사용자
+        required: true
+        type: string
+      stage_choice:
+        description: 배포 유형 (production,devleop)
+        type: choice
+        options:
+          - develop
+          - production
   workflow_call:
     inputs:
       user_name:
@@ -51,7 +63,7 @@ jobs:
           destination-github-username: 'sambad-adventure'
           destination-repository-name: ${{needs.variable.outputs.destination-repository}}
           user-email: ${{secrets.EMAIL}}
-          commit-message: ${{github.event.commits[0].message}}
+          commit-message: ${{github.event.commits.message}}
           target-branch: ${{inputs.stage == 'prodction' && 'main' || 'main' }}
       - name: get deploy information
         id: deploy-information
