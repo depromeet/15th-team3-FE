@@ -9,6 +9,7 @@
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "type-check": "tsc --noEmit",
+    "generate:sds": "turbo gen sds-template",
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build"
   },
