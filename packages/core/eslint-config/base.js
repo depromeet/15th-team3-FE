@@ -19,7 +19,7 @@ module.exports = {
   },
   rules: {
     'import/order': [
-      'warn',
+      'error',
       {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
         alphabetize: {
@@ -30,16 +30,16 @@ module.exports = {
       },
     ],
     'import/no-cycle': [
-      'warn',
+      'error',
       {
         maxDepth: Infinity,
         ignoreExternal: true,
       },
     ],
-    'no-duplicate-imports': 'warn',
-    'no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
-    'react/jsx-curly-brace-presence': ['warn', { props: 'never', children: 'never' }],
-    '@typescript-eslint/consistent-type-imports': 'warn',
+    'no-duplicate-imports': 'error',
+    'no-unused-vars': ['error', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
+    'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
+    '@typescript-eslint/consistent-type-imports': 'error',
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
   },
   overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],
