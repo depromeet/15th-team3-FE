@@ -1,3 +1,5 @@
+'use client';
+
 import { FirstDomainExampleScreen } from '@sambad/web-domains/first-domain';
 import { useEffect } from 'react';
 
