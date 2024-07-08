@@ -3,11 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./components/": "./src/components/index.ts",
+    "./theme": "./src/theme/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "generate:sds": "turbo gen sds-template"
   },
   "devDependencies": {
     "@sambad/eslint-config": "workspace:*",
