@@ -39,7 +39,7 @@ jobs:
       destination-repository: ${{inputs.stage == 'production' && env.PRODUCTION_REPOSITORY && env.DEVELOP_REPOSITORY}}
     steps:
       - name: get variables
-        run: echo $destination-repository
+        run: echo "$destination-repository"
 
   build:
     needs: variable
@@ -63,7 +63,7 @@ jobs:
           destination-github-username: 'sambad-adventure'
           destination-repository-name: ${{needs.variable.outputs.destination-repository}}
           user-email: ${{secrets.EMAIL}}
-          commit-message: ${{github.event.commits.message}}
+          commit-message: 'chore: depoloy'
           target-branch: ${{inputs.stage == 'prodction' && 'main' || 'main' }}
       - name: get deploy information
         id: deploy-information
