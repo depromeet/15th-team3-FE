@@ -64,7 +64,7 @@ jobs:
           destination-github-username: 'sambad-adventure'
           destination-repository-name: ${{needs.variable.outputs.DESTINATION_REPOSITORY}}
           user-email: ${{secrets.EMAIL}}
-          commit-message: 'chore: deploy'
+          commit-message: 'chore: ${{inputs.user_name}} deploy ${{inputs.stage}}'
           target-branch: ${{inputs.stage == 'prodction' && 'main' || 'main' }}
       - name: get deploy information
         id: deploy-information
