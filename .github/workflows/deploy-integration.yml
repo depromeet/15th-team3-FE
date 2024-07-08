@@ -1,18 +1,6 @@
-name: Push branch & Deploy
+name: Deploy
 
 on:
-  workflow_dispatch:
-    inputs:
-      user_name:
-        description: 배포한 사용자
-        required: true
-        type: string
-      stage_choice:
-        description: 배포 유형 (production,devleop)
-        type: choice
-        options:
-          - develop
-          - production
   workflow_call:
     inputs:
       user_name:
