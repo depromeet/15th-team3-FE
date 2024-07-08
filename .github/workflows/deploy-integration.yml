@@ -36,10 +36,11 @@ jobs:
     name: set the target STAGE
     runs-on: ubuntu-latest
     outputs:
-      DESTINATION_REPOSITORY: ${{inputs.stage == 'production' && env.PRODUCTION_REPOSITORY && env.DEVELOP_REPOSITORY}}
+      DESTINATION_REPOSITORY: ${{inputs.stage == 'production' && env.PRODUCTION_REPOSITORY || env.DEVELOP_REPOSITORY}}
     steps:
       - name: get variables
-        run: echo "$DESTINATION_REPOSITORY"
+        run: echo "$DESTINATION_REPOSITORY" |
+          echo "${{inputs.STAGE}}"
 
   build:
     needs: variable
