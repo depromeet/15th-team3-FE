@@ -11,7 +11,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "type-check": "turbo run type-check",
     "check:spell": "cspell '**' --gitignore --no-progress",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "generate:package": "turbo gen package-template"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4"
@@ -22,6 +23,7 @@
     "next": "14.2.4",
     "prettier": "^3.2.5",
     "turbo": "^2.0.4",
+    "@turbo/gen": "^1.12.4",
     "typescript": "^5.4.5"
   },
   "packageManager": "pnpm@8.15.6",
