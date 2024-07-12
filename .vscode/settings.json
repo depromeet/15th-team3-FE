@@ -12,7 +12,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit",
     "source.addMissingImports": "explicit"
   }
 }
