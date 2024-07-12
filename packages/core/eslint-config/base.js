@@ -39,7 +39,7 @@ module.exports = {
     'no-duplicate-imports': 'error',
     'no-unused-vars': ['error', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
     'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
-    '@typescript-eslint/consistent-type-imports': 'error',
+
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
   },
   overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],

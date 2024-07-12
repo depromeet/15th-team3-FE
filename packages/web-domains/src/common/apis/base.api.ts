@@ -1,8 +1,8 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
 const baseURL = `/api`;
 
 export class Http {
-  private instance: axios.AxiosInstance;
+  private instance: AxiosInstance;
   constructor(path: string) {
     path = path.startsWith('/') ? path.slice(1) : path;
 
