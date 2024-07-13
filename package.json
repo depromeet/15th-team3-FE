@@ -11,7 +11,6 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "type-check": "turbo run type-check",
     "check:spell": "cspell '**' --gitignore --no-progress",
-    "postinstall": "husky install",
     "generate:package": "turbo gen package-template"
   },
   "dependencies": {
