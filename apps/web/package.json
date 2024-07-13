@@ -7,22 +7,35 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@sambad/web-domains": "workspace:*",
+    "next": "14.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "next": "14.2.4"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.6.1",
     "@sambad/eslint-config": "workspace:*",
     "@sambad/typescript-config": "workspace:*",
-    "typescript": "^5",
+    "@storybook/addon-essentials": "^8.2.2",
+    "@storybook/addon-interactions": "^8.2.2",
+    "@storybook/addon-links": "^8.2.2",
+    "@storybook/addon-onboarding": "^8.2.2",
+    "@storybook/blocks": "^8.2.2",
+    "@storybook/nextjs": "^8.2.2",
+    "@storybook/react": "^8.2.2",
+    "@storybook/test": "^8.2.2",
     "@types/node": "^20",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "eslint": "^8",
-    "eslint-config-next": "14.2.4"
+    "eslint-config-next": "14.2.4",
+    "eslint-plugin-storybook": "^0.8.0",
+    "storybook": "^8.2.2",
+    "typescript": "^5"
   }
 }
