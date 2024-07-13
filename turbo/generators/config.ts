@@ -1,33 +1,98 @@
-import type { PlopTypes } from '@turbo/gen';
+import { PlopTypes } from '@turbo/gen';
+import { getWorkspaceList } from './../utils/getWorkSpaceList';
+
+export type DependencyList = Record<string, string>;
+
+export interface DependencyGroups {
+  dependencies?: DependencyList;
+  devDependencies?: DependencyList;
+}
+
+export interface ActionAnswers {
+  workspace?: string;
+  workSpaceName?: string;
+  location?: string;
+  dependency?: string[];
+  dependencies?: string[];
+  devDependencies?: string[];
+  eslintConfigOption?: string;
+  typescriptConfigOption?: string;
+}
 
 const generator = (plop: PlopTypes.NodePlopAPI): void => {
-  plop.setGenerator('package-template', {
-    description: 'package-template',
+  plop.setHelper('getWorkspaceChoices', async () => {
+    const workspaceList = await getWorkspaceList();
+    const choices = workspaceList.map((name) => {
+      return {
+        name,
+        value: name,
+      };
+    });
+    return choices;
+  });
+
+  plop.setGenerator('workspace-template', {
+    description: 'workspace-template',
     prompts: [
+      // 워크스페이스 유형 (apps/packages)
+      {
+        type: 'list',
+        name: 'workspace',
+        message: 'What type of workspace should be added?',
+        choices: ['app', 'package'],
+      },
+      // 워크스페이스 명
       {
         type: 'input',
-        name: 'packageName',
-        message: 'Package name:',
+        name: 'workspaceName',
+        message: 'What is the name of the workspace?',
         validate: (value: string) => {
           if (/.+/.test(value)) {
             return true;
           }
-          return 'package name is required';
+          return 'workspace name is required';
         },
+      },
+      // 워크스페이스 경로 지정
+      {
+        type: 'input',
+        name: 'location',
+        message: (answers) => `Where should ${answers.workspaceName} be added?'`,
+        default: (answers: { workspace: string; workspaceName: string }) =>
+          `${answers.workspace}s/${answers.workspaceName}`,
+      },
+      {
+        type: 'confirm',
+        name: 'addDependencies',
+        message: (answers) => `Add workspace dependencies to "${answers.workspaceName}"?`,
+      },
+      // dependency
+      {
+        type: 'checkbox',
+        name: 'dependency',
+        message: (answers) => `Select all dependencies types to modify for "${answers.workspaceName}"`,
+        choices: [
+          { name: 'dependencies', value: 'dependencies' },
+          { name: 'devDependencies', value: 'devDependencies' },
+        ],
+        when: (answers) => answers.addDependencies,
       },
       {
         type: 'checkbox',
-        name: 'devDependencies',
-        message: 'Select the devDependencies you want to include:',
-        choices: [
-          { name: '@sambad/sds', value: '@sambad/sds' },
-          { name: '@sambad/eslint-config', value: '@sambad/eslint-config' },
-          {
-            name: '@sambad/typescript-config',
-            value: '@sambad/typescript-config',
-          },
-        ],
+        name: 'dependencies',
+        message: (answers) => `Which packages should be added as dependencies to ${answers.workspaceName}"?`,
+        choices: async () => await plop.getHelper('getWorkspaceChoices')(),
+        when: (asnwers) => asnwers.dependency?.includes('dependencies'),
       },
+      // devDependencies 추가
+      {
+        type: 'checkbox',
+        name: 'devDependencies',
+        message: (answers) => `Which packages should be added as devDependencies to ${answers.workspaceName}"?`,
+        choices: async () => await plop.getHelper('getWorkspaceChoices')(),
+        when: (asnwers) => asnwers.dependency?.includes('devDependencies'),
+      },
+      // eslint-config가 있는 경우 옵션 설정
       {
         type: 'list',
         name: 'eslintConfigOption',
@@ -46,8 +111,11 @@ const generator = (plop: PlopTypes.NodePlopAPI): void => {
             value: 'react-internal',
           },
         ],
-        when: (answers) => answers.devDependencies.includes('@sambad/eslint-config'),
+        when: (answers) =>
+          answers.dependencies?.includes('@sambad/eslint-config') ||
+          answers.devDependencies?.includes('@sambad/eslint-config'),
       },
+      // typescript-config가 있는 경우 옵션 설정
       {
         type: 'list',
         name: 'typescriptConfigOption',
@@ -66,67 +134,86 @@ const generator = (plop: PlopTypes.NodePlopAPI): void => {
             value: 'react-library',
           },
         ],
-        when: (answers) => answers.devDependencies.includes('@sambad/typescript-config'),
+        when: (answers) =>
+          answers.dependencies?.includes('@sambad/typescript-config') ||
+          answers.devDependencies?.includes('@sambad/typescript-config'),
       },
     ],
-
-    actions: (answer) => {
+    actions: (answers: ActionAnswers | undefined) => {
       const actions: Array<PlopTypes.ActionType> = [
         // package.json 생성
         {
           type: 'add',
-          path: `{{ turbo.paths.root }}/packages/core//{{ dashCase packageName }}/package.json`,
+          path: `{{ turbo.paths.root }}/{{ location }}/package.json`,
           templateFile: 'templates/package.hbs',
           abortOnFail: true,
         },
         // src 폴더 생성
         {
           type: 'add',
-          path: `{{ turbo.paths.root }}/packages/core/{{ dashCase packageName }}/src/.gitkeep`,
+          path: `{{ turbo.paths.root }}/{{ location }}/src/.gitkeep`,
         },
       ];
 
-      if (!answer || !answer.devDependencies.length) {
+      if (!answers) {
         return actions;
       }
 
-      // devDependencies 추가
-      const devDeps: Record<string, string> = {};
-      if (answer.devDependencies.includes('@sambad/sds')) {
-        devDeps['@sambad/sds'] = 'workspace:*';
+      const selectedDependencies: DependencyGroups = {
+        dependencies: {},
+        devDependencies: {},
+      };
+
+      if (answers.dependency?.includes('dependencies') && answers.dependencies) {
+        answers.dependencies.forEach((dep) => {
+          selectedDependencies.dependencies![dep] = 'workspace:*';
+        });
       }
 
-      if (answer.devDependencies.includes('@sambad/eslint-config')) {
-        devDeps['@sambad/eslint-config'] = 'workspace:*';
-        devDeps['@types/eslint'] = '^8.56.5';
-        devDeps['eslint'] = '^8.57.0';
+      if (answers.dependency?.includes('devDependencies') && answers.devDependencies) {
+        answers.devDependencies.forEach((dep) => {
+          selectedDependencies.devDependencies![dep] = 'workspace:*';
+        });
+      }
+
+      if (
+        answers.dependencies?.includes('@sambad/eslint-config') ||
+        answers.devDependencies?.includes('@sambad/eslint-config')
+      ) {
+        selectedDependencies.devDependencies!['@types/eslint'] = '^8.56.5';
+        selectedDependencies.devDependencies!['eslint'] = '^8.57.0';
 
         actions.push({
           type: 'add',
-          path: '{{ turbo.paths.root }}/packages/core/{{ dashCase packageName }}/.eslintrc.js',
+          path: '{{ turbo.paths.root }}/{{ location }}/.eslintrc.js',
           templateFile: 'templates/eslintrc.hbs',
         });
       }
 
-      if (answer.devDependencies.includes('@sambad/typescript-config')) {
-        devDeps['@sambad/typescript-config'] = 'workspace:*';
-        devDeps['typescript'] = '^5.3.3';
-
+      if (
+        answers.dependencies?.includes('@sambad/typescript-config') ||
+        answers.devDependencies?.includes('@sambad/typescript-config')
+      ) {
+        selectedDependencies.devDependencies!['typescript'] = '^5.3.3';
         actions.push({
           type: 'add',
-          path: '{{ turbo.paths.root }}/packages/core/{{ dashCase packageName }}/tsconfig.json',
+          path: '{{ turbo.paths.root }}/{{ location }}/tsconfig.json',
           templateFile: 'templates/tsconfig.hbs',
         });
       }
 
       actions.push({
         type: 'modify',
-        path: '{{ turbo.paths.root }}/packages/core/{{ dashCase packageName }}/package.json',
+        path: '{{ turbo.paths.root }}/{{ location }}/package.json',
         transform: (fileContents) => {
           const packageJson = JSON.parse(fileContents);
           packageJson.devDependencies = {
             ...(packageJson.devDependencies || {}),
-            ...devDeps,
+            ...selectedDependencies.devDependencies,
+          };
+          packageJson.dependencies = {
+            ...(packageJson.dependencies || {}),
+            ...selectedDependencies.dependencies,
           };
           return JSON.stringify(packageJson, null, 2);
         },
