@@ -11,22 +11,10 @@ importers:
       '@emotion/react':
         specifier: ^11.11.4
         version: 11.11.4(react@18.2.0)
-      '@tanstack/react-query':
-        specifier: ^5.50.1
-        version: 5.50.1(react@18.2.0)
-      axios:
-        specifier: ^1.7.2
-        version: 1.7.2
-      qs:
-        specifier: ^6.12.3
-        version: 6.12.3
     devDependencies:
       '@turbo/gen':
         specifier: ^1.12.4
         version: 1.12.4(@types/node@20.11.24)(typescript@5.4.5)
-      '@types/qs':
-        specifier: ^6.9.15
-        version: 6.9.15
       cspell:
         specifier: ^8.10.0
         version: 8.10.4
@@ -152,6 +140,16 @@ importers:
   packages/core/typescript-config: {}
 
   packages/web-domains:
+    dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.50.1
+        version: 5.50.1(react@18.2.0)
+      axios:
+        specifier: ^1.7.2
+        version: 1.7.2
+      qs:
+        specifier: ^6.12.3
+        version: 6.12.3
     devDependencies:
       '@sambad/eslint-config':
         specifier: workspace:*
@@ -168,6 +166,9 @@ importers:
       '@types/node':
         specifier: ^20.11.24
         version: 20.11.24
+      '@types/qs':
+        specifier: ^6.9.15
+        version: 6.9.15
       '@types/react':
         specifier: ^18.2.61
         version: 18.2.61

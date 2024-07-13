@@ -14,13 +14,9 @@
     "generate:package": "turbo gen package-template"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@tanstack/react-query": "^5.50.1",
-    "axios": "^1.7.2",
-    "qs": "^6.12.3"
+    "@emotion/react": "^11.11.4"
   },
   "devDependencies": {
-    "@types/qs": "^6.9.15",
     "cspell": "^8.10.0",
     "husky": "^9.0.11",
     "next": "14.2.4",

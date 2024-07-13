@@ -11,7 +11,11 @@
     "lint": "eslint . --max-warnings 0",
     "type-check": "tsc --noEmit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@tanstack/react-query": "^5.50.1",
+    "axios": "^1.7.2",
+    "qs": "^6.12.3"
+  },
   "devDependencies": {
     "@sambad/sds": "workspace:*",
     "@sambad/eslint-config": "workspace:*",
@@ -20,6 +24,7 @@
     "@types/eslint": "^8.56.5",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
+    "@types/qs": "^6.9.15",
     "eslint": "^8.57.0",
     "react": "^18",
     "typescript": "^5.3.3"

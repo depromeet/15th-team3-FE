@@ -1,41 +1,28 @@
-import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
+import axios from 'axios';
 const baseURL = `/api`;
 
+const axiosInstance = axios.create({
+  baseURL: baseURL,
+});
+
 export class Http {
-  private instance: AxiosInstance;
-  constructor(path: string) {
-    path = path.startsWith('/') ? path.slice(1) : path;
-
-    this.instance = axios.create({
-      baseURL: `${baseURL}/${path}`,
-    });
-  }
-
-  protected async GET<Response = unknown>(url: string, config?: AxiosRequestConfig) {
-    const response = await this.instance.get<Response>(url, config);
+  static async GET<Response = unknown>(...args: Parameters<typeof axiosInstance.get>) {
+    const response = await axiosInstance.get<Response>(...args);
     return response.data;
   }
 
-  protected async POST<Request = unknown, Response = unknown>(
-    url: string,
-    payload?: Request,
-    config?: AxiosRequestConfig,
-  ) {
-    const response = await this.instance.post<Request, Response>(url, payload, config);
+  static async POST<Request = unknown, Response = unknown>(...args: Parameters<typeof axiosInstance.post>) {
+    const response = await axiosInstance.post<Request, Response>(...args);
     return response;
   }
 
-  protected async PUT<Request = unknown, Response = unknown>(
-    url: string,
-    payload?: Request,
-    config?: AxiosRequestConfig,
-  ) {
-    const response = await this.instance.put<Request, Response>(url, payload, config);
+  static async PUT<Request = unknown, Response = unknown>(...args: Parameters<typeof axiosInstance.put>) {
+    const response = await axiosInstance.put<Request, Response>(...args);
     return response;
   }
 
-  protected async DELETE<Response = unknown>(url: string, config?: AxiosRequestConfig) {
-    const response = await this.instance.delete<Response>(url, config);
+  static async DELETE<Response = unknown>(...args: Parameters<typeof axiosInstance.delete>) {
+    const response = await axiosInstance.delete<Response>(...args);
     return response.data;
   }
 }

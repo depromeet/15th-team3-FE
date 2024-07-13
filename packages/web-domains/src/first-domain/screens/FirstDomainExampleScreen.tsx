@@ -1,18 +1,10 @@
-import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
+import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 
-import { checkAPI } from '../../common/apis/check.api';
+import { useHealthCheckPrefetchQuery } from '../../common/apis/queries/useHealthCheckQuery';
 import { FirstFeatureOfFirstDomainTestContainer } from '../features/containers/FirstFeatureOfFirstDomainTestContainer';
 
 export const FirstDomainExampleScreen = async () => {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: ['health'],
-    queryFn: async () => {
-      return await checkAPI.Ping('');
-    },
-  });
-
+  const { queryClient } = await useHealthCheckPrefetchQuery();
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div>
