@@ -57,7 +57,7 @@ const generator = (plop: PlopTypes.NodePlopAPI): void => {
       {
         type: 'input',
         name: 'location',
-        message: (answers) => `Where should ${answers.workspaceName} be added?'`,
+        message: (answers) => `Where should ${answers.workspaceName} be added?`,
         default: (answers: { workspace: string; workspaceName: string }) =>
           `${answers.workspace}s/${answers.workspaceName}`,
       },
