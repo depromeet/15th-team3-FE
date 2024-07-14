@@ -1,3 +1,4 @@
+import { Providers } from '@sambad/web-domains/commmon';
 import { Inter } from 'next/font/google';
 
 import type { Metadata } from 'next';
@@ -18,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
