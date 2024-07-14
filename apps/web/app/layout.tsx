@@ -1,4 +1,4 @@
-import { QueryClientProvider } from '@sambad/web-domains/commmon';
+import { Providers } from '@sambad/web-domains/commmon';
 import { Inter } from 'next/font/google';
 
 import type { Metadata } from 'next';
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <QueryClientProvider>{children}</QueryClientProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
