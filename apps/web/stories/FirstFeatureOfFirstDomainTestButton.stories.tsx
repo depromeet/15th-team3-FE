@@ -1,3 +1,5 @@
+'use client';
+
 import { FirstFeatureOfFirstDomainTestButton } from '@sambad/web-domains/first-domain';
 
 import type { Meta, StoryObj } from '@storybook/react';
