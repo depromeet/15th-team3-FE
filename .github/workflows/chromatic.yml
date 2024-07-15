@@ -7,7 +7,7 @@ on:
       - '**.stories.tsx'
 
 jobs:
-  chromatic-delpoyment:
+  chromatic:
     runs-on: ubuntu-latest
     steps:
       - uses: pnpm/action-setup@v4
