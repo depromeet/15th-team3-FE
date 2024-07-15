@@ -4,14 +4,14 @@ import { useFirstFeatureOfFirstDomainTestButton } from '../hooks/useFirstFeature
 
 import type { HTMLAttributes, ReactNode } from 'react';
 
-export interface FirstFeaturedOfFirstDomainTestButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface FirstFeatureOfFirstDomainTestButtonProps extends HTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
 }
 
 export const FirstFeatureOfFirstDomainTestButton = ({
   children,
   ...rest
-}: FirstFeaturedOfFirstDomainTestButtonProps) => {
+}: FirstFeatureOfFirstDomainTestButtonProps) => {
   const { testText, handleChangeTestText } = useFirstFeatureOfFirstDomainTestButton();
 
   return (
