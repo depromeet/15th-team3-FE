@@ -3,7 +3,7 @@ import { FirstFeatureOfFirstDomainTestButton } from '@sambad/web-domains/first-d
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Page/FirstFeatureOfFirstDomainTestButton',
+  title: 'Components/FirstFeatureOfFirstDomainTestButton',
   component: FirstFeatureOfFirstDomainTestButton,
   tags: ['autodocs'],
   argTypes: {
