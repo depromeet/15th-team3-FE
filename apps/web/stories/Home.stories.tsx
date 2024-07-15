@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import Home from '../app/page';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Page/Home',
@@ -13,4 +13,4 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const LoggedOut: Story = {};
+export const Default: Story = {};
