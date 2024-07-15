@@ -6,6 +6,20 @@ jobs:
   chromatic:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Show current directory
+        run: pwd
+
+      - name: List files in current directory
+        run: ls -la
+
       - name: Publish Project apps/web to Chromatic
         uses: chromaui/action@latest
         with:
