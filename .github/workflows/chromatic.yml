@@ -10,10 +10,10 @@ jobs:
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SDS }}
-          workingDir: packages/core/sds
+          workingDir: ./packages/core/sds
 
       - name: Publish Project apps/web to Chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_WEB }}
-          workingDir: apps/web
+          workingDir: ./apps/web
