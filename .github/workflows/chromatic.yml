@@ -7,7 +7,7 @@ on:
       - '**.stories.tsx'
 
 jobs:
-  chromatic:
+  chromatic-deployment:
     runs-on: ubuntu-latest
     steps:
       - uses: pnpm/action-setup@v4
@@ -56,5 +56,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-          message: '📣 SDS Storybook Delpoyment: ${{ steps.chromatic-sds.outputs.storybookUrl }}\n
-            📣 Web Storybook Delpoyment: ${{ steps.chromatic-web.outputs.storybookUrl }}'
+          message: |
+            📣 SDS Storybook Deployment: ${{ steps.chromatic-sds.outputs.storybookUrl }}
+            📣 Web Storybook Deployment: ${{ steps.chromatic-web.outputs.storybookUrl }}
