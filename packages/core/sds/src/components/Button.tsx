@@ -1,7 +1,7 @@
 'use client';
 
 import { css } from '@emotion/react';
-import React, { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
