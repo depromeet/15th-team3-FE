@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@sambad/sds';
 
 import { useFirstFeatureOfFirstDomainTestButton } from '../hooks/useFirstFeatureOfFirstDomainTestButton';
