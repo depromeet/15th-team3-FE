@@ -2,9 +2,6 @@ import type { StorybookConfig } from '@storybook/react-webpack5';
 
 import { dirname, join } from 'path';
 
-// const path = require('path');
-// const toPath = (_path) => path.join(process.cwd(), _path);
-
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')));
 }
@@ -20,26 +17,24 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-webpack5'),
-    options: {
-      builder: {
-        useSWC: false,
-      },
-    },
+    options: {},
   },
   docs: {
     autodocs: 'tag',
   },
-  // webpackFinal: async (config) => {
-  //   return {
-  //     ...config,
-  //     resolve: {
-  //       ...config.resolve,
-  //       alias: {
-  //         ...config.resolve?.alias,
-  //         '@emotion/css': toPath('node_modules/@emotion/react'),
-  //       },
-  //     },
-  //   };
-  // },
+  swc: () => ({
+    jsc: {
+      parser: {
+        syntax: 'typescript',
+        tsx: true,
+      },
+      transform: {
+        react: {
+          runtime: 'automatic',
+          importSource: '@emotion/react',
+        },
+      },
+    },
+  }),
 };
 export default config;

@@ -19,13 +19,19 @@ const config: StorybookConfig = {
     options: {},
   },
   staticDirs: ['../public'],
-  // webpackFinal: async (config) => {
-  //   config.plugins?.push(
-  //     React({
-  //       jsxImportSource: '@emotion/react',
-  //     }),
-  //   );
-  //   return config;
-  // },
+  swc: () => ({
+    jsc: {
+      parser: {
+        syntax: 'typescript',
+        tsx: true,
+      },
+      transform: {
+        react: {
+          runtime: 'automatic',
+          importSource: '@emotion/react',
+        },
+      },
+    },
+  }),
 };
 export default config;
