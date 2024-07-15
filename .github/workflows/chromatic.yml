@@ -33,6 +33,7 @@ jobs:
         run: pnpm install
 
       - name: Publish Project packages/core/sds to Chromatic
+        id: chromatic-sds
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SDS }}
@@ -40,15 +41,8 @@ jobs:
           onlyChanged: true
           externals: packages/core/sds/assets/**
 
-      - name: SDS Storybook Deployment PR Comment
-        uses: thollander/actions-comment-pull-request@v1
-        if: ${{ github.event_name == 'pull_request' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        with:
-          message: '📣 SDS Storybook Delpoyment: ${{ steps.chromatic.outputs.storybookUrl }}'
-
       - name: Publish Project apps/web to Chromatic
+        id: chromatic-web
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_WEB }}
@@ -56,10 +50,11 @@ jobs:
           onlyChanged: true
           externals: packages/web-domains/assets/**
 
-      - name: Web Storybook Deployment PR Comment
+      - name: Storybook Deployment PR Comment
         uses: thollander/actions-comment-pull-request@v1
         if: ${{ github.event_name == 'pull_request' }}
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-          message: '📣 Web Storybook Delpoyment: ${{ steps.chromatic.outputs.storybookUrl }}'
+          message: '📣 SDS Storybook Delpoyment: ${{ steps.chromatic-sds.outputs.storybookUrl }}\n
+            📣 Web Storybook Delpoyment: ${{ steps.chromatic-web.outputs.storybookUrl }}'
