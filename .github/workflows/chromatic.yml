@@ -1,11 +1,41 @@
 name: 'Chromatic Deployment'
 
-on: push
+on:
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - '**.stories.tsx'
+  push:
+    branches: [main, develop]
+    paths:
+      - '**.stories.tsx'
 
 jobs:
-  chromatic:
+  chromatic-delpoyment:
     runs-on: ubuntu-latest
     steps:
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Cache Dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}-storybook
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm install
+
       - name: Publish Project packages/core/sds to Chromatic
         uses: chromaui/action@latest
         with:
@@ -21,3 +51,11 @@ jobs:
           workingDir: apps/web
           onlyChanged: true
           externals: packages/web-domains/assets/**
+
+      # - name: comment PR
+      #   uses: thollander/actions-comment-pull-request@v1
+      #   if: ${{ github.event_name == 'pull_request' }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+      #   with:
+      #     message: '🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}'
