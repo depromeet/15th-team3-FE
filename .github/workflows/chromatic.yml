@@ -16,6 +16,12 @@ jobs:
         with:
           node-version: '14'
 
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
       - name: Show current directory
         run: pwd
 
