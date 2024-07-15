@@ -5,10 +5,6 @@ on:
     branches: [main, develop]
     paths:
       - '**.stories.tsx'
-  push:
-    branches: [main, develop]
-    paths:
-      - '**.stories.tsx'
 
 jobs:
   chromatic-delpoyment:
