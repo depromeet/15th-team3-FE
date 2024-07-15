@@ -4,7 +4,7 @@ import { useFirstFeatureOfFirstDomainTestButton } from '../hooks/useFirstFeature
 
 import type { HTMLAttributes, ReactNode } from 'react';
 
-interface FirstFeaturedOfFirstDomainTestButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface FirstFeaturedOfFirstDomainTestButtonProps extends HTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
 }
 
