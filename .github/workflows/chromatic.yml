@@ -6,40 +6,14 @@ jobs:
   chromatic:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Publish Project packages/core/sds to Chromatic
+        uses: chromaui/action@latest
         with:
-          fetch-depth: 0
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Show current directory
-        run: pwd
-
-      - name: List files in current directory
-        run: ls -la
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SDS }}
+          workingDir: packages/core/sds
 
       - name: Publish Project apps/web to Chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_WEB }}
           workingDir: apps/web
-          onlyChanged: true
-          externals: packages/web-domains/assets
-
-      - name: Publish Project packages/sds to Chromatic
-        uses: chromaui/action@latest
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN_SDS }}
-          onlyChanged: true
-          workingDir: packages/core/sds
-          externals: packages/core/sds/assets
