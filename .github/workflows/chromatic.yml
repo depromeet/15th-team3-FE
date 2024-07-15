@@ -40,6 +40,14 @@ jobs:
           onlyChanged: true
           externals: packages/core/sds/assets/**
 
+      - name: SDS Storybook Deployment PR Comment
+        uses: thollander/actions-comment-pull-request@v1
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        with:
+          message: '📣 SDS Storybook Delpoyment: ${{ steps.chromatic.outputs.storybookUrl }}'
+
       - name: Publish Project apps/web to Chromatic
         uses: chromaui/action@latest
         with:
@@ -48,10 +56,10 @@ jobs:
           onlyChanged: true
           externals: packages/web-domains/assets/**
 
-      - name: Storybook Deployment PR Comment
+      - name: Web Storybook Deployment PR Comment
         uses: thollander/actions-comment-pull-request@v1
         if: ${{ github.event_name == 'pull_request' }}
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-          message: '📣 Storybook Delpoyment: ${{ steps.chromatic.outputs.storybookUrl }}'
+          message: '📣 Web Storybook Delpoyment: ${{ steps.chromatic.outputs.storybookUrl }}'
