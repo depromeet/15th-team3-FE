@@ -1,10 +1,7 @@
-import { Providers } from '@sambad/web-domains/commmon';
+import { Providers, RootLayout as ViewportLayout } from '@sambad/web-domains/commmon';
 import { Inter } from 'next/font/google';
 
 import type { Metadata } from 'next';
-
-import './globals.css';
-import './reset.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,9 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <ViewportLayout>{children}</ViewportLayout>
+        </Providers>
       </body>
     </html>
   );
