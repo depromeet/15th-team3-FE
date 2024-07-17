@@ -1,6 +1,6 @@
 import { injectGlobal } from '@emotion/css';
 
-injectGlobal`
+export const injectGlobalStyles = () => injectGlobal`
 *,
 *::before,
 *::after {
