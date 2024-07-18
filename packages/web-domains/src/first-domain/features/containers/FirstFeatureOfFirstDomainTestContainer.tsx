@@ -1,20 +1,11 @@
 'use client';
 
-import { FirstFeatureOfFirstDomainBox } from '../components/FirstFeatureOfFirstDomainTestBox';
-import { FirstFeatureOfFirstDomainTestButton } from '../components/FirstFeatureOfFirstDomainTestButton';
-import { useFirstFeatureOfFirstDomainService } from '../services/useFirstFeatureOfFirstDomainTestService';
+import { ProgressIndicator } from '@sambad/sds';
 
 export const FirstFeatureOfFirstDomainTestContainer = () => {
-  const { displayText, handleChangeDisplayText, data } = useFirstFeatureOfFirstDomainService();
-
   return (
-    <FirstFeatureOfFirstDomainBox displayText={displayText} onClick={handleChangeDisplayText}>
-      <FirstFeatureOfFirstDomainTestButton
-        onClick={() => {
-          alert('Button is Clicked at Container');
-        }}
-      />
-      <div css={{ width: '200px', height: '200px', backgroundColor: 'red' }}>{data}</div>
-    </FirstFeatureOfFirstDomainBox>
+    <div css={{ maxWidth: '600px;', margin: '0 auto' }}>
+      <ProgressIndicator totalStep={10} currentStep={7} />
+    </div>
   );
 };
