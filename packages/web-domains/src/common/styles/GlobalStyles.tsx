@@ -1,6 +1,12 @@
-import { injectGlobal } from '@emotion/css';
+'use client';
 
-export const injectGlobalStyles = () => injectGlobal`
+import { Global, css } from '@emotion/react';
+
+export const GlobalStyle = () => {
+  return <Global styles={reset} />;
+};
+
+const reset = css`
   *,
   *::before,
   *::after {

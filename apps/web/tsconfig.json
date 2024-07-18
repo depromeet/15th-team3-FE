@@ -13,7 +13,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "../../packages/web-domains/src/common/styles/GlobalStyles.ts",
+    "../../packages/web-domains/src/common/styles/GlobalStyles.tsx",
     "../../packages/web-domains/src/common/layout/RootLayout.styles.ts",
     "../../packages/web-domains/src/common/layout/RootLayout.tsx"
   ],

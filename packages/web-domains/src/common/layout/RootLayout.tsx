@@ -2,6 +2,8 @@
 
 import { ReactNode } from 'react';
 
+import { GlobalStyle } from '../styles/GlobalStyles';
+
 import { RootLayoutCss } from './RootLayout.styles';
 
 interface RootLayoutProps {
@@ -9,5 +11,10 @@ interface RootLayoutProps {
 }
 
 export const RootLayout = ({ children }: RootLayoutProps) => {
-  return <div css={RootLayoutCss}>{children}</div>;
+  return (
+    <div>
+      <GlobalStyle />
+      <div css={RootLayoutCss}>{children}</div>
+    </div>
+  );
 };
