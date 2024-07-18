@@ -1,17 +1,19 @@
+'use client';
+
 import { Button } from '@sambad/sds';
 
 import { useFirstFeatureOfFirstDomainTestButton } from '../hooks/useFirstFeatureOfFirstDomainTestButton';
 
 import type { HTMLAttributes, ReactNode } from 'react';
 
-interface FirstFeaturedOfFirstDomainTestButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface FirstFeatureOfFirstDomainTestButtonProps extends HTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
 }
 
 export const FirstFeatureOfFirstDomainTestButton = ({
   children,
   ...rest
-}: FirstFeaturedOfFirstDomainTestButtonProps) => {
+}: FirstFeatureOfFirstDomainTestButtonProps) => {
   const { testText, handleChangeTestText } = useFirstFeatureOfFirstDomainTestButton();
 
   return (

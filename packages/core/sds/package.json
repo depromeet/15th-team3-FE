@@ -8,18 +8,33 @@
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "storybook": "storybook dev -p 6007",
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.6.1",
     "@sambad/eslint-config": "workspace:*",
     "@sambad/typescript-config": "workspace:*",
+    "@storybook/addon-essentials": "^8.2.2",
+    "@storybook/addon-interactions": "^8.2.2",
+    "@storybook/addon-links": "^8.2.2",
+    "@storybook/addon-onboarding": "^8.2.2",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.4",
+    "@storybook/blocks": "^8.2.2",
+    "@storybook/react": "^8.2.2",
+    "@storybook/react-webpack5": "^8.2.2",
+    "@storybook/test": "^8.2.2",
     "@turbo/gen": "^1.12.4",
-    "@types/node": "^20.11.24",
     "@types/eslint": "^8.56.5",
+    "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
+    "chromatic": "^11.5.5",
     "eslint": "^8.57.0",
+    "eslint-plugin-storybook": "^0.8.0",
     "react": "^18",
+    "storybook": "^8.2.2",
     "typescript": "^5.3.3"
   }
 }
