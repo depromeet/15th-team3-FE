@@ -7,7 +7,7 @@ import { fontSizeByTypography, fontWeightVariants, fontWeightByTypography, lineH
  * @TODO
  * Polymorphic하게 만들기
  */
-interface TxtProps extends HTMLAttributes<HTMLSpanElement> {
+export interface TxtProps extends HTMLAttributes<HTMLSpanElement> {
   as?: ElementType;
   color?: string;
   typography?: Typography;
