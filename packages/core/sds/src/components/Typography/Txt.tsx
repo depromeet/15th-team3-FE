@@ -1,7 +1,7 @@
 import { ElementType, forwardRef, HTMLAttributes } from 'react';
-import { colors, size } from '../../theme';
+import { colors } from '../../theme';
 import { FontWeight, Typography } from './types';
-import { fontSizeByTypography, fontWeightVariants, fontWeightByTypography, lineHeightByTypography } from './styles';
+import { fontSizeByTypography, fontWeightVariants, fontWeightByTypography } from './styles';
 
 /**
  * @TODO
