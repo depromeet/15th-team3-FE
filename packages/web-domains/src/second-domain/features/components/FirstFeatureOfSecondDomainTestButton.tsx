@@ -15,7 +15,7 @@ export const FirstFeatureOfSecondDomainTestButton = ({
   const { testText, handleChangeTestText } = useFirstFeatureOfFirstDomainTestButton();
 
   return (
-    <Button appName="sambad" onClick={handleChangeTestText} {...rest}>
+    <Button variant="primary" size="large" onClick={handleChangeTestText} {...rest}>
       {children}
       {testText}
     </Button>

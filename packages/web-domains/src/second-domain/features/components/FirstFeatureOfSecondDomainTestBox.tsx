@@ -14,7 +14,7 @@ export const FirstFeatureOfSecondDomainTestBox = ({
 }: PropsWithChildren<FirstFeatureOfSecondDomainBoxProps>) => {
   return (
     <div>
-      <Button appName="Container Box Button" onClick={onClick}>
+      <Button size="large" variant="text" onClick={onClick}>
         SecondDomainTestBox
       </Button>
       {displayText}
