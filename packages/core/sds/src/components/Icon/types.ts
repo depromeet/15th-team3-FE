@@ -1,4 +1,4 @@
 export interface IconAssetProps {
   color?: string;
-  size?: number | string;
+  size?: number;
 }
