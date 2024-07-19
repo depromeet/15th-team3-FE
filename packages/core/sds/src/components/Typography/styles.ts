@@ -24,28 +24,6 @@ export const fontSizeByTypography: Record<Typography, string> = {
   body5: '8px',
 };
 
-/**
- * @TODO
- * 새로운 가이드 적용해야 함..
- * 현재 이상함 !
- */
-export const lineHeightByTypography: Record<Typography, number> = {
-  heading1: 32,
-  heading2: 28,
-  heading3: 24,
-  title1: 28,
-  title2: 24,
-  title3: 20,
-  title4: 20,
-  subtitle1: 24,
-  subTitle2: 20,
-  body1: 28,
-  body2: 24,
-  body3: 20,
-  body4: 20,
-  body5: 16,
-};
-
 export const fontWeightByTypography: Record<Typography, FontWeight> = {
   heading1: 'bold',
   heading2: 'bold',

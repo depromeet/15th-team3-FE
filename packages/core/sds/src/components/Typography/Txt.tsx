@@ -27,13 +27,12 @@ export const Txt = forwardRef<HTMLSpanElement, TxtProps>((props, ref) => {
   const color = colorFromProps ?? colors.grey700;
   const fontWeight = fontWeightFromProps ?? fontWeightVariants[fontWeightByTypography[typography]];
   const fontSize = fontSizeByTypography[typography];
-  const lineHeight = lineHeightByTypography[typography];
 
   const style = {
     color,
     fontWeight,
     fontSize,
-    lineHeight,
+    lineHeight: '150%',
     ...styleFromProps,
   };
 
