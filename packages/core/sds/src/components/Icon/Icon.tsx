@@ -7,7 +7,7 @@ export interface IconProps extends IconAssetProps, HTMLAttributes<HTMLSpanElemen
   name: keyof typeof iconMap;
 }
 
-export const Icon = forwardRef<HTMLSpanElement, IconProps>((props: IconProps) => {
+export const Icon = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   const { name, size = 24, color = colors.black, style: styleFromProps, ...restProps } = props;
 
   const style = {
@@ -18,7 +18,7 @@ export const Icon = forwardRef<HTMLSpanElement, IconProps>((props: IconProps) =>
   const IconComponent = iconMap[name];
 
   return (
-    <span style={style} {...restProps}>
+    <span ref={ref} style={style} {...restProps}>
       <IconComponent size={size} color={color} {...restProps} />
     </span>
   );
