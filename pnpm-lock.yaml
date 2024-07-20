@@ -3427,7 +3427,7 @@ packages:
       react-docgen-typescript: 2.2.2(typescript@5.5.3)
       tslib: 2.6.3
       typescript: 5.5.3
-      webpack: 5.93.0(@swc/core@1.5.7)(esbuild@0.21.5)
+      webpack: 5.93.0(esbuild@0.21.5)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -7563,7 +7563,7 @@ packages:
       semver: 7.6.2
       tapable: 2.2.1
       typescript: 5.5.3
-      webpack: 5.93.0(@swc/core@1.5.7)(esbuild@0.21.5)
+      webpack: 5.93.0(esbuild@0.21.5)
     dev: true
 
   /form-data@4.0.0:
@@ -8041,7 +8041,7 @@ packages:
       lodash: 4.17.21
       pretty-error: 4.0.0
       tapable: 2.2.1
-      webpack: 5.93.0(@swc/core@1.5.7)(esbuild@0.21.5)
+      webpack: 5.93.0(esbuild@0.21.5)
     dev: true
 
   /htmlparser2@6.1.0:
@@ -11791,7 +11791,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.2.0
-      webpack: 5.93.0(@swc/core@1.5.7)(esbuild@0.21.5)
+      webpack: 5.93.0(esbuild@0.21.5)
     dev: true
 
   /webpack-hot-middleware@2.26.1:

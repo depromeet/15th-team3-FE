@@ -16,13 +16,13 @@ export const useHealthCheckQuery = () => {
 export const useHealthCheckPrefetchQuery = async () => {
   const queryClient = new QueryClient();
 
-  const prefetchedData = await queryClient.prefetchQuery({
-    queryKey: ['health'],
-    queryFn: ping,
-  });
+  // const prefetchedData = await queryClient.prefetchQuery({
+  //   queryKey: ['health'],
+  //   queryFn: ping,
+  // });
 
   return {
     queryClient,
-    prefetchedData,
+    // prefetchedData,
   };
 };
