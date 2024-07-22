@@ -1,3 +1,3 @@
-import { FirstDomainExampleScreen } from '@sambad/web-domains/first-domain';
-
-export default FirstDomainExampleScreen;
+export default function MainPage() {
+  return <div></div>;
+}

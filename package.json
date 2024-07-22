@@ -14,13 +14,15 @@
     "generate:package": "turbo gen package-template"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4"
+    "@emotion/react": "^11.11.4",
+    "next": "14.2.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@turbo/gen": "^1.12.4",
     "cspell": "^8.10.0",
     "husky": "^9.0.11",
-    "next": "14.2.4",
     "prettier": "^3.2.5",
     "turbo": "^2.0.4",
     "typescript": "^5.4.5"

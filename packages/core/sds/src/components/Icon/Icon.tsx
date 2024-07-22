@@ -1,7 +1,9 @@
 import { forwardRef, HTMLAttributes } from 'react';
-import { IconAssetProps } from './types';
-import { iconMap } from './constants';
+
 import { colors } from '../../theme';
+
+import { iconMap } from './constants';
+import { IconAssetProps } from './types';
 
 export interface IconProps extends IconAssetProps, HTMLAttributes<HTMLSpanElement> {
   name: keyof typeof iconMap;
@@ -23,3 +25,5 @@ export const Icon = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
     </span>
   );
 });
+
+Icon.displayName = 'Icon';

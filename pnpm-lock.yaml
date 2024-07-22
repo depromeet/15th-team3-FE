@@ -11,6 +11,15 @@ importers:
       '@emotion/react':
         specifier: ^11.11.4
         version: 11.11.4(react@18.2.0)
+      next:
+        specifier: 14.2.4
+        version: 14.2.4(@babel/core@7.24.9)(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
     devDependencies:
       '@turbo/gen':
         specifier: ^1.12.4
@@ -21,9 +30,6 @@ importers:
       husky:
         specifier: ^9.0.11
         version: 9.0.11
-      next:
-        specifier: 14.2.4
-        version: 14.2.4(@babel/core@7.24.9)(react-dom@18.2.0)(react@18.2.0)
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -39,15 +45,6 @@ importers:
       '@sambad/web-domains':
         specifier: workspace:*
         version: link:../../packages/web-domains
-      next:
-        specifier: 14.2.4
-        version: 14.2.4(@babel/core@7.24.9)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: 18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: 18.2.0
-        version: 18.2.0(react@18.2.0)
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^1.6.1
