@@ -1,4 +1,4 @@
-import { Button } from '@sambad/sds';
+import { Button } from '@sambad/sds/components';
 
 import type { PropsWithChildren } from 'react';
 

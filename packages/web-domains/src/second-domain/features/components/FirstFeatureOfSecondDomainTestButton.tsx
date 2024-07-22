@@ -1,4 +1,4 @@
-import { Button } from '@sambad/sds';
+import { Button } from '@sambad/sds/components';
 
 import { useFirstFeatureOfFirstDomainTestButton } from '../hooks/useFirstFeatureOfFirstDomainTestButton';
 
