@@ -23,3 +23,5 @@ export const Icon = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
     </span>
   );
 });
+
+Icon.displayName = 'Icon';

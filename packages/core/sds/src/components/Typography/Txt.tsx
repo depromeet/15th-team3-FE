@@ -38,3 +38,5 @@ export const Txt = forwardRef<HTMLSpanElement, TxtProps>((props, ref) => {
 
   return <Tag ref={ref} style={style} {...restProps} />;
 });
+
+Txt.displayName = 'Txt';
