@@ -1,7 +1,6 @@
-import { Button } from '@sambad/sds';
+import { Button } from '@sambad/sds/components';
 
 import type { PropsWithChildren } from 'react';
-
 interface FirstFeatureOfFirstDomainBoxProps {
   displayText: string;
   onClick?: () => void;
@@ -14,7 +13,7 @@ export const FirstFeatureOfFirstDomainBox = ({
 }: PropsWithChildren<FirstFeatureOfFirstDomainBoxProps>) => {
   return (
     <div>
-      <Button appName="Container Box Button" onClick={onClick}>
+      <Button size="large" variant="primary" onClick={onClick}>
         FirstDomainTestBox
       </Button>
       {displayText}

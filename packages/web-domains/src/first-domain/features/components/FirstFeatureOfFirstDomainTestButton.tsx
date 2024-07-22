@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@sambad/sds';
+import { Button } from '@sambad/sds/components';
 
 import { useFirstFeatureOfFirstDomainTestButton } from '../hooks/useFirstFeatureOfFirstDomainTestButton';
 
@@ -17,7 +17,7 @@ export const FirstFeatureOfFirstDomainTestButton = ({
   const { testText, handleChangeTestText } = useFirstFeatureOfFirstDomainTestButton();
 
   return (
-    <Button appName="sambad" onClick={handleChangeTestText} {...rest}>
+    <Button size="medium" variant="text" onClick={handleChangeTestText} {...rest}>
       {children}
       {testText}
     </Button>
