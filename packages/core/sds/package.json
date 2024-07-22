@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    ".": "./src/index.ts",
     "./theme": "./src/theme/index.ts",
     "./components": "./src/components/index.ts"
   },
