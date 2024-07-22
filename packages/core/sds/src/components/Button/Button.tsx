@@ -3,10 +3,13 @@
 import { ButtonHTMLAttributes, forwardRef, MouseEvent as ReactMouseEvent, PropsWithChildren } from 'react';
 
 import { buttonCss } from './styles';
-import { ButtonCssArg, Radius } from './types';
+import { Radius, Size, Variant } from './types';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, Omit<ButtonCssArg, 'radius'> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: Size;
+  variant?: Variant;
   radius?: Radius;
+  isDisabled?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>((props, ref) => {

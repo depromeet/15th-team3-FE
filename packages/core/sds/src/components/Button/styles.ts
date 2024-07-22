@@ -54,7 +54,6 @@ const buttonSizes: Record<ButtonCssArg['size'], CSSObject> = {
   medium: { padding: '0 16px', height: '48px' },
 };
 
-// sub medium일 때 폰트 웨이트가 다름
 const buttonFontSizes: Record<ButtonCssArg['size'], CSSObject> = {
   large: { fontSize: '16px', fontWeight: '600', lineHeight: '24px' },
   medium: { fontSize: '14px', fontWeight: '600', lineHeight: '20px' },
