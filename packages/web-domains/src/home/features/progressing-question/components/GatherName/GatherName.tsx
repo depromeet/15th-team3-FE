@@ -2,7 +2,7 @@ import { Txt } from '@sambad/sds/components';
 import { HTMLAttributes } from 'react';
 
 import { ProfileImage } from '../../../../../common/asset/profile';
-import { Avatar } from '../Avatar/Avatar';
+import { Avatar } from '../../../../common/Avatar/Avatar';
 
 interface GatherNameProps extends HTMLAttributes<HTMLDivElement> {
   gatherName: string;

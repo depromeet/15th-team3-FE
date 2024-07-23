@@ -6,10 +6,10 @@ import Link from 'next/link';
 
 import { AngleRightIcon } from '../../../../../../core/sds/src/components/Icon/assets/AngleRight';
 import { HomePreviousQuestionList } from '../components/PreviousQuestion/HomePreviousQuestionList';
-import { useHomePreviousQuestionService } from '../services/useHomePreviousQuestionService';
+import { useHomePreviousQuestionListService } from '../services/useHomePreviousQuestionListService';
 
 export const HomePreviousQuestionListContainer = () => {
-  const { previousQuestionList } = useHomePreviousQuestionService();
+  const { previousQuestionList } = useHomePreviousQuestionListService();
 
   if (!previousQuestionList || !previousQuestionList.content.length) {
     return null;

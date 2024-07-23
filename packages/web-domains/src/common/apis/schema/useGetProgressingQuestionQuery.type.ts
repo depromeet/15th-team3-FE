@@ -13,5 +13,5 @@ export type MemberType = {
   id: number;
   name: string;
   profileImageFileUrl?: string;
-  role: 'OWNER';
+  role: 'OWNER' | 'ADMIN' | 'MEMBER';
 };

@@ -1,32 +1,15 @@
 import { Txt } from '@sambad/sds/components';
-import { borderRadius, colors } from '@sambad/sds/theme';
+import { colors, borderRadius } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 import { AngleRightIcon } from '../../../../../../../core/sds/src/components/Icon/assets/AngleRight';
 import { PreviousQuestionType } from '../../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 
-interface HomePreviousQuestionListProps {
-  questionList: PreviousQuestionType[];
+interface HomePreviousQuestionItemProps {
+  question: PreviousQuestionType;
 }
 
-export const HomePreviousQuestionList = ({ questionList }: HomePreviousQuestionListProps) => {
-  return (
-    <ul
-      css={{
-        width: '100%',
-
-        borderRadius: borderRadius.medium,
-        border: `1px solid ${colors.grey300}`,
-      }}
-    >
-      {questionList.map((question) => (
-        <Question key={question.meetingQuestionId} question={question} />
-      ))}
-    </ul>
-  );
-};
-
-const Question = ({ question }: { question: PreviousQuestionType }) => {
+export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemProps) => {
   const { mostResponse, title } = question;
 
   return (
@@ -69,7 +52,7 @@ const Question = ({ question }: { question: PreviousQuestionType }) => {
             참여율 70%
           </Txt>
         </div>
-        <div>
+        <div css={{ marginLeft: '20px' }}>
           <AngleRightIcon size={16} color={colors.grey600} />
         </div>
       </Link>
