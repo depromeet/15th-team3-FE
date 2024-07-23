@@ -6,6 +6,7 @@ export const textButtonCss = css({
   alignItems: 'center',
 
   cursor: 'pointer',
+  fontSize: '12px',
   lineHeight: '150%',
 
   '&:disabled': {
