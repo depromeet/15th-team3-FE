@@ -15,9 +15,9 @@ export const RootLayout = ({ children }: RootLayoutProps) => {
   };
 
   return (
-    <main>
+    <main style={layoutStyle}>
       <GlobalStyle />
-      <div style={layoutStyle}>{children}</div>
+      {children}
     </main>
   );
 };
