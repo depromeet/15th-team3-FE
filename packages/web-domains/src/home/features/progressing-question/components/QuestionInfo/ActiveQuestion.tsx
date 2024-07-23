@@ -1,7 +1,6 @@
 import { Txt } from '@sambad/sds/components';
 import { borderRadius, colors, size } from '@sambad/sds/theme';
 
-import { AngleRightIcon } from '../../../../../../../core/sds/src/components/Icon/assets/AngleRight';
 import { ProgressingQuestionType } from '../../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
 import { ArrowIcon } from '../../../../../common/asset/arrow';
 import { ProfileImage } from '../../../../../common/asset/profile';
@@ -81,11 +80,17 @@ export const ActiveQuestion = ({ question }: ActiveQuestionProps) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            cursor: 'pointer',
+            ':hover': {
+              backgroundColor: colors.primary600,
+            },
+            ':pressed': {
+              backgroundColor: colors.primary600,
+            },
           }}
         >
           <ArrowIcon />
         </button>
-        {/* <AngleRightIcon size={24} css={{ zIndex: 1 }} /> */}
       </div>
     </div>
   );
