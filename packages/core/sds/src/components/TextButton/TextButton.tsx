@@ -24,7 +24,7 @@ export const TextButton = forwardRef<HTMLButtonElement, TextButtonProps>((props,
   return (
     <button ref={ref} style={style} css={textButtonCss} {...restProps}>
       {children}
-      {isArrowVariant && <Icon css={arrowIconCss} color={color} name="angle-right" />}
+      {isArrowVariant && <Icon css={arrowIconCss} color={color} size={12} name="angle-right" />}
     </button>
   );
 });

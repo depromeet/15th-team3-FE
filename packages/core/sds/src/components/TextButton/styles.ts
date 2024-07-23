@@ -16,8 +16,4 @@ export const textButtonCss = css({
 
 export const arrowIconCss = css({
   marginLeft: '4px',
-
-  '& svg': {
-    width: '12px',
-  },
 });
