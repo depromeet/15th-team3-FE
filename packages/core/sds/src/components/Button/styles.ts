@@ -3,30 +3,32 @@ import { borderRadiusVariants, colors } from '../../theme';
 import { ButtonSize, ButtonVariant } from './types';
 
 const buttonHeightVar = '--sambad-button-height';
+const buttonFontSizeVar = '--sambad-button-font-size';
 
 interface ButtonSizeVariants {
   [buttonHeightVar]: string;
+  [buttonFontSizeVar]: string;
 }
 
 export const buttonSizeVariants: Record<ButtonSize, ButtonSizeVariants> = {
   medium: {
     [buttonHeightVar]: '48px',
+    [buttonFontSizeVar]: '14px',
   },
   large: {
     [buttonHeightVar]: '56px',
+    [buttonFontSizeVar]: '16px',
   },
 };
 
 const buttonBackgroundColorVar = '--sambad-button-background-color';
 const buttonBorderVar = '--sambad-button-border';
 const buttonColorVar = '--sambad-button-color';
-const buttonFontSizeVar = '--sambad-button-font-size';
 
 interface ButtonVariantVariants {
   [buttonBackgroundColorVar]: string;
   [buttonBorderVar]: string;
   [buttonColorVar]: string;
-  [buttonFontSizeVar]?: string;
 }
 
 export const buttonVariantVariants: Record<ButtonVariant, ButtonVariantVariants> = {
@@ -34,13 +36,11 @@ export const buttonVariantVariants: Record<ButtonVariant, ButtonVariantVariants>
     [buttonBackgroundColorVar]: colors.black,
     [buttonBorderVar]: 'none',
     [buttonColorVar]: colors.white,
-    [buttonFontSizeVar]: '14px',
   },
   sub: {
     [buttonBackgroundColorVar]: colors.white,
     [buttonBorderVar]: `1px solid ${colors.grey500}`,
     [buttonColorVar]: colors.black,
-    [buttonFontSizeVar]: '16px',
   },
 };
 
