@@ -1,4 +1,4 @@
-export const borderRadius = {
+export const borderRadiusVariants = {
   none: '0px',
   xsmall: '4px',
   small: '8px',

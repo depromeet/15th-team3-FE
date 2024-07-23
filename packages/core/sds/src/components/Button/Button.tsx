@@ -1,31 +1,23 @@
-'use client';
+import { ButtonHTMLAttributes, forwardRef, HTMLAttributes } from 'react';
+import { ButtonSize, ButtonVariant } from './types';
+import { buttonCss, buttonDisabledVariants, buttonSizeVariants, buttonVariantVariants } from './styles';
 
-import { ButtonHTMLAttributes, forwardRef, MouseEvent as ReactMouseEvent, PropsWithChildren } from 'react';
-
-import { buttonCss } from './styles';
-import { Radius, Size, Variant } from './types';
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  size?: Size;
-  variant?: Variant;
-  radius?: Radius;
-  isDisabled?: boolean;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: ButtonSize;
+  variant?: ButtonVariant;
 }
 
-export const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>((props, ref) => {
-  const { children, onClick, variant = 'primary', size = 'large', radius = 'round', disabled, ...rest } = props;
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  const { variant = 'primary', size = 'medium', disabled = false, style: styleFromProps, ...restProps } = props;
 
-  const handleClick = (e: ReactMouseEvent<HTMLButtonElement>) => {
-    if (!disabled) {
-      onClick?.(e);
-    }
+  const style = {
+    ...buttonSizeVariants[size],
+    ...buttonVariantVariants[variant],
+    ...(disabled && buttonDisabledVariants[variant]),
+    ...styleFromProps,
   };
 
-  return (
-    <button ref={ref} onClick={handleClick} css={buttonCss({ variant, size, radius })} disabled={disabled} {...rest}>
-      {children}
-    </button>
-  );
+  return <button ref={ref} disabled={disabled} style={style} css={buttonCss} {...restProps} />;
 });
 
 Button.displayName = 'Button';

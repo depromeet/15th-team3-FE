@@ -1,108 +1,81 @@
-import { css, CSSObject } from '@emotion/react';
+import { css } from '@emotion/react';
+import { borderRadiusVariants, colors } from '../../theme';
+import { ButtonSize, ButtonVariant } from './types';
 
-import { borderRadius, colors } from '../../theme';
+const buttonHeightVar = '--sambad-button-height';
+const buttonFontSizeVar = '--sambad-button-font-size';
 
-import { ButtonCssArg } from './types';
+interface ButtonSizeVariants {
+  [buttonHeightVar]: string;
+  [buttonFontSizeVar]: string;
+}
 
-const buttonVariants: Record<ButtonCssArg['variant'], CSSObject> = {
+export const buttonSizeVariants: Record<ButtonSize, ButtonSizeVariants> = {
+  medium: {
+    [buttonHeightVar]: '48px',
+    [buttonFontSizeVar]: '14px',
+  },
+  large: {
+    [buttonHeightVar]: '56px',
+    [buttonFontSizeVar]: '16px',
+  },
+};
+
+const buttonBackgroundColorVar = '--sambad-button-background-color';
+const buttonBorderVar = '--sambad-button-border';
+const buttonColorVar = '--sambad-button-color';
+
+interface ButtonVariantVariants {
+  [buttonBackgroundColorVar]: string;
+  [buttonBorderVar]: string;
+  [buttonColorVar]: string;
+}
+
+export const buttonVariantVariants: Record<ButtonVariant, ButtonVariantVariants> = {
   primary: {
-    backgroundColor: colors.black,
-    color: colors.white,
-    border: 'none',
-    '&:disabled': {
-      backgroundColor: colors.grey500,
-      color: colors.grey600,
-    },
-    '&:hover:not(:disabled), &:active:not(:disabled)': {
-      backgroundColor: colors.grey700,
-      color: colors.white,
-    },
+    [buttonBackgroundColorVar]: colors.black,
+    [buttonBorderVar]: 'none',
+    [buttonColorVar]: colors.white,
   },
   sub: {
-    backgroundColor: colors.white,
-    color: colors.grey700,
-    border: `1px solid ${colors.grey500}`,
-    '&:disabled': {
-      backgroundColor: colors.grey200,
-      color: colors.grey500,
-      border: `1px solid ${colors.grey300}`,
-    },
-    '&:hover:not(:disabled), &:active:not(:disabled)': {
-      backgroundColor: colors.grey300,
-      color: colors.grey700,
-      border: `1px solid ${colors.grey500}`,
-    },
-  },
-  text: {
-    backgroundColor: 'transparent',
-    color: colors.black,
-    border: 'none',
-    '&:disabled': {
-      color: colors.grey500,
-    },
-    '&:hover:not(:disabled), &:active:not(:disabled)': {
-      color: colors.grey600,
-    },
+    [buttonBackgroundColorVar]: colors.white,
+    [buttonBorderVar]: `1px solid ${colors.grey500}`,
+    [buttonColorVar]: colors.black,
   },
 };
 
-const buttonSizes: Record<ButtonCssArg['size'], CSSObject> = {
-  large: {
-    width: '100%',
-    height: '56px',
+export const buttonDisabledVariants: Record<ButtonVariant, ButtonVariantVariants> = {
+  primary: {
+    [buttonBackgroundColorVar]: colors.grey500,
+    [buttonBorderVar]: 'none',
+    [buttonColorVar]: colors.grey600,
   },
-  medium: { padding: '0 16px', height: '48px' },
-};
-
-const buttonFontSizes: Record<ButtonCssArg['size'], CSSObject> = {
-  large: { fontSize: '16px', fontWeight: '600', lineHeight: '24px' },
-  medium: { fontSize: '14px', fontWeight: '600', lineHeight: '20px' },
-};
-
-const buttonRadius: Record<ButtonCssArg['radius'], CSSObject> = {
-  round: {
-    borderRadius: borderRadius.round,
+  sub: {
+    [buttonBackgroundColorVar]: colors.grey200,
+    [buttonBorderVar]: `1px solid ${colors.grey300}`,
+    [buttonColorVar]: colors.grey500,
   },
-  medium: {
-    borderRadius: borderRadius.medium,
+};
+
+export const buttonCss = css({
+  width: '100%',
+  height: `var(${buttonHeightVar})`,
+
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+
+  color: `var(${buttonColorVar})`,
+  fontSize: `var(${buttonFontSizeVar})`,
+  lineHeight: '150%',
+
+  border: `var(${buttonBorderVar})`,
+  borderRadius: borderRadiusVariants.round,
+  backgroundColor: `var(${buttonBackgroundColorVar})`,
+
+  cursor: 'pointer',
+
+  '&:disabled': {
+    cursor: 'not-allowed',
   },
-  small: { borderRadius: borderRadius.small },
-  xsmall: { borderRadius: borderRadius.xsmall },
-  none: { borderRadius: borderRadius.none },
-};
-
-const textButtonSizes: Record<ButtonCssArg['size'], CSSObject> = {
-  large: { padding: '4px 16px', gap: '12px' },
-  medium: { padding: '2px 12px', gap: '4px' },
-};
-
-const textButtonFontSizes: Record<ButtonCssArg['size'], CSSObject> = {
-  large: { fontSize: '16px', fontWeight: '500', lineHeight: '24px' },
-  medium: { fontSize: '12px', fontWeight: '500', lineHeight: '20px' },
-};
-
-export const buttonCss = (props: ButtonCssArg) => {
-  const { variant, size, radius } = props;
-
-  const sizeStyles = variant === 'text' ? textButtonSizes[size] : buttonSizes[size];
-
-  let fontStyles;
-  if (variant === 'sub' && size === 'medium') {
-    fontStyles = { fontSize: '16px', fontWeight: '400', lineHeight: '24px' };
-  } else {
-    fontStyles = variant === 'text' ? textButtonFontSizes[size] : buttonFontSizes[size];
-  }
-
-  return css({
-    display: 'inline-flex',
-    flexShrink: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '8px',
-    cursor: 'pointer',
-    ...buttonVariants[variant],
-    ...buttonRadius[radius],
-    ...sizeStyles,
-    ...fontStyles,
-  });
-};
+});
