@@ -1,14 +1,23 @@
 import { Interpolation, Theme } from '@emotion/react';
+import { HTMLAttributes } from 'react';
 
-interface RelayStartDecoStarProps {
+interface RelayStartDecoStarProps extends HTMLAttributes<SVGSVGElement> {
   width?: number;
   height?: number;
   css?: Interpolation<Theme>;
 }
 
-export const RelayStartDecoStar = ({ width = 51, height = 53, css }: RelayStartDecoStarProps) => {
+export const RelayStartDecoStar = ({ width = 51, height = 53, css, ...rest }: RelayStartDecoStarProps) => {
   return (
-    <svg width={width} height={height} viewBox="0 0 51 53" fill="none" xmlns="http://www.w3.org/2000/svg" css={css}>
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 51 53"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      css={css}
+      {...rest}
+    >
       <path
         d="M24.3106 0.977732L22.4247 17.2939C22.3272 18.1374 21.3541 18.5601 20.6711 18.0555L15.8602 14.5012C14.8825 13.7789 13.6254 14.9355 14.264 15.9698L17.7296 21.5837C18.1577 22.2772 17.713 23.1797 16.9022 23.2627L0.992084 24.8916C-0.299015 25.0238 -0.343878 26.8884 0.939369 27.0826L16.4109 29.4231C17.194 29.5416 17.6016 30.4215 17.1855 31.0955L13.483 37.0932C12.8525 38.1145 14.074 39.2668 15.0569 38.5779L20.6873 34.6314C21.3727 34.1511 22.3225 34.5777 22.4186 35.4091L24.3106 51.7787C24.4621 53.0892 26.3685 53.0793 26.5064 51.7673L28.2254 35.4081C28.3128 34.5765 29.2567 34.1398 29.9471 34.6116L35.9563 38.7182C36.9412 39.3913 38.146 38.2412 37.5194 37.2261L33.7348 31.0955C33.3187 30.4215 33.7263 29.5416 34.5095 29.4231L50.0606 27.0705C51.3424 26.8766 51.2998 25.0149 50.0105 24.8798L34.6049 23.2664C33.7954 23.1816 33.3525 22.2802 33.7801 21.5876L37.5194 15.5304C38.146 14.5152 36.9412 13.3651 35.9563 14.0382L29.9471 18.1448C29.2567 18.6166 28.3128 18.1799 28.2254 17.3483L26.5064 0.989134C26.3685 -0.322839 24.4621 -0.332739 24.3106 0.977732Z"
         fill="#FCD959"
