@@ -1,13 +1,22 @@
 import { Interpolation, Theme } from '@emotion/react';
+import { HTMLAttributes } from 'react';
 
-interface RelayStartDefaultProfileProps {
+interface RelayStartDefaultProfileProps extends HTMLAttributes<SVGSVGElement> {
   size?: number;
   css?: Interpolation<Theme>;
 }
 
-export const RelayStartDefaultProfile = ({ size = 142, css }: RelayStartDefaultProfileProps) => {
+export const RelayStartDefaultProfile = ({ size = 142, css, ...rest }: RelayStartDefaultProfileProps) => {
   return (
-    <svg width={size} height={size} viewBox="0 0 142 142" fill="none" xmlns="http://www.w3.org/2000/svg" css={css}>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 142 142"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      css={css}
+      {...rest}
+    >
       <g clipPath="url(#clip0_3035_12273)">
         <rect width="142" height="142" rx="71" fill="#4B4B4B" />
         <path
