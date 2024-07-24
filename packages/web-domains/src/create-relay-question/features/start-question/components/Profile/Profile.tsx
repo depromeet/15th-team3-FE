@@ -1,5 +1,3 @@
-'use client';
-
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 
@@ -23,9 +21,9 @@ export const Profile = () => {
       <div css={ProfileImgBoxCss}>
         <RelayStartDecoCircle size={11} css={SVGPositionCSS({ top: 123, left: -26 })} />
         <RelayStartDecoCircle css={SVGPositionCSS({ top: 137, left: 0 })} />
-        <RelayStartDecoCircle css={SVGPositionCSS({ top: -12, left: 112 })} />
-        <RelayStartDecoStar css={SVGPositionCSS({ top: -16, left: 124 })} />
-        <RelayStartDecoCircle size={8} css={SVGPositionCSS({ top: 32, left: 168 })} />
+        <RelayStartDecoCircle css={SVGPositionCSS({ top: -16, left: 112 })} />
+        <RelayStartDecoStar css={SVGPositionCSS({ top: -20, left: 124 })} />
+        <RelayStartDecoCircle size={8} css={SVGPositionCSS({ top: 28, left: 168 })} />
         <RelayStartDefaultProfile />
       </div>
     </section>

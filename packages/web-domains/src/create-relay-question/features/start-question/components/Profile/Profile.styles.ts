@@ -7,7 +7,7 @@ export const ProfileIntroductionCss = css({
   gap: size['6xs'],
   alignItems: 'center',
   justifyContent: 'center',
-  padding: `${size.xl} ${size['2xs']} ${size.xs}`,
+  padding: `${size.xl} ${size['2xs']} ${size['3xl']}`,
 });
 
 export const ProfileSectionCss = css({
