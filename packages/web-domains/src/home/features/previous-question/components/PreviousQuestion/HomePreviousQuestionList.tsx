@@ -1,4 +1,4 @@
-import { borderRadius, colors } from '@sambad/sds/theme';
+import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 
 import { PreviousQuestionType } from '../../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 
@@ -13,7 +13,7 @@ export const HomePreviousQuestionList = ({ questionList }: HomePreviousQuestionL
     <ul
       css={{
         width: '100%',
-        borderRadius: borderRadius.medium,
+        borderRadius: borderRadiusVariants.medium,
         border: `1px solid ${colors.grey300}`,
       }}
     >

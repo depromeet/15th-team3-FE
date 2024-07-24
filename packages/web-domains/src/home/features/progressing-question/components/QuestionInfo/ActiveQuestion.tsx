@@ -1,5 +1,5 @@
 import { Txt } from '@sambad/sds/components';
-import { borderRadius, colors, size } from '@sambad/sds/theme';
+import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
 
 import { ProgressingQuestionType } from '../../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
 import { ArrowIcon } from '../../../../../common/asset/arrow';
@@ -58,7 +58,7 @@ export const ActiveQuestion = ({ question }: ActiveQuestionProps) => {
               width: '100%',
               display: 'inline-block',
               backgroundColor: colors.grey400,
-              borderRadius: borderRadius.round,
+              borderRadius: borderRadiusVariants.round,
               height: size['7xs'],
               ':after': {
                 content: '""',
@@ -75,7 +75,7 @@ export const ActiveQuestion = ({ question }: ActiveQuestionProps) => {
             flexShrink: 0,
             width: '48px',
             height: '48px',
-            borderRadius: borderRadius.round,
+            borderRadius: borderRadiusVariants.round,
             backgroundColor: colors.primary500,
             display: 'flex',
             alignItems: 'center',

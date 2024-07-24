@@ -1,5 +1,5 @@
 import { Txt } from '@sambad/sds/components';
-import { colors, borderRadius } from '@sambad/sds/theme';
+import { colors, borderRadiusVariants } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 import { AngleRightIcon } from '../../../../../../../core/sds/src/components/Icon/assets/AngleRight';
@@ -45,7 +45,7 @@ export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemP
               height: '18px',
               textAlign: 'center',
               padding: '0 8px',
-              borderRadius: borderRadius.medium,
+              borderRadius: borderRadiusVariants.medium,
               lineHeight: '16px',
             }}
           >
