@@ -1,12 +1,17 @@
 {
-  "extends": "@sambad/typescript-config/react-library.json",
+  "extends": "@sambad/typescript-config/nextjs.json",
   "compilerOptions": {
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@sds/*": ["../core/sds/src/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": ["src", "../../apps/web/layout/RootLayout.styles.ts", "../../apps/web/layout/RootLayout.tsx"],
   "exclude": ["node_modules", "dist"]
