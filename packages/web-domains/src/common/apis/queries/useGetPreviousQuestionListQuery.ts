@@ -1,4 +1,4 @@
-import { UseQueryOptions, useQuery } from '@tanstack/react-query';
+import { QueryClient, UseQueryOptions, useQuery } from '@tanstack/react-query';
 
 import { PreviousQuestionListType } from '../schema/useGetPreviousQuestionListQuery.type';
 
@@ -16,7 +16,16 @@ export const useGetPreviousQuestionListQuery = ({ options }: Args) => {
   });
 };
 
-async function getPreviousQuestionList(): Promise<PreviousQuestionListType> {
+export const getPreviousQuestionListPrefetchQuery = (queryClient: QueryClient) => () => {
+  const prefetch = queryClient.prefetchQuery({
+    queryKey: [PREVIOUS_QUESTION_QUERY_KEY],
+    queryFn: getPreviousQuestionList,
+  });
+
+  return prefetch;
+};
+
+export async function getPreviousQuestionList(): Promise<PreviousQuestionListType> {
   return {
     totalMeetingMemberCount: 6,
     content: [

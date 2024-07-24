@@ -1,4 +1,4 @@
-import { UseQueryOptions, useQuery } from '@tanstack/react-query';
+import { QueryClient, UseQueryOptions, useQuery } from '@tanstack/react-query';
 
 import { ProgressingQuestionType } from '../schema/useGetProgressingQuestionQuery.type';
 
@@ -16,7 +16,16 @@ export const useGetProgressingQuestionQuery = ({ options }: Args) => {
   });
 };
 
-async function getProgressingQuestion(): Promise<ProgressingQuestionType> {
+export const getProgressingQuestionPrefetchQuery = (queryClient: QueryClient) => () => {
+  const prefetch = queryClient.prefetchQuery({
+    queryKey: [PROGRESSING_QUESTION_QUERY_KEY],
+    queryFn: getProgressingQuestion,
+  });
+
+  return prefetch;
+};
+
+export async function getProgressingQuestion(): Promise<ProgressingQuestionType> {
   return {
     meetingQuestionId: 0,
     questionImageFileUrl: '',

@@ -1,4 +1,4 @@
-import { UseQueryOptions, useQuery } from '@tanstack/react-query';
+import { QueryClient, UseQueryOptions, useQuery } from '@tanstack/react-query';
 
 import { GatherMemberListType } from '../schema/useGetGatherMemberListQuery.type';
 
@@ -16,7 +16,16 @@ export const useGetGatherMemberListQuery = ({ options }: Args) => {
   });
 };
 
-async function getGatherMemberList(): Promise<GatherMemberListType> {
+export const getGatherMemberListPrefetchQuery = (queryClient: QueryClient) => () => {
+  const prefetch = queryClient.prefetchQuery({
+    queryKey: [GATHER_MEMBER_QUERY_KEY],
+    queryFn: getGatherMemberList,
+  });
+
+  return prefetch;
+};
+
+export async function getGatherMemberList(): Promise<GatherMemberListType> {
   return {
     content: [
       {
