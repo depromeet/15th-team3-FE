@@ -9,6 +9,8 @@ interface HomePreviousQuestionListProps {
 }
 
 export const HomePreviousQuestionList = ({ questionList }: HomePreviousQuestionListProps) => {
+  const twicePreviousQuestionList = questionList.slice(0, 2);
+
   return (
     <ul
       css={{
@@ -17,7 +19,7 @@ export const HomePreviousQuestionList = ({ questionList }: HomePreviousQuestionL
         border: `1px solid ${colors.grey300}`,
       }}
     >
-      {questionList.map((question) => (
+      {twicePreviousQuestionList.map((question) => (
         <HomePreviousQuestionItem key={question.meetingQuestionId} question={question} />
       ))}
     </ul>

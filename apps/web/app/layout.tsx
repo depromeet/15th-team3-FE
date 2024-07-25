@@ -1,7 +1,10 @@
 import { Providers, RootLayout as ViewportLayout } from '@sambad/web-domains/commmon';
+import dayjs from 'dayjs';
 import { Inter } from 'next/font/google';
 
 import type { Metadata } from 'next';
+
+dayjs.locale('ko');
 
 const inter = Inter({ subsets: ['latin'] });
 

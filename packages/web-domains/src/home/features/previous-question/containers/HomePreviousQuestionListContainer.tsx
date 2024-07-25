@@ -23,7 +23,7 @@ export const HomePreviousQuestionListContainer = () => {
         css={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}
       >
         이전 질문
-        <Link href="/home" css={{ display: 'inline-flex', alignItems: 'center' }}>
+        <Link href="/home/previous-question" css={{ display: 'inline-flex', alignItems: 'center' }}>
           <Txt typography="title4" color={colors.grey600} css={{ marginRight: '4px' }}>
             전체보기
           </Txt>

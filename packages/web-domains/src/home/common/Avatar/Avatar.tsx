@@ -9,7 +9,11 @@ interface AvatarProps extends Omit<ImageProps, 'src' | 'alt'> {
 
 export const Avatar = ({ imageUrl, alt = 'profile-image', size, Icon, ...rest }: AvatarProps) => {
   if (!imageUrl) {
-    return <span css={{ display: 'flex' }}>{Icon && <Icon size={size} />}</span>;
+    return (
+      <span css={{ display: 'inline-flex' }} {...rest}>
+        {Icon && <Icon size={size} />}
+      </span>
+    );
   }
 
   return <Image src={imageUrl} alt={alt} fill {...rest} />;

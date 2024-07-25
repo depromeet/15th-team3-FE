@@ -12,7 +12,7 @@ interface RootLayoutProps {
 
 export const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <div>
+    <div css={{ height: '100vh' }}>
       <GlobalStyle />
       <div css={RootLayoutCss}>{children}</div>
     </div>

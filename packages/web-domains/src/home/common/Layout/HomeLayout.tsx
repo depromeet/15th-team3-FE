@@ -3,5 +3,5 @@
 import { PropsWithChildren } from 'react';
 
 export const HomeLayout = ({ children }: PropsWithChildren) => {
-  return <div css={{}}>{children}</div>;
+  return <div css={{ height: '100%' }}>{children}</div>;
 };
