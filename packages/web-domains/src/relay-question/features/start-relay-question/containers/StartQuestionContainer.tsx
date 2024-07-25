@@ -3,7 +3,7 @@
 import { Button } from '@sambad/sds/components';
 import { useRouter } from 'next/navigation';
 
-import { RelayStartBackground } from '../../../assets/RealyStartBackground';
+import { RelayStartBackground } from '../../../assets/RelayStartBackground';
 import { Z_INDEX } from '../../../constants';
 import { Profile } from '../components/Profile/Profile';
 
