@@ -1,3 +1,9 @@
+import { SelectRelayQuestionScreen } from '@sambad/web-domains/relay-question';
+
 export default function SelectRelayQuestion() {
-  return <main>select</main>;
+  return (
+    <main>
+      <SelectRelayQuestionScreen />
+    </main>
+  );
 }
