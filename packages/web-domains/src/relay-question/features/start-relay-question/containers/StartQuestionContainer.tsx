@@ -3,8 +3,8 @@
 import { Button } from '@sambad/sds/components';
 
 import { RelayStartBackground } from '../../../assets/RealyStartBackground';
+import { Z_INDEX } from '../../../constants';
 import { Profile } from '../components/Profile/Profile';
-import { Z_INDEX } from '../constants';
 
 import { StartQuestionBackgroundCss, StartQuestionContainerCss } from './StartQuestionContainer.styles';
 
