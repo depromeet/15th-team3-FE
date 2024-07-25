@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { size } from '@sambad/sds/theme';
 
-export const ProfileIntroductionCss = css({
+export const profileIntroductionCss = css({
   display: 'flex',
   flexDirection: 'column',
   gap: size['6xs'],
@@ -10,7 +10,7 @@ export const ProfileIntroductionCss = css({
   padding: `${size.xl} ${size['2xs']} ${size['3xl']}`,
 });
 
-export const ProfileSectionCss = css({
+export const profileSectionCss = css({
   display: 'flex',
   flexDirection: 'column',
   gap: size['5xs'],
@@ -18,7 +18,7 @@ export const ProfileSectionCss = css({
   justifyContent: 'center',
 });
 
-export const ProfileImgBoxCss = css({
+export const profileImgBoxCss = css({
   position: 'relative',
 });
 

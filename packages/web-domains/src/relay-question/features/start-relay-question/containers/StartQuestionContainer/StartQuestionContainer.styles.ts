@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { colors, size } from '@sambad/sds/theme';
 
-export const StartQuestionContainerCss = css({
+export const startQuestionContainerCss = css({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -11,7 +11,7 @@ export const StartQuestionContainerCss = css({
   backgroundColor: `${colors.primary50}`,
 });
 
-export const StartQuestionBackgroundCss = css({
+export const startQuestionBackgroundCss = css({
   width: '100%',
   maxWidth: '430px',
   height: 'max-content',

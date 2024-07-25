@@ -3,20 +3,20 @@
 import { Button } from '@sambad/sds/components';
 import { useRouter } from 'next/navigation';
 
-import { RelayStartBackground } from '../../../assets/RelayStartBackground';
-import { Z_INDEX } from '../../../constants';
-import { Profile } from '../components/Profile/Profile';
+import { RelayStartBackground } from '../../../../assets/RelayStartBackground';
+import { Z_INDEX } from '../../../../constants';
+import { Profile } from '../../components/Profile/Profile';
 
-import { StartQuestionBackgroundCss, StartQuestionContainerCss } from './StartQuestionContainer.styles';
+import { startQuestionBackgroundCss, startQuestionContainerCss } from './StartQuestionContainer.styles';
 
 export const StartQuestionContainer = () => {
   const router = useRouter();
 
   return (
-    <div css={StartQuestionContainerCss}>
+    <div css={startQuestionContainerCss}>
       <Profile />
 
-      <section css={StartQuestionBackgroundCss}>
+      <section css={startQuestionBackgroundCss}>
         <Button style={{ zIndex: Z_INDEX.relayStartButton }} onClick={() => router.push('/select-relay-question')}>
           시작하기
         </Button>

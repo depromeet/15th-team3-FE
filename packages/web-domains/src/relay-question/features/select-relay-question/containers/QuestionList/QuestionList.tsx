@@ -2,8 +2,8 @@
 
 import { Txt } from '@sambad/sds/components';
 
-import PNGQuestionImage1 from '../../../assets/png/question-image-1.png';
-import { QuestionItem } from '../components/QuestionItem/QuestionItem';
+import PNGQuestionImage1 from '../../../../assets/png/question-image-1.png';
+import { QuestionItem } from '../../components/QuestionItem/QuestionItem';
 
 import { questionTextBoxCss } from './QuestionList.styles';
 
