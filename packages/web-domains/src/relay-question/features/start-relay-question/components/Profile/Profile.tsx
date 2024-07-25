@@ -5,12 +5,12 @@ import { RelayStartDecoCircle } from '../../../../assets/RelayStartDecoCircle';
 import { RelayStartDecoStar } from '../../../../assets/RelayStartDecoStar';
 import { RelayStartDefaultProfile } from '../../../../assets/RelayStartDefaultProfile';
 
-import { ProfileImgBoxCss, ProfileIntroductionCss, ProfileSectionCss, SVGPositionCSS } from './Profile.styles';
+import { profileImgBoxCss, profileIntroductionCss, profileSectionCss, SVGPositionCSS } from './Profile.styles';
 
 export const Profile = () => {
   return (
-    <section css={ProfileSectionCss}>
-      <div css={ProfileIntroductionCss}>
+    <section css={profileSectionCss}>
+      <div css={profileIntroductionCss}>
         <Txt typography="heading1">이번 릴레이 질문인은 바로 나!</Txt>
         <Txt color={colors.grey600} style={{ textAlign: 'center' }}>
           릴레이 질문을 통해서 모임원들에게
@@ -18,7 +18,7 @@ export const Profile = () => {
         </Txt>
       </div>
 
-      <div css={ProfileImgBoxCss}>
+      <div css={profileImgBoxCss}>
         <RelayStartDecoCircle size={11} css={SVGPositionCSS({ top: 123, left: -26 })} />
         <RelayStartDecoCircle css={SVGPositionCSS({ top: 137, left: 0 })} />
         <RelayStartDecoCircle css={SVGPositionCSS({ top: -16, left: 112 })} />
