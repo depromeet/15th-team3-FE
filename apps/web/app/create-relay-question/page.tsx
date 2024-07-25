@@ -1,4 +1,4 @@
-import { CreateRelayQuestionScreen } from '@sambad/web-domains/create-relay-question';
+import { CreateRelayQuestionScreen } from '../../../../packages/web-domains/src/relay-question';
 
 export default function CreateRelayQuestion() {
   return (
