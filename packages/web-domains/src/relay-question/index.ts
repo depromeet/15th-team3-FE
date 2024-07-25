@@ -1,1 +1,1 @@
-export { CreateRelayQuestionScreen } from './screens/CreateRelayQuestionScreen';
+export { StartRelayQuestionScreen } from './screens/StartRelayQuestionScreen';
