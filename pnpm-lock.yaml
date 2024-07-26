@@ -110,6 +110,15 @@ importers:
         specifier: ^5
         version: 5.5.3
 
+  packages/core/css-utils:
+    dependencies:
+      '@sambad/eslint-config':
+        specifier: workspace:^
+        version: link:../eslint-config
+      '@sambad/typescript-config':
+        specifier: workspace:^
+        version: link:../typescript-config
+
   packages/core/eslint-config:
     devDependencies:
       '@tanstack/eslint-plugin-query':
@@ -216,6 +225,9 @@ importers:
 
   packages/web-domains:
     dependencies:
+      '@sambad/css-utils':
+        specifier: workspace:^
+        version: link:../core/css-utils
       '@tanstack/react-query':
         specifier: ^5.50.1
         version: 5.51.1(react@18.2.0)
