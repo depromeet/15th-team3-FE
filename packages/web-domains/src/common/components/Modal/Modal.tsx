@@ -12,13 +12,11 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Modal = ({ isOpen, width, onClose, children, footer, ...rest }: PropsWithChildren<ModalProps>) => {
-  const [modalState, setIsModalState] = useState<boolean>(isOpen);
   const [element, setElement] = useState<HTMLElement | null>(null);
 
   const modalWidth = width ? `${width}px` : '100%';
 
   const handleClose = () => {
-    setIsModalState(false);
     onClose?.();
   };
 
@@ -27,7 +25,7 @@ export const Modal = ({ isOpen, width, onClose, children, footer, ...rest }: Pro
   }, []);
 
   useEffect(() => {
-    if (modalState) {
+    if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
@@ -36,7 +34,7 @@ export const Modal = ({ isOpen, width, onClose, children, footer, ...rest }: Pro
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [modalState]);
+  }, [isOpen]);
 
   if (typeof window === 'undefined') {
     return <></>;
@@ -46,7 +44,7 @@ export const Modal = ({ isOpen, width, onClose, children, footer, ...rest }: Pro
     return <></>;
   }
 
-  if (!modalState) {
+  if (!isOpen) {
     return null;
   }
 
