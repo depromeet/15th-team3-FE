@@ -1,20 +1,21 @@
-'use client';
-
 import { ReactNode } from 'react';
-
 import { GlobalStyle } from '../styles/GlobalStyles';
-
-import { RootLayoutCss } from './RootLayout.styles';
 
 interface RootLayoutProps {
   children: ReactNode;
 }
 
 export const RootLayout = ({ children }: RootLayoutProps) => {
+  const layoutStyle = {
+    width: '100%',
+    maxWidth: '600px',
+    margin: '0 auto',
+  };
+
   return (
-    <div>
+    <main style={layoutStyle}>
       <GlobalStyle />
-      <div css={RootLayoutCss}>{children}</div>
-    </div>
+      {children}
+    </main>
   );
 };
