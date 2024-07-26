@@ -6,15 +6,12 @@ import { createPortal } from 'react-dom';
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
-  width?: number;
   footer?: ReactNode;
   onClose?: () => void;
 }
 
-export const Modal = ({ isOpen, width, onClose, children, footer, ...rest }: PropsWithChildren<ModalProps>) => {
+export const Modal = ({ isOpen, onClose, children, footer, ...rest }: PropsWithChildren<ModalProps>) => {
   const [element, setElement] = useState<HTMLElement | null>(null);
-
-  const modalWidth = width ? `${width}px` : '100%';
 
   const handleClose = () => {
     onClose?.();
@@ -36,16 +33,8 @@ export const Modal = ({ isOpen, width, onClose, children, footer, ...rest }: Pro
     };
   }, [isOpen]);
 
-  if (typeof window === 'undefined') {
+  if (typeof window === 'undefined' || !element || !isOpen) {
     return <></>;
-  }
-
-  if (!element) {
-    return <></>;
-  }
-
-  if (!isOpen) {
-    return null;
   }
 
   return createPortal(
@@ -57,15 +46,13 @@ export const Modal = ({ isOpen, width, onClose, children, footer, ...rest }: Pro
         id="modal"
         css={{
           padding: '20px',
-          width: modalWidth,
-          maxWidth: '335px',
+          width: '335px',
           position: 'fixed',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           backgroundColor: colors.white,
           borderRadius: borderRadiusVariants.medium,
-          zIndex: '10000',
         }}
         {...rest}
       >
