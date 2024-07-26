@@ -1,8 +1,10 @@
-import { ButtonHTMLAttributes, Children, forwardRef } from 'react';
-import { TextButtonVariant } from './types';
-import { Icon } from '../Icon';
-import { arrowIconCss, textButtonCss } from './styles';
+import { ButtonHTMLAttributes, forwardRef } from 'react';
+
 import { colors } from '../../theme';
+import { Icon } from '../Icon';
+
+import { arrowIconCss, textButtonCss } from './styles';
+import { TextButtonVariant } from './types';
 
 export interface TextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: TextButtonVariant;
