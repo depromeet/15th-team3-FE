@@ -2,10 +2,17 @@
 
 import { Button, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
-import { mostAnsweredButtonCss, mostAnsweredTitleCss, withMyMembersCss } from './styles';
+import {
+  mostAnsweredButtonCss,
+  mostAnsweredTitleCss,
+  profileCss,
+  withMeMembersCss,
+  withMyMembersContainerCss,
+} from './styles';
 import { Fragment } from 'react/jsx-runtime';
-import { Profile, ProfileProps } from './Profile';
-import { Children, PropsWithChildren } from 'react';
+import { SadUserIcon } from '../../assets';
+import { Profile } from './Profile';
+import { CountByMemberList } from './CountByMemberList';
 
 interface MostAnsweredProps {
   title: string;
@@ -24,8 +31,38 @@ export const MostAnswered = (props: MostAnsweredProps) => {
   );
 };
 
-export const WithMeMembers = (props: PropsWithChildren) => {
-  const { children } = props;
+interface WithMeMembersProps {
+  count: number;
+  members: Array<{ id: number; name: string; imgUrl: string }>;
+}
 
-  return <div css={withMyMembersCss}>{children}</div>;
+export const WithMeMembers = (props: WithMeMembersProps) => {
+  const { count, members } = props;
+
+  const noMembers = count === 0;
+  const moreMembers = count >= 5;
+  const fewMembers = !noMembers && !moreMembers;
+
+  return (
+    <div css={withMyMembersContainerCss}>
+      {noMembers && (
+        <div css={profileCss}>
+          <SadUserIcon />
+          <Txt typography="body3" color={colors.grey600}>
+            아쉽게도 같은 답변을 한 모임원이 없어요
+          </Txt>
+        </div>
+      )}
+
+      {(fewMembers || moreMembers) && (
+        <div css={withMeMembersCss}>
+          {members.map((member) => (
+            <Profile key={member.id} name={member.name} imgUrl={member.imgUrl} />
+          ))}
+        </div>
+      )}
+
+      {moreMembers && <CountByMemberList showName={members[0]?.name} count={count} />}
+    </div>
+  );
 };

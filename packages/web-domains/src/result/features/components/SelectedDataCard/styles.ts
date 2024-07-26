@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { getBorder } from '@sambad/css-utils';
 import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
-import { commentAttribute } from './constants';
+import { commentAttribute, countByMemberListAttribute } from './constants';
 
 const commentSelector = commentAttribute.querySelector;
 
@@ -30,6 +30,7 @@ export const memberListCss = css({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  borderRadius: '16px',
 
   border: getBorder(colors.grey300),
   padding: size['3xs'],
@@ -60,18 +61,30 @@ export const profileCss = css({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  alignItems: 'center',
 
   '& > span': {
     paddingTop: size['5xs'],
   },
 });
 
-export const withMyMembersCss = css({
-  display: 'inline-flex',
-  padding: `${size['3xs']} 0`,
+export const withMyMembersContainerCss = css({
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+
+  [`& ${countByMemberListAttribute.querySelector}`]: {
+    marginTop: size['3xs'],
+  },
+});
+
+export const withMeMembersCss = css({
+  display: 'flex',
+  justifyContent: 'center',
+  paddingTop: size['3xs'],
 
   '& > *': {
-    padding: `0 ${size['5xs']}`,
+    margin: `0 ${size['5xs']}`,
   },
 });
 

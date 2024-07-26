@@ -7,11 +7,10 @@ import { cardCss } from './styles';
 interface SelectedDataCard extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   title: ReactNode;
   children?: ReactNode;
-  bottom?: ReactNode;
 }
 
 export const SelectedDataCard = (props: SelectedDataCard) => {
-  const { title, children, bottom, ...restProps } = props;
+  const { title, children, ...restProps } = props;
 
   return (
     <section css={cardCss} {...restProps}>
@@ -19,7 +18,6 @@ export const SelectedDataCard = (props: SelectedDataCard) => {
         {title}
       </Txt>
       {children}
-      {bottom}
     </section>
   );
 };

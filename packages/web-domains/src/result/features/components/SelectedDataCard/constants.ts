@@ -5,3 +5,11 @@ export const commentAttribute = {
   },
   querySelector: `[${commentAttributeKey}=""]`,
 };
+
+const countByMemberListAttributeKey = 'data-sambad-count-by-member-list';
+export const countByMemberListAttribute = {
+  attribute: {
+    [countByMemberListAttributeKey]: '',
+  },
+  querySelector: `[${countByMemberListAttributeKey}=""]`,
+};
