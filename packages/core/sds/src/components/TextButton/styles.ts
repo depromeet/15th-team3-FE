@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import { colors } from '../../theme';
 
 export const textButtonCss = css({
   display: 'inline-flex',
