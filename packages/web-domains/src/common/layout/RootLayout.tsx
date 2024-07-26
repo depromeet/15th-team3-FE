@@ -1,6 +1,4 @@
-'use client';
-
-import { Fragment, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { GlobalStyle } from '../styles/GlobalStyles';
 
 interface RootLayoutProps {
