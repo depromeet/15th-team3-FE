@@ -11,6 +11,9 @@ importers:
       '@emotion/react':
         specifier: ^11.11.4
         version: 11.11.4(react@18.2.0)
+      '@tanstack/react-query':
+        specifier: ^5.50.1
+        version: 5.51.1(react@18.2.0)
     devDependencies:
       '@turbo/gen':
         specifier: ^1.12.4
@@ -55,6 +58,9 @@ importers:
       '@sambad/eslint-config':
         specifier: workspace:*
         version: link:../../packages/core/eslint-config
+      '@sambad/types-utils':
+        specifier: workspace:*
+        version: link:../../packages/core/types-utils
       '@sambad/typescript-config':
         specifier: workspace:*
         version: link:../../packages/core/typescript-config
@@ -148,6 +154,9 @@ importers:
       '@sambad/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@sambad/types-utils':
+        specifier: workspace:*
+        version: link:../types-utils
       '@sambad/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -212,13 +221,40 @@ importers:
         specifier: ^5.3.3
         version: 5.5.3
 
+  packages/core/types-utils:
+    devDependencies:
+      '@chromatic-com/storybook':
+        specifier: ^1.6.1
+        version: 1.6.1(react@18.2.0)
+      '@sambad/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@sambad/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@turbo/gen':
+        specifier: ^1.12.4
+        version: 1.13.4(@swc/core@1.5.7)(@types/node@20.14.10)(typescript@5.5.3)
+      '@types/eslint':
+        specifier: ^8.56.5
+        version: 8.56.10
+      '@types/node':
+        specifier: ^20.11.24
+        version: 20.14.10
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-plugin-storybook:
+        specifier: ^0.8.0
+        version: 0.8.0(eslint@8.57.0)(typescript@5.5.3)
+      typescript:
+        specifier: ^5.3.3
+        version: 5.5.3
+
   packages/core/typescript-config: {}
 
   packages/web-domains:
     dependencies:
-      '@tanstack/react-query':
-        specifier: ^5.50.1
-        version: 5.51.1(react@18.2.0)
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -229,6 +265,9 @@ importers:
       '@sambad/sds':
         specifier: workspace:*
         version: link:../core/sds
+      '@sambad/types-utils':
+        specifier: workspace:*
+        version: link:../core/types-utils
       '@sambad/typescript-config':
         specifier: workspace:*
         version: link:../core/typescript-config
