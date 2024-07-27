@@ -3,7 +3,7 @@ import { colors, borderRadiusVariants } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 import { AngleRightIcon } from '../../../../../../../core/sds/src/components/Icon/assets/AngleRight';
-import { PreviousQuestionType } from '../../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
+import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 
 interface HomePreviousQuestionItemProps {
   question: PreviousQuestionType;

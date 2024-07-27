@@ -16,7 +16,7 @@ export const useGetGatherMemberListQuery = ({ options }: Args) => {
   });
 };
 
-export const getGatherMemberListPrefetchQuery = (queryClient: QueryClient) => () => {
+export const getGatherMemberListPrefetchQuery = (queryClient: QueryClient) => {
   const prefetch = queryClient.prefetchQuery({
     queryKey: [GATHER_MEMBER_QUERY_KEY],
     queryFn: getGatherMemberList,

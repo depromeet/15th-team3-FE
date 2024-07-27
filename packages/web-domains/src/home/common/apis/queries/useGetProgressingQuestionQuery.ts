@@ -16,7 +16,7 @@ export const useGetProgressingQuestionQuery = ({ options }: Args) => {
   });
 };
 
-export const getProgressingQuestionPrefetchQuery = (queryClient: QueryClient) => () => {
+export const getProgressingQuestionPrefetchQuery = (queryClient: QueryClient) => {
   const prefetch = queryClient.prefetchQuery({
     queryKey: [PROGRESSING_QUESTION_QUERY_KEY],
     queryFn: getProgressingQuestion,

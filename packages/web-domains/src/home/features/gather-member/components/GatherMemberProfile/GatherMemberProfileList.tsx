@@ -1,6 +1,6 @@
 import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 
-import { MemberType } from '../../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
+import { MemberType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
 
 import { GatherMemberProfile } from './GatherMemberProfile';
 

@@ -3,9 +3,9 @@ import { colors } from '@sambad/sds/theme';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
-import { PreviousQuestionType } from '../../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 import { ProfileImage } from '../../../../../common/asset/profile';
 import { QuestionImage } from '../../../../../common/asset/question';
+import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 import { Avatar } from '../../../../common/Avatar/Avatar';
 
 interface PreviousQuestionItemProps {

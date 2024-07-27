@@ -1,6 +1,6 @@
 import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 
-import { PreviousQuestionType } from '../../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
+import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 
 import { HomePreviousQuestionItem } from './HomePreviousQuestionItem';
 

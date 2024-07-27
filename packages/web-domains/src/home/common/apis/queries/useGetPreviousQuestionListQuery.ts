@@ -16,7 +16,7 @@ export const useGetPreviousQuestionListQuery = ({ options }: Args) => {
   });
 };
 
-export const getPreviousQuestionListPrefetchQuery = (queryClient: QueryClient) => () => {
+export const getPreviousQuestionListPrefetchQuery = (queryClient: QueryClient) => {
   const prefetch = queryClient.prefetchQuery({
     queryKey: [PREVIOUS_QUESTION_QUERY_KEY],
     queryFn: getPreviousQuestionList,

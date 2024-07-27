@@ -1,7 +1,7 @@
 import { Txt } from '@sambad/sds/components';
 
-import { MemberType } from '../../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
 import { ProfileImage } from '../../../../../common/asset/profile';
+import { MemberType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
 import { Avatar } from '../../../../common/Avatar/Avatar';
 
 interface GatherMemberProfileProps {

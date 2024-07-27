@@ -14,17 +14,18 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.50.1",
-    "axios": "^1.7.2"
+    "axios": "^1.7.2",
+    "react-countdown": "^2.3.5"
   },
   "devDependencies": {
-    "@sambad/sds": "workspace:*",
     "@sambad/eslint-config": "workspace:*",
+    "@sambad/sds": "workspace:*",
     "@sambad/typescript-config": "workspace:*",
-    "@types/node": "^20.11.24",
     "@types/eslint": "^8.56.5",
+    "@types/node": "^20.11.24",
+    "@types/qs": "^6.9.15",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
-    "@types/qs": "^6.9.15",
     "eslint": "^8.57.0",
     "react": "^18",
     "typescript": "^5.3.3"

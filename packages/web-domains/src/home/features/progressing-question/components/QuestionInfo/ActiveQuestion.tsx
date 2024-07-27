@@ -1,10 +1,10 @@
 import { Txt } from '@sambad/sds/components';
 import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
 
-import { ProgressingQuestionType } from '../../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
 import { ArrowIcon } from '../../../../../common/asset/arrow';
 import { ProfileImage } from '../../../../../common/asset/profile';
 import { QuestionImage } from '../../../../../common/asset/question';
+import { ProgressingQuestionType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
 import { Avatar } from '../../../../common/Avatar/Avatar';
 
 interface ActiveQuestionProps {

@@ -1,4 +1,4 @@
-import { PreviousQuestionType } from '../../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
+import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 
 import { PreviousQuestionItem } from './PreviousQuestionItem';
 

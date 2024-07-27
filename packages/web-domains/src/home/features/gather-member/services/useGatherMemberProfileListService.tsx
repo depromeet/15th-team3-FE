@@ -1,4 +1,4 @@
-import { useGetGatherMemberListQuery } from '../../../../common/apis/queries/useGetGatherMemberListQuery';
+import { useGetGatherMemberListQuery } from '../../../common/apis/queries/useGetGatherMemberListQuery';
 
 export const useGatherMemberProfileListService = () => {
   const { data } = useGetGatherMemberListQuery({});
