@@ -1,26 +1,27 @@
 import { Txt } from '@sambad/sds/components';
 import { borderRadiusVariants, colors, shadow } from '@sambad/sds/theme';
+import { HTMLAttributes } from 'react';
 import Countdown from 'react-countdown';
 
-import { getRemainTime } from '../../../../home/common/utils/getRemainTime';
+import { getRemainTime } from '../../../home/common/utils/getRemainTime';
 
-interface AnswerCountDownProps {
+interface AnswerCountDownProps extends HTMLAttributes<HTMLDivElement> {
   timer: string | number | Date;
 }
 
-export const AnswerCountDown = ({ timer }: AnswerCountDownProps) => {
+export const AnswerCountDown = ({ timer, ...rest }: AnswerCountDownProps) => {
   const remainTime = getRemainTime(timer);
 
   return (
     <section
       css={{
-        marginTop: '40px',
         width: '100%',
         padding: '0 40px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
+      {...rest}
     >
       <Txt as="p" typography="body4" css={{ marginBottom: '8px' }} color={colors.grey600}>
         마감까지 남은 시간

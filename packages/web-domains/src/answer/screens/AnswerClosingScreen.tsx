@@ -1,18 +1,16 @@
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
 
 import { getProgressingQuestionPrefetch } from '../common/apis/queries/useGetProgressingQuestion';
-import { OpeningButtonContainer } from '../features/floating-button/containers/OpeningButtonContainer';
-import { ProgressingQuestionContainer } from '../features/progressing-question/containers/ProgressingQuestionContainer';
-import { TobBarContainer } from '../features/top-bar/containers/TopBarContainer';
+import { AnswerClosingContainer } from '../features/answer-closing/containers/AnswerClosingContainer';
+import { ClosingButtonContainer } from '../features/floating-button/containers/ClosingButtonContainer';
 
-export const AnswerOpeningScreen = async () => {
+export const AnswerClosingScreen = async () => {
   const { queryClient } = await getServerSideProps();
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <TobBarContainer />
-      <ProgressingQuestionContainer />
-      <OpeningButtonContainer />
+      <AnswerClosingContainer />
+      <ClosingButtonContainer />
     </HydrationBoundary>
   );
 };

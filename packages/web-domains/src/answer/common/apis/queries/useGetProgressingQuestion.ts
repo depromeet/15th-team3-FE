@@ -1,7 +1,7 @@
+import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
 import { QueryClient, useQuery } from '@tanstack/react-query';
 
 import { ProgressingQuestionType } from '../schema/useGetProgressingQuestionQuery.type';
-
 interface Args {
   options?: UseQueryOptionsExcludedQueryKey<ProgressingQuestionType, ProgressingQuestionType>;
 }

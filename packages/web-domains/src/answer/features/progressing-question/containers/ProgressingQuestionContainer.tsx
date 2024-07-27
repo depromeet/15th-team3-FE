@@ -4,7 +4,7 @@ import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import dayjs from 'dayjs';
 
-import { AnswerCountDown } from '../components/AnswerCountdown';
+import { AnswerCountDown } from '../../../common/components/AnswerCountdown';
 import { QuestionInfo } from '../components/QuestionInfo';
 import { ResponseGuageBar } from '../components/ResponseGuageBar';
 import { useProgressingQuestionService } from '../services/useProgressingQuestionService';
@@ -31,7 +31,7 @@ export const ProgressingQuestionContainer = () => {
         responseCount={progressingQuestion.responseCount}
         totalMeetingMemberCount={progressingQuestion.totalMeetingMemberCount}
       />
-      <AnswerCountDown timer={dayjs().valueOf()} />
+      <AnswerCountDown timer={dayjs().valueOf()} css={{ marginTop: '40px' }} />
     </section>
   );
 };
