@@ -8,6 +8,7 @@ module.exports = {
   globals: {
     React: true,
     JSX: true,
+    UseQueryOptionsExcludedQueryKey: 'readonly',
   },
   settings: {
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
