@@ -16,6 +16,6 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ES2022",
-    "types": ["@emotion/react/types/css-prop", "@sambad/types-utils/tanstack"]
+    "types": ["@emotion/react/types/css-prop"]
   }
 }
