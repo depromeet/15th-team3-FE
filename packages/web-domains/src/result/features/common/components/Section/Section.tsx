@@ -4,12 +4,12 @@ import { Txt } from '@sambad/sds/components';
 import { HTMLAttributes, ReactNode } from 'react';
 import { cardCss } from './styles';
 
-interface SelectedDataCard extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+interface SectionProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   title: ReactNode;
   children?: ReactNode;
 }
 
-export const SelectedDataCard = (props: SelectedDataCard) => {
+export const Section = (props: SectionProps) => {
   const { title, children, ...restProps } = props;
 
   return (
