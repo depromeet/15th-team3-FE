@@ -1,7 +1,7 @@
-import { useGetPreviousQuestionListQuery } from '../../../common/apis/queries/useGetPreviousQuestionListQuery';
+import { useGetPreviousQuestionList } from '../../../common/apis/queries/useGetPreviousQuestionList';
 
 export const usePreviousQuestionListService = () => {
-  const { data: previousQuestionList } = useGetPreviousQuestionListQuery({
+  const { data: previousQuestionList } = useGetPreviousQuestionList({
     options: {
       select: (data) => {
         console.log({ data });

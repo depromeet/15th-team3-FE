@@ -8,7 +8,7 @@ interface Args {
 
 export const PROGRESSING_QUESTION_QUERY_KEY = 'PROGRESSING_QUESTION_QUERY_KEY';
 
-export const useGetProgressingQuestionQuery = ({ options }: Args) => {
+export const useGetProgressingQuestion = ({ options }: Args) => {
   return useQuery({
     queryKey: [PROGRESSING_QUESTION_QUERY_KEY],
     queryFn: () => getProgressingQuestion(),
@@ -16,7 +16,7 @@ export const useGetProgressingQuestionQuery = ({ options }: Args) => {
   });
 };
 
-export const getProgressingQuestionPrefetchQuery = (queryClient: QueryClient) => {
+export const getProgressingQuestionPrefetch = (queryClient: QueryClient) => {
   const prefetch = queryClient.prefetchQuery({
     queryKey: [PROGRESSING_QUESTION_QUERY_KEY],
     queryFn: getProgressingQuestion,

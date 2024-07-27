@@ -1,7 +1,7 @@
-import { useGetGatherMemberListQuery } from '../../../common/apis/queries/useGetGatherMemberListQuery';
+import { useGetGatherMemberList } from '../../../common/apis/queries/useGetGatherMemberList';
 
 export const useGatherMemberProfileListService = () => {
-  const { data } = useGetGatherMemberListQuery({});
+  const { data } = useGetGatherMemberList({});
 
   const gatherMemberList = data?.content.sort((cur) => {
     if (cur.role === 'OWNER') {

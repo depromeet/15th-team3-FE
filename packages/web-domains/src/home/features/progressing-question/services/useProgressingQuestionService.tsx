@@ -1,9 +1,9 @@
-import { useGetProgressingQuestionQuery } from '../../../common/apis/queries/useGetProgressingQuestionQuery';
+import { useGetProgressingQuestion } from '../../../common/apis/queries/useGetProgressingQuestion';
 
 export const useProgressingQuestionService = () => {
   const gatherName = '삼봤드의 모험';
 
-  const { data: progressingQuestion } = useGetProgressingQuestionQuery({
+  const { data: progressingQuestion } = useGetProgressingQuestion({
     options: {
       select: (data) => {
         console.log({ data });

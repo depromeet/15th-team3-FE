@@ -8,7 +8,7 @@ interface Args {
 
 export const PREVIOUS_QUESTION_QUERY_KEY = 'PREVIOUS_QUESTION_QUERY_KEY';
 
-export const useGetPreviousQuestionListQuery = ({ options }: Args) => {
+export const useGetPreviousQuestionList = ({ options }: Args) => {
   return useQuery({
     queryKey: [PREVIOUS_QUESTION_QUERY_KEY],
     queryFn: () => getPreviousQuestionList(),
@@ -16,7 +16,7 @@ export const useGetPreviousQuestionListQuery = ({ options }: Args) => {
   });
 };
 
-export const getPreviousQuestionListPrefetchQuery = (queryClient: QueryClient) => {
+export const getPreviousQuestionListPrefetch = (queryClient: QueryClient) => {
   const prefetch = queryClient.prefetchQuery({
     queryKey: [PREVIOUS_QUESTION_QUERY_KEY],
     queryFn: getPreviousQuestionList,

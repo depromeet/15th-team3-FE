@@ -1,5 +1,6 @@
 import { QueryClient, UseQueryOptions, useQuery } from '@tanstack/react-query';
 
+// import { Http } from '../../../../common/apis/base.api';
 import { GatherMemberListType } from '../schema/useGetGatherMemberListQuery.type';
 
 interface Args {
@@ -8,7 +9,7 @@ interface Args {
 
 export const GATHER_MEMBER_QUERY_KEY = 'GATHER_MEMBER_QUERY_KEY';
 
-export const useGetGatherMemberListQuery = ({ options }: Args) => {
+export const useGetGatherMemberList = ({ options }: Args) => {
   return useQuery({
     queryKey: [GATHER_MEMBER_QUERY_KEY],
     queryFn: () => getGatherMemberList(),
@@ -16,7 +17,7 @@ export const useGetGatherMemberListQuery = ({ options }: Args) => {
   });
 };
 
-export const getGatherMemberListPrefetchQuery = (queryClient: QueryClient) => {
+export const getGatherMemberListPrefetch = (queryClient: QueryClient) => {
   const prefetch = queryClient.prefetchQuery({
     queryKey: [GATHER_MEMBER_QUERY_KEY],
     queryFn: getGatherMemberList,
@@ -26,6 +27,8 @@ export const getGatherMemberListPrefetchQuery = (queryClient: QueryClient) => {
 };
 
 export async function getGatherMemberList(): Promise<GatherMemberListType> {
+  // const data = await Http.GET<GatherMemberListType>('/v1/meetings/1/members');
+
   return {
     content: [
       {

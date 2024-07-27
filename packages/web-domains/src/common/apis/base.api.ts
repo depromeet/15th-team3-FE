@@ -1,8 +1,10 @@
 import axios from 'axios';
-const baseURL = `/api`;
+
+const baseURL = `https://api.moring.one`;
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
+  withCredentials: true,
 });
 
 export class Http {
