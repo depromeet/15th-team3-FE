@@ -13,7 +13,6 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.50.1",
     "axios": "^1.7.2",
     "react-countdown": "^2.3.5"
   },
@@ -22,6 +21,7 @@
     "@sambad/sds": "workspace:*",
     "@sambad/typescript-config": "workspace:*",
     "@types/eslint": "^8.56.5",
+    "@sambad/types-utils": "workspace:*",
     "@types/node": "^20.11.24",
     "@types/qs": "^6.9.15",
     "@types/react": "^18.2.61",

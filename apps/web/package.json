@@ -18,6 +18,7 @@
     "@chromatic-com/storybook": "^1.6.1",
     "@sambad/eslint-config": "workspace:*",
     "@sambad/typescript-config": "workspace:*",
+    "@sambad/types-utils": "workspace:*",
     "@storybook/addon-essentials": "^8.2.2",
     "@storybook/addon-interactions": "^8.2.2",
     "@storybook/addon-links": "^8.2.2",
