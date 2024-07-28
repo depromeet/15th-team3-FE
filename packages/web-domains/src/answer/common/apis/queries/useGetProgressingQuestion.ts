@@ -1,7 +1,7 @@
 import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
 import { QueryClient, useQuery } from '@tanstack/react-query';
 
-import { ProgressingQuestionType } from '../schema/useGetProgressingQuestionQuery.type';
+import { ProgressingQuestionType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 interface Args {
   options?: UseQueryOptionsExcludedQueryKey<ProgressingQuestionType, ProgressingQuestionType>;
 }
@@ -34,8 +34,11 @@ export async function getProgressingQuestion(): Promise<ProgressingQuestionType>
     totalMeetingMemberCount: 15,
     responseCount: 9,
     isAnswered: true,
+    engagementRate: 70,
+    isQuestionRegistered: true,
+    startTime: new Date(),
     targetMember: {
-      id: 1,
+      meetingMemberId: 1,
       name: '이한음',
       profileImageFileUrl: 'https://example.com',
       role: 'OWNER',
