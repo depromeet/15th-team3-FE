@@ -6,6 +6,7 @@ export const questionItemCss = css({
   justifyContent: 'space-between',
   gap: `${size['3xs']}`,
   padding: `${size['5xs']} ${size['2xs']}`,
+  cursor: 'pointer',
 });
 
 export const questionTextBoxCss = css({
