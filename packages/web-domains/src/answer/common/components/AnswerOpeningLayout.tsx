@@ -6,6 +6,7 @@ export const AnswerOpeningLayout = ({ children }: PropsWithChildren) => {
     backgroundColor: colors.primary50,
     height: '100%',
     paddingTop: '8px',
+    position: 'relative',
   };
 
   return <div style={layoutStyles}>{children}</div>;

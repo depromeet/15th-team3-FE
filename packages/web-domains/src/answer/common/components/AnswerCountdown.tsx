@@ -40,7 +40,7 @@ const CountdownRender = ({ hours, minutes, seconds }: { hours: number; minutes: 
     <div
       css={{
         width: '295px',
-        height: '92px',
+        height: '74px',
         borderRadius: borderRadiusVariants.medium,
         backgroundColor: colors.white,
         boxShadow: shadow.elevation1,
@@ -65,17 +65,6 @@ const CountdownRender = ({ hours, minutes, seconds }: { hours: number; minutes: 
         </Txt>
         <Txt typography="heading1" color={colors.black}>
           {renderseconds}
-        </Txt>
-      </div>
-      <div>
-        <Txt typography="body4" color={colors.grey600}>
-          시
-        </Txt>
-        <Txt typography="body4" color={colors.grey600} css={{ padding: '0 60px' }}>
-          분
-        </Txt>
-        <Txt typography="body4" color={colors.grey600}>
-          초
         </Txt>
       </div>
     </div>

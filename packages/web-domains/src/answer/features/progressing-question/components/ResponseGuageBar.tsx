@@ -1,5 +1,5 @@
 import { Txt } from '@sambad/sds/components';
-import { colors, borderRadiusVariants, size } from '@sambad/sds/theme';
+import { colors, borderRadiusVariants } from '@sambad/sds/theme';
 
 interface ResponseGuageBarProps {
   totalMeetingMemberCount: number;
@@ -26,13 +26,14 @@ export const ResponseGuageBar = ({ totalMeetingMemberCount, responseCount }: Res
             display: 'inline-block',
             backgroundColor: colors.grey400,
             borderRadius: borderRadiusVariants.round,
-            height: size['7xs'],
+            height: '8px',
             ':after': {
               content: '""',
               display: 'block',
               width: `${(responseCount / totalMeetingMemberCount) * 100}%`,
-              height: size['7xs'],
+              height: '8px',
               backgroundColor: colors.primary500,
+              borderRadius: borderRadiusVariants.round,
             },
           }}
         />
