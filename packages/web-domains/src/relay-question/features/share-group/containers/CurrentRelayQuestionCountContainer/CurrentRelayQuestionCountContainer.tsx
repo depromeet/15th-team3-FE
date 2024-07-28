@@ -2,6 +2,7 @@
 
 import { Button, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
+import { useRouter } from 'next/navigation';
 
 import { ShareGroupBackground } from '../../../../assets/ShareGroupBackground';
 import { ShareGroupCheckIcon } from '../../../../assets/ShareGroupCheckIcon';
@@ -17,6 +18,12 @@ import {
 } from './CurrentRelayQuestionCountContainer.styles';
 
 export const CurrentRelayQuestionCountContainer = () => {
+  const router = useRouter();
+
+  const goToShareNextQuestioner = () => {
+    router.push('/share-next-questioner');
+  };
+
   return (
     <section css={wrapperCss}>
       <div>
@@ -47,7 +54,9 @@ export const CurrentRelayQuestionCountContainer = () => {
           <ShareGroupShareIcon css={{ marginRight: size['6xs'] }} />
           단톡방에 공유하기
         </Button>
-        <Button variant="sub">다음</Button>
+        <Button variant="sub" onClick={goToShareNextQuestioner}>
+          다음
+        </Button>
       </div>
     </section>
   );
