@@ -12,10 +12,11 @@ import { buttonWrapperCss, imgWrapperCss, nameCss, rePickTextCss, wrapperCss } f
 interface QuestionerDetailProps {
   imageUrl: string;
   name: string;
+  isRandom?: boolean;
   handleCloseModal: () => void;
 }
 
-export const QuestionerDetail = ({ imageUrl, name }: QuestionerDetailProps) => {
+export const QuestionerDetail = ({ imageUrl, name, isRandom }: QuestionerDetailProps) => {
   const router = useRouter();
   const { handleCloseModal } = useOpenModal();
 
@@ -38,10 +39,12 @@ export const QuestionerDetail = ({ imageUrl, name }: QuestionerDetailProps) => {
         </Button>
         <Button onClick={handleSetQuestioner}>질문인 선택</Button>
       </div>
-      <Txt color={colors.grey600} typography="title4" fontWeight="medium" css={rePickTextCss}>
-        <RelayRePickQuestioner css={css({ marginRight: size['7xs'] })} />
-        랜덤 선택 다시하기
-      </Txt>
+      {isRandom && (
+        <Txt color={colors.grey600} typography="title4" fontWeight="medium" css={rePickTextCss}>
+          <RelayRePickQuestioner css={css({ marginRight: size['7xs'] })} />
+          랜덤 선택 다시하기
+        </Txt>
+      )}
     </div>
   );
 };
