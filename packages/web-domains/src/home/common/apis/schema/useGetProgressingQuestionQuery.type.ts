@@ -10,7 +10,7 @@ export type ProgressingQuestionType = {
 };
 
 export type MemberType = {
-  id: number;
+  meetingMemberId: number;
   name: string;
   profileImageFileUrl?: string;
   role: 'OWNER' | 'ADMIN' | 'MEMBER';

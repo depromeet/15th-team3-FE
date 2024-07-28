@@ -1,26 +1,25 @@
-// import { Http } from '../../../../common/apis/base.api';
-import { UseQueryOptions, useQuery, QueryClient } from '@tanstack/react-query';
+import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
+import { useQuery, QueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
-import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 import { Http } from '../../../../common/apis/base.api';
 import { GatherMemberListType } from '../schema/useGetGatherMemberListQuery.type';
 
+type Params = { meetingId: string };
 interface Args {
-  options?: Omit<
-    UseQueryOptions<GatherMemberListType | undefined, unknown, GatherMemberListType | undefined>,
-    'queryKey'
-  >;
+  params: Params;
+  options?: UseQueryOptionsExcludedQueryKey<GatherMemberListType | undefined>;
 }
 
 export const GATHER_MEMBER_QUERY_KEY = 'GATHER_MEMBER_QUERY_KEY';
 
-export const useGetGatherMemberList = ({ options }: Args) => {
+export const useGetGatherMemberList = ({ params, options }: Args) => {
   return useQuery({
-    queryKey: [GATHER_MEMBER_QUERY_KEY],
+    queryKey: [GATHER_MEMBER_QUERY_KEY, params.meetingId],
     queryFn: async () => {
       try {
-        return await getGatherMemberList();
+        const data = await getGatherMemberList(params);
+        return data;
       } catch (error) {
         if (isAxiosError(error)) {
           console.log(error);
@@ -31,12 +30,12 @@ export const useGetGatherMemberList = ({ options }: Args) => {
   });
 };
 
-export const getGatherMemberListPrefetch = (queryClient: QueryClient, cookies?: RequestCookie) => {
+export const getGatherMemberListPrefetch = (params: Params, queryClient: QueryClient) => {
   const prefetch = queryClient.prefetchQuery({
-    queryKey: [GATHER_MEMBER_QUERY_KEY],
+    queryKey: [GATHER_MEMBER_QUERY_KEY, params.meetingId],
     queryFn: async () => {
       try {
-        return await getGatherMemberList(cookies);
+        return await getGatherMemberList(params);
       } catch (error) {
         if (isAxiosError(error)) {
           console.log(error);
@@ -48,12 +47,10 @@ export const getGatherMemberListPrefetch = (queryClient: QueryClient, cookies?: 
   return prefetch;
 };
 
-export async function getGatherMemberList(cookies?: RequestCookie): Promise<GatherMemberListType> {
-  const data = await Http.GET<GatherMemberListType>('/v1/meetings/1/members', {
-    headers: { Cookie: `access_token'=${cookies?.value}` },
-  });
-  console.log('@@@@@@@@@@@@@@@@', { data });
+export async function getGatherMemberList(params: Params): Promise<GatherMemberListType> {
+  const { meetingId } = params;
+  const { contents } = await Http.GET<GatherMemberListType>(`/v1/meetings/${meetingId}/members`);
   return {
-    content: data.content,
+    contents,
   };
 }

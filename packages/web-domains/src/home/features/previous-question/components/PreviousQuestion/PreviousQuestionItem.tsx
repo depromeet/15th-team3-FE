@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ProfileImage } from '../../../../../common/asset/profile';
 import { QuestionImage } from '../../../../../common/asset/question';
 import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
-import { Avatar } from '../../../../common/Avatar/Avatar';
+import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
 interface PreviousQuestionItemProps {
   question: PreviousQuestionType;

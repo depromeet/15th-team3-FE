@@ -4,7 +4,7 @@ import Countdown from 'react-countdown';
 
 import { ClockIcon } from '../../../../../common/asset/clock';
 import { MemberType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
-import { Avatar } from '../../../../common/Avatar/Avatar';
+import { Avatar } from '../../../../common/components/Avatar/Avatar';
 import { getRemainTime } from '../../../../common/utils/getRemainTime';
 
 interface InActiveQuestionProps {

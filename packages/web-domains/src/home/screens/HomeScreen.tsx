@@ -1,24 +1,24 @@
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
-import { cookies } from 'next/headers';
 
 import { DialogContextProvider } from '../../common/contexts/DialogProvider';
 import { getGatherMemberListPrefetch } from '../common/apis/queries/useGetGatherMemberList';
-// import { getPreviousQuestionListPrefetch } from '../common/apis/queries/useGetPreviousQuestionList';
-// import { getProgressingQuestionPrefetch } from '../common/apis/queries/useGetProgressingQuestion';
+import { getProgressingQuestionPrefetch } from '../common/apis/queries/useGetProgressingQuestion';
+import { getTopPreviousQuestionPrefetch } from '../common/apis/queries/useGetTopPreviousQuestionList';
 import { FloatingButtonContainer } from '../features/floating-button/containers/FloatingButtonContainer';
 import { GatherMemberProfileListContainer } from '../features/gather-member/containers/GatherMemberProfileListContainer';
 import { NotifyContainer } from '../features/notify/containers/NotifyContainer';
-import { HomePreviousQuestionListContainer } from '../features/previous-question/containers/HomePreviousQuestionListContainer';
+import { TopPreviousQuestionListContainer } from '../features/previous-question/containers/TopPreviousQuestionListContainer';
 import { ProgressingQuestionContainer } from '../features/progressing-question/containers/ProgressingQuestionContainer';
 
+// export const HomeScreen = async ({params}: {params: {meetingId: string}}) => {
 export const HomeScreen = async () => {
-  const { queryClient } = await getServerSideProps();
+  const { queryClient } = await getServerSideProps({ meetingId: '1' });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <DialogContextProvider>
         <ProgressingQuestionContainer />
-        <HomePreviousQuestionListContainer />
+        <TopPreviousQuestionListContainer />
         <GatherMemberProfileListContainer />
         <NotifyContainer />
         <FloatingButtonContainer />
@@ -27,17 +27,13 @@ export const HomeScreen = async () => {
   );
 };
 
-const getServerSideProps = async () => {
+const getServerSideProps = async (params: { meetingId: string }) => {
   const queryClient = new QueryClient();
   try {
-    const cookiestest = cookies().get('access_token');
-    const gatherMemberPrefetch = await getGatherMemberListPrefetch(queryClient);
-    console.log(gatherMemberPrefetch);
-    console.log(cookiestest);
-    // const previousQuestionListPrefetch = getPreviousQuestionListPrefetch(queryClient);
-    // const progressingQuestionPrefetch = getProgressingQuestionPrefetch(queryClient);
-
-    // await Promise.all([gatherMemberPrefetch, previousQuestionListPrefetch, progressingQuestionPrefetch]);
+    const gatherMemberPrefetch = getGatherMemberListPrefetch(params, queryClient);
+    const topPreviousQuestionListPrefetch = getTopPreviousQuestionPrefetch(params, queryClient);
+    const progressingQuestionPrefetch = getProgressingQuestionPrefetch(params, queryClient);
+    await Promise.all([gatherMemberPrefetch, topPreviousQuestionListPrefetch, progressingQuestionPrefetch]);
   } catch (error: unknown) {
     console.log(error);
   }

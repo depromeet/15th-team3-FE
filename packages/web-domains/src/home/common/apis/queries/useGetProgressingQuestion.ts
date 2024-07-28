@@ -1,45 +1,57 @@
-import { QueryClient, UseQueryOptions, useQuery } from '@tanstack/react-query';
+import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
+import { QueryClient, useQuery } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
+
+import { Http } from '@/common/apis/base.api';
 
 import { ProgressingQuestionType } from '../schema/useGetProgressingQuestionQuery.type';
 
+type Params = { meetingId: string };
+
 interface Args {
-  options?: Omit<UseQueryOptions<ProgressingQuestionType, unknown, ProgressingQuestionType>, 'queryKey'>;
+  params: Params;
+  options?: UseQueryOptionsExcludedQueryKey<ProgressingQuestionType | undefined>;
 }
 
 export const PROGRESSING_QUESTION_QUERY_KEY = 'PROGRESSING_QUESTION_QUERY_KEY';
 
-export const useGetProgressingQuestion = ({ options }: Args) => {
+export const useGetProgressingQuestion = ({ params, options }: Args) => {
   return useQuery({
-    queryKey: [PROGRESSING_QUESTION_QUERY_KEY],
-    queryFn: () => getProgressingQuestion(),
+    queryKey: [PROGRESSING_QUESTION_QUERY_KEY, params.meetingId],
+    queryFn: async () => {
+      try {
+        const data = await getProgressingQuestion(params);
+        return data;
+      } catch (error) {
+        if (isAxiosError(error)) {
+          console.log(error);
+        }
+      }
+    },
     ...options,
   });
 };
 
-export const getProgressingQuestionPrefetch = (queryClient: QueryClient) => {
+export const getProgressingQuestionPrefetch = (params: Params, queryClient: QueryClient) => {
   const prefetch = queryClient.prefetchQuery({
-    queryKey: [PROGRESSING_QUESTION_QUERY_KEY],
-    queryFn: getProgressingQuestion,
+    queryKey: [PROGRESSING_QUESTION_QUERY_KEY, params.meetingId],
+    queryFn: async () => {
+      try {
+        const data = await getProgressingQuestion(params);
+        return data;
+      } catch (error) {
+        if (isAxiosError(error)) {
+          console.log(error);
+        }
+      }
+    },
   });
 
   return prefetch;
 };
 
-export async function getProgressingQuestion(): Promise<ProgressingQuestionType> {
-  return {
-    meetingQuestionId: 0,
-    questionImageFileUrl: '',
-    title: '초능력을 가질 수 있다면?',
-    questionNumber: 4,
-    totalMeetingMemberCount: 15,
-    responseCount: 9,
-    isAnswered: true,
-    targetMember: {
-      id: 1,
-      name: '이한음',
-      profileImageFileUrl: 'https://example.com',
-      role: 'OWNER',
-    },
-  };
-  //   return await Http.GET('/v1/meeting-questions/active')
+export async function getProgressingQuestion(params: Params): Promise<ProgressingQuestionType> {
+  const { meetingId } = params;
+  const data = await Http.GET<ProgressingQuestionType>(`/v1/meetings/${meetingId}/questions/active`);
+  return data;
 }

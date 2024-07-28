@@ -6,12 +6,12 @@ import Link from 'next/link';
 
 import { AngleRightIcon } from '../../../../../../core/sds/src/components/Icon/assets/AngleRight';
 import { HomePreviousQuestionList } from '../components/PreviousQuestion/HomePreviousQuestionList';
-import { useHomePreviousQuestionListService } from '../services/useHomePreviousQuestionListService';
+import { useTopPreviousQuestionListService } from '../services/useTopPreviousQuestionListService';
 
-export const HomePreviousQuestionListContainer = () => {
-  const { previousQuestionList } = useHomePreviousQuestionListService();
+export const TopPreviousQuestionListContainer = () => {
+  const { previousQuestionList } = useTopPreviousQuestionListService();
 
-  if (!previousQuestionList || !previousQuestionList.content.length) {
+  if (!previousQuestionList || !previousQuestionList.length) {
     return null;
   }
 
@@ -32,7 +32,7 @@ export const HomePreviousQuestionListContainer = () => {
           </span>
         </Link>
       </Txt>
-      <HomePreviousQuestionList questionList={previousQuestionList.content} />
+      <HomePreviousQuestionList questionList={previousQuestionList} />
     </section>
   );
 };

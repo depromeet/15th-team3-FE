@@ -5,12 +5,10 @@ import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPrevi
 import { HomePreviousQuestionItem } from './HomePreviousQuestionItem';
 
 interface HomePreviousQuestionListProps {
-  questionList: PreviousQuestionType[];
+  questionList: [PreviousQuestionType, PreviousQuestionType];
 }
 
 export const HomePreviousQuestionList = ({ questionList }: HomePreviousQuestionListProps) => {
-  const twicePreviousQuestionList = questionList.slice(0, 2);
-
   return (
     <ul
       css={{
@@ -19,7 +17,7 @@ export const HomePreviousQuestionList = ({ questionList }: HomePreviousQuestionL
         border: `1px solid ${colors.grey300}`,
       }}
     >
-      {twicePreviousQuestionList.map((question) => (
+      {questionList.map((question) => (
         <HomePreviousQuestionItem key={question.meetingQuestionId} question={question} />
       ))}
     </ul>

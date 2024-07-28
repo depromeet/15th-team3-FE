@@ -20,7 +20,7 @@ export const GatherMemberProfileList = ({ memberList }: GatherMemberProfileListP
       }}
     >
       {memberList.map((member) => (
-        <GatherMemberProfile key={member.id} member={member} />
+        <GatherMemberProfile key={member.meetingMemberId} member={member} />
       ))}
     </ul>
   );

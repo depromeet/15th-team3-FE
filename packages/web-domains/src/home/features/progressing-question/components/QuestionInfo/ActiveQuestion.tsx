@@ -5,7 +5,7 @@ import { ArrowIcon } from '../../../../../common/asset/arrow';
 import { ProfileImage } from '../../../../../common/asset/profile';
 import { QuestionImage } from '../../../../../common/asset/question';
 import { ProgressingQuestionType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
-import { Avatar } from '../../../../common/Avatar/Avatar';
+import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
 interface ActiveQuestionProps {
   question: ProgressingQuestionType;

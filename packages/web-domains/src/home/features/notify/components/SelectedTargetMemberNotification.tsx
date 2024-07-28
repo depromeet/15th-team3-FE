@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { RectQuestion } from '../../../../common/asset/rectquestion';
 import { Modal, ModalProps } from '../../../../common/components/Modal/Modal';
 import { useDialogContext } from '../../../../common/contexts/DialogProvider';
-import { Avatar } from '../../../common/Avatar/Avatar';
+import { Avatar } from '../../../common/components/Avatar/Avatar';
 
 interface SelectedTargetMemberNotificationProps extends ModalProps {}
 
