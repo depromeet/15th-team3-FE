@@ -29,7 +29,7 @@ export const CurrentRelayQuestionCountContainer = () => {
       <div>
         <div css={textWrapperCss}>
           <ShareGroupCheckIcon css={{ margin: `${size['5xs']} 0` }} />
-          <Txt color={colors.black} typography="heading1" fontWeight="bold" style={{ marginTop: size['7xs'] }}>
+          <Txt color={colors.black} typography="heading1" fontWeight="bold" css={{ marginTop: size['7xs'] }}>
             릴레이 질문을 다 만들었어요!
           </Txt>
           <Txt
@@ -44,7 +44,7 @@ export const CurrentRelayQuestionCountContainer = () => {
         </div>
 
         <div css={backgroundWrapperCss}>
-          <ShareGroupBackground style={{ width: '100%' }} />
+          <ShareGroupBackground css={{ width: '100%' }} />
           <CurrentQuestionInfo questionCount={0} questioner={{ name: '장종오', imageUrl: '' }} />
         </div>
       </div>
