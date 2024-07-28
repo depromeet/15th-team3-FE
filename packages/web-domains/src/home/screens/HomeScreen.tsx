@@ -6,7 +6,7 @@ import { getProgressingQuestionPrefetch } from '../common/apis/queries/useGetPro
 import { getTopPreviousQuestionPrefetch } from '../common/apis/queries/useGetTopPreviousQuestionList';
 import { FloatingButtonContainer } from '../features/floating-button/containers/FloatingButtonContainer';
 import { GatherMemberProfileListContainer } from '../features/gather-member/containers/GatherMemberProfileListContainer';
-import { NotifyContainer } from '../features/notify/containers/NotifyContainer';
+import { NotificationContainer } from '../features/notification/containers/NotificationContainer';
 import { TopPreviousQuestionListContainer } from '../features/previous-question/containers/TopPreviousQuestionListContainer';
 import { ProgressingQuestionContainer } from '../features/progressing-question/containers/ProgressingQuestionContainer';
 
@@ -20,7 +20,7 @@ export const HomeScreen = async () => {
         <ProgressingQuestionContainer />
         <TopPreviousQuestionListContainer />
         <GatherMemberProfileListContainer />
-        <NotifyContainer />
+        <NotificationContainer />
         <FloatingButtonContainer />
       </DialogContextProvider>
     </HydrationBoundary>
@@ -33,6 +33,7 @@ const getServerSideProps = async (params: { meetingId: string }) => {
     const gatherMemberPrefetch = getGatherMemberListPrefetch(params, queryClient);
     const topPreviousQuestionListPrefetch = getTopPreviousQuestionPrefetch(params, queryClient);
     const progressingQuestionPrefetch = getProgressingQuestionPrefetch(params, queryClient);
+
     await Promise.all([gatherMemberPrefetch, topPreviousQuestionListPrefetch, progressingQuestionPrefetch]);
   } catch (error: unknown) {
     console.log(error);

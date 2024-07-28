@@ -15,19 +15,18 @@ export const ProgressingQuestionContainer = () => {
   return (
     <section css={{ width: '100%', backgroundColor: colors.primary100, padding: '0 20px' }}>
       <GatherName gatherName={gatherName} />
-      <ProgressingQuestionInfo
-        css={{ padding: '18px 0 20px;' }}
-        renderQuestion={
-          progressingQuestion ? (
-            <ActiveQuestion question={progressingQuestion} />
-          ) : (
-            <InActiveQuestion
-              targetMember={{ meetingMemberId: 0, name: '장종오', role: 'ADMIN', profileImageFileUrl: '' }}
-              time={dayjs().valueOf()}
-            />
-          )
-        }
-      />
+      {progressingQuestion && (
+        <ProgressingQuestionInfo
+          css={{ padding: '18px 0 20px;' }}
+          renderQuestion={
+            progressingQuestion.isQuestionRegistered ? (
+              <ActiveQuestion question={progressingQuestion} />
+            ) : (
+              <InActiveQuestion targetMember={progressingQuestion.targetMember} time={dayjs().valueOf()} />
+            )
+          }
+        />
+      )}
     </section>
   );
 };

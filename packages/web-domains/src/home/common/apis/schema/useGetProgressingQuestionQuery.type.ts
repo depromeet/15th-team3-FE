@@ -3,9 +3,12 @@ export type ProgressingQuestionType = {
   questionImageFileUrl: string;
   title: string;
   questionNumber: number;
+  startTime: Date;
+  engagementRate: number;
   totalMeetingMemberCount: number;
   responseCount: number;
   isAnswered: boolean;
+  isQuestionRegistered: boolean;
   targetMember: MemberType;
 };
 
