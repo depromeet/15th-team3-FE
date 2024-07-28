@@ -1,6 +1,6 @@
 import { axiosInstance } from '@/common/apis/base.api';
-import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
-import { useQuery } from '@tanstack/react-query';
+import { UseQueryOptionsWithAxios } from '@sambad/types-utils/tanstack';
+import { QueryClient, useQuery } from '@tanstack/react-query';
 import { MeetingCommentListResponse } from '../schema/MeetingCommentListResponse';
 
 interface Params {
@@ -9,7 +9,7 @@ interface Params {
 }
 
 interface QueryProps extends Params {
-  options: UseQueryOptionsExcludedQueryKey<MeetingCommentListResponse>;
+  options?: UseQueryOptionsWithAxios<MeetingCommentListResponse>;
 }
 
 export const COMMENTS_QUERY_KEY = 'COMMENTS_QUERY_KEY';
@@ -25,4 +25,19 @@ export const useGetComments = (props: QueryProps) => {
     queryFn: () => queryFn(params),
     ...options,
   });
+};
+
+interface PrefetchProps extends Params {
+  queryClient: QueryClient;
+}
+
+export const getCommentsPrefetch = (props: PrefetchProps) => {
+  const { queryClient, ...params } = props;
+
+  const prefetch = queryClient.prefetchQuery({
+    queryKey: [COMMENTS_QUERY_KEY],
+    queryFn: () => queryFn(params),
+  });
+
+  return prefetch;
 };

@@ -1,7 +1,7 @@
 import { axiosInstance } from '@/common/apis/base.api';
-import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
-import { useQuery } from '@tanstack/react-query';
-import { SelectedAnswerResponse } from '../schema/SelectedAnswerResponse';
+import { UseQueryOptionsWithAxios } from '@sambad/types-utils/tanstack';
+import { QueryClient, useQuery } from '@tanstack/react-query';
+import { MeetingCommentListResponse } from '../schema/MeetingCommentListResponse';
 
 interface Params {
   meetingId: number;
@@ -9,7 +9,7 @@ interface Params {
 }
 
 interface QueryProps extends Params {
-  options: UseQueryOptionsExcludedQueryKey<SelectedAnswerResponse>;
+  options?: UseQueryOptionsWithAxios<MeetingCommentListResponse>;
 }
 
 export const SAME_SELECTED_QUERY_KEY = 'SAME_SELECTED_QUERY_KEY';
@@ -25,4 +25,19 @@ export const useGetSameSelected = (props: QueryProps) => {
     queryFn: () => queryFn(params),
     ...options,
   });
+};
+
+interface PrefetchProps extends Params {
+  queryClient: QueryClient;
+}
+
+export const getSameSelectedPrefetch = (props: PrefetchProps) => {
+  const { queryClient, ...params } = props;
+
+  const prefetch = queryClient.prefetchQuery({
+    queryKey: [SAME_SELECTED_QUERY_KEY],
+    queryFn: () => queryFn(params),
+  });
+
+  return prefetch;
 };

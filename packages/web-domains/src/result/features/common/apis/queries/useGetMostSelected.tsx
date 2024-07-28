@@ -1,7 +1,7 @@
 import { axiosInstance } from '@/common/apis/base.api';
-import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
-import { useQuery } from '@tanstack/react-query';
-import { SelectedAnswerResponse } from '../schema/SelectedAnswerResponse';
+import { UseQueryOptionsWithAxios } from '@sambad/types-utils/tanstack';
+import { QueryClient, useQuery } from '@tanstack/react-query';
+import { MeetingCommentListResponse } from '../schema/MeetingCommentListResponse';
 
 interface Params {
   meetingId: number;
@@ -9,13 +9,13 @@ interface Params {
 }
 
 interface QueryProps extends Params {
-  options: UseQueryOptionsExcludedQueryKey<SelectedAnswerResponse>;
+  options?: UseQueryOptionsWithAxios<MeetingCommentListResponse>;
 }
 
 export const MOST_SELECTED_QUERY_KEY = 'MOST_SELECTED_QUERY_KEY';
 
 const queryFn = ({ questionId, meetingId }: Params) =>
-  axiosInstance(`/meetings/${meetingId}/questions/${questionId}/answers/most-selected`);
+  axiosInstance(`/v1/meetings/${meetingId}/questions/${questionId}/answers/most-selected`);
 
 export const useGetMostSelected = (props: QueryProps) => {
   const { options, ...params } = props;
@@ -25,4 +25,19 @@ export const useGetMostSelected = (props: QueryProps) => {
     queryFn: () => queryFn(params),
     ...options,
   });
+};
+
+interface PrefetchProps extends Params {
+  queryClient: QueryClient;
+}
+
+export const getMostSelectedPrefetch = (props: PrefetchProps) => {
+  const { queryClient, ...params } = props;
+
+  const prefetch = queryClient.prefetchQuery({
+    queryKey: [MOST_SELECTED_QUERY_KEY],
+    queryFn: () => queryFn(params),
+  });
+
+  return prefetch;
 };
