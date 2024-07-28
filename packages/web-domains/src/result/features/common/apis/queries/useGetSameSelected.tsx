@@ -15,7 +15,7 @@ interface QueryProps extends Params {
 export const SAME_SELECTED_QUERY_KEY = 'SAME_SELECTED_QUERY_KEY';
 
 const queryFn = ({ questionId, meetingId }: Params) =>
-  axiosInstance(`/meetings/${meetingId}/questions/${questionId}/answers/selected-same`);
+  axiosInstance(`/v1/meetings/${meetingId}/questions/${questionId}/answers/selected-same`);
 
 export const useGetSameSelected = (props: QueryProps) => {
   const { options, ...params } = props;

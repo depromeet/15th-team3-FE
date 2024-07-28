@@ -15,7 +15,7 @@ interface QueryProps extends Params {
 export const COMMENTS_QUERY_KEY = 'COMMENTS_QUERY_KEY';
 
 const queryFn = ({ questionId, meetingId }: Params) =>
-  axiosInstance(`/meetings/${meetingId}/questions/${questionId}/comments`);
+  axiosInstance(`/v1/meetings/${meetingId}/questions/${questionId}/comments`);
 
 export const useGetComments = (props: QueryProps) => {
   const { options, ...params } = props;
