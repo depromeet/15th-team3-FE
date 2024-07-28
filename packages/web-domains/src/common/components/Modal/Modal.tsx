@@ -13,8 +13,10 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
 export const Modal = ({ isOpen, onClose, children, footer, ...rest }: PropsWithChildren<ModalProps>) => {
   const [element, setElement] = useState<HTMLElement | null>(null);
 
-  const handleClose = () => {
-    onClose?.();
+  const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.currentTarget === e.target) {
+      onClose?.();
+    }
   };
 
   useEffect(() => {
