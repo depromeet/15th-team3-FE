@@ -240,6 +240,9 @@ importers:
       '@types/node':
         specifier: ^20.11.24
         version: 20.14.10
+      axios:
+        specifier: ^1.7.2
+        version: 1.7.2
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -5601,7 +5604,6 @@ packages:
   /asynckit@0.4.0:
     resolution:
       { integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q== }
-    dev: false
 
   /available-typed-arrays@1.0.7:
     resolution:
@@ -5626,7 +5628,6 @@ packages:
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
-    dev: false
 
   /axobject-query@3.1.1:
     resolution:
@@ -6264,7 +6265,6 @@ packages:
     engines: { node: '>= 0.8' }
     dependencies:
       delayed-stream: 1.0.0
-    dev: false
 
   /commander@10.0.1:
     resolution:
@@ -6884,7 +6884,6 @@ packages:
     resolution:
       { integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ== }
     engines: { node: '>=0.4.0' }
-    dev: false
 
   /depd@2.0.0:
     resolution:
@@ -8359,7 +8358,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: false
 
   /for-each@0.3.3:
     resolution:
@@ -8409,7 +8407,6 @@ packages:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.35
-    dev: false
 
   /forwarded@0.2.0:
     resolution:
