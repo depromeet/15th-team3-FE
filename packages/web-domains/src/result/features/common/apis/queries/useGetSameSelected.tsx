@@ -1,7 +1,7 @@
 import { axiosInstance } from '@/common/apis/base.api';
 import { UseQueryOptionsWithAxios } from '@sambad/types-utils/tanstack';
 import { QueryClient, useQuery } from '@tanstack/react-query';
-import { MeetingCommentListResponse } from '../schema/MeetingCommentListResponse';
+import { SelectedAnswerResponse } from '../schema/SelectedAnswerResponse';
 
 interface Params {
   meetingId: number;
@@ -9,7 +9,7 @@ interface Params {
 }
 
 interface QueryProps extends Params {
-  options?: UseQueryOptionsWithAxios<MeetingCommentListResponse>;
+  options?: UseQueryOptionsWithAxios<SelectedAnswerResponse>;
 }
 
 export const SAME_SELECTED_QUERY_KEY = 'SAME_SELECTED_QUERY_KEY';
