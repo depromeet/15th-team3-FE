@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { borderRadiusVariants, size } from '@sambad/sds/theme';
 
-export const questionItemCss = css({
+export const wrapperCss = css({
   display: 'flex',
   justifyContent: 'space-between',
   gap: `${size['3xs']}`,
@@ -9,14 +9,14 @@ export const questionItemCss = css({
   cursor: 'pointer',
 });
 
-export const questionTextBoxCss = css({
+export const questionTextWrapperCss = css({
   display: 'flex',
   flexDirection: 'column',
   gap: `${size['6xs']}`,
   justifyContent: 'center',
 });
 
-export const questionImgBoxCss = css({
+export const questionImgWrapperCss = css({
   minWidth: `${size['4xl']}`,
   minHeight: `${size['4xl']}`,
   borderRadius: `${borderRadiusVariants.medium}`,
