@@ -38,3 +38,7 @@ yarn-error.log*
 *.pem
 
 *storybook.log
+
+
+# 당분간 api에서 쿠키관련 문제가 해결될 떄 까지 ignore 처리합니다.
+base.api.ts
