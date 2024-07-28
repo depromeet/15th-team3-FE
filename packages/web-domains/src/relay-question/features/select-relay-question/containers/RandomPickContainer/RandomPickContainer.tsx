@@ -8,6 +8,7 @@ import { Modal } from '../../../../../common/components/Modal/Modal';
 import { RelayRandomButtonDocumentIcon } from '../../../../assets/RelayRandomButtonIcon';
 import { FIRST_STEP } from '../../../../constants';
 import { QuestionDetail } from '../../components/QuestionDetail/QuestionDetail';
+import { QuestionerDetail } from '../../components/QuestionerDetail/QuestionerDetail';
 import { ToolTip } from '../../components/ToolTip/ToolTip';
 import { useQueryStringContext } from '../../contexts/QueryStringContext';
 import { useOpenModal } from '../../hooks/useOpenModal';
@@ -56,6 +57,9 @@ const QuestionRandomPick = () => {
   );
 };
 
+const IMAGE_URL_QUESTIONER = '';
+const NAME = '장종오';
+
 const QuestionerRandomPick = () => {
   const { isShowToolTip } = useToolTipShow({ showTime: 5000 });
   const { isModalOpen, handleOpenModal, handleCloseModal } = useOpenModal();
@@ -70,16 +74,7 @@ const QuestionerRandomPick = () => {
         </Button>
       </section>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <QuestionDetail
-          imageUrl={IMAGE_URL}
-          title={TITLE}
-          answers={[
-            { answerId: 1, content: '러닝' },
-            { answerId: 2, content: '러닝' },
-            { answerId: 3, content: '러닝' },
-          ]}
-          handleCloseModal={handleCloseModal}
-        />
+        <QuestionerDetail imageUrl={IMAGE_URL_QUESTIONER} name={NAME} handleCloseModal={handleCloseModal} isRandom />
       </Modal>
     </>
   );
