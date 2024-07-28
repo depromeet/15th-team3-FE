@@ -6,8 +6,9 @@
         "name": "next"
       }
     ],
+    "baseUrl": "packages",
     "paths": {
-      "@/*": ["./app/*"]
+      "@/*": ["./web-domains/src/*"]
     }
   },
   "include": [
