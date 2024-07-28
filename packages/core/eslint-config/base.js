@@ -37,6 +37,7 @@ module.exports = {
         ignoreExternal: true,
       },
     ],
+    'no-undef': 'off',
     'no-duplicate-imports': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
