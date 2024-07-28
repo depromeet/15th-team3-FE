@@ -22,7 +22,7 @@ export const profileImgBoxCss = css({
   position: 'relative',
 });
 
-export const SVGPositionCSS = ({ top = 0, left = 0 }: { top: number; left: number }) =>
+export const SVGPositionCss = ({ top = 0, left = 0 }: { top: number; left: number }) =>
   css({
     position: 'absolute',
     top,

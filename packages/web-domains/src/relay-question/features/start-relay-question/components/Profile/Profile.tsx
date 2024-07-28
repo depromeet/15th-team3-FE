@@ -5,7 +5,7 @@ import { RelayStartDecoCircle } from '../../../../assets/RelayStartDecoCircle';
 import { RelayStartDecoStar } from '../../../../assets/RelayStartDecoStar';
 import { RelayStartDefaultProfile } from '../../../../assets/RelayStartDefaultProfile';
 
-import { profileImgBoxCss, profileIntroductionCss, profileSectionCss, SVGPositionCSS } from './Profile.styles';
+import { profileImgBoxCss, profileIntroductionCss, profileSectionCss, SVGPositionCss } from './Profile.styles';
 
 export const Profile = () => {
   return (
@@ -19,11 +19,11 @@ export const Profile = () => {
       </div>
 
       <div css={profileImgBoxCss}>
-        <RelayStartDecoCircle size={11} css={SVGPositionCSS({ top: 123, left: -26 })} />
-        <RelayStartDecoCircle css={SVGPositionCSS({ top: 137, left: 0 })} />
-        <RelayStartDecoCircle css={SVGPositionCSS({ top: -16, left: 112 })} />
-        <RelayStartDecoStar css={SVGPositionCSS({ top: -20, left: 124 })} />
-        <RelayStartDecoCircle size={8} css={SVGPositionCSS({ top: 28, left: 168 })} />
+        <RelayStartDecoCircle size={11} css={SVGPositionCss({ top: 123, left: -26 })} />
+        <RelayStartDecoCircle css={SVGPositionCss({ top: 137, left: 0 })} />
+        <RelayStartDecoCircle css={SVGPositionCss({ top: -16, left: 112 })} />
+        <RelayStartDecoStar css={SVGPositionCss({ top: -20, left: 124 })} />
+        <RelayStartDecoCircle size={8} css={SVGPositionCss({ top: 28, left: 168 })} />
         <RelayStartDefaultProfile />
       </div>
     </section>
