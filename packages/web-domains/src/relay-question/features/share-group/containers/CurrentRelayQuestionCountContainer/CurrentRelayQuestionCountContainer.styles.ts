@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import { colors, size } from '@sambad/sds/theme';
 
 export const wrapperCss = css({
-  padding: '40px 20px',
+  padding: `${size.xl} ${size['2xs']}`,
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
