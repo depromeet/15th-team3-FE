@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { useQueryString } from '../../../../hooks/useQueryString';
+import { Answer } from '../../types';
 
 import {
   answerExampleTextCss,
@@ -13,11 +14,6 @@ import {
   imageWrapperCss,
   wrapperCss,
 } from './QuestionDetail.styles';
-
-interface Answer {
-  answerId: number;
-  content: string;
-}
 
 interface QuestionDetailProps {
   imageUrl: string;

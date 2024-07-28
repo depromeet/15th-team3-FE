@@ -1,12 +1,12 @@
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import Image from 'next/image';
-import { useState } from 'react';
 
 import { Modal } from '../../../../../common/components/Modal/Modal';
+import { useOpenModal } from '../../hooks/useOpenModal';
 import { QuestionDetail } from '../QuestionDetail/QuestionDetail';
 
-import { questionImgBoxCss, questionItemCss, questionTextBoxCss } from './QuestionItem.styles';
+import { questionImgWrapperCss, questionTextWrapperCss, wrapperCss } from './Question.styles';
 
 interface QuestionItemProps {
   imageUrl: string;
@@ -14,24 +14,16 @@ interface QuestionItemProps {
   usedCount: number;
 }
 
-export const QuestionItem = ({ imageUrl, title, usedCount }: QuestionItemProps) => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+export const Question = ({ imageUrl, title, usedCount }: QuestionItemProps) => {
+  const { isModalOpen, handleOpenModal, handleCloseModal } = useOpenModal();
 
   return (
     <>
-      <li css={questionItemCss} onClick={handleOpenModal}>
-        <div css={questionImgBoxCss}>
+      <li css={wrapperCss} onClick={handleOpenModal}>
+        <div css={questionImgWrapperCss}>
           <Image src={imageUrl} alt={title} width={64} height={64} />
         </div>
-        <div css={questionTextBoxCss}>
+        <div css={questionTextWrapperCss}>
           <Txt color={colors.black} typography="title2" fontWeight="medium">
             {title}
           </Txt>

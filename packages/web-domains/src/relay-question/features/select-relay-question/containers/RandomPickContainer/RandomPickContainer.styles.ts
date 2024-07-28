@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { size } from '@sambad/sds/theme';
 
-export const randomPickCss = css({
+export const wrapperCss = css({
   width: 'max-content',
   bottom: `${size.xl}`,
   position: 'fixed',
