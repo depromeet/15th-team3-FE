@@ -1,4 +1,4 @@
-export const HostCaracter = () => (
+export const OnwerCaracter = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width={321} height={282} fill="none">
     <path
       fill="#FFD7C1"
