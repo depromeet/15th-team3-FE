@@ -4,6 +4,9 @@
   "private": true,
   "exports": {
     "./new-meeting": "./src/new-meeting/index.ts",
+    "./first-domain": "./src/first-domain/index.ts",
+    "./second-domain": "./src/second-domain/index.ts",
+    "./user": "./src/user/index.ts",
     "./commmon": "./src/common/index.ts"
   },
   "scripts": {
