@@ -5,7 +5,8 @@
   "exports": {
     "./first-domain": "./src/first-domain/index.ts",
     "./second-domain": "./src/second-domain/index.ts",
-    "./commmon": "./src/common/index.ts"
+    "./commmon": "./src/common/index.ts",
+    "./about-me": "./src/about-me/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
