@@ -3,7 +3,7 @@ import { ProgressIndicatorContainer } from '../features/select-relay-question/co
 import { RandomPickContainer } from '../features/select-relay-question/containers/RandomPickContainer/RandomPickContainer';
 import { QueryStringProvider } from '../features/select-relay-question/contexts/QueryStringContext';
 
-export const SelectRelayQuestionScreen = () => {
+export const SelectRelayQuestionScreen = async () => {
   return (
     <QueryStringProvider>
       <ProgressIndicatorContainer />
