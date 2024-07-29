@@ -2,7 +2,6 @@
 
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
-import { Suspense } from 'react';
 
 import PNGQuestionImage1 from '../../../../assets/png/question-image-1.png';
 import { FIRST_STEP } from '../../../../constants';
@@ -13,14 +12,6 @@ import { useQueryStringContext } from '../../contexts/QueryStringContext';
 import { questionListCss, questionTextBoxCss } from './ContentContainer.styles';
 
 export const ContentContainer = () => {
-  return (
-    <Suspense>
-      <ContentList />
-    </Suspense>
-  );
-};
-
-const ContentList = () => {
   const { currentStep } = useQueryStringContext();
 
   if (currentStep === FIRST_STEP) return <QuestionList />;
