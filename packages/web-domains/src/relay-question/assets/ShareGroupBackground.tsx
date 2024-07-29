@@ -6,7 +6,15 @@ interface ShareGroupBackgroundProps extends React.SVGProps<SVGSVGElement> {
 
 export const ShareGroupBackground = ({ css, ...rest }: ShareGroupBackgroundProps) => {
   return (
-    <svg width="375" height="302" viewBox="0 0 375 302" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="375"
+      height="302"
+      viewBox="0 0 375 302"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      css={css}
+      {...rest}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
