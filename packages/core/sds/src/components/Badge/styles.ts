@@ -1,4 +1,4 @@
-import { borderRadiusVariants, size } from '@/theme';
+import { borderRadiusVariants, size } from '@sds/theme';
 import { css } from '@emotion/react';
 import { fontWeightVariants } from '../Typography/styles';
 

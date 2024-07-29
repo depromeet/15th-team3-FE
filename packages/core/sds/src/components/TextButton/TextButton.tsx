@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react';
 
-import { colors } from '../../theme';
+import { colors } from '@sds/theme';
 import { Icon } from '../Icon';
 
 import { arrowIconCss, textButtonCss } from './styles';

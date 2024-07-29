@@ -1,6 +1,6 @@
 import { forwardRef, HTMLAttributes } from 'react';
 import { badgeCss } from './styles';
-import { colors } from '@/theme';
+import { colors } from '@sds/theme';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   color?: string;
