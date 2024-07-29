@@ -9,6 +9,6 @@ export const badgeCss = css({
   borderRadius: borderRadiusVariants.round,
   padding: `${size['7xs']} ${size['5xs']}`,
   fontSize: '14px',
-  fontWeight: fontWeightVariants.medium,
+  fontWeight: fontWeightVariants.regular,
   lineHeight: '150%',
 });
