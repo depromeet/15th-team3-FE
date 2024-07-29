@@ -3,7 +3,6 @@
 import { css } from '@emotion/react';
 import { Button } from '@sambad/sds/components';
 import { size } from '@sambad/sds/theme';
-import { Suspense } from 'react';
 
 import { Modal } from '../../../../../common/components/Modal/Modal';
 import { RelayRandomButtonDocumentIcon } from '../../../../assets/RelayRandomButtonIcon';
@@ -22,14 +21,6 @@ const IMAGE_URL = '';
 const TITLE = '';
 
 export const RandomPickContainer = () => {
-  return (
-    <Suspense>
-      <RandomPick />
-    </Suspense>
-  );
-};
-
-const RandomPick = () => {
   const { currentStep } = useQueryStringContext();
 
   if (currentStep === FIRST_STEP) return <QuestionRandomPick />;
