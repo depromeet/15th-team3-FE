@@ -8,11 +8,17 @@ import { QueryStringProvider } from '../features/select-relay-question/contexts/
 export const SelectRelayQuestionScreen = async () => {
   return (
     <Suspense>
-      <QueryStringProvider>
-        <ProgressIndicatorContainer />
-        <ContentContainer />
-        <RandomPickContainer />
-      </QueryStringProvider>
+      <SelectRelayQuestion />
     </Suspense>
+  );
+};
+
+const SelectRelayQuestion = () => {
+  return (
+    <QueryStringProvider>
+      <ProgressIndicatorContainer />
+      <ContentContainer />
+      <RandomPickContainer />
+    </QueryStringProvider>
   );
 };
