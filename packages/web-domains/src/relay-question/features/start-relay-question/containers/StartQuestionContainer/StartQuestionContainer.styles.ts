@@ -7,7 +7,7 @@ export const startQuestionContainerCss = css({
   flexDirection: 'column',
   justifyContent: 'space-between',
   alignItems: 'center',
-  minHeight: '100vh',
+  minHeight: '100dvh',
   backgroundColor: `${colors.primary50}`,
 });
 

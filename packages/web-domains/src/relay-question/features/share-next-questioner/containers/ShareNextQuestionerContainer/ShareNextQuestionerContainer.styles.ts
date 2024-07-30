@@ -8,7 +8,7 @@ export const wrapperCss = css({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'space-between',
-  minHeight: '100vh',
+  minHeight: '100dvh',
   backgroundColor: colors.primary50,
 });
 
