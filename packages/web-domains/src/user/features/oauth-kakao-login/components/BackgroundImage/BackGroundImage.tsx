@@ -7,9 +7,11 @@ interface BackgroundImageProps {
   style?: CSSProperties;
 }
 
-export const BackgroundImage = ({ src, alt, style }: BackgroundImageProps) => {
+export const BackgroundImage = (props: BackgroundImageProps) => {
+  const { src, alt, style: styleFromProps } = props;
+
   return (
-    <div style={{ position: 'absolute', ...style }}>
+    <div style={{ position: 'absolute', ...styleFromProps }}>
       <Image src={src} fill alt={alt} priority />
     </div>
   );
