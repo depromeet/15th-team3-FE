@@ -22,7 +22,7 @@ const getServerSideProps = async () => {
   const queryClient = new QueryClient();
 
   try {
-    const gatherMemberPrefetch = useMyInfoQueryPrefetch({ queryClient });
+    const gatherMemberPrefetch = useMyInfoQueryPrefetch(queryClient);
 
     await Promise.all([gatherMemberPrefetch]);
   } catch (error: unknown) {

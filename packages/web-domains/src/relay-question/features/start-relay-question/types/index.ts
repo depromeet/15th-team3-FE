@@ -1,4 +1,4 @@
-export interface Me {
+export interface MyInfo {
   name: string;
   email: string;
   profileImageUrl: string;
