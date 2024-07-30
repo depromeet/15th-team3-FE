@@ -1,6 +1,6 @@
 import { forwardRef, HTMLAttributes } from 'react';
 
-import { colors } from '../../theme';
+import { colors } from '@sds/theme';
 
 import { iconMap } from './constants';
 import { IconAssetProps } from './types';

@@ -8,7 +8,8 @@
     ],
     "baseUrl": "../../packages",
     "paths": {
-      "@/*": ["./web-domains/src/*"]
+      "@/*": ["./web-domains/src/*"],
+      "@sds/*": ["./sds/src/*"]
     }
   },
   "include": [
