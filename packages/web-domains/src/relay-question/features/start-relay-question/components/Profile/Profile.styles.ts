@@ -18,8 +18,14 @@ export const profileSectionCss = css({
   justifyContent: 'center',
 });
 
-export const profileImgBoxCss = css({
+export const profileImgDecoWrapperCss = css({
   position: 'relative',
+});
+
+export const profileImgWrapperCss = css({
+  width: '142px',
+  height: '142px',
+  borderRadius: '50%',
 });
 
 export const SVGPositionCss = ({ top = 0, left = 0 }: { top: number; left: number }) =>

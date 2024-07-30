@@ -7,16 +7,18 @@ import { RelayStartBackground } from '../../../../assets/RelayStartBackground';
 import { Z_INDEX } from '../../../../constants';
 import { useQueryString } from '../../../../hooks/useQueryString';
 import { Profile } from '../../components/Profile/Profile';
+import { useMyInfoQuery } from '../../hooks/queries/useMyInfoQuery';
 
 import { startQuestionBackgroundCss, startQuestionContainerCss } from './StartQuestionContainer.styles';
 
 export const StartQuestionContainer = () => {
   const router = useRouter();
   const { addQueryString } = useQueryString();
+  const { data: my } = useMyInfoQuery();
 
   return (
     <div css={startQuestionContainerCss}>
-      <Profile />
+      <Profile profileImageUrl={my.profileImageUrl} />
 
       <section css={startQuestionBackgroundCss}>
         <Button
