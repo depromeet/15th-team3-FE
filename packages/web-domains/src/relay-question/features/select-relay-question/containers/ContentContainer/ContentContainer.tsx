@@ -8,6 +8,7 @@ import { FIRST_STEP } from '../../../../constants';
 import { Question } from '../../components/Question/Question';
 import { Questioner } from '../../components/Questioner/Questioner';
 import { useQueryStringContext } from '../../contexts/QueryStringContext';
+import { useRelayQuestionListQuery } from '../../hooks/queries/useRelayQuestionListQuery';
 
 import { questionListCss, questionTextBoxCss } from './ContentContainer.styles';
 
@@ -20,6 +21,8 @@ export const ContentContainer = () => {
 };
 
 const QuestionList = () => {
+  const { questions } = useRelayQuestionListQuery(1);
+
   return (
     <section>
       <div css={questionTextBoxCss}>
@@ -28,15 +31,9 @@ const QuestionList = () => {
         </Txt>
       </div>
       <ul css={questionListCss}>
-        {new Array(10)
-          .fill({
-            imageUrl: PNGQuestionImage1,
-            title: '국내 여행지 중에서 추천하고 싶은 곳은?',
-            usedCount: 10,
-          })
-          .map(({ imageUrl, title, usedCount }, index) => (
-            <Question key={index} imageUrl={imageUrl} title={title} usedCount={usedCount} />
-          ))}
+        {questions.map(({ questionId, questionImageFileUrl, title, usedCount }) => (
+          <Question key={questionId} imageUrl={questionImageFileUrl} title={title} usedCount={usedCount} />
+        ))}
       </ul>
     </section>
   );
