@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { KakaoIcon } from '../../../../common/assets/icons/KakaoIcon';
 
-const KAKAO_URL = 'https://api.moring.one/oauth2/authorization/kakao';
+const KAKAO_URL = 'oauth2/authorization/kakao';
 
 export const KakaoLoginButton = () => {
   return (
