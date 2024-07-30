@@ -8,6 +8,11 @@
       "@sds/*": ["../core/sds/src/*"]
     }
   },
-  "include": ["src", "../../apps/web/layout/RootLayout.styles.ts", "../../apps/web/layout/RootLayout.tsx"],
+  "include": [
+    "src",
+    "../../apps/web/layout/RootLayout.styles.ts",
+    "../../apps/web/layout/RootLayout.tsx",
+    "images.d.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }
