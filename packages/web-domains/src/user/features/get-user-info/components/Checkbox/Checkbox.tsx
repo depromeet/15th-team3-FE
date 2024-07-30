@@ -1,12 +1,11 @@
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
-import { forwardRef, InputHTMLAttributes } from 'react';
+import { forwardRef, InputHTMLAttributes, useId } from 'react';
 
-import { radioCss } from '../Radio/styled';
+import { CheckboxGroupImpl, useCheckboxContext } from './CheckboxGroupImpl';
+import { checkboxCss } from './styles';
 
-import { useCheckboxActions, useCheckboxState } from './CheckboxGroup';
-
-interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string | number;
   label: string;
   required?: boolean;
@@ -15,19 +14,20 @@ interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
   const { children, label, value, required, ...restProps } = props;
 
-  const stateCtx = useCheckboxState();
-  const actionCtx = useCheckboxActions();
+  const checkboxCtx = useCheckboxContext();
 
-  const isChecked = stateCtx.value?.includes(value);
+  const isChecked = checkboxCtx.value?.includes(value);
+
+  const checkboxId = `${useId()}-${label}`;
 
   return (
-    <label htmlFor={label} css={[radioCss.base, isChecked ? radioCss.selected : radioCss.default]}>
+    <label htmlFor={checkboxId} css={[checkboxCss.base, isChecked ? checkboxCss.selected : checkboxCss.default]}>
       <Txt typography="subTitle2" color={isChecked ? colors.primary500 : colors.black}>
         {label}
       </Txt>
       {children}
       <input
-        id={label}
+        id={checkboxId}
         ref={ref}
         value={value}
         type="checkbox"
@@ -36,9 +36,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
         required={required}
         onChange={(event) => {
           if (event.target.checked) {
-            actionCtx.handleItemCheck(value);
+            checkboxCtx.handleItemCheck(value);
           } else {
-            actionCtx.handleItemUncheck(value);
+            checkboxCtx.handleItemUncheck(value);
           }
         }}
         {...restProps}
@@ -48,4 +48,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
   );
 });
 
-Checkbox.displayName = 'Checkbox';
+Checkbox.displayName = 'CheckboxGroup.item';
+
+export const CheckboxGroup = Object.assign(CheckboxGroupImpl, {
+  Item: Checkbox,
+});

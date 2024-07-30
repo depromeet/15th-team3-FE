@@ -6,7 +6,7 @@ import { Controller, useForm } from 'react-hook-form';
 
 import { HobbyListType } from '../../../../../common/apis/schema/useGetHobbyList.type';
 import { STEPS } from '../../../../common/constants/step';
-import { CheckboxGroup, Checkbox } from '../Checkbox';
+import { CheckboxGroup } from '../Checkbox';
 
 import { buttonWrapperCss } from './styles';
 
@@ -56,8 +56,8 @@ export const HobbiesInfoForm = ({ hobbyList }: HobbiesFormProps) => {
             validate: (value) => value.length <= 3 || '최대 3개까지 선택할 수 있습니다.',
           }}
           render={({ field: { value, onChange } }) => (
-            <CheckboxGroup value={value} onChange={onChange}>
-              {hobbyList?.contents.map(({ id, content }) => <Checkbox key={id} label={content} value={id} />)}
+            <CheckboxGroup value={value} onValueChange={onChange}>
+              {hobbyList?.contents.map(({ id, content }) => <CheckboxGroup.Item key={id} label={content} value={id} />)}
             </CheckboxGroup>
           )}
         ></Controller>

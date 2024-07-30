@@ -1,18 +1,18 @@
 import { createContext, PropsWithChildren, useContext } from 'react';
 
-interface RadioContextType {
+interface RadioContextValue {
   onChange: (value: string) => void;
   value: string | number;
 }
 
-interface RadioGroupProps {
+export interface RadioGroupImplProps {
   onChange: (value: string) => void;
   value: string | number;
 }
 
-export const RadioContext = createContext<RadioContextType | null>(null);
+export const RadioContext = createContext<RadioContextValue | null>(null);
 
-export const RadioGroup = (props: PropsWithChildren<RadioGroupProps>) => {
+export const RadioGroupImpl = (props: PropsWithChildren<RadioGroupImplProps>) => {
   const { children, ...restProps } = props;
 
   return <RadioContext.Provider value={restProps}>{children}</RadioContext.Provider>;

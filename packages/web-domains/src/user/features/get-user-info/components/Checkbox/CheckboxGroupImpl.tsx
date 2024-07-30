@@ -2,26 +2,21 @@
 
 import { createContext, PropsWithChildren, useCallback, useContext, useMemo, useState } from 'react';
 
-export type CheckboxStateContextType = {
+export type CheckboxContextValue = {
   value?: (string | number)[];
-};
-
-export interface CheckboxActionContextType {
   handleItemCheck: (value: string | number) => void;
   handleItemUncheck: (value: string | number) => void;
-}
+};
 
-export const CheckboxStateContext = createContext<CheckboxStateContextType | undefined>(undefined);
+export const CheckboxContext = createContext<CheckboxContextValue | undefined>(undefined);
 
-export const CheckboxActionContext = createContext<CheckboxActionContextType | undefined>(undefined);
-
-interface CheckBoxProps {
+export interface CheckboxGroupImplProps {
   value?: (string | number)[];
-  onChange?: (value: (string | number)[]) => void;
+  onValueChange?: (value: (string | number)[]) => void;
 }
 
-export const CheckboxGroup = (props: PropsWithChildren<CheckBoxProps>) => {
-  const { children, value: valueProp, onChange: onChangeProp } = props;
+export const CheckboxGroupImpl = (props: PropsWithChildren<CheckboxGroupImplProps>) => {
+  const { children, value: valueProp, onValueChange: onChangeProp } = props;
 
   const [uncontrolledvalue, setUncontrolledvalueValue] = useState(() => valueProp);
 
@@ -52,25 +47,13 @@ export const CheckboxGroup = (props: PropsWithChildren<CheckBoxProps>) => {
     [handleChangeValue],
   );
 
-  return (
-    <CheckboxActionContext.Provider value={actions}>
-      <CheckboxStateContext.Provider value={{ value }}>{children}</CheckboxStateContext.Provider>
-    </CheckboxActionContext.Provider>
-  );
+  return <CheckboxContext.Provider value={{ value, ...actions }}>{children}</CheckboxContext.Provider>;
 };
 
-export const useCheckboxState = () => {
-  const context = useContext(CheckboxStateContext);
+export const useCheckboxContext = () => {
+  const context = useContext(CheckboxContext);
   if (!context) {
-    throw new Error('CheckboxStateContext.Provider의 Context가 없습니다.');
-  }
-  return context;
-};
-
-export const useCheckboxActions = () => {
-  const context = useContext(CheckboxActionContext);
-  if (!context) {
-    throw new Error('CheckboxActionContext.Provider의 Context가 없습니다.');
+    throw new Error('useCheckboxContext는 CheckboxGroup 내부에서만 사용 가능합니다.');
   }
   return context;
 };

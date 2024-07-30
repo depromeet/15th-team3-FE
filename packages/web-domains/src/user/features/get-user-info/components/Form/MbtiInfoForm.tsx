@@ -6,7 +6,7 @@ import { Controller, useForm } from 'react-hook-form';
 
 import { MBTI_TYPE } from '../../../../common/constants/mbti';
 import { STEPS } from '../../../../common/constants/step';
-import { RadioGroup, Radio } from '../Radio';
+import { RadioGroup } from '../Radio';
 
 import { buttonWrapperCss } from './styles';
 
@@ -37,7 +37,7 @@ export const MbtiInfoForm = () => {
           render={({ field: { onChange, value } }) => (
             <RadioGroup value={value} onChange={onChange}>
               {MBTI_TYPE.map(({ label, value }) => (
-                <Radio key={value} label={label} value={value} />
+                <RadioGroup.Item key={value} label={label} value={value} />
               ))}
             </RadioGroup>
           )}

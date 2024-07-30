@@ -1,2 +1,3 @@
-export { Checkbox } from './Checkbox';
-export { CheckboxGroup } from './CheckboxGroup';
+export { CheckboxGroup } from './Checkbox';
+export type { CheckboxProps } from './Checkbox';
+export type { CheckboxGroupImplProps } from './CheckboxGroupImpl';

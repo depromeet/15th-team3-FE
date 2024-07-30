@@ -4,10 +4,10 @@ import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import { forwardRef, InputHTMLAttributes } from 'react';
 
-import { useRadioContext } from './RadioGroup';
+import { RadioGroupImpl, useRadioContext } from './RadioGroupImpl';
 import { radioCss } from './styled';
 
-interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
@@ -40,4 +40,8 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
   );
 });
 
-Radio.displayName = 'Radio';
+Radio.displayName = 'RadioGroup.item';
+
+export const RadioGroup = Object.assign(RadioGroupImpl, {
+  Item: Radio,
+});
