@@ -1,9 +1,16 @@
 import { Providers, RootLayout as ViewportLayout } from '@sambad/web-domains/commmon';
-import { Inter } from 'next/font/google';
+import dayjs from 'dayjs';
+import localFont from 'next/font/local';
 
 import type { Metadata } from 'next';
 
-const inter = Inter({ subsets: ['latin'] });
+dayjs.locale('ko');
+
+const pretendard = localFont({
+  src: '../public/PretendardVariable.woff2',
+  display: 'swap',
+  weight: '45 920',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={inter.className}>
+      <body className={pretendard.className}>
         <Providers>
           <ViewportLayout>{children}</ViewportLayout>
         </Providers>
