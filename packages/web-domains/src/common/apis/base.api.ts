@@ -3,6 +3,7 @@ const baseURL = `/api`;
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
+  withCredentials: true,
 });
 
 export class Http {
