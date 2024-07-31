@@ -1,18 +1,19 @@
 'use client';
 
 import { TextButton, Txt } from '@sambad/sds/components';
-import { memberCharacterCss, memberListCss, memberListTextButtonCss } from './styles';
-import { Profile } from './Profile';
+
 import { countByMemberListAttribute } from './constants';
+import { Profile } from './Profile';
+import { memberCharacterCss, memberListCss, memberListTextButtonCss } from './styles';
 
 export interface CountByMemberListProps {
   showName?: string;
-  count: number;
+  count?: number;
   showCharacter?: boolean;
 }
 
 export const CountByMemberList = (props: CountByMemberListProps) => {
-  const { showName, count, showCharacter = false } = props;
+  const { showName, count = 0, showCharacter = false } = props;
 
   const countText = count === 1 ? `${showName}님이 선택했어요` : `${showName}님 외 ${count}명이 선택했어요`;
 

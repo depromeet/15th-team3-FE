@@ -1,9 +1,15 @@
-import { MostAnsweredContainers, WithMyMembersContainers, CommentListContainer } from '../features/main/containers';
-import { BaseLayout } from '../features/common/components';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import { getMostSelectedPrefetch } from '../features/common/apis/queries/useGetMostSelected';
-import { getSameSelectedPrefetch } from '../features/common/apis/queries/useGetSameSelected';
-import { getCommentsPrefetch } from '../features/common/apis/queries/useGetComments';
+
+import { getCommentsPrefetch } from '../common/apis/queries/useGetComments';
+import { getMostSelectedPrefetch } from '../common/apis/queries/useGetMostSelected';
+import { getSameSelectedPrefetch } from '../common/apis/queries/useGetSameSelected';
+import { BaseLayout } from '../common/components';
+import {
+  MostAnsweredContainers,
+  WithMyMembersContainers,
+  CommentListContainer,
+  HeaderContainer,
+} from '../features/main/containers';
 
 interface Params {
   meetingId: number;
@@ -14,13 +20,13 @@ export const ResultMainScreen = async (params: Params) => {
   const { queryClient } = await getServerSideProps(params);
 
   return (
-    <BaseLayout>
-      <HydrationBoundary state={dehydrate(queryClient)}>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <BaseLayout header={<HeaderContainer />}>
         <MostAnsweredContainers {...params} />
         <WithMyMembersContainers {...params} />
         <CommentListContainer {...params} />
-      </HydrationBoundary>
-    </BaseLayout>
+      </BaseLayout>
+    </HydrationBoundary>
   );
 };
 
@@ -34,7 +40,7 @@ const getServerSideProps = async (params: Params) => {
       getCommentsPrefetch({ queryClient, ...params }),
     ]);
   } catch (error: unknown) {
-    console.log(error);
+    console.error(error);
   }
   return { queryClient };
 };

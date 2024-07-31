@@ -1,10 +1,11 @@
 'use client';
 
 import { Txt } from '@sambad/sds/components';
-import { commentCss, commentProfileCss } from './styles';
-import Image from 'next/image';
 import { colors } from '@sambad/sds/theme';
+import Image from 'next/image';
+
 import { commentAttribute } from './constants';
+import { commentCss, commentProfileCss } from './styles';
 
 interface CommentProps {
   comment: string;

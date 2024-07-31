@@ -2,6 +2,7 @@
 
 import { Txt } from '@sambad/sds/components';
 import { HTMLAttributes, ReactNode } from 'react';
+
 import { cardCss } from './styles';
 
 interface SectionProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {

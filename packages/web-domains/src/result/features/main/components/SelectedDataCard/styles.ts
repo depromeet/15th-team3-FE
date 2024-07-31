@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { getBorder } from '@sambad/css-utils';
 import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
+
 import { countByMemberListAttribute } from './constants';
 
 export const memberListCss = css({
@@ -44,6 +45,10 @@ export const profileCss = css({
   '& > span': {
     paddingTop: size['5xs'],
   },
+});
+
+export const noMemberCss = css({
+  paddingTop: size['sm'],
 });
 
 export const withMyMembersContainerCss = css({

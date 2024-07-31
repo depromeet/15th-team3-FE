@@ -2,17 +2,20 @@
 
 import { Button, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
+import { Fragment } from 'react/jsx-runtime';
+
+import { SadUserIcon } from '../../assets';
+
+import { CountByMemberList } from './CountByMemberList';
+import { Profile } from './Profile';
 import {
   mostAnsweredButtonCss,
   mostAnsweredTitleCss,
+  noMemberCss,
   profileCss,
   withMeMembersCss,
   withMyMembersContainerCss,
 } from './styles';
-import { Fragment } from 'react/jsx-runtime';
-import { SadUserIcon } from '../../assets';
-import { Profile } from './Profile';
-import { CountByMemberList } from './CountByMemberList';
 
 interface MostAnsweredProps {
   title: string;
@@ -32,12 +35,12 @@ export const MostAnswered = (props: MostAnsweredProps) => {
 };
 
 interface WithMeMembersProps {
-  count: number;
-  members: Array<{ id: number; name: string; imgUrl: string }>;
+  count?: number;
+  members?: Array<{ meetingMemberId: number; name: string; profileImageFileUrl: string }>;
 }
 
 export const WithMeMembers = (props: WithMeMembersProps) => {
-  const { count, members } = props;
+  const { count = 0, members } = props;
 
   const noMembers = count === 0;
   const moreMembers = count >= 5;
@@ -46,7 +49,7 @@ export const WithMeMembers = (props: WithMeMembersProps) => {
   return (
     <div css={withMyMembersContainerCss}>
       {noMembers && (
-        <div css={profileCss}>
+        <div css={[profileCss, noMemberCss]}>
           <SadUserIcon />
           <Txt typography="body3" color={colors.grey600}>
             아쉽게도 같은 답변을 한 모임원이 없어요
@@ -56,13 +59,13 @@ export const WithMeMembers = (props: WithMeMembersProps) => {
 
       {(fewMembers || moreMembers) && (
         <div css={withMeMembersCss}>
-          {members.map((member) => (
-            <Profile key={member.id} name={member.name} imgUrl={member.imgUrl} />
+          {members?.map((member) => (
+            <Profile key={member.meetingMemberId} name={member.name} imgUrl={member.profileImageFileUrl} />
           ))}
         </div>
       )}
 
-      {moreMembers && <CountByMemberList showName={members[0]?.name} count={count} />}
+      {moreMembers && <CountByMemberList showName={members?.[0]?.name} count={count} />}
     </div>
   );
 };

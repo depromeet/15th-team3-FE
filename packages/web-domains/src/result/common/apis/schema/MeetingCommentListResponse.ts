@@ -1,5 +1,5 @@
 export interface MeetingCommentListResponse {
-  content: Array<Comment>;
+  contents: Array<Comment>;
 }
 
 export interface Comment {

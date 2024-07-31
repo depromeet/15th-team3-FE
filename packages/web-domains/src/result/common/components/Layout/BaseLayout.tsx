@@ -1,13 +1,17 @@
 import { colors, size } from '@sambad/sds/theme';
-import { HeaderBanner } from '../HeaderBanner/HeaderBanner';
-import { PropsWithChildren } from 'react';
+import { ReactNode } from 'react';
 
-export const BaseLayout = (props: PropsWithChildren) => {
-  const { children } = props;
+interface BaseLayoutProps {
+  header: ReactNode;
+  children: ReactNode;
+}
+
+export const BaseLayout = (props: BaseLayoutProps) => {
+  const { header, children } = props;
 
   return (
     <div style={layoutStyle}>
-      <HeaderBanner title="즐겨하는 스포츠는?" thumbnail="" />
+      {header}
       <div style={contentStyle}>{children}</div>
     </div>
   );

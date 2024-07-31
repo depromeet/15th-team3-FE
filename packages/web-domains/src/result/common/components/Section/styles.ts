@@ -1,7 +1,8 @@
 import { css } from '@emotion/react';
 import { getBorder } from '@sambad/css-utils';
 import { colors, size } from '@sambad/sds/theme';
-import { commentAttribute } from '../../../main/components/SelectedDataCard/constants';
+
+import { commentAttribute } from '@/result/features/main/components/SelectedDataCard/constants';
 
 const commentSelector = commentAttribute.querySelector;
 
