@@ -10,7 +10,7 @@ export interface RelayQuestionContent {
   usedCount: number;
 }
 
-export interface RelayQuestionResponse {
+export interface RelayQuestionListResponse {
   content: RelayQuestionContent[];
   pageable: {
     page: number;
@@ -18,4 +18,18 @@ export interface RelayQuestionResponse {
     totalPages: number;
     isEnd: boolean;
   };
+}
+
+export interface RelayQuestionResponse {
+  questionId: number;
+  questionImageFileUrl: string;
+  title: string;
+  answers: Answer[];
+}
+
+export interface NextRelayQuestionerResponse {
+  meetingMemberId: number;
+  name: string;
+  profileImageFileUrl: string;
+  role: string;
 }

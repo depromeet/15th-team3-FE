@@ -2,10 +2,8 @@ import { css } from '@emotion/react';
 import { Button, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 import { RelayRePickQuestioner } from '../../../../assets/RelayRePickQuestioner';
-import { useOpenModal } from '../../hooks/useOpenModal';
 
 import { buttonWrapperCss, imgWrapperCss, nameCss, rePickTextCss, wrapperCss } from './Questioner.styles';
 
@@ -13,18 +11,11 @@ interface QuestionerDetailProps {
   imageUrl: string;
   name: string;
   isRandom?: boolean;
-  handleCloseModal: () => void;
+  onClose: () => void;
+  onConfirm: () => void;
 }
 
-export const QuestionerDetail = ({ imageUrl, name, isRandom }: QuestionerDetailProps) => {
-  const router = useRouter();
-  const { handleCloseModal } = useOpenModal();
-
-  const handleSetQuestioner = () => {
-    router.push('/share-group');
-    handleCloseModal();
-  };
-
+export const QuestionerDetail = ({ imageUrl, name, isRandom, onClose, onConfirm }: QuestionerDetailProps) => {
   return (
     <div css={wrapperCss}>
       <div css={imgWrapperCss}>
@@ -34,10 +25,10 @@ export const QuestionerDetail = ({ imageUrl, name, isRandom }: QuestionerDetailP
         {name}
       </Txt>
       <div css={buttonWrapperCss}>
-        <Button variant="sub" onClick={handleCloseModal}>
+        <Button variant="sub" onClick={onClose}>
           닫기
         </Button>
-        <Button onClick={handleSetQuestioner}>질문인 선택</Button>
+        <Button onClick={onConfirm}>질문인 선택</Button>
       </div>
       {isRandom && (
         <Txt color={colors.grey600} typography="title4" fontWeight="medium" css={rePickTextCss}>
