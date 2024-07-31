@@ -2,7 +2,7 @@ import { QueryClient, useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import { Http } from '@/common/apis/base.api';
 
-import { MeetingCommentListResponse } from '../schema/MeetingCommentListResponse';
+import { QuestionResponse } from '../schema/QuestionResponse';
 
 interface Params {
   meetingId: number;
@@ -10,19 +10,19 @@ interface Params {
 }
 
 interface QueryProps extends Params {
-  options?: UseQueryOptions<MeetingCommentListResponse>;
+  options?: UseQueryOptions<QuestionResponse>;
 }
 
-export const COMMENTS_QUERY_KEY = 'COMMENTS_QUERY_KEY';
+export const DETAILED_QUESTION_DATA_QUERY_KEY = 'DETAILED_QUESTION_DATA_QUERY_KEY';
 
 const queryFn = ({ questionId, meetingId }: Params) =>
-  Http.GET<MeetingCommentListResponse>(`/v1/meetings/${meetingId}/questions/${questionId}/comments`);
+  Http.GET<QuestionResponse>(`/v1/meetings/${meetingId}/questions/${questionId}`);
 
-export const useGetComments = (props: QueryProps) => {
+export const useGetDetailedQuestionData = (props: QueryProps) => {
   const { options, ...params } = props;
 
   return useQuery({
-    queryKey: [COMMENTS_QUERY_KEY, params],
+    queryKey: [DETAILED_QUESTION_DATA_QUERY_KEY, params],
     queryFn: () => queryFn(params),
     ...options,
   });
@@ -32,11 +32,11 @@ interface PrefetchProps extends Params {
   queryClient: QueryClient;
 }
 
-export const getCommentsPrefetch = (props: PrefetchProps) => {
+export const getDetailedQuestionDataPrefetch = (props: PrefetchProps) => {
   const { queryClient, ...params } = props;
 
   const prefetch = queryClient.prefetchQuery({
-    queryKey: [COMMENTS_QUERY_KEY, params],
+    queryKey: [DETAILED_QUESTION_DATA_QUERY_KEY, params],
     queryFn: () => queryFn(params),
   });
 
