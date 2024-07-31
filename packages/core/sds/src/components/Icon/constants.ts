@@ -5,6 +5,7 @@ import { AngleSmallDownIcon } from './assets/AngleSmallDown';
 import { AngleSmallUpIcon } from './assets/AngleSmallUp';
 import { AngleUpIcon } from './assets/AngleUp';
 import { CaretDownIcon } from './assets/CaretDown';
+import { Landscape } from './assets/Landscape';
 
 export const iconMap = {
   'angle-down': AngleDownIcon,
@@ -14,4 +15,5 @@ export const iconMap = {
   'angle-small-up': AngleSmallUpIcon,
   'angle-up': AngleUpIcon,
   'caret-down': CaretDownIcon,
+  landscape: Landscape,
 };
