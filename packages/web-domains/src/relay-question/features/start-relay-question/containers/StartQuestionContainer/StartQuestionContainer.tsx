@@ -14,11 +14,11 @@ import { startQuestionBackgroundCss, startQuestionContainerCss } from './StartQu
 export const StartQuestionContainer = () => {
   const router = useRouter();
   const { addQueryString } = useQueryString();
-  const { data: my } = useMyInfoQuery();
+  const { myInfo } = useMyInfoQuery();
 
   return (
     <div css={startQuestionContainerCss}>
-      <Profile profileImageUrl={my.profileImageUrl} />
+      <Profile profileImageUrl={myInfo.profileImageUrl} />
 
       <section css={startQuestionBackgroundCss}>
         <Button
