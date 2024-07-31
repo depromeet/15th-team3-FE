@@ -1,12 +1,14 @@
 'use client';
 
 import { Txt } from '@sambad/sds/components';
-import { bannerCss, thumbnailCss, titleCss } from './styles';
 import Image from 'next/image';
 
+import { FallbackThumbnail } from './FallbackThumbnail';
+import { bannerCss, thumbnailCss, titleCss } from './styles';
+
 interface HeaderBannerProps {
-  thumbnail: string;
-  title: string;
+  thumbnail?: string;
+  title?: string;
 }
 
 export const HeaderBanner = (props: HeaderBannerProps) => {
@@ -14,7 +16,11 @@ export const HeaderBanner = (props: HeaderBannerProps) => {
 
   return (
     <section css={bannerCss}>
-      <Image src={thumbnail} width={64} height={64} css={thumbnailCss} alt={`${title}_질문_썸네일`} />
+      {thumbnail != null ? (
+        <Image src={thumbnail} width={64} height={64} css={thumbnailCss} alt={`${title}_질문_썸네일`} />
+      ) : (
+        <FallbackThumbnail />
+      )}
       <Txt as="h1" typography="heading1" fontWeight="regular" css={titleCss}>
         우리 모임원들이
         <strong>{title}</strong>

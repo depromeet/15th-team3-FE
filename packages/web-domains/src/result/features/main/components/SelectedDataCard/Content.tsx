@@ -18,16 +18,18 @@ import {
 } from './styles';
 
 interface MostAnsweredProps {
-  title: string;
+  contents?: Array<string>;
 }
 
 export const MostAnswered = (props: MostAnsweredProps) => {
-  const { title } = props;
+  const { contents: contentsFromProps } = props;
+
+  const contentText = contentsFromProps?.join(', ');
 
   return (
     <Fragment>
       <Txt typography="heading1" color={colors.tertiary500} css={mostAnsweredTitleCss}>
-        {title}
+        {contentText}
       </Txt>
       <Button css={mostAnsweredButtonCss}>전체 통계보기</Button>
     </Fragment>

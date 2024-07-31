@@ -1,7 +1,12 @@
 'use client';
 
+import { useGetDetailedQuestionData } from '@/result/common/apis/queries/useGetDetailedQuestionData';
 import { HeaderBanner } from '@/result/common/components/HeaderBanner/HeaderBanner';
 
-export const HeaderContainer = () => {
-  return <HeaderBanner title="즐겨하는 스포츠는?" thumbnail="" />;
+import { BasePageParams } from './types';
+
+export const HeaderContainer = (params: BasePageParams) => {
+  const { data } = useGetDetailedQuestionData(params);
+
+  return <HeaderBanner title={data?.title} thumbnail={data?.questionImageFileUrl} />;
 };

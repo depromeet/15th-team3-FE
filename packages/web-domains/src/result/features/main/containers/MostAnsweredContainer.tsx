@@ -15,7 +15,7 @@ export const MostAnsweredContainers = (params: BasePageParams) => {
 
   return (
     <Section title="모임원들이 가장 많이 한 답변은?">
-      <MostAnswered title="축구" />
+      <MostAnswered contents={data?.content} />
       <CountByMemberList showName={showName} count={data?.count} showCharacter />
     </Section>
   );

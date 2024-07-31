@@ -1,6 +1,7 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
 import { getCommentsPrefetch } from '../common/apis/queries/useGetComments';
+import { getDetailedQuestionDataPrefetch } from '../common/apis/queries/useGetDetailedQuestionData';
 import { getMostSelectedPrefetch } from '../common/apis/queries/useGetMostSelected';
 import { getSameSelectedPrefetch } from '../common/apis/queries/useGetSameSelected';
 import { BaseLayout } from '../common/components';
@@ -21,7 +22,7 @@ export const ResultMainScreen = async (params: Params) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <BaseLayout header={<HeaderContainer />}>
+      <BaseLayout header={<HeaderContainer {...params} />}>
         <MostAnsweredContainers {...params} />
         <WithMyMembersContainers {...params} />
         <CommentListContainer {...params} />
@@ -33,11 +34,14 @@ export const ResultMainScreen = async (params: Params) => {
 const getServerSideProps = async (params: Params) => {
   const queryClient = new QueryClient();
 
+  const prefetchParams = { queryClient, ...params };
+
   try {
     await Promise.all([
-      getMostSelectedPrefetch({ queryClient, ...params }),
-      getSameSelectedPrefetch({ queryClient, ...params }),
-      getCommentsPrefetch({ queryClient, ...params }),
+      getMostSelectedPrefetch(prefetchParams),
+      getSameSelectedPrefetch(prefetchParams),
+      getCommentsPrefetch(prefetchParams),
+      getDetailedQuestionDataPrefetch(prefetchParams),
     ]);
   } catch (error: unknown) {
     console.error(error);
