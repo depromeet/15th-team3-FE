@@ -1,8 +1,8 @@
 export type HobbyType = {
-  id: number;
+  hobbyId: number;
   content: string;
 };
 
-export type HobbyListType = {
+export type HobbyListResponse = {
   contents: HobbyType[];
 };

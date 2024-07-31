@@ -5,6 +5,7 @@ import { GetUserInfoContainer } from '../features/get-user-info/containers/GetUs
 
 export const GetUserInfoScreen = async () => {
   const { queryClient } = await getServerSideProps();
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <GetUserInfoContainer />
@@ -15,9 +16,7 @@ export const GetUserInfoScreen = async () => {
 const getServerSideProps = async () => {
   const queryClient = new QueryClient();
 
-  const getHobbyListPrefetch = getHobbyListPrefetchQuery(queryClient);
-
-  await getHobbyListPrefetch();
+  await getHobbyListPrefetchQuery(queryClient);
 
   return { queryClient };
 };

@@ -4,14 +4,14 @@ import { Button } from '@sambad/sds/components';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
-import { HobbyListType } from '../../../../../common/apis/schema/useGetHobbyList.type';
+import { HobbyType } from '../../../../../common/apis/schema/HobbyListResponse';
 import { STEPS } from '../../../../common/constants/step';
 import { CheckboxGroup } from '../Checkbox';
 
 import { buttonWrapperCss } from './styles';
 
 interface HobbiesFormProps {
-  hobbyList?: HobbyListType;
+  hobbyList?: HobbyType[];
 }
 
 interface Hobbies {
@@ -21,8 +21,6 @@ interface Hobbies {
 export const HobbiesInfoForm = ({ hobbyList }: HobbiesFormProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  if (!hobbyList || !hobbyList.contents.length) return null;
 
   const {
     control,
@@ -46,6 +44,8 @@ export const HobbiesInfoForm = ({ hobbyList }: HobbiesFormProps) => {
     router.push(`?${new URLSearchParams({ ...currentParams, step: STEPS.MBTI_IFNO, hobbyIds: hobbyIdsString })}`);
   };
 
+  if (!hobbyList || !hobbyList.length) return null;
+
   return (
     <form onSubmit={handleSubmit(goToNextPage)} css={{ padding: '0 20px', marginTop: '48px' }}>
       <div css={{ display: 'inline-flex', flexWrap: 'wrap', gap: '10px' }}>
@@ -57,7 +57,9 @@ export const HobbiesInfoForm = ({ hobbyList }: HobbiesFormProps) => {
           }}
           render={({ field: { value, onChange } }) => (
             <CheckboxGroup value={value} onValueChange={onChange}>
-              {hobbyList?.contents.map(({ id, content }) => <CheckboxGroup.Item key={id} label={content} value={id} />)}
+              {hobbyList?.map(({ hobbyId, content }) => (
+                <CheckboxGroup.Item key={hobbyId} label={content} value={hobbyId} />
+              ))}
             </CheckboxGroup>
           )}
         ></Controller>

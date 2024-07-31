@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
 import { STEPS } from '../../../../common/constants/step';
-import { Radio, RadioGroup } from '../Radio/';
+import { RadioGroup } from '../Radio/';
 import { TextInput } from '../TextInput/TextInput';
 
 import { buttonWrapperCss } from './styles';
@@ -87,8 +87,8 @@ export const BasicInfoForm = () => {
             rules={{ validate: (value) => value === 'MALE' || value === 'FEMALE' }}
             render={({ field: { onChange, value } }) => (
               <RadioGroup value={value} onChange={onChange}>
-                <Radio label="🙋‍♂️ 남자" value="MALE" />
-                <Radio label="🙋‍♀️ 여자" value="FEMALE" />
+                <RadioGroup.Item label="🙋‍♂️ 남자" value="MALE" />
+                <RadioGroup.Item label="🙋‍♀️ 여자" value="FEMALE" />
               </RadioGroup>
             )}
           />
