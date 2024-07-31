@@ -12,6 +12,8 @@ import { useRelayQuestionListQuery } from '../../hooks/queries/useRelayQuestionL
 
 import { questionListCss, questionTextBoxCss } from './ContentContainer.styles';
 
+const MEETING_ID = 1;
+
 export const ContentContainer = () => {
   const { currentStep } = useQueryStringContext();
 
@@ -21,7 +23,7 @@ export const ContentContainer = () => {
 };
 
 const QuestionList = () => {
-  const { questions } = useRelayQuestionListQuery(1);
+  const { questions } = useRelayQuestionListQuery(MEETING_ID);
 
   return (
     <section>
@@ -32,7 +34,13 @@ const QuestionList = () => {
       </div>
       <ul css={questionListCss}>
         {questions.map(({ questionId, questionImageFileUrl, title, usedCount }) => (
-          <Question key={questionId} imageUrl={questionImageFileUrl} title={title} usedCount={usedCount} />
+          <Question
+            key={questionId}
+            id={questionId}
+            imageUrl={questionImageFileUrl}
+            title={title}
+            usedCount={usedCount}
+          />
         ))}
       </ul>
     </section>

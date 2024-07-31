@@ -1,12 +1,12 @@
 import { Button, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
-import { useQueryString } from '../../../../hooks/useQueryString';
 import { Answer } from '../../types';
 
 import {
+  answerBlurCss,
+  answerContentCss,
   answerExampleTextCss,
   answerListCss,
   answerWrapperCss,
@@ -19,18 +19,11 @@ interface QuestionDetailProps {
   imageUrl: string;
   title: string;
   answers: Answer[];
-  handleCloseModal: () => void;
+  onClose: () => void;
+  onConfirm: () => void;
 }
 
-export const QuestionDetail = ({ imageUrl, title, answers, handleCloseModal }: QuestionDetailProps) => {
-  const router = useRouter();
-  const { updateQueryString } = useQueryString();
-
-  const handleSetQuestion = () => {
-    router.push(`/select-relay-question?${updateQueryString({ key: 'current-step', value: '2' })}`);
-    handleCloseModal();
-  };
-
+export const QuestionDetail = ({ imageUrl, title, answers, onClose, onConfirm }: QuestionDetailProps) => {
   return (
     <div css={wrapperCss}>
       <Txt typography="heading3" fontWeight="bold">
@@ -45,20 +38,23 @@ export const QuestionDetail = ({ imageUrl, title, answers, handleCloseModal }: Q
       <Txt color={colors.grey500} typography="title4" fontWeight="medium" css={answerExampleTextCss}>
         답변 예시
       </Txt>
-      <ul css={answerWrapperCss}>
-        {answers.map(({ answerId, content }) => (
-          <li key={answerId} css={answerListCss}>
-            <Txt color={colors.grey500} fontWeight="regular">
-              {content}
-            </Txt>
-          </li>
-        ))}
-      </ul>
+      <div css={answerWrapperCss}>
+        <div css={answerBlurCss} />
+        <ul css={answerContentCss}>
+          {answers.map(({ answerId, content }) => (
+            <li key={answerId} css={answerListCss}>
+              <Txt color={colors.grey500} fontWeight="regular">
+                {content}
+              </Txt>
+            </li>
+          ))}
+        </ul>
+      </div>
       <div css={buttonWrapperCss}>
-        <Button variant="sub" onClick={handleCloseModal}>
+        <Button variant="sub" onClick={onClose}>
           닫기
         </Button>
-        <Button onClick={handleSetQuestion}>질문 선택</Button>
+        <Button onClick={onConfirm}>질문 선택</Button>
       </div>
     </div>
   );

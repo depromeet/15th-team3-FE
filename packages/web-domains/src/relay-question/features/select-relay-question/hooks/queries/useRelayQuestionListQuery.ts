@@ -1,20 +1,25 @@
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { QueryClient, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 import PNGQuestionImage1 from '../../../../assets/png/question-image-1.png';
-import { RelayQuestionResponse } from '../../types';
+import { RelayQuestionListResponse } from '../../types';
+
+interface RelayQuestionListPrefetch {
+  queryClient: QueryClient;
+  meetingId: number;
+}
 
 const RELAY_QUESTION_LIST_QUERY_KEY = 'RELAY_QUESTION_LIST_QUERY_KEY';
 const SIZE_PER_PAGE = 10;
 
 // const _getRelayQuestionList = async (meetingId: number, { page, size }: { page: number; size: number }) =>
-//   await Http.GET(`/v1/meetings/${meetingId}/questions?page=${page}&size=${size}`);
+//   await Http.GET<RelayQuestionListResponse>(`/v1/meetings/${meetingId}/questions?page=${page}&size=${size}`);
 
 let tempId = 1;
 
 const _getRelayQuestionList = async (
   meetingId: number,
   { page, size }: { page: number; size: number },
-): Promise<RelayQuestionResponse> => ({
+): Promise<RelayQuestionListResponse> => ({
   content: new Array(10).fill({
     questionId: tempId++,
     questionImageFileUrl: PNGQuestionImage1,
@@ -42,4 +47,14 @@ export const useRelayQuestionListQuery = (meetingId: number) => {
   });
 
   return { questions: data.pages.flatMap((page) => page.content), ...rest };
+};
+
+export const useRelayQuestionListQueryPrefetch = ({ queryClient, meetingId }: RelayQuestionListPrefetch) => {
+  const prefetch = queryClient.prefetchInfiniteQuery({
+    queryKey: [RELAY_QUESTION_LIST_QUERY_KEY],
+    queryFn: ({ pageParam }) => _getRelayQuestionList(meetingId, pageParam),
+    initialPageParam: { page: 0, size: SIZE_PER_PAGE },
+  });
+
+  return prefetch;
 };

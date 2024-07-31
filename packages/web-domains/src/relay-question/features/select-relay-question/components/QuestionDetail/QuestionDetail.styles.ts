@@ -16,13 +16,28 @@ export const answerExampleTextCss = css({
   margin: `${size['5xs']} 0 ${size['6xs']}`,
 });
 
-export const answerWrapperCss = css({
+export const answerContentCss = css({
+  width: '100%',
+  height: '104px',
+  overflow: 'auto',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
   gap: `${size['6xs']}`,
+});
+
+export const answerWrapperCss = css({
   width: '100%',
+  height: '104px',
+  position: 'relative',
+});
+
+export const answerBlurCss = css({
+  width: '100%',
+  height: '104px',
+  position: 'absolute',
+  backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%)', // 그라데이션 적용
 });
 
 export const answerListCss = css({
