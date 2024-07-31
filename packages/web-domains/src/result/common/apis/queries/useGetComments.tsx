@@ -1,6 +1,7 @@
-import { axiosInstance } from '@/common/apis/base.api';
-import { UseQueryOptionsWithAxios } from '@sambad/types-utils/tanstack';
-import { QueryClient, useQuery } from '@tanstack/react-query';
+import { QueryClient, useQuery, UseQueryOptions } from '@tanstack/react-query';
+
+import { Http } from '@/common/apis/base.api';
+
 import { MeetingCommentListResponse } from '../schema/MeetingCommentListResponse';
 
 interface Params {
@@ -9,19 +10,19 @@ interface Params {
 }
 
 interface QueryProps extends Params {
-  options?: UseQueryOptionsWithAxios<MeetingCommentListResponse>;
+  options?: UseQueryOptions<MeetingCommentListResponse>;
 }
 
 export const COMMENTS_QUERY_KEY = 'COMMENTS_QUERY_KEY';
 
 const queryFn = ({ questionId, meetingId }: Params) =>
-  axiosInstance(`/v1/meetings/${meetingId}/questions/${questionId}/comments`);
+  Http.GET<MeetingCommentListResponse>(`/v1/meetings/${meetingId}/questions/${questionId}/comments`);
 
 export const useGetComments = (props: QueryProps) => {
   const { options, ...params } = props;
 
-  return useQuery({
-    queryKey: [COMMENTS_QUERY_KEY],
+  return useQuery<MeetingCommentListResponse>({
+    queryKey: [COMMENTS_QUERY_KEY, params],
     queryFn: () => queryFn(params),
     ...options,
   });
@@ -35,7 +36,7 @@ export const getCommentsPrefetch = (props: PrefetchProps) => {
   const { queryClient, ...params } = props;
 
   const prefetch = queryClient.prefetchQuery({
-    queryKey: [COMMENTS_QUERY_KEY],
+    queryKey: [COMMENTS_QUERY_KEY, params],
     queryFn: () => queryFn(params),
   });
 
