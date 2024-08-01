@@ -1,3 +1,3 @@
-import { AnswerOpeningScreen } from '@sambad/web-domains/answer';
+import { AnswerQuestionScreen } from '@/answer';
 
-export default AnswerOpeningScreen;
+export default AnswerQuestionScreen;

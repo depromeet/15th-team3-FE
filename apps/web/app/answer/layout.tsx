@@ -1,3 +1,3 @@
-import { AnswerOpeningLayout } from '@sambad/web-domains/answer';
+import { AnswerQuestionLayout } from '@/answer';
 
-export default AnswerOpeningLayout;
+export default AnswerQuestionLayout;
