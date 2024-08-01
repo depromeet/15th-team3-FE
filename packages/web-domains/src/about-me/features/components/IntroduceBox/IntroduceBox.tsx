@@ -3,7 +3,7 @@ import { Txt } from '@sambad/sds/components';
 import { boxCss } from './styles';
 
 interface IntroduceBoxProps {
-  content: string;
+  content?: string;
 }
 
 export const IntroduceBox = (props: IntroduceBoxProps) => {

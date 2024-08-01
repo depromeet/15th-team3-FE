@@ -1,23 +1,28 @@
-'use client';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
-import { colors, size } from '@sambad/sds/theme';
+import { getMemberMePrefetch } from '../common/apis/queries/useGetMemberMe';
+import { ScreenContainer } from '../features/containers/ScreenContainer';
 
-import { ProfileContainer } from '../features/containers/ProfileContainer';
-import { SegmentedControlContainer } from '../features/containers/SegmentedControlContainer';
+export const AboutMeScreen = async () => {
+  const { queryClient } = await getServerSideProps();
 
-export const AboutMeScreen = () => {
   return (
-    <div style={layoutStyle}>
-      <ProfileContainer style={{ marginBottom: size['5xs'] }} />
-      <SegmentedControlContainer style={sectionStyle} />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <ScreenContainer />
+    </HydrationBoundary>
   );
 };
 
-const layoutStyle = {
-  backgroundColor: colors.grey200,
-};
+export const getServerSideProps = async () => {
+  const queryClient = new QueryClient();
+  // NOTE: 현재 스팩에서는 1개의 그룹에 속할 수 있으므로 모든 유저의 meetingId는 1입니다.
+  const MEETING_ID = 1;
 
-const sectionStyle = {
-  marginTop: size['5xs'],
+  try {
+    await getMemberMePrefetch({ meetingId: MEETING_ID, queryClient });
+  } catch (error: unknown) {
+    console.error(error);
+  }
+
+  return { queryClient };
 };
