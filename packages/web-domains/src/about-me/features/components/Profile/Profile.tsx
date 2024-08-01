@@ -1,9 +1,10 @@
 'use client';
 
-import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
-import { badgeContainerCss, nameCss, rootCss } from './styles';
-import Image from 'next/image';
 import { Badge, Txt } from '@sambad/sds/components';
+import { borderRadiusVariants, colors } from '@sambad/sds/theme';
+import Image from 'next/image';
+
+import { badgeContainerCss, nameCss, rootCss } from './styles';
 
 interface ProfileProps {
   imageUrl: string;
