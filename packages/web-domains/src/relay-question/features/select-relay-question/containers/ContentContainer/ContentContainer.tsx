@@ -58,7 +58,7 @@ const NextQuestionerList = () => {
           누구로 할까요?
         </Txt>
         <div>
-          <Txt typography="subtitle1" fontWeight="semibold">
+          <Txt color={colors.grey600} typography="subTitle2" fontWeight="semibold">
             {NAME}
           </Txt>
           <Txt color={colors.grey600} typography="body3" fontWeight="regular">
