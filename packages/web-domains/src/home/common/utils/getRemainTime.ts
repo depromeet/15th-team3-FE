@@ -6,5 +6,5 @@ export const getRemainTime = (time: number | string | Date) => {
 
   const remainTime = expiredTime - currentTime;
 
-  return remainTime;
+  return Date.now() + remainTime;
 };

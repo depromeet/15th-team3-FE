@@ -3,14 +3,14 @@ import { colors, borderRadiusVariants } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 import { AngleRightIcon } from '../../../../../../../core/sds/src/components/Icon/assets/AngleRight';
-import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
+import { TopPreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 
 interface HomePreviousQuestionItemProps {
-  question: PreviousQuestionType;
+  question: TopPreviousQuestionType;
 }
 
 export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemProps) => {
-  const { mostResponse, title } = question;
+  const { content, engagementRate, title } = question;
 
   return (
     <li
@@ -29,7 +29,7 @@ export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemP
       >
         <div css={{ flex: '1' }}>
           <Txt as="p" typography="heading3" color={colors.tertiary500} css={{ marginBottom: '4px' }}>
-            {mostResponse}
+            {content}
             <Txt typography="title2">이/가 가장 많았어요.</Txt>
           </Txt>
           <Txt as="p" typography="body3" color={colors.grey600} css={{ marginBottom: '8px' }}>
@@ -49,7 +49,7 @@ export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemP
               lineHeight: '16px',
             }}
           >
-            참여율 70%
+            참여율 {engagementRate}%
           </Txt>
         </div>
         <div css={{ marginLeft: '20px' }}>

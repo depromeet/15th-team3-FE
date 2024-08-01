@@ -4,7 +4,7 @@ import { isAxiosError } from 'axios';
 
 import { Http } from '@/common/apis/base.api';
 
-import { PreviousQuestionListType } from '../schema/useGetPreviousQuestionListQuery.type';
+import { PreviousQuestionListResponseType } from '../schema/useGetPreviousQuestionListQuery.type';
 
 type Params = { meetingId: string; page: number };
 interface Args<T, K = T> {
@@ -14,10 +14,10 @@ interface Args<T, K = T> {
 
 export const PREVIOUS_QUESTION_QUERY_KEY = 'PREVIOUS_QUESTION_QUERY_KEY';
 
-export const useGetPreviousQuestionList = <K = PreviousQuestionListType | undefined>({
+export const useGetPreviousQuestionList = <T = PreviousQuestionListResponseType | undefined>({
   params,
   options,
-}: Args<PreviousQuestionListType | undefined, K>) => {
+}: Args<PreviousQuestionListResponseType | undefined, T>) => {
   return useQuery({
     queryKey: [PREVIOUS_QUESTION_QUERY_KEY, params.meetingId, params.page],
     queryFn: async () => {
@@ -52,9 +52,11 @@ export const getPreviousQuestionListPrefetch = (params: Params, queryClient: Que
   return prefetch;
 };
 
-export async function getPreviousQuestionList(params: Params): Promise<PreviousQuestionListType | undefined> {
+export async function getPreviousQuestionList(params: Params): Promise<PreviousQuestionListResponseType | undefined> {
   const { meetingId, page } = params;
-  const data = await Http.GET<PreviousQuestionListType>(`/v1/meetings/${meetingId}/questions/inactive?page=${page}`);
+  const data = await Http.GET<PreviousQuestionListResponseType>(
+    `/v1/meetings/${meetingId}/questions/inactive?page=${page}`,
+  );
 
   return data;
   // return {

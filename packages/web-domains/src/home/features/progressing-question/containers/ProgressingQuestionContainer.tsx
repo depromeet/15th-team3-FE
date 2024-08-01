@@ -22,7 +22,10 @@ export const ProgressingQuestionContainer = () => {
             progressingQuestion.isQuestionRegistered ? (
               <ActiveQuestion question={progressingQuestion} />
             ) : (
-              <InActiveQuestion targetMember={progressingQuestion.targetMember} time={dayjs().valueOf()} />
+              <InActiveQuestion
+                targetMember={progressingQuestion.targetMember}
+                time={dayjs(progressingQuestion.startTime).valueOf()}
+              />
             )
           }
         />

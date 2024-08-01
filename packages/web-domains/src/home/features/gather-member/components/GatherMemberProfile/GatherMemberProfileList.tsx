@@ -9,8 +9,6 @@ interface GatherMemberProfileListProps {
 }
 
 export const GatherMemberProfileList = ({ memberList }: GatherMemberProfileListProps) => {
-  console.log(memberList);
-
   return (
     <ul
       css={{

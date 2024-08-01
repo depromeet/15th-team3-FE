@@ -1,6 +1,5 @@
 import { Txt } from '@sambad/sds/components';
 
-import { ProfileImage } from '../../../../../common/asset/profile';
 import { MemberType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
 import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
@@ -9,7 +8,7 @@ interface GatherMemberProfileProps {
 }
 
 export const GatherMemberProfile = ({ member }: GatherMemberProfileProps) => {
-  const { name, role } = member;
+  const { name, role, profileImageFileUrl } = member;
   const isOwner = role === 'OWNER';
 
   return (
@@ -23,7 +22,7 @@ export const GatherMemberProfile = ({ member }: GatherMemberProfileProps) => {
       }}
     >
       <div css={{ alignItems: 'center', display: 'flex' }}>
-        <Avatar Icon={ProfileImage} size={40} />
+        <Avatar imageUrl={profileImageFileUrl} width={40} height={40} css={{ borderRadius: '50%' }} />
         <Txt typography="title2" css={{ marginLeft: '12px' }}>
           {name}
         </Txt>

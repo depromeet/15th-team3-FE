@@ -16,5 +16,5 @@ export const Avatar = ({ imageUrl, alt = 'profile-image', size, Icon, ...rest }:
     );
   }
 
-  return <Image src={imageUrl} alt={alt} fill {...rest} />;
+  return <Image src={imageUrl} alt={alt} {...rest} />;
 };

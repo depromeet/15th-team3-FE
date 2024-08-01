@@ -5,7 +5,7 @@ import { isAxiosError } from 'axios';
 import { Http } from '../../../../common/apis/base.api';
 import { GatherMemberListType } from '../schema/useGetGatherMemberListQuery.type';
 
-type Params = { meetingId: string };
+type Params = { meetingId: number };
 interface Args {
   params: Params;
   options?: UseQueryOptionsExcludedQueryKey<GatherMemberListType | undefined>;

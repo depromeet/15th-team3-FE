@@ -10,6 +10,8 @@ interface PreviousQuestionListProps {
 
 export const PreviousQuestionList = forwardRef<HTMLDivElement, PreviousQuestionListProps>(
   ({ questionList }, targetRef) => {
+    console.log(targetRef);
+
     return (
       <>
         <ul>

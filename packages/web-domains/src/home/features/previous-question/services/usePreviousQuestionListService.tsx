@@ -4,14 +4,16 @@ import { useEffect, useState } from 'react';
 
 import { useIntersect } from '@/common/hooks/useIntersect';
 import { useGetPreviousQuestionList } from '@/home/common/apis/queries/useGetPreviousQuestionList';
+import { PreviousQuestionType } from '@/home/common/apis/schema/useGetPreviousQuestionListQuery.type';
 
 export const usePreviousQuestionListService = () => {
   // const { meetingId } = useParams<{ meetingId: string }>();
+  const [previousQuestionList, setPreviousQuestionList] = useState<Array<PreviousQuestionType>>([]);
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
 
-  const { data: previousQuestionList, isFetching } = useGetPreviousQuestionList({
-    params: { meetingId: '1', page: 0 },
+  const { data, isFetching } = useGetPreviousQuestionList({
+    params: { meetingId: '1', page },
     options: {
       placeholderData: keepPreviousData,
       enabled: hasNextPage,
@@ -31,10 +33,15 @@ export const usePreviousQuestionListService = () => {
   };
 
   useEffect(() => {
-    if (previousQuestionList?.pageable.isEnd) {
+    if (data?.pageable.isEnd) {
       setHasNextPage(false);
     }
-  }, [previousQuestionList]);
+
+    if (data?.contents.length) {
+      setPreviousQuestionList([...previousQuestionList, ...data.contents]);
+      console.log(previousQuestionList);
+    }
+  }, [data]);
 
   return { previousQuestionList, isFetching, targetRef, fetchNextPage };
 };

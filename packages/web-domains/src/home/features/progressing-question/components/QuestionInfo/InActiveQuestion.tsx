@@ -15,7 +15,7 @@ interface InActiveQuestionProps {
 export const InActiveQuestion = ({ time, targetMember }: InActiveQuestionProps) => {
   const { name } = targetMember;
 
-  const remainTime = getRemainTime(time);
+  const timer = getRemainTime(time);
 
   return (
     <div css={{ backgroundColor: colors.white, padding: '32px 20px', borderRadius: '16px' }}>
@@ -24,7 +24,7 @@ export const InActiveQuestion = ({ time, targetMember }: InActiveQuestionProps) 
         <Txt as="p" typography="title3" color={colors.grey600} css={{ marginTop: '12px' }}>
           {name}님의 질문을 기다리고 있어요
         </Txt>
-        <Countdown date={remainTime} renderer={CountdownRender} />
+        <Countdown date={timer} renderer={CountdownRender} />
       </div>
     </div>
   );

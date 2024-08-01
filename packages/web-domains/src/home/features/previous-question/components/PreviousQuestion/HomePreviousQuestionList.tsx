@@ -1,11 +1,11 @@
 import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 
-import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
+import { TopPreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 
 import { HomePreviousQuestionItem } from './HomePreviousQuestionItem';
 
 interface HomePreviousQuestionListProps {
-  questionList: [PreviousQuestionType, PreviousQuestionType];
+  questionList: [TopPreviousQuestionType, TopPreviousQuestionType];
 }
 
 export const HomePreviousQuestionList = ({ questionList }: HomePreviousQuestionListProps) => {

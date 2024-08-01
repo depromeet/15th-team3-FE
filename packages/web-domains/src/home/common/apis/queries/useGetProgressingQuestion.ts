@@ -5,7 +5,7 @@ import { isAxiosError } from 'axios';
 import { Http } from '@/common/apis/base.api';
 import { ProgressingQuestionType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 
-type Params = { meetingId: string };
+type Params = { meetingId: number };
 
 interface Args {
   params: Params;

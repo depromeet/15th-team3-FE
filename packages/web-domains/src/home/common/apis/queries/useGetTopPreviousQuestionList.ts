@@ -4,13 +4,13 @@ import { isAxiosError } from 'axios';
 
 import { Http } from '@/common/apis/base.api';
 
-import { PreviousQuestionType } from '../schema/useGetPreviousQuestionListQuery.type';
+import { TopPreviousQuestionResponseType } from '../schema/useGetPreviousQuestionListQuery.type';
 
-type Params = { meetingId: string };
+type Params = { meetingId: number };
 
 interface Args {
   params: Params;
-  options?: UseQueryOptionsExcludedQueryKey<[PreviousQuestionType, PreviousQuestionType] | undefined>;
+  options?: UseQueryOptionsExcludedQueryKey<TopPreviousQuestionResponseType | undefined>;
 }
 
 export const TOP_PREVIOUS_QUESTION_QUERY_KEY = 'TOP_PREVIOUS_QUESTION_QUERY_KEY';
@@ -50,13 +50,9 @@ export const getTopPreviousQuestionPrefetch = (params: Params, queryClient: Quer
   return prefetch;
 };
 
-export async function getTopPreviousQuestionList(
-  params: Params,
-): Promise<[PreviousQuestionType, PreviousQuestionType]> {
+export async function getTopPreviousQuestionList(params: Params): Promise<TopPreviousQuestionResponseType> {
   const { meetingId } = params;
-  const data = await Http.GET<[PreviousQuestionType, PreviousQuestionType]>(
-    `/v1/meetings/${meetingId}/questions/inactive/top`,
-  );
+  const data = await Http.GET<TopPreviousQuestionResponseType>(`/v1/meetings/${meetingId}/questions/inactive/top`);
 
   return data;
 }

@@ -5,14 +5,12 @@ export type PreviousQuestionType = {
   questionImageFileUrl: string | null;
   title: string;
   questionNumber: number;
-  totalMeetingMemberCount: number;
   responseCount: number;
-  isAnswered: boolean;
+  startDate: number;
   targetMember: MemberType;
-  mostResponse: string;
 };
 
-export type PreviousQuestionListType = {
+export type PreviousQuestionListResponseType = {
   totalMeetingMemberCount: number;
   pageable: {
     page: number;
@@ -20,5 +18,18 @@ export type PreviousQuestionListType = {
     totalPages: number;
     isEnd: boolean;
   };
-  content: PreviousQuestionType[];
+  contents: PreviousQuestionType[];
 };
+
+export type TopPreviousQuestionType = {
+  meetingQuestionId: number;
+  title: string;
+  content: string;
+  engagementRate: number;
+};
+
+export type TopPreviousQuestionResponseType =
+  | {
+      contents: [TopPreviousQuestionType, TopPreviousQuestionType];
+    }
+  | undefined;

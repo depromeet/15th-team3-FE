@@ -1,10 +1,8 @@
 import { Txt } from '@sambad/sds/components';
-import { colors } from '@sambad/sds/theme';
+import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
-import { ProfileImage } from '../../../../../common/asset/profile';
-import { QuestionImage } from '../../../../../common/asset/question';
 import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
@@ -13,9 +11,9 @@ interface PreviousQuestionItemProps {
 }
 
 export const PreviousQuestionItem = ({ question }: PreviousQuestionItemProps) => {
-  const { title, questionNumber, targetMember } = question;
+  const { title, questionNumber, targetMember, questionImageFileUrl, startDate } = question;
 
-  const questionTime = dayjs().format('YYYY-MM-DD');
+  const questionTime = dayjs(startDate).format('YYYY-MM-DD');
 
   return (
     <li
@@ -33,11 +31,15 @@ export const PreviousQuestionItem = ({ question }: PreviousQuestionItemProps) =>
             alignItems: 'center',
             justifyContent: 'center',
             marginRight: '10px',
-
             flexShrink: 0,
           }}
         >
-          <Avatar Icon={QuestionImage} size={64} />
+          <Avatar
+            imageUrl={questionImageFileUrl ?? ''}
+            width={64}
+            height={64}
+            css={{ borderRadius: borderRadiusVariants.medium }}
+          />
         </div>
         <div
           css={{
@@ -97,7 +99,12 @@ export const PreviousQuestionItem = ({ question }: PreviousQuestionItemProps) =>
             >
               {questionTime}
             </Txt>
-            <Avatar Icon={ProfileImage} size={16} css={{ marginRight: '4px' }} />
+            <Avatar
+              imageUrl={targetMember.profileImageFileUrl ?? ''}
+              width={16}
+              height={16}
+              css={{ marginRight: '4px', borderRadius: '50%' }}
+            />
             <Txt typography="body4" color={colors.grey700} css={{ textWrap: 'nowrap', display: 'inline-flex' }}>
               {targetMember.name}
             </Txt>

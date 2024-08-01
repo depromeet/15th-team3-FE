@@ -11,7 +11,7 @@ import { useTopPreviousQuestionListService } from '../services/useTopPreviousQue
 export const TopPreviousQuestionListContainer = () => {
   const { previousQuestionList } = useTopPreviousQuestionListService();
 
-  if (!previousQuestionList || !previousQuestionList.length) {
+  if (!previousQuestionList || !previousQuestionList.contents.length) {
     return null;
   }
 
@@ -32,7 +32,7 @@ export const TopPreviousQuestionListContainer = () => {
           </span>
         </Link>
       </Txt>
-      <HomePreviousQuestionList questionList={previousQuestionList} />
+      <HomePreviousQuestionList questionList={previousQuestionList.contents} />
     </section>
   );
 };
