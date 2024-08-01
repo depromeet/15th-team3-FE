@@ -6,8 +6,8 @@ import { ProgressIndicatorContainer } from '../features/select-relay-question/co
 import { RandomPickContainer } from '../features/select-relay-question/containers/RandomPickContainer/RandomPickContainer';
 import { QueryStringProvider } from '../features/select-relay-question/contexts/QueryStringContext';
 import { useRelayQuestionListQueryPrefetch } from '../features/select-relay-question/hooks/queries/useRelayQuestionListQuery';
-
-const MEETING_ID = 1;
+import { MY_MEETINGS_QUERY_KEY } from '../features/start-relay-question/hooks/queries/useMyMeetingsQuery';
+import { MyMeetingsResponse } from '../features/start-relay-question/types';
 
 export const SelectRelayQuestionScreen = async () => {
   const queryClient = await getServerSideProps();
@@ -29,9 +29,10 @@ const getServerSideProps = async () => {
   const queryClient = new QueryClient();
 
   try {
-    const gatherMemberPrefetch = useRelayQuestionListQueryPrefetch({ queryClient, meetingId: MEETING_ID });
+    const meetingId = queryClient.getQueryData<MyMeetingsResponse>([MY_MEETINGS_QUERY_KEY])?.meetingIds[0];
+    const relayQuestionListPrefetch = useRelayQuestionListQueryPrefetch({ queryClient, meetingId: meetingId || -1 });
 
-    await Promise.all([gatherMemberPrefetch]);
+    await Promise.all([relayQuestionListPrefetch]);
   } catch (error: unknown) {
     console.log(error);
   }

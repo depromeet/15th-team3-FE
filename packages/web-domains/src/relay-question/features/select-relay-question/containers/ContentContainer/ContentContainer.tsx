@@ -5,14 +5,13 @@ import { colors } from '@sambad/sds/theme';
 
 import PNGQuestionImage1 from '../../../../assets/png/question-image-1.png';
 import { FIRST_STEP } from '../../../../constants';
+import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { Question } from '../../components/Question/Question';
 import { Questioner } from '../../components/Questioner/Questioner';
 import { useQueryStringContext } from '../../contexts/QueryStringContext';
 import { useRelayQuestionListQuery } from '../../hooks/queries/useRelayQuestionListQuery';
 
 import { questionListCss, questionTextBoxCss } from './ContentContainer.styles';
-
-const MEETING_ID = 1;
 
 export const ContentContainer = () => {
   const { currentStep } = useQueryStringContext();
@@ -23,7 +22,8 @@ export const ContentContainer = () => {
 };
 
 const QuestionList = () => {
-  const { questions } = useRelayQuestionListQuery(MEETING_ID);
+  const { myMeetings } = useMyMeetingsQuery();
+  const { questions } = useRelayQuestionListQuery(myMeetings.meetingIds[0] || -1);
 
   return (
     <section>

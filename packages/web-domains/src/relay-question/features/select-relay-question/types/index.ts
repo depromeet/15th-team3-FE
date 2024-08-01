@@ -11,7 +11,7 @@ export interface RelayQuestionContent {
 }
 
 export interface RelayQuestionListResponse {
-  content: RelayQuestionContent[];
+  contents: RelayQuestionContent[];
   pageable: {
     page: number;
     size: number;
