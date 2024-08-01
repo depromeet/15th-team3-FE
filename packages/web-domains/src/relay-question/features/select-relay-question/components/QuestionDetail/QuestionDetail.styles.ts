@@ -10,6 +10,8 @@ export const wrapperCss = css({
 
 export const imageWrapperCss = css({
   margin: `${size['2xs']} 0 ${size['6xs']}`,
+  borderRadius: borderRadiusVariants.medium,
+  overflow: 'hidden',
 });
 
 export const answerExampleTextCss = css({
