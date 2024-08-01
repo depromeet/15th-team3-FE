@@ -1,5 +1,5 @@
 {
-  "extends": "@sambad/typescript-config/react-library.json",
+  "extends": "@sambad/typescript-config/nextjs.json",
   "compilerOptions": {
     "outDir": "dist",
     "baseUrl": ".",
