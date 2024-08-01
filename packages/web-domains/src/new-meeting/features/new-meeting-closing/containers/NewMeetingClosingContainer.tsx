@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import ClosingBackground from '../../../common/assets/images/closing-background.png';
 import Character from '../../../common/assets/images/meeting-character.png';
-import { InviteCodeCopyButton } from '../components/Button/InviteCodeCopyButton';
+import { InviteCodeShareButton } from '../components/Button/InviteCodeShareButton';
 
 const NewMeetingClosingContainer = () => {
   const meetingName = '삼밧드의 모험';
@@ -72,7 +72,7 @@ const NewMeetingClosingContainer = () => {
         <Txt typography="title2" color={colors.grey600}>
           초대 코드 복사하기
         </Txt>
-        <InviteCodeCopyButton />
+        <InviteCodeShareButton />
       </div>
 
       <div
