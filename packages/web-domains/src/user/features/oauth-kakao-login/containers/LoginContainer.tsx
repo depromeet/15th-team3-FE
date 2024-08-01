@@ -6,7 +6,6 @@ import Image from 'next/image';
 
 import Logo from '../../../common/assets/images/logo.png';
 import { BackGround } from '../components/BackgroundImage/BackGround';
-import { KakaoLoginButton } from '../components/KakaoLoginButton/KakaoLoginButton';
 
 export const LoginContainer = () => {
   return (
@@ -34,18 +33,6 @@ export const LoginContainer = () => {
         </Txt>
       </div>
       <BackGround />
-      <div
-        css={{
-          position: 'fixed',
-          bottom: '40px',
-          margin: '0 auto',
-          width: '100%',
-          maxWidth: '600px',
-          padding: '0 20px',
-        }}
-      >
-        <KakaoLoginButton />
-      </div>
     </section>
   );
 };
