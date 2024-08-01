@@ -19,7 +19,6 @@ export const badgeContainerCss = css({
   display: 'flex',
   justifyContent: 'center',
   flexWrap: 'wrap',
-  maxWidth: '220px',
   // NOTE: 오른쪽 끝에 오는 아이템의 marginRight에 대해 역마진으로 여백 줄임
   marginRight: '-8px', // size['6xs']
   // NOTE: 마지막 줄에 오는 아이템의 marginBottom에 대해 역마진으로 여백 줄임
