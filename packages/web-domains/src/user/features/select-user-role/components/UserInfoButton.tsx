@@ -11,6 +11,8 @@ interface FloatingButtonProps {
 export const UserInfoButton = (props: FloatingButtonProps) => {
   const { selectedValue } = props;
 
+  const href = selectedValue === 'owner' ? `/user/${selectedValue}?step=${STEPS.BASIC_INFO}` : 'meeting/participate';
+
   return (
     <div
       css={{
@@ -22,7 +24,7 @@ export const UserInfoButton = (props: FloatingButtonProps) => {
         padding: '0 20px',
       }}
     >
-      <Link href={`/user/${selectedValue}?step=${STEPS.BASIC_INFO}`}>
+      <Link href={href}>
         <Button size="large" disabled={!selectedValue}>
           다음
         </Button>
