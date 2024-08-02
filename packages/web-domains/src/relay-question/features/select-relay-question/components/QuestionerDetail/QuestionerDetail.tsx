@@ -1,11 +1,12 @@
 import { css } from '@emotion/react';
 import { Button, Txt } from '@sambad/sds/components';
-import { colors, size } from '@sambad/sds/theme';
+import { size } from '@sambad/sds/theme';
 import Image from 'next/image';
 
 import { RelayRePickQuestioner } from '../../../../assets/RelayRePickQuestioner';
+import { RePick } from '../RePick/RePick';
 
-import { buttonWrapperCss, imgWrapperCss, nameCss, rePickTextCss, wrapperCss } from './Questioner.styles';
+import { buttonWrapperCss, imgWrapperCss, nameCss, wrapperCss } from './Questioner.styles';
 
 interface QuestionerDetailProps {
   imageUrl: string;
@@ -13,9 +14,17 @@ interface QuestionerDetailProps {
   isRandom?: boolean;
   onClose: () => void;
   onConfirm: () => void;
+  onRefetch?: () => void;
 }
 
-export const QuestionerDetail = ({ imageUrl, name, isRandom, onClose, onConfirm }: QuestionerDetailProps) => {
+export const QuestionerDetail = ({
+  imageUrl,
+  name,
+  isRandom,
+  onClose,
+  onConfirm,
+  onRefetch,
+}: QuestionerDetailProps) => {
   return (
     <div css={wrapperCss}>
       <div css={imgWrapperCss}>
@@ -31,10 +40,10 @@ export const QuestionerDetail = ({ imageUrl, name, isRandom, onClose, onConfirm 
         <Button onClick={onConfirm}>질문인 선택</Button>
       </div>
       {isRandom && (
-        <Txt color={colors.grey600} typography="title4" fontWeight="medium" css={rePickTextCss}>
+        <RePick onClick={onRefetch}>
           <RelayRePickQuestioner css={css({ marginRight: size['7xs'] })} />
           랜덤 선택 다시하기
-        </Txt>
+        </RePick>
       )}
     </div>
   );

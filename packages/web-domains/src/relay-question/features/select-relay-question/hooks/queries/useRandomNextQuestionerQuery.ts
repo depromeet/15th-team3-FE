@@ -8,7 +8,7 @@ interface Params {
   excludeMemberIds: number[];
 }
 
-const RANDOM_NEXT_QUESTION_QUERY_KEY = 'RANDOM_NEXT_QUESTION_QUERY_KEY';
+export const RANDOM_NEXT_QUESTION_QUERY_KEY = 'RANDOM_NEXT_QUESTION_QUERY_KEY';
 
 const _getRandomNextQuestioner = async ({ meetingId, excludeMemberIds }: Params) =>
   await Http.GET<NextRelayQuestionerResponse>(
@@ -16,11 +16,11 @@ const _getRandomNextQuestioner = async ({ meetingId, excludeMemberIds }: Params)
   );
 
 export const useRandomNextQuestionerQuery = ({ meetingId, excludeMemberIds }: Params) => {
-  const { data, ...rest } = useQuery({
+  const { data, refetch, ...rest } = useQuery({
     queryKey: [RANDOM_NEXT_QUESTION_QUERY_KEY],
     queryFn: () => _getRandomNextQuestioner({ meetingId, excludeMemberIds }),
     enabled: false,
   });
 
-  return { questioner: data, ...rest };
+  return { questioner: data, refetchQuestioner: refetch, ...rest };
 };

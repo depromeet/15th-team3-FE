@@ -18,7 +18,4 @@ export const buttonWrapperCss = css({
   display: 'flex',
   alignItems: 'center',
   gap: size['5xs'],
-  marginBottom: size['6xs'],
 });
-
-export const rePickTextCss = css({ display: 'flex', alignItems: 'center', marginTop: size['8xs'], cursor: 'pointer' });

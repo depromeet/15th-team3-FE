@@ -1,8 +1,11 @@
+import { css } from '@emotion/react';
 import { Button, Txt } from '@sambad/sds/components';
-import { colors } from '@sambad/sds/theme';
+import { colors, size } from '@sambad/sds/theme';
 import Image from 'next/image';
 
+import { RelayRePickQuestioner } from '../../../../assets/RelayRePickQuestioner';
 import { Answer } from '../../types';
+import { RePick } from '../RePick/RePick';
 
 import {
   answerBlurCss,
@@ -19,11 +22,21 @@ interface QuestionDetailProps {
   imageUrl: string;
   title: string;
   answers: Answer[];
+  isRandom?: boolean;
   onClose: () => void;
   onConfirm: () => void;
+  onRefetch: () => void;
 }
 
-export const QuestionDetail = ({ imageUrl, title, answers, onClose, onConfirm }: QuestionDetailProps) => {
+export const QuestionDetail = ({
+  imageUrl,
+  title,
+  answers,
+  isRandom,
+  onClose,
+  onConfirm,
+  onRefetch,
+}: QuestionDetailProps) => {
   return (
     <div css={wrapperCss}>
       <Txt typography="heading3" fontWeight="bold">
@@ -56,6 +69,12 @@ export const QuestionDetail = ({ imageUrl, title, answers, onClose, onConfirm }:
         </Button>
         <Button onClick={onConfirm}>질문 선택</Button>
       </div>
+      {isRandom && (
+        <RePick onClick={onRefetch}>
+          <RelayRePickQuestioner css={css({ marginRight: size['7xs'] })} />
+          랜덤 선택 다시하기
+        </RePick>
+      )}
     </div>
   );
 };
