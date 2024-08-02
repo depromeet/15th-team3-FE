@@ -15,4 +15,6 @@ export const MBTI_TYPE = [
   { label: '😎 ESFJ', value: 'ESFJ' },
   { label: '😎 ENFJ', value: 'ENFJ' },
   { label: '😎 ENTJ', value: 'ENTJ' },
-];
+] as const;
+
+export type MbtiType = (typeof MBTI_TYPE)[number]['value'];
