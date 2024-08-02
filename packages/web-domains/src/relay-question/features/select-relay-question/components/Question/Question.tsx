@@ -3,7 +3,6 @@ import { colors } from '@sambad/sds/theme';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { useQueryString } from '../../../../hooks/useQueryString';
 import { useRelayQuestionQuery } from '../../hooks/queries/useRelayQuestionQuery';
 import { useModal } from '../../hooks/useModal';
 import { QuestionDetail } from '../QuestionDetail/QuestionDetail';
@@ -22,7 +21,6 @@ export const Question = ({ id, imageUrl, title, usedCount }: QuestionProps) => {
   const { question } = useRelayQuestionQuery(id);
 
   const router = useRouter();
-  const { updateQueryString } = useQueryString();
 
   const handleOpenModal = async () => {
     const isConfirm = await openModal({
@@ -31,7 +29,7 @@ export const Question = ({ id, imageUrl, title, usedCount }: QuestionProps) => {
     });
 
     if (isConfirm) {
-      router.push(`/select-relay-question?${updateQueryString({ key: 'current-step', value: '2' })}`);
+      router.push(`/select-relay-question?current-step=2&question-id=${id}`);
     }
   };
 

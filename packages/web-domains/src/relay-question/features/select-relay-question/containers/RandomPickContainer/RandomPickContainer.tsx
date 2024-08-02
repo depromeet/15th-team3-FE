@@ -9,7 +9,6 @@ import { useState } from 'react';
 import { RelayRandomButtonDocumentIcon } from '../../../../assets/RelayRandomButtonIcon';
 import { Modal } from '../../../../common/Modal';
 import { FIRST_STEP } from '../../../../constants';
-import { useQueryString } from '../../../../hooks/useQueryString';
 import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { QuestionDetail } from '../../components/QuestionDetail/QuestionDetail';
 import { QuestionerDetail } from '../../components/QuestionerDetail/QuestionerDetail';
@@ -33,7 +32,6 @@ const QuestionRandomPick = () => {
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { updateQueryString } = useQueryString();
   const { isShowToolTip } = useToolTipShow({ showTime: 5000 });
   const { question, refetch: refetchQuestion } = useRandomQuestionQuery([]);
 
@@ -47,7 +45,7 @@ const QuestionRandomPick = () => {
   };
 
   const handleConfirmModal = () => {
-    router.push(`/select-relay-question?${updateQueryString({ key: 'current-step', value: '2' })}`);
+    router.push(`/select-relay-question?current-step=2&question-id=${question?.questionId}`);
 
     handleCloseModal();
   };

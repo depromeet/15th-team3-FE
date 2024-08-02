@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 
 import { RelayStartBackground } from '../../../../assets/RelayStartBackground';
 import { Z_INDEX } from '../../../../constants';
-import { useQueryString } from '../../../../hooks/useQueryString';
 import { Profile } from '../../components/Profile/Profile';
 import { useMyInfoQuery } from '../../hooks/queries/useMyInfoQuery';
 
@@ -13,7 +12,6 @@ import { startQuestionBackgroundCss, startQuestionContainerCss } from './StartQu
 
 export const StartQuestionContainer = () => {
   const router = useRouter();
-  const { addQueryString } = useQueryString();
   const { myInfo } = useMyInfoQuery();
 
   return (
@@ -23,7 +21,7 @@ export const StartQuestionContainer = () => {
       <section css={startQuestionBackgroundCss}>
         <Button
           style={{ zIndex: Z_INDEX.relayStartButton }}
-          onClick={() => router.push(`/select-relay-question?${addQueryString({ key: 'current-step', value: '1' })}`)}
+          onClick={() => router.push('/select-relay-question?current-step=1')}
         >
           시작하기
         </Button>
