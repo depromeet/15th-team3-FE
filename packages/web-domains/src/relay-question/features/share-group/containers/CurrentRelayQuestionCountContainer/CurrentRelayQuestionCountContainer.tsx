@@ -7,7 +7,9 @@ import { useRouter } from 'next/navigation';
 import { ShareGroupBackground } from '../../../../assets/ShareGroupBackground';
 import { ShareGroupCheckIcon } from '../../../../assets/ShareGroupCheckIcon';
 import { ShareGroupShareIcon } from '../../../../assets/ShareGroupShareIcon';
+import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { CurrentQuestionInfo } from '../../components/CurrentQuestionInfo/CurrentQuestionInfo';
+import { useActiveQuestionQuery } from '../../hooks/useActiveQuestionQuery';
 
 import {
   backgroundWrapperCss,
@@ -17,8 +19,15 @@ import {
   wrapperCss,
 } from './CurrentRelayQuestionCountContainer.styles';
 
+const TEMP_QUESTION_COUNT = 10;
+const TEMP_NAME = '삼봤드';
+const TEMP_IMAGE_URL = '';
+
 export const CurrentRelayQuestionCountContainer = () => {
   const router = useRouter();
+
+  const { myMeetings } = useMyMeetingsQuery();
+  const { activeQuestion } = useActiveQuestionQuery(myMeetings.meetingIds[0] || -1);
 
   const goToShareNextQuestioner = () => {
     router.push('/share-next-questioner');
@@ -45,7 +54,13 @@ export const CurrentRelayQuestionCountContainer = () => {
 
         <div css={backgroundWrapperCss}>
           <ShareGroupBackground css={{ width: '100%' }} />
-          <CurrentQuestionInfo questionCount={0} questioner={{ name: '장종오', imageUrl: '' }} />
+          <CurrentQuestionInfo
+            questionCount={activeQuestion.questionNumber || TEMP_QUESTION_COUNT}
+            questioner={{
+              name: activeQuestion.targetMember?.name || TEMP_NAME,
+              imageUrl: activeQuestion.targetMember?.profileImageFileUrl || TEMP_IMAGE_URL,
+            }}
+          />
         </div>
       </div>
 

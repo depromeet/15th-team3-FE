@@ -18,14 +18,20 @@ interface QuestionProps {
 
 export const Question = ({ id, imageUrl, title, usedCount }: QuestionProps) => {
   const openModal = useModal();
-  const { question } = useRelayQuestionQuery(id);
+  const { refetch } = useRelayQuestionQuery(1);
 
   const router = useRouter();
 
   const handleOpenModal = async () => {
+    const question = (await refetch()).data;
+
+    if (!question) return <div>loading...</div>;
+
+    const { answers } = question;
+
     const isConfirm = await openModal({
       component: QuestionDetail,
-      componentProps: { imageUrl, title, answers: question.answers },
+      componentProps: { imageUrl, title, answers },
     });
 
     if (isConfirm) {

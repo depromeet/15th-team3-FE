@@ -1,7 +1,6 @@
 import { QueryClient, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 import { Http } from '../../../../../common/apis/base.api';
-import { tempGetRelayQuestionList } from '../../../../constants/tempData';
 import { RelayQuestionListResponse } from '../../types';
 
 interface RelayQuestionListPrefetch {
@@ -18,7 +17,7 @@ const _getRelayQuestionList = async (meetingId: number, { page, size }: { page: 
 export const useRelayQuestionListQuery = (meetingId: number) => {
   const { data, ...rest } = useSuspenseInfiniteQuery({
     queryKey: [RELAY_QUESTION_LIST_QUERY_KEY],
-    initialPageParam: { page: 0, size: SIZE_PER_PAGE },
+    initialPageParam: { page: 1, size: SIZE_PER_PAGE },
     queryFn: ({ pageParam }) => _getRelayQuestionList(meetingId, pageParam),
     getNextPageParam: (lastPage, _, lastPageParam) => {
       const nextPageParam = { page: lastPageParam.page + 1, size: SIZE_PER_PAGE };
@@ -27,11 +26,7 @@ export const useRelayQuestionListQuery = (meetingId: number) => {
     },
   });
 
-  // FIXME: when server data filled, remove this
-  const questions =
-    data?.pages.flatMap((page) => page.contents).length === 0
-      ? tempGetRelayQuestionList()
-      : data?.pages.flatMap((page) => page.contents);
+  const questions = data?.pages.flatMap((page) => page.contents);
 
   return { questions, ...rest };
 };
