@@ -1,0 +1,13 @@
+{
+  "name": "@sambad/react-utils",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "react": "^18"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3"
+  }
+}
