@@ -2,18 +2,23 @@ import { Txt } from '@sambad/sds/components';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+import { usePostRelayQuestionInfo } from '../../hooks/mutations/usePostRelayQuestionInfo';
 import { useModal } from '../../hooks/useModal';
 import { QuestionerDetail } from '../QuestionerDetail/QuestionerDetail';
 
 import { imgWrapperCss, wrapperCss } from './Questioner.styles';
 
 interface QuestionerProps {
+  meetingId: number;
+  meetingMemberId: number;
   imageUrl: string;
   name: string;
 }
 
-export const Questioner = ({ imageUrl, name }: QuestionerProps) => {
+export const Questioner = ({ meetingId, meetingMemberId, imageUrl, name }: QuestionerProps) => {
   const openModal = useModal();
+  const { postRelayQuestionInfo } = usePostRelayQuestionInfo(meetingId);
+
   const router = useRouter();
 
   const handleOpenModal = async () => {
@@ -22,7 +27,18 @@ export const Questioner = ({ imageUrl, name }: QuestionerProps) => {
       componentProps: { imageUrl, name, isRandom: false },
     });
 
-    if (isConfirm) router.push('/share-group');
+    if (isConfirm) {
+      const searchParams = new URLSearchParams(location.search);
+
+      postRelayQuestionInfo(
+        { questionId: Number(searchParams.get('question-id')), meetingMemberId },
+        {
+          onSuccess: () => {
+            router.push('/share-group');
+          },
+        },
+      );
+    }
   };
 
   return (

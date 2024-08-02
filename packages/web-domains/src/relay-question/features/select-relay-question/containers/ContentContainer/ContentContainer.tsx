@@ -84,8 +84,14 @@ const NextQuestionerList = () => {
         </div>
       </div>
       <ul css={questionListCss}>
-        {meetingMembers.map(({ profileImageFileUrl, name }, index) => (
-          <Questioner key={index} imageUrl={profileImageFileUrl} name={name} />
+        {meetingMembers.map(({ profileImageFileUrl, name, meetingMemberId }, index) => (
+          <Questioner
+            key={index}
+            imageUrl={profileImageFileUrl}
+            name={name}
+            meetingMemberId={meetingMemberId}
+            meetingId={myMeetings.meetingIds[0] || -1}
+          />
         ))}
       </ul>
     </section>
