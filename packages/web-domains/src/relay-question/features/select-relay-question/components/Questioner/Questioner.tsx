@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useModal } from '../../hooks/useModal';
 import { QuestionerDetail } from '../QuestionerDetail/QuestionerDetail';
 
-import { imgWrapperCss, wrapperCss } from './Question.styles';
+import { imgWrapperCss, wrapperCss } from './Questioner.styles';
 
 interface QuestionerProps {
   imageUrl: string;
