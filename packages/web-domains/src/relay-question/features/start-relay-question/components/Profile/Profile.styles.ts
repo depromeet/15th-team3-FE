@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { size } from '@sambad/sds/theme';
+import { borderRadiusVariants, size } from '@sambad/sds/theme';
 
 export const profileIntroductionCss = css({
   display: 'flex',
@@ -25,7 +25,8 @@ export const profileImgDecoWrapperCss = css({
 export const profileImgWrapperCss = css({
   width: '142px',
   height: '142px',
-  borderRadius: '50%',
+  borderRadius: borderRadiusVariants.round,
+  overflow: 'hidden',
 });
 
 export const SVGPositionCss = ({ top = 0, left = 0 }: { top: number; left: number }) =>
