@@ -18,7 +18,7 @@ export const triggerCss = css({
 });
 
 export const itemCss = css({
-  overflow: 'hidden', // 요소가 애니메이션 중에 넘치지 않도록 설정
+  overflow: 'hidden',
 
   [`&${accordionItemStateAttribute.querySelector.closed}`]: {
     [`& ${contentAttribute.querySelector}`]: {
