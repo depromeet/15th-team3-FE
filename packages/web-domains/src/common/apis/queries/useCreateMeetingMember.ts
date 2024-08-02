@@ -3,6 +3,8 @@ import { AxiosError, AxiosResponse } from 'axios';
 
 import { Http } from '../base.api';
 
+import { MbtiType } from '@/user/common/constants/mbti';
+
 interface MeetingMemberReponse {
   meetingId: number;
   meetingMemberId: number;
@@ -13,7 +15,6 @@ interface ErrorMeetingMemberResponse {
   message: string;
 }
 
-// mbti TYPE의 경우 공통으로 빼야 될 예정
 export interface Params {
   role: 'MEMBER' | 'OWNER';
   name: string;
@@ -22,9 +23,9 @@ export interface Params {
   job: string;
   location: string;
   hobbyIds: number[];
-  mbti?: string;
+  mbti?: MbtiType;
   introduction?: string;
-  code: string;
+  inviteCode: string;
 }
 
 export const useCreateMeetingMember = (
@@ -32,8 +33,8 @@ export const useCreateMeetingMember = (
 ) => {
   return useMutation<AxiosResponse<MeetingMemberReponse>, AxiosError<ErrorMeetingMemberResponse>, Params>({
     mutationFn: (params) => {
-      const { code, ...bodyParams } = params;
-      return Http.POST(`v1/meetings/members?code=${code}`, bodyParams);
+      const { inviteCode, ...bodyParams } = params;
+      return Http.POST(`v1/meetings/members?code=${inviteCode}`, bodyParams);
     },
     ...options,
   });

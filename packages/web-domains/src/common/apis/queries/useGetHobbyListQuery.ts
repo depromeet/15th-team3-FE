@@ -32,16 +32,70 @@ export async function getHobbyList(): Promise<HobbyListResponse> {
 // export async function getHobbyList(): Promise<HobbyListResponse> {
 //   return {
 //     contents: [
-//       { hobbyId: 1, content: '🍖 음식' },
-//       { hobbyId: 2, content: '📚 독서' },
-//       { hobbyId: 3, content: '🏂️ 스노우보드' },
-//       { hobbyId: 4, content: '🎨 그림' },
-//       { hobbyId: 5, content: '🎮 게임' },
-//       { hobbyId: 6, content: '🎤 노래' },
-//       { hobbyId: 7, content: '🧑‍💻 자기개발' },
-//       { hobbyId: 8, content: '😍 덕질' },
-//       { hobbyId: 9, content: '🖥️ 유튜브' },
-//       { hobbyId: 10, content: '🏊 수영' },
+//       {
+//         hobbyId: 1,
+//         content: '\uD83C\uDFCA 수영',
+//       },
+//       {
+//         hobbyId: 2,
+//         content: '\uD83D\uDCFA 넷플릭스',
+//       },
+//       {
+//         hobbyId: 3,
+//         content: '\uD83D\uDCDA 독서',
+//       },
+//       {
+//         hobbyId: 4,
+//         content: '\uD83E\uDD7E 등산',
+//       },
+//       {
+//         hobbyId: 5,
+//         content: '\uD83C\uDFA4 노래',
+//       },
+//       {
+//         hobbyId: 6,
+//         content: '⚾ 야구',
+//       },
+//       {
+//         hobbyId: 7,
+//         content: '\uD83C\uDFC2 스노우보드',
+//       },
+//       {
+//         hobbyId: 8,
+//         content: '\uD83C\uDFA8 그림',
+//       },
+//       {
+//         hobbyId: 9,
+//         content: '\uD83C\uDFAE 게임',
+//       },
+//       {
+//         hobbyId: 10,
+//         content: '\uD83D\uDD7A 춤',
+//       },
+//       {
+//         hobbyId: 11,
+//         content: '\uD83D\uDCF8 사진',
+//       },
+//       {
+//         hobbyId: 12,
+//         content: '\uD83C\uDF56 음식',
+//       },
+//       {
+//         hobbyId: 13,
+//         content: '\uD83D\uDDA5 ️유튜브',
+//       },
+//       {
+//         hobbyId: 14,
+//         content: '\uD83E\uDDD1‍\uD83D\uDCBB 자기계발',
+//       },
+//       {
+//         hobbyId: 15,
+//         content: '\uD83C\uDFC3 조깅',
+//       },
+//       {
+//         hobbyId: 16,
+//         content: '\uD83D\uDE0D 덕질',
+//       },
 //     ],
 //   };
 // }
