@@ -16,3 +16,13 @@ export const textInputcss = css({
   flexDirection: 'column',
   '& > *:not(:first-child)': { marginTop: size['6xs'] },
 });
+
+export const textAreaCss = css({
+  width: '100%',
+  height: '200px',
+  padding: '12px 16px',
+  backgroundColor: colors.grey200,
+  border: `1px solid ${colors.grey400}`,
+  borderRadius: borderRadiusVariants.medium,
+  ':focus': { outline: `1px solid ${colors.grey600}` },
+});
