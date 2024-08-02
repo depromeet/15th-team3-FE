@@ -3,7 +3,7 @@ import { QueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { Http } from '../../../../../common/apis/base.api';
 import { MyInfoResponse } from '../../types';
 
-const USERS_QUERY_KEY = 'USERS_QUERY_KEY';
+export const USERS_QUERY_KEY = 'USERS_QUERY_KEY';
 
 const _getMyInfo = async () => await Http.GET<MyInfoResponse>('/v1/users/me');
 

@@ -2,10 +2,13 @@
 
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { FIRST_STEP } from '../../../../constants';
 import { useIntersect } from '../../../../hooks/useIntersection';
+import { USERS_QUERY_KEY } from '../../../start-relay-question/hooks/queries/useMyInfoQuery';
 import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
+import { MyInfoResponse } from '../../../start-relay-question/types';
 import { Question } from '../../components/Question/Question';
 import { Questioner } from '../../components/Questioner/Questioner';
 import { useQueryStringContext } from '../../contexts/QueryStringContext';
@@ -56,11 +59,12 @@ const QuestionList = () => {
   );
 };
 
-const NAME = '장종오';
-
 const NextQuestionerList = () => {
+  const queryClient = useQueryClient();
   const { myMeetings } = useMyMeetingsQuery();
   const { meetingMembers } = useMeetingMemberQuery(myMeetings.meetingIds[0] || -1);
+
+  const myInfo = queryClient.getQueryData<MyInfoResponse>([USERS_QUERY_KEY]);
 
   return (
     <section>
@@ -71,7 +75,7 @@ const NextQuestionerList = () => {
         </Txt>
         <div>
           <Txt color={colors.grey600} typography="subTitle2" fontWeight="semibold">
-            {NAME}
+            {myInfo?.name}
           </Txt>
           <Txt color={colors.grey600} typography="body3" fontWeight="regular">
             님이 시작한 릴레이 질문이 끝나면 <br />
