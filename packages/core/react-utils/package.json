@@ -8,6 +8,8 @@
     "react": "^18"
   },
   "devDependencies": {
+    "@sambad/eslint-config": "workspace:^",
+    "@sambad/typescript-config": "workspace:^",
     "@types/react": "^18.3.3"
   }
 }
