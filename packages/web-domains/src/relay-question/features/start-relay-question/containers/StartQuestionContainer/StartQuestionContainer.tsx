@@ -11,19 +11,6 @@ import { useMyInfoQuery } from '../../hooks/queries/useMyInfoQuery';
 
 import { startQuestionBackgroundCss, startQuestionContainerCss } from './StartQuestionContainer.styles';
 
-// function setCookie(name: string, value: string, days: number) {
-//   let date = new Date();
-//   date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-//   let expires = 'expires=' + date.toUTCString();
-//   document.cookie = name + '=' + value + ';' + expires + ';path=/';
-// }
-
-// setCookie(
-//   'access_token',
-//   'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMyIsImlhdCI6MTcyMjU2OTgwOCwiZXhwIjoxNzIyNTcxNjA4fQ.Tz4aH5d2lbARqN0n_BANdRHlwdsS1aNJFc0YLSjB9Wg',
-//   7,
-// );
-
 export const StartQuestionContainer = () => {
   const router = useRouter();
   const { addQueryString } = useQueryString();
@@ -31,7 +18,7 @@ export const StartQuestionContainer = () => {
 
   return (
     <div css={startQuestionContainerCss}>
-      <Profile profileImageUrl={myInfo.profileImageUrl} />
+      <Profile profileImageUrl={myInfo.profileImageFileUrl} />
 
       <section css={startQuestionBackgroundCss}>
         <Button
