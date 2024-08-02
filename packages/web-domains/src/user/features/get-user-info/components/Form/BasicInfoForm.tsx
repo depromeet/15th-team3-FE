@@ -2,10 +2,11 @@
 
 import { Txt, Button } from '@sambad/sds/components';
 import { size, colors } from '@sambad/sds/theme';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
 import { STEPS } from '../../../../common/constants/step';
+import { useFormQueryString } from '../../hooks/useFormQueryString';
 import { RadioGroup } from '../Radio/';
 import { TextInput } from '../TextInput/TextInput';
 
@@ -18,8 +19,8 @@ export interface BasicInfo {
 }
 
 export const BasicInfoForm = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const { updateUrlParams } = useFormQueryString();
 
   const {
     register,
@@ -35,9 +36,7 @@ export const BasicInfoForm = () => {
   });
 
   const goToNextPage = (data: BasicInfo) => {
-    const currentParams = Object.fromEntries(searchParams.entries());
-    history.replaceState(null, '', `?${new URLSearchParams({ ...currentParams, step: STEPS.BASIC_INFO, ...data })}`);
-    router.push(`?${new URLSearchParams({ ...currentParams, step: STEPS.EXTRA_INFO, ...data })}`);
+    updateUrlParams(STEPS.EXTRA_INFO, data);
   };
 
   return (

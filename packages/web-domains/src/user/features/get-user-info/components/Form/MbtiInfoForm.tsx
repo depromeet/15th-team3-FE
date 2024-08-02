@@ -1,11 +1,12 @@
 'use client';
 
 import { Button } from '@sambad/sds/components';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
 import { MBTI_TYPE } from '../../../../common/constants/mbti';
 import { STEPS } from '../../../../common/constants/step';
+import { useFormQueryString } from '../../hooks/useFormQueryString';
 import { RadioGroup } from '../Radio';
 
 import { buttonWrapperCss } from './styles';
@@ -14,7 +15,7 @@ interface MbtiFormType {
   mbti: string;
 }
 export const MbtiInfoForm = () => {
-  const router = useRouter();
+  const { updateUrlParams } = useFormQueryString();
   const searchParams = useSearchParams();
   const { handleSubmit, control } = useForm<MbtiFormType>({
     defaultValues: {
@@ -23,9 +24,7 @@ export const MbtiInfoForm = () => {
   });
 
   const goToNextPage = (data: MbtiFormType) => {
-    const currentParams = Object.fromEntries(searchParams.entries());
-    history.replaceState(null, '', `?${new URLSearchParams({ ...currentParams, step: STEPS.MBTI_IFNO, ...data })}`);
-    router.push(`?${new URLSearchParams({ ...currentParams, step: STEPS.INTRO_INFO, ...data })}`);
+    updateUrlParams(STEPS.INTRO_INFO, data);
   };
 
   return (

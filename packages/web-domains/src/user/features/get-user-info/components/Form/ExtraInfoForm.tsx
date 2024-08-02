@@ -1,10 +1,11 @@
 'use client';
 
 import { Button } from '@sambad/sds/components';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 import { STEPS } from '../../../../common/constants/step';
+import { useFormQueryString } from '../../hooks/useFormQueryString';
 import { TextInput } from '../TextInput/TextInput';
 
 import { buttonWrapperCss } from './styles';
@@ -15,8 +16,8 @@ interface ExtraInfo {
 }
 
 export const ExtraInfoForm = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const { updateUrlParams } = useFormQueryString();
 
   const {
     register,
@@ -30,9 +31,7 @@ export const ExtraInfoForm = () => {
   });
 
   const goToNextPage = (data: ExtraInfo) => {
-    const currentParams = Object.fromEntries(searchParams.entries());
-    history.replaceState(null, '', `?${new URLSearchParams({ ...currentParams, step: STEPS.EXTRA_INFO, ...data })}`);
-    router.push(`?${new URLSearchParams({ ...currentParams, step: STEPS.HOBBIES_INFO, ...data })}`);
+    updateUrlParams(STEPS.HOBBIES_INFO, data);
   };
 
   return (

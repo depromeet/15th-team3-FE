@@ -1,11 +1,12 @@
 'use client';
 
 import { Button } from '@sambad/sds/components';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
 import { HobbyType } from '../../../../../common/apis/schema/HobbyListResponse';
 import { STEPS } from '../../../../common/constants/step';
+import { useFormQueryString } from '../../hooks/useFormQueryString';
 import { CheckboxGroup } from '../Checkbox';
 
 import { buttonWrapperCss } from './styles';
@@ -19,8 +20,8 @@ interface Hobbies {
 }
 
 export const HobbiesInfoForm = ({ hobbyList }: HobbiesFormProps) => {
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const { updateUrlParams } = useFormQueryString();
 
   const {
     control,
@@ -34,14 +35,7 @@ export const HobbiesInfoForm = ({ hobbyList }: HobbiesFormProps) => {
 
   const goToNextPage = (data: Hobbies) => {
     const { hobbyIds } = data;
-    const hobbyIdsString = hobbyIds.toString();
-    const currentParams = Object.fromEntries(searchParams.entries());
-    history.replaceState(
-      null,
-      '',
-      `?${new URLSearchParams({ ...currentParams, step: STEPS.HOBBIES_INFO, hobbyIds: hobbyIdsString })}`,
-    );
-    router.push(`?${new URLSearchParams({ ...currentParams, step: STEPS.MBTI_IFNO, hobbyIds: hobbyIdsString })}`);
+    updateUrlParams(STEPS.MBTI_IFNO, { hobbyIds: hobbyIds.toString() });
   };
 
   if (!hobbyList || !hobbyList.length) return null;

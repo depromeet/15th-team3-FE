@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 export const useGetRoleName = () => {
   const pathName = usePathname();
 
-  const roleName = pathName.includes('owner') ? '모임장' : '모임원';
+  const role = pathName.includes('owner') ? { name: '모임장', params: 'OWNER' } : { name: '모임원', params: 'MEMBER' };
 
-  return { roleName };
+  return role;
 };
