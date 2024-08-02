@@ -33,3 +33,7 @@ export interface NextRelayQuestionerResponse {
   profileImageFileUrl: string;
   role: string;
 }
+
+export interface MeetingMemberResponse {
+  contents: NextRelayQuestionerResponse[];
+}

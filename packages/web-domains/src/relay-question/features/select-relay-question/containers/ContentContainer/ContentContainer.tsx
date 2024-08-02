@@ -3,13 +3,13 @@
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 
-import PNGQuestionImage1 from '../../../../assets/png/question-image-1.png';
 import { FIRST_STEP } from '../../../../constants';
 import { useIntersect } from '../../../../hooks/useIntersection';
 import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { Question } from '../../components/Question/Question';
 import { Questioner } from '../../components/Questioner/Questioner';
 import { useQueryStringContext } from '../../contexts/QueryStringContext';
+import { useMeetingMemberQuery } from '../../hooks/queries/useMeetingMemberQuery';
 import { useRelayQuestionListQuery } from '../../hooks/queries/useRelayQuestionListQuery';
 
 import { questionListCss, questionTextBoxCss } from './ContentContainer.styles';
@@ -59,6 +59,9 @@ const QuestionList = () => {
 const NAME = '장종오';
 
 const NextQuestionerList = () => {
+  const { myMeetings } = useMyMeetingsQuery();
+  const { meetingMembers } = useMeetingMemberQuery(myMeetings.meetingIds[0] || -1);
+
   return (
     <section>
       <div css={questionTextBoxCss}>
@@ -77,14 +80,9 @@ const NextQuestionerList = () => {
         </div>
       </div>
       <ul css={questionListCss}>
-        {new Array(10)
-          .fill({
-            imageUrl: PNGQuestionImage1,
-            name: '장종오',
-          })
-          .map(({ imageUrl, name }, index) => (
-            <Questioner key={index} imageUrl={imageUrl} name={name} />
-          ))}
+        {meetingMembers.map(({ profileImageFileUrl, name }, index) => (
+          <Questioner key={index} imageUrl={profileImageFileUrl} name={name} />
+        ))}
       </ul>
     </section>
   );
