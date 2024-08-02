@@ -5,6 +5,7 @@ import { colors } from '@sambad/sds/theme';
 
 import PNGQuestionImage1 from '../../../../assets/png/question-image-1.png';
 import { FIRST_STEP } from '../../../../constants';
+import { useIntersect } from '../../../../hooks/useIntersection';
 import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { Question } from '../../components/Question/Question';
 import { Questioner } from '../../components/Questioner/Questioner';
@@ -23,7 +24,14 @@ export const ContentContainer = () => {
 
 const QuestionList = () => {
   const { myMeetings } = useMyMeetingsQuery();
-  const { questions } = useRelayQuestionListQuery(myMeetings.meetingIds[0] || -1);
+  const { questions, fetchStatus, fetchNextPage } = useRelayQuestionListQuery(myMeetings.meetingIds[0] || -1);
+  const { targetRef } = useIntersect({
+    onIntersect: (entry) => {
+      if (entry.isIntersecting && fetchStatus !== 'fetching') {
+        fetchNextPage();
+      }
+    },
+  });
 
   return (
     <section>
@@ -42,6 +50,7 @@ const QuestionList = () => {
             usedCount={usedCount}
           />
         ))}
+        <div ref={targetRef} />
       </ul>
     </section>
   );
