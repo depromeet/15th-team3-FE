@@ -4,17 +4,19 @@ import { css } from '@emotion/react';
 import { Button } from '@sambad/sds/components';
 import { size } from '@sambad/sds/theme';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 import { RelayRandomButtonDocumentIcon } from '../../../../assets/RelayRandomButtonIcon';
+import { Modal } from '../../../../common/Modal';
 import { FIRST_STEP } from '../../../../constants';
 import { useQueryString } from '../../../../hooks/useQueryString';
+import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { QuestionDetail } from '../../components/QuestionDetail/QuestionDetail';
 import { QuestionerDetail } from '../../components/QuestionerDetail/QuestionerDetail';
 import { ToolTip } from '../../components/ToolTip/ToolTip';
 import { useQueryStringContext } from '../../contexts/QueryStringContext';
 import { useRandomNextQuestionerQuery } from '../../hooks/queries/useRandomNextQuestionerQuery';
 import { useRandomQuestionQuery } from '../../hooks/queries/useRandomQuestionQuery';
-import { useModal } from '../../hooks/useModal';
 import { useToolTipShow } from '../../hooks/useToolTipShow';
 
 import { wrapperCss } from './RandomPickContainer.styles';
@@ -29,73 +31,104 @@ export const RandomPickContainer = () => {
 
 const QuestionRandomPick = () => {
   const router = useRouter();
-  const openModal = useModal();
 
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { updateQueryString } = useQueryString();
   const { isShowToolTip } = useToolTipShow({ showTime: 5000 });
-  const { refetch } = useRandomQuestionQuery([]);
+  const { question, refetch: refetchQuestion } = useRandomQuestionQuery([]);
 
-  const handleOpenModal = async () => {
-    const question = (await refetch()).data;
+  const handleOpenModal = () => {
+    setIsOpen(true);
+    refetchQuestion();
+  };
 
-    if (!question) return;
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
 
-    const { questionImageFileUrl, title, answers } = question;
+  const handleConfirmModal = () => {
+    router.push(`/select-relay-question?${updateQueryString({ key: 'current-step', value: '2' })}`);
 
-    const isConfirm = await openModal({
-      component: QuestionDetail,
-      componentProps: { imageUrl: questionImageFileUrl, title: title, answers: answers },
-    });
-
-    if (isConfirm) {
-      router.push(`/select-relay-question?${updateQueryString({ key: 'current-step', value: '2' })}`);
-    }
+    handleCloseModal();
   };
 
   return (
-    <section css={wrapperCss}>
-      {isShowToolTip && <ToolTip>어떤 질문을 선택할지 고민인가요?</ToolTip>}
-      <Button css={css({ padding: `${size['4xs']} ${size['2xs']}` })} onClick={handleOpenModal}>
-        <RelayRandomButtonDocumentIcon css={css({ marginRight: `${size['6xs']}` })} />
-        랜덤 선택
-      </Button>
-    </section>
+    <>
+      <section css={wrapperCss}>
+        {isShowToolTip && <ToolTip>어떤 질문을 선택할지 고민인가요?</ToolTip>}
+        <Button css={css({ padding: `${size['4xs']} ${size['2xs']}` })} onClick={handleOpenModal}>
+          <RelayRandomButtonDocumentIcon css={css({ marginRight: `${size['6xs']}` })} />
+          랜덤 선택
+        </Button>
+      </section>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        {question ? (
+          <QuestionDetail
+            imageUrl={question.questionImageFileUrl}
+            title={question.title}
+            answers={question.answers}
+            onClose={handleCloseModal}
+            onConfirm={handleConfirmModal}
+            onRefetch={refetchQuestion}
+            isRandom
+          />
+        ) : (
+          <div>loading...</div>
+        )}
+      </Modal>
+    </>
   );
 };
 
-const MEETING_ID = 1;
-
 const QuestionerRandomPick = () => {
   const router = useRouter();
-  const openModal = useModal();
 
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isShowToolTip } = useToolTipShow({ showTime: 5000 });
-  const { refetch } = useRandomNextQuestionerQuery({ meetingId: MEETING_ID, excludeMemberIds: [0] });
+  const { myMeetings } = useMyMeetingsQuery();
+  const { questioner, refetchQuestioner } = useRandomNextQuestionerQuery({
+    meetingId: myMeetings.meetingIds[0] || -1,
+    excludeMemberIds: [0],
+  });
 
-  const handleOpenModal = async () => {
-    const questioner = (await refetch()).data;
+  const handleOpenModal = () => {
+    setIsOpen(true);
+    refetchQuestioner();
+  };
 
-    if (!questioner) return;
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
 
-    const { name, profileImageFileUrl } = questioner;
+  const hnadleConfirmModal = () => {
+    router.push(`/share-group`);
 
-    const isConfirm = await openModal({
-      component: QuestionerDetail,
-      componentProps: { imageUrl: profileImageFileUrl, name, isRandom: true },
-    });
-
-    if (isConfirm) {
-      router.push(`/share-group`);
-    }
+    handleCloseModal();
   };
 
   return (
-    <section css={wrapperCss}>
-      {isShowToolTip && <ToolTip>다음 질문인을 누구로 할지 고민인가요?</ToolTip>}
-      <Button css={css({ padding: `${size['4xs']} ${size['2xs']}` })} onClick={handleOpenModal}>
-        <RelayRandomButtonDocumentIcon css={css({ marginRight: `${size['6xs']}` })} />
-        랜덤 선택
-      </Button>
-    </section>
+    <>
+      <section css={wrapperCss}>
+        {isShowToolTip && <ToolTip>다음 질문인을 누구로 할지 고민인가요?</ToolTip>}
+        <Button css={css({ padding: `${size['4xs']} ${size['2xs']}` })} onClick={handleOpenModal}>
+          <RelayRandomButtonDocumentIcon css={css({ marginRight: `${size['6xs']}` })} />
+          랜덤 선택
+        </Button>
+      </section>
+      <Modal isOpen={isOpen} onClose={handleCloseModal}>
+        {questioner ? (
+          <QuestionerDetail
+            imageUrl={questioner.profileImageFileUrl}
+            name={questioner.name}
+            onClose={handleCloseModal}
+            onConfirm={hnadleConfirmModal}
+            onRefetch={refetchQuestioner}
+            isRandom
+          />
+        ) : (
+          <div>loading...</div>
+        )}
+      </Modal>
+    </>
   );
 };
