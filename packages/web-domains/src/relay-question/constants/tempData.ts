@@ -10,3 +10,11 @@ export const tempGetRelayQuestionList = (): RelayQuestionContent[] =>
     title: '국내 여행지 중에서 추천하고 싶은 곳은?',
     usedCount: 12,
   });
+
+export const tempGetMeetingMember = () =>
+  new Array(10).fill({
+    meetingMemberId: tempId++,
+    name: '장종오',
+    profileImageFileUrl: PNGQuestionImage1,
+    role: 'admin',
+  });
