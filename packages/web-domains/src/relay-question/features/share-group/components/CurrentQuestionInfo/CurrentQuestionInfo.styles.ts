@@ -2,9 +2,10 @@ import { css } from '@emotion/react';
 import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
 
 export const wrapperCss = css({
-  width: '140px',
+  width: '100%',
+  maxWidth: '144px',
   position: 'absolute',
-  top: 88,
+  top: 80,
   left: '50%',
   transform: 'translateX(-50%)',
 });
@@ -30,6 +31,7 @@ export const imgWrapperCss = css({
   width: size['2xs'],
   height: size['2xs'],
   borderRadius: borderRadiusVariants.round,
+  overflow: 'hidden',
 });
 
 export const SVGDecoPositionCss = css;
