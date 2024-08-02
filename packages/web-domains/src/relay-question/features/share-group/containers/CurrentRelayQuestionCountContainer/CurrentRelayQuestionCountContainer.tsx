@@ -19,6 +19,7 @@ import {
   wrapperCss,
 } from './CurrentRelayQuestionCountContainer.styles';
 
+// TODO: 서버와 합의되면 삭제
 const TEMP_QUESTION_COUNT = 10;
 const TEMP_NAME = '삼봤드';
 const TEMP_IMAGE_URL = '';
