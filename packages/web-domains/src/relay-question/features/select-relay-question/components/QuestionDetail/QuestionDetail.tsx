@@ -25,7 +25,7 @@ interface QuestionDetailProps {
   isRandom?: boolean;
   onClose: () => void;
   onConfirm: () => void;
-  onRefetch: () => void;
+  onRefetch?: () => void;
 }
 
 export const QuestionDetail = ({
