@@ -22,6 +22,7 @@ export const useGetMemberMe = (props: QueryProps) => {
   return useQuery({
     queryKey: [MEMBER_ME_QUERY_KEY, params],
     queryFn: () => queryFn(params),
+    enabled: params.meetingId !== -1,
     ...options,
   });
 };
