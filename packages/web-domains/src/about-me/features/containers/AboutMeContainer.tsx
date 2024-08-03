@@ -1,6 +1,7 @@
 'use client';
 
 import { Txt } from '@sambad/sds/components';
+import { size } from '@sambad/sds/theme';
 
 import { useGetMemberMe } from '@/about-me/common/apis/queries/useGetMemberMe';
 
@@ -13,7 +14,7 @@ export const AboutMeContainer = () => {
   const { data } = useGetMemberMe({ meetingId: 1 });
 
   return (
-    <section>
+    <section style={{ padding: `${size['4xs']} 0` }}>
       <Txt typography="subtitle1" css={titleCss} {...subTitleAttribute.attribute}>
         모임원들과 이런 걸 함께하고 싶어요
       </Txt>
