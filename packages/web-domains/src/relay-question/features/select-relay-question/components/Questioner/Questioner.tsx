@@ -2,8 +2,8 @@ import { Txt } from '@sambad/sds/components';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+import { useModal } from '../../../../hooks/useModal';
 import { usePostRelayQuestionInfo } from '../../hooks/mutations/usePostRelayQuestionInfo';
-import { useModal } from '../../hooks/useModal';
 import { QuestionerDetail } from '../QuestionerDetail/QuestionerDetail';
 
 import { imgWrapperCss, wrapperCss } from './Questioner.styles';
