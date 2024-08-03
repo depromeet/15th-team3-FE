@@ -1,3 +1,5 @@
+'use client';
+
 import { useGetMostSelected } from '@/result/common/apis/queries/useGetMostSelected';
 import { BaseParams } from '@/result/common/types/BaseParams';
 

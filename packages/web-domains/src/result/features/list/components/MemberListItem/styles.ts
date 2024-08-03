@@ -1,16 +1,18 @@
 import { css } from '@emotion/react';
-import { size } from '@sambad/sds/theme';
+import { borderRadiusVariants, size } from '@sambad/sds/theme';
 
 export const containerCss = css({
   padding: `${size['5xs']} ${size['2xs']}`,
   position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
 
   '& img': {
     marginRight: size['5xs'],
+    borderRadius: borderRadiusVariants.round,
   },
 });
 
 export const ownerEmojiCss = css({
-  position: 'absolute',
-  right: 0,
+  marginLeft: 'auto',
 });

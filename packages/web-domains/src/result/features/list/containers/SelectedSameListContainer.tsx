@@ -1,3 +1,5 @@
+'use client';
+
 import { useGetSameSelected } from '@/result/common/apis/queries/useGetSameSelected';
 import { BaseParams } from '@/result/common/types/BaseParams';
 
