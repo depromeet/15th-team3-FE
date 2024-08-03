@@ -17,7 +17,7 @@ export const NewMeetingScreen = async () => {
 const getServerSideProps = async () => {
   const queryClient = new QueryClient();
 
-  await getMeetingTypesPrefetch(queryClient);
+  await getMeetingTypesPrefetch({ queryClient: queryClient });
 
   return { queryClient };
 };
