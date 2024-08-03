@@ -5,7 +5,6 @@ import { colors, size } from '@sambad/sds/theme';
 
 import { ShareGroupShareIcon } from '../../../../assets/ShareGroupShareIcon';
 import { ShareNextQuestionerBackground } from '../../../../assets/ShareNextQuestionerBackground';
-import { Toast } from '../../../../common/Toast';
 import { useModal } from '../../../../hooks/useModal';
 import { ShareRelayQuestion } from '../../../share-group/containers/ShareRelayQuestion/ShareRelayQuestion';
 
@@ -29,9 +28,6 @@ export const ShareNextQuestionerContainer = () => {
 
   return (
     <section css={wrapperCss}>
-      <Toast isOpen showTime={5000}>
-        asdf
-      </Toast>
       <div css={headingWrapperCss}>
         <Txt color={colors.black} typography="heading1" fontWeight="bold">
           다음 릴레이 질문을 만드는
