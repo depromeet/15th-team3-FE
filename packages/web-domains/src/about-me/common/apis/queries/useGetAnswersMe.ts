@@ -12,7 +12,7 @@ interface QueryProps extends Params {
   options?: UseQueryOptions<MyMeetingAnswerListResponse>;
 }
 
-export const ANSWERS_ME_QUERY_KEY = 'MEMBER_ME_QUERY_KEY';
+export const ANSWERS_ME_QUERY_KEY = 'ANSWERS_ME_QUERY_KEY';
 
 const queryFn = ({ meetingId }: Params) =>
   Http.GET<MyMeetingAnswerListResponse>(`/v1/meetings/${meetingId}/questions/answers/me`);
