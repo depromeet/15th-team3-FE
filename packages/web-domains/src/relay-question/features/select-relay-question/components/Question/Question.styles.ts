@@ -3,7 +3,6 @@ import { borderRadiusVariants, size } from '@sambad/sds/theme';
 
 export const wrapperCss = css({
   display: 'flex',
-  justifyContent: 'space-between',
   gap: `${size['3xs']}`,
   padding: `${size['5xs']} ${size['2xs']}`,
   cursor: 'pointer',

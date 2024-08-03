@@ -26,7 +26,7 @@ export const CurrentRelayQuestionCountContainer = () => {
   const openModal = useModal();
 
   const { myMeetings } = useMyMeetingsQuery();
-  const { activeQuestion } = useActiveQuestionQuery(myMeetings?.meetingIds[0] || -1);
+  const { activeQuestion } = useActiveQuestionQuery(myMeetings?.meetingIds[0]!);
 
   const handleOpenShare = () => {
     openModal({
