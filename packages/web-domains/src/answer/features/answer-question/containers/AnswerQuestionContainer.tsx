@@ -1,12 +1,18 @@
 'use client';
 
+import { Button } from '@sambad/sds/components';
+
 import { AnswerQuestion } from '../components/AnswerQuestion';
 import { BalanceQuestion } from '../components/BalanceQuestion';
 import { CommentBottomSheet } from '../components/CommentBottomSheet';
 
 export const AnswerQuestionContainer = () => {
   return (
-    <section css={{ height: '100%' }}>
+    <section
+      css={{
+        position: 'relative',
+      }}
+    >
       <AnswerQuestion
         question={{
           content: {
@@ -29,7 +35,13 @@ export const AnswerQuestionContainer = () => {
           />
         }
       />
-      <CommentBottomSheet />
+      <CommentBottomSheet
+        answerButton={
+          <Button variant="primary" size="large">
+            답변 보내기
+          </Button>
+        }
+      />
     </section>
   );
 };

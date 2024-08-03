@@ -3,3 +3,4 @@ export { AnswerOpeningLayout } from './common/components/Layout/AnswerOpeningLay
 export { AnswerClosingScreen } from './screens/AnswerClosingScreen';
 export { AnswerQuestionScreen } from './screens/AnswerQuestionScreen';
 export { AnswerQuestionLayout } from './common/components/Layout/AnswerQuestionLayout';
+export { AnswerClosingLayout } from './common/components/Layout/AnswerClosingLayout';

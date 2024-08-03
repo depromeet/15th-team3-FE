@@ -1,11 +1,13 @@
 'use client';
 
-import dayjs from 'dayjs';
-
 import { AnswerCountDown } from '../../../common/components/AnswerCountdown';
+import { ClosingButton } from '../../floating-button/components/ClosingButton';
 import { ClosingMessage } from '../components/ClosingMessage';
+import { useAnswerClosingService } from '../services/useAnswerClosingService';
 
 export const AnswerClosingContainer = () => {
+  const { answerGlobalTime } = useAnswerClosingService();
+
   return (
     <>
       <section
@@ -15,7 +17,11 @@ export const AnswerClosingContainer = () => {
         }}
       >
         <ClosingMessage />
-        <AnswerCountDown timer={dayjs().valueOf()} css={{ marginTop: '26px', padding: '12px 40px' }} />
+        {!!answerGlobalTime && (
+          <AnswerCountDown timer={answerGlobalTime} css={{ marginTop: '26px', padding: '12px 40px' }} />
+        )}
+
+        <ClosingButton />
       </section>
     </>
   );

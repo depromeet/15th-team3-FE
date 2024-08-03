@@ -1,7 +1,7 @@
 import { colors } from '@sambad/sds/theme';
 import { CSSProperties, PropsWithChildren } from 'react';
 
-export const AnswerOpeningLayout = ({ children }: PropsWithChildren) => {
+export const AnswerClosingLayout = ({ children }: PropsWithChildren) => {
   const layoutStyles: CSSProperties = {
     backgroundColor: colors.primary50,
     height: '100vh',

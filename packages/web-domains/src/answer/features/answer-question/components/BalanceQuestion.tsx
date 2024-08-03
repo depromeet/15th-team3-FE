@@ -1,3 +1,4 @@
+'use client';
 import { Interpolation, Theme } from '@emotion/react';
 import { Button, Txt, fontWeightVariants } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';

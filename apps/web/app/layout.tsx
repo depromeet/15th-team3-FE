@@ -1,4 +1,5 @@
-import { Providers, RootLayout as ViewportLayout } from '@sambad/web-domains/commmon';
+import { Providers } from '@/common';
+import { RootLayout as ViewportLayout } from '@sambad/web-domains/commmon';
 import dayjs from 'dayjs';
 import { Inter } from 'next/font/google';
 

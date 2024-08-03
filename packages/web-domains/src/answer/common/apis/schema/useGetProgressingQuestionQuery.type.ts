@@ -1,17 +1,19 @@
-export type PreviousQuestionType = {
+export type ProgressingQuestionType = {
   meetingQuestionId: number;
-  questionImageFileUrl: string | null;
+  questionImageFileUrl: string;
   title: string;
   questionNumber: number;
+  startTime: Date;
+  engagementRate: number;
   totalMeetingMemberCount: number;
   responseCount: number;
   isAnswered: boolean;
+  isQuestionRegistered: boolean;
   targetMember: MemberType;
-  mostResponse: string;
 };
 
 export type MemberType = {
-  id: number;
+  meetingMemberId: number;
   name: string;
   profileImageFileUrl?: string;
   role: 'OWNER' | 'ADMIN' | 'MEMBER';

@@ -5,7 +5,9 @@ import { AngleSmallDownIcon } from './assets/AngleSmallDown';
 import { AngleSmallUpIcon } from './assets/AngleSmallUp';
 import { AngleUpIcon } from './assets/AngleUp';
 import { CaretDownIcon } from './assets/CaretDown';
+import { CommentsIcon } from './assets/CommentsIcon';
 import { ShareIcon } from './assets/Share';
+import { XIcon } from './assets/XIcon';
 
 export const iconMap = {
   'angle-down': AngleDownIcon,
@@ -16,4 +18,6 @@ export const iconMap = {
   'angle-up': AngleUpIcon,
   'caret-down': CaretDownIcon,
   'share-icon': ShareIcon,
+  'comments-icon': CommentsIcon,
+  'x-icon': XIcon,
 };

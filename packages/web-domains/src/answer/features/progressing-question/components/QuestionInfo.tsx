@@ -1,8 +1,6 @@
 import { Txt } from '@sambad/sds/components';
-import { colors } from '@sambad/sds/theme';
+import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 
-import { ProfileImage } from '@/common/asset/profile';
-import { QuestionImage } from '@/common/asset/question';
 import { ProgressingQuestionType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 import { Avatar } from '@/home/common/components/Avatar/Avatar';
 
@@ -28,7 +26,12 @@ export const QuestionInfo = ({ question }: QuestionInfoProps) => {
             <Txt typography="title4" color={colors.grey600} css={{ marginRight: '4px' }}>
               {targetMember.name}
             </Txt>
-            <Avatar size={20} Icon={ProfileImage} />
+            <Avatar
+              imageUrl={question.questionImageFileUrl ?? ''}
+              width={20}
+              height={20}
+              css={{ borderRadius: '50%' }}
+            />
           </span>
         </div>
         <div
@@ -40,7 +43,13 @@ export const QuestionInfo = ({ question }: QuestionInfoProps) => {
             padding: '8px 0',
           }}
         >
-          <Avatar imageUrl={questionImageFileUrl} alt="question-image" Icon={QuestionImage} />
+          <Avatar
+            imageUrl={questionImageFileUrl ?? ''}
+            alt="question-image"
+            width={64}
+            height={64}
+            css={{ borderRadius: borderRadiusVariants.medium }}
+          />
           <Txt typography="heading2" css={{ marginTop: '8px' }}>
             {title}
           </Txt>

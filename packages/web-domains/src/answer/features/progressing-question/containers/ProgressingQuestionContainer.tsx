@@ -2,9 +2,9 @@
 
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
-import dayjs from 'dayjs';
 
 import { AnswerCountDown } from '../../../common/components/AnswerCountdown';
+import { StartButton } from '../../floating-button/components/StartButton';
 import { QuestionInfo } from '../components/QuestionInfo';
 import { ResponseGuageBar } from '../components/ResponseGuageBar';
 import { useProgressingQuestionService } from '../services/useProgressingQuestionService';
@@ -31,7 +31,8 @@ export const ProgressingQuestionContainer = () => {
         responseCount={progressingQuestion.responseCount}
         totalMeetingMemberCount={progressingQuestion.totalMeetingMemberCount}
       />
-      <AnswerCountDown timer={dayjs().valueOf()} css={{ marginTop: '40px' }} />
+      <AnswerCountDown timer={progressingQuestion.startTime} css={{ marginTop: '40px' }} />
+      <StartButton questionId={progressingQuestion.meetingQuestionId} />
     </section>
   );
 };

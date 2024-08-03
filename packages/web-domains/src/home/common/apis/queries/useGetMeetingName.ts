@@ -1,6 +1,7 @@
 import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
 import { useQuery, QueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 import { Http } from '../../../../common/apis/base.api';
 import { MeetingInfoResponse, MeetingTypeResponse } from '../schema/Meeting.schema';
@@ -28,12 +29,12 @@ export const useGetMeetingInfo = ({ options }: Args) => {
   });
 };
 
-export const getGatherMeetingInfoPrefetch = (queryClient: QueryClient) => {
+export const getGatherMeetingInfoPrefetch = (queryClient: QueryClient, cookie?: ReadonlyRequestCookies) => {
   const prefetch = queryClient.prefetchQuery({
     queryKey: [MEETING_INFO_QUERY_KEY],
     queryFn: async () => {
       try {
-        return await getMeetingInfo();
+        return await getMeetingInfo(cookie);
       } catch (error) {
         if (isAxiosError(error)) {
           console.log(error);
@@ -45,8 +46,12 @@ export const getGatherMeetingInfoPrefetch = (queryClient: QueryClient) => {
   return prefetch;
 };
 
-export async function getMeetingInfo(): Promise<MeetingInfoResponse> {
-  const data = await Http.GET<MeetingTypeResponse>(`/v1/meetings/types`);
+export async function getMeetingInfo(cookie?: ReadonlyRequestCookies): Promise<MeetingInfoResponse> {
+  const data = await Http.GET<MeetingTypeResponse>(`/v1/meetings/types`, {
+    headers: {
+      Cookie: cookie?.toString(),
+    },
+  });
 
   if (data) {
     return {

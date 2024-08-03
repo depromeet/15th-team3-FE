@@ -1,6 +1,7 @@
 import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
 import { useQuery, QueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 import { Http } from '../../../../common/apis/base.api';
 import { GatherMemberListType } from '../schema/useGetGatherMemberListQuery.type';
@@ -30,12 +31,16 @@ export const useGetGatherMemberList = ({ params, options }: Args) => {
   });
 };
 
-export const getGatherMemberListPrefetch = (params: Params, queryClient: QueryClient) => {
+export const getGatherMemberListPrefetch = (
+  params: Params,
+  queryClient: QueryClient,
+  cookie?: ReadonlyRequestCookies,
+) => {
   const prefetch = queryClient.prefetchQuery({
     queryKey: [GATHER_MEMBER_QUERY_KEY, params.meetingId],
     queryFn: async () => {
       try {
-        return await getGatherMemberList(params);
+        return await getGatherMemberList(params, cookie);
       } catch (error) {
         if (isAxiosError(error)) {
           console.log(error);
@@ -47,9 +52,18 @@ export const getGatherMemberListPrefetch = (params: Params, queryClient: QueryCl
   return prefetch;
 };
 
-export async function getGatherMemberList(params: Params): Promise<GatherMemberListType> {
+export async function getGatherMemberList(
+  params: Params,
+  cookie?: ReadonlyRequestCookies,
+): Promise<GatherMemberListType> {
   const { meetingId } = params;
-  const { contents } = await Http.GET<GatherMemberListType>(`/v1/meetings/${meetingId}/members`);
+
+  const { contents } = await Http.GET<GatherMemberListType>(`/v1/meetings/${meetingId}/members`, {
+    headers: {
+      Cookie: cookie?.toString(),
+    },
+  });
+  console.log({ contents });
   return {
     contents,
   };
