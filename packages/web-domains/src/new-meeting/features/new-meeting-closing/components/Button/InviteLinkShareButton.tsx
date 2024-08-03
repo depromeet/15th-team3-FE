@@ -18,9 +18,11 @@ export const InviteLinkShareButton = ({ inviteCode }: { inviteCode: string | nul
     return null;
   }
 
+  const copyUrl = `/meeting/participate?inviteCode=${inviteCode}`;
+
   return (
     <div css={{ margin: `${size['3xs']} ${size.xs}`, textAlign: 'center' }}>
-      <CopyToClipboard text={`/meeting/join?inviteCode=${inviteCode}`} onCopy={handleCopyUrl}>
+      <CopyToClipboard text={copyUrl} onCopy={handleCopyUrl}>
         <div>
           <CircleCopy />
           <Txt as="p" typography="title4" color={colors.grey700} css={{ marginTop: size['6xs'] }}>
