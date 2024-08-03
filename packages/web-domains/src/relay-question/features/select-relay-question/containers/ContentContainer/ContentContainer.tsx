@@ -27,7 +27,7 @@ export const ContentContainer = () => {
 
 const QuestionList = () => {
   const { myMeetings } = useMyMeetingsQuery();
-  const { questions, fetchStatus, fetchNextPage } = useRelayQuestionListQuery(myMeetings.meetingIds[0] || -1);
+  const { questions, fetchStatus, fetchNextPage } = useRelayQuestionListQuery(myMeetings?.meetingIds[0] || -1);
   const { targetRef } = useIntersect({
     onIntersect: (entry) => {
       if (entry.isIntersecting && fetchStatus !== 'fetching') {
@@ -35,6 +35,8 @@ const QuestionList = () => {
       }
     },
   });
+
+  if (questions.length === 0) return <div>empty list</div>;
 
   return (
     <section>
@@ -62,9 +64,11 @@ const QuestionList = () => {
 const NextQuestionerList = () => {
   const queryClient = useQueryClient();
   const { myMeetings } = useMyMeetingsQuery();
-  const { meetingMembers } = useMeetingMemberQuery(myMeetings.meetingIds[0] || -1);
+  const { meetingMembers } = useMeetingMemberQuery(myMeetings?.meetingIds[0] || -1);
 
   const myInfo = queryClient.getQueryData<MyInfoResponse>([USERS_QUERY_KEY]);
+
+  if (!meetingMembers) return <div>loading</div>;
 
   return (
     <section>
@@ -90,7 +94,7 @@ const NextQuestionerList = () => {
             imageUrl={profileImageFileUrl}
             name={name}
             meetingMemberId={meetingMemberId}
-            meetingId={myMeetings.meetingIds[0] || -1}
+            meetingId={myMeetings?.meetingIds[0] || -1}
           />
         ))}
       </ul>

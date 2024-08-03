@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { Http } from '../../../../common/apis/base.api';
 import { ActiveQuestionResponse } from '../types';
@@ -9,7 +9,7 @@ const _getActiveQuestion = async (meetingId: number) =>
   await Http.GET<ActiveQuestionResponse>(`/v1/meetings/${meetingId}/questions/active`);
 
 export const useActiveQuestionQuery = (meetingId: number) => {
-  const { data, ...rest } = useSuspenseQuery({
+  const { data, ...rest } = useQuery({
     queryKey: [ACTIVE_QUESTION_QUERY_KEY],
     queryFn: () => _getActiveQuestion(meetingId),
   });

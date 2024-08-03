@@ -14,6 +14,8 @@ export const StartQuestionContainer = () => {
   const router = useRouter();
   const { myInfo } = useMyInfoQuery();
 
+  if (!myInfo) return <div>loading</div>;
+
   return (
     <div css={startQuestionContainerCss}>
       <Profile profileImageUrl={myInfo.profileImageFileUrl} />
