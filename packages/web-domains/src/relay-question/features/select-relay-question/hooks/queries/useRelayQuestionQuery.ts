@@ -10,7 +10,7 @@ const _getRelayQuestion = async (questionId: number) =>
 
 export const useRelayQuestionQuery = (questionId: number) => {
   const { data, ...rest } = useQuery({
-    queryKey: [RELAY_QUESTION_QUERY_KEY],
+    queryKey: [RELAY_QUESTION_QUERY_KEY, questionId],
     queryFn: () => _getRelayQuestion(questionId),
     enabled: false,
   });

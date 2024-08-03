@@ -10,7 +10,7 @@ const _getRandomQuestion = async (excludeQuestionIds: number[]) =>
 
 export const useRandomQuestionQuery = (excludeQuestionIds: number[]) => {
   const { data, ...rest } = useQuery({
-    queryKey: [RANDOM_QUESTION_QUERY_KEY],
+    queryKey: [RANDOM_QUESTION_QUERY_KEY, excludeQuestionIds],
     queryFn: () => _getRandomQuestion(excludeQuestionIds),
     enabled: false,
   });

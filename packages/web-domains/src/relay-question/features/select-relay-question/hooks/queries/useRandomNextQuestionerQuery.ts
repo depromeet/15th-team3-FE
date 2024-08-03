@@ -17,7 +17,7 @@ const _getRandomNextQuestioner = async ({ meetingId, excludeMemberIds }: Params)
 
 export const useRandomNextQuestionerQuery = ({ meetingId, excludeMemberIds }: Params) => {
   const { data, refetch, ...rest } = useQuery({
-    queryKey: [RANDOM_NEXT_QUESTION_QUERY_KEY],
+    queryKey: [RANDOM_NEXT_QUESTION_QUERY_KEY, meetingId, excludeMemberIds],
     queryFn: () => _getRandomNextQuestioner({ meetingId, excludeMemberIds }),
     enabled: false,
   });

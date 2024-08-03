@@ -10,7 +10,7 @@ const _getActiveQuestion = async (meetingId: number) =>
 
 export const useActiveQuestionQuery = (meetingId: number) => {
   const { data, ...rest } = useQuery({
-    queryKey: [ACTIVE_QUESTION_QUERY_KEY],
+    queryKey: [ACTIVE_QUESTION_QUERY_KEY, meetingId],
     queryFn: () => _getActiveQuestion(meetingId),
     enabled: !!meetingId,
   });
