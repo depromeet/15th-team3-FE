@@ -1,12 +1,12 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
-import { getMeetingNamePrefetch } from '@/common/apis/queries/useGetMeetingName';
-import { DialogContextProvider } from '@/common/contexts/DialogProvider';
-
 import { ToastProvider } from '../common/components/Toast/ToastProvider';
 import { InviteLinkShareContainer } from '../features/new-meeting-closing/containers/InviteLinkShareContainer';
 import NewMeetingButtonContainer from '../features/new-meeting-closing/containers/NewMeetingButtonContainer';
 import NewMeetingClosingContainer from '../features/new-meeting-closing/containers/NewMeetingClosingContainer';
+
+import { getMeetingNamePrefetch } from '@/common/apis/queries/useGetMeetingName';
+import { DialogContextProvider } from '@/common/contexts/DialogProvider';
 
 interface SearchParams {
   inviteCode: string;
