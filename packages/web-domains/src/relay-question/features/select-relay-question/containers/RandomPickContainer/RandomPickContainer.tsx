@@ -85,9 +85,9 @@ const QuestionerRandomPick = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isShowToolTip } = useToolTipShow({ showTime: 5000 });
   const { myMeetings } = useMyMeetingsQuery();
-  const { postRelayQuestionInfo } = usePostRelayQuestionInfo(myMeetings.meetingIds[0] || -1);
+  const { postRelayQuestionInfo } = usePostRelayQuestionInfo(myMeetings?.meetingIds[0] || -1);
   const { questioner, refetchQuestioner } = useRandomNextQuestionerQuery({
-    meetingId: myMeetings.meetingIds[0] || -1,
+    meetingId: myMeetings?.meetingIds[0] || -1,
     excludeMemberIds: [0],
   });
 

@@ -21,17 +21,12 @@ import {
   wrapperCss,
 } from './CurrentRelayQuestionCountContainer.styles';
 
-// TODO: 서버와 합의되면 삭제
-const TEMP_QUESTION_COUNT = 10;
-const TEMP_NAME = '삼봤드';
-const TEMP_IMAGE_URL = '';
-
 export const CurrentRelayQuestionCountContainer = () => {
   const router = useRouter();
   const openModal = useModal();
 
   const { myMeetings } = useMyMeetingsQuery();
-  const { activeQuestion } = useActiveQuestionQuery(myMeetings.meetingIds[0] || -1);
+  const { activeQuestion } = useActiveQuestionQuery(myMeetings?.meetingIds[0] || -1);
 
   const handleOpenShare = () => {
     openModal({
@@ -43,6 +38,8 @@ export const CurrentRelayQuestionCountContainer = () => {
   const goToShareNextQuestioner = () => {
     router.push('/share-next-questioner');
   };
+
+  if (!activeQuestion) return <div>loading</div>;
 
   return (
     <section css={wrapperCss}>
@@ -66,10 +63,10 @@ export const CurrentRelayQuestionCountContainer = () => {
         <div css={backgroundWrapperCss}>
           <ShareGroupBackground css={{ width: '100%' }} />
           <CurrentQuestionInfo
-            questionCount={activeQuestion.questionNumber || TEMP_QUESTION_COUNT}
+            questionCount={activeQuestion.questionNumber}
             questioner={{
-              name: activeQuestion.targetMember?.name || TEMP_NAME,
-              imageUrl: activeQuestion.targetMember?.profileImageFileUrl || TEMP_IMAGE_URL,
+              name: activeQuestion.targetMember?.name,
+              imageUrl: activeQuestion.targetMember?.profileImageFileUrl,
             }}
           />
         </div>
