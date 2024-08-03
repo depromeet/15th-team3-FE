@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
+    "dev:https": "next dev --experimental-https --experimental-https-key ./certificates/private.key.pem --experimental-https-cert ./certificates/domain.cert.pem",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
