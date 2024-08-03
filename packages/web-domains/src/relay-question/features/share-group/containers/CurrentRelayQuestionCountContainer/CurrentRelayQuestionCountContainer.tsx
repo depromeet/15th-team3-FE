@@ -7,9 +7,11 @@ import { useRouter } from 'next/navigation';
 import { ShareGroupBackground } from '../../../../assets/ShareGroupBackground';
 import { ShareGroupCheckIcon } from '../../../../assets/ShareGroupCheckIcon';
 import { ShareGroupShareIcon } from '../../../../assets/ShareGroupShareIcon';
+import { useModal } from '../../../select-relay-question/hooks/useModal';
 import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { CurrentQuestionInfo } from '../../components/CurrentQuestionInfo/CurrentQuestionInfo';
 import { useActiveQuestionQuery } from '../../hooks/useActiveQuestionQuery';
+import { ShareRelayQuestion } from '../ShareRelayQuestion/ShareRelayQuestion';
 
 import {
   backgroundWrapperCss,
@@ -26,9 +28,17 @@ const TEMP_IMAGE_URL = '';
 
 export const CurrentRelayQuestionCountContainer = () => {
   const router = useRouter();
+  const openModal = useModal();
 
   const { myMeetings } = useMyMeetingsQuery();
   const { activeQuestion } = useActiveQuestionQuery(myMeetings.meetingIds[0] || -1);
+
+  const handleOpenShareKakao = () => {
+    openModal({
+      component: ShareRelayQuestion,
+      componentProps: { title: '모임원들에게 릴레이 질문을' },
+    });
+  };
 
   const goToShareNextQuestioner = () => {
     router.push('/share-next-questioner');
@@ -66,7 +76,7 @@ export const CurrentRelayQuestionCountContainer = () => {
       </div>
 
       <div css={buttonWrapperCss}>
-        <Button css={firstButtonCss}>
+        <Button css={firstButtonCss} onClick={handleOpenShareKakao}>
           <ShareGroupShareIcon css={{ marginRight: size['6xs'] }} />
           단톡방에 공유하기
         </Button>

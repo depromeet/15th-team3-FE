@@ -6,7 +6,7 @@ export const wrapperCss = css({
   maxWidth: '144px',
   position: 'absolute',
   top: 80,
-  left: '50%',
+  left: '49.5%',
   transform: 'translateX(-50%)',
 });
 
