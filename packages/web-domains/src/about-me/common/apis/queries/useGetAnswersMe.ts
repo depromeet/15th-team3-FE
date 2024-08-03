@@ -23,6 +23,7 @@ export const useGetAnswersMe = (props: QueryProps) => {
   return useQuery({
     queryKey: [ANSWERS_ME_QUERY_KEY, params],
     queryFn: () => queryFn(params),
+    enabled: params.meetingId !== -1,
     ...options,
   });
 };
