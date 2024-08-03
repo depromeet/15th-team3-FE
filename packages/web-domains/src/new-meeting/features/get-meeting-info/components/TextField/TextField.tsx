@@ -1,6 +1,6 @@
 import { Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
-import { forwardRef, InputHTMLAttributes, PropsWithChildren } from 'react';
+import { ChangeEvent, forwardRef, InputHTMLAttributes, PropsWithChildren } from 'react';
 
 import { textFieldCss, inputCss } from './styles';
 
@@ -10,11 +10,18 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const TextField = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>((props, ref) => {
-  const { error, errorMessage, ...restProps } = props;
+  const { onChange, error, errorMessage, maxLength, ...restProps } = props;
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (maxLength && event.target.value.length > maxLength) {
+      event.target.value = event.target.value.slice(0, maxLength);
+    }
+    onChange && onChange(event);
+  };
 
   return (
     <div css={textFieldCss}>
-      <input css={inputCss(error)} type="text" ref={ref} {...restProps} />
+      <input css={inputCss(error)} type="text" ref={ref} onChange={handleChange} maxLength={maxLength} {...restProps} />
       {errorMessage && (
         <Txt
           as="p"
