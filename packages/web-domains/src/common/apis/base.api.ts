@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseURL = `https://dev-api.moring.one/`;
+const baseURL = `https://dev-api.moring.one`;
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
