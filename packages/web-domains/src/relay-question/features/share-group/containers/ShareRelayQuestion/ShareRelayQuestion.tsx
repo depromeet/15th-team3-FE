@@ -2,6 +2,7 @@ import { Button, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 
 import { useToast } from '../../../../hooks/useToast';
+import { copyToClipboard } from '../../../../utils/copyClipboard';
 import { CopyLink } from '../../components/CopyLink/CopyLink';
 import { ShareKakao } from '../../components/ShareKakao/ShareKakao';
 
@@ -15,8 +16,9 @@ interface ShareRelayQuestionProps {
 export const ShareRelayQuestion = ({ title, onClose }: ShareRelayQuestionProps) => {
   const openToast = useToast();
 
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
+  const handleCopyLink = async () => {
+    await copyToClipboard(window.location.href);
+
     openToast({ content: '링크를 복사했어요!' });
   };
 
