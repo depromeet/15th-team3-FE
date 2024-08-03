@@ -2,7 +2,6 @@
 
 import { Button, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
-import { useSearchParams } from 'next/navigation';
 
 import { useDialogContext } from '@/common/contexts/DialogProvider';
 import { Modal } from '@/new-meeting/common/components/Modal/Modal';
@@ -10,16 +9,17 @@ import { Modal } from '@/new-meeting/common/components/Modal/Modal';
 import { InviteLinkShareButton } from '../components/Button/InviteLinkShareButton';
 import ShareKakaoButton from '../components/Button/ShareKakaoButton';
 
-export const InviteLinkShareContainer = () => {
+interface InviteLinkShareContainerProps {
+  inviteCode: string;
+}
+
+export const InviteLinkShareContainer = (props: InviteLinkShareContainerProps) => {
+  const { inviteCode } = props;
   const { isOpen, close } = useDialogContext();
 
   const handleClose = () => {
     close();
   };
-
-  const searchParams = useSearchParams();
-
-  const inviteCode = searchParams.get('inviteCode');
 
   return (
     <Modal

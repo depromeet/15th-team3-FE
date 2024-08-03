@@ -8,7 +8,7 @@ import { useToast } from '@/new-meeting/common/components/Toast/ToastProvider';
 import { CopyToast } from '../CopyToast';
 
 interface InviteCodeCopyButtonProps {
-  inviteCode?: string;
+  inviteCode: string;
 }
 export const InviteCodeShareButton = (props: InviteCodeCopyButtonProps) => {
   const { inviteCode = '0AF781' } = props;

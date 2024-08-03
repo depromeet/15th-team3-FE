@@ -7,9 +7,15 @@ import Image from 'next/image';
 import ClosingBackground from '../../../common/assets/images/closing-background.png';
 import Character from '../../../common/assets/images/meeting-character.png';
 import { InviteCodeShareButton } from '../components/Button/InviteCodeShareButton';
+import { useGetMeetingNameService } from '../services/useGetMeetingNameService';
 
-const NewMeetingClosingContainer = () => {
-  const meetingName = '삼밧드의 모험';
+interface NewMeetingClosingContainerProps {
+  inviteCode: string;
+}
+const NewMeetingClosingContainer = (props: NewMeetingClosingContainerProps) => {
+  const { inviteCode } = props;
+
+  const { data } = useGetMeetingNameService({ inviteCode });
 
   return (
     <div
@@ -39,7 +45,7 @@ const NewMeetingClosingContainer = () => {
       >
         <div css={{ transform: 'translate(0, 20%)' }}>
           <Txt as="h1" color={colors.primary500} typography="heading1">
-            {meetingName}
+            {data?.name}
           </Txt>
           <Txt as="h2" color={colors.black} typography="heading1">
             모임을 만들었어요!
@@ -72,7 +78,7 @@ const NewMeetingClosingContainer = () => {
         <Txt typography="title2" color={colors.grey600}>
           초대 코드 복사하기
         </Txt>
-        <InviteCodeShareButton />
+        <InviteCodeShareButton inviteCode={inviteCode} />
       </div>
 
       <div
