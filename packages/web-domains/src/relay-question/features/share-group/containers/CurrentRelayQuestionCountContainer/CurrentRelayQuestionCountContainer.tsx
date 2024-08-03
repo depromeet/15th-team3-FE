@@ -33,7 +33,7 @@ export const CurrentRelayQuestionCountContainer = () => {
   const { myMeetings } = useMyMeetingsQuery();
   const { activeQuestion } = useActiveQuestionQuery(myMeetings.meetingIds[0] || -1);
 
-  const handleOpenShareKakao = () => {
+  const handleOpenShare = () => {
     openModal({
       component: ShareRelayQuestion,
       componentProps: { title: '모임원들에게 릴레이 질문을' },
@@ -76,7 +76,7 @@ export const CurrentRelayQuestionCountContainer = () => {
       </div>
 
       <div css={buttonWrapperCss}>
-        <Button css={firstButtonCss} onClick={handleOpenShareKakao}>
+        <Button css={firstButtonCss} onClick={handleOpenShare}>
           <ShareGroupShareIcon css={{ marginRight: size['6xs'] }} />
           단톡방에 공유하기
         </Button>
