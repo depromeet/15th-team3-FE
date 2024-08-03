@@ -8,9 +8,10 @@ import { buttonWrapperCss, textWrapperCss } from './ShareRelayQuestion.styles';
 
 interface ShareRelayQuestionProps {
   title: string;
+  onClose: () => void;
 }
 
-export const ShareRelayQuestion = ({ title }: ShareRelayQuestionProps) => {
+export const ShareRelayQuestion = ({ title, onClose }: ShareRelayQuestionProps) => {
   return (
     <section>
       <div css={textWrapperCss}>
@@ -25,7 +26,9 @@ export const ShareRelayQuestion = ({ title }: ShareRelayQuestionProps) => {
         <ShareKakao />
         <CopyLink />
       </div>
-      <Button variant="sub">닫기</Button>
+      <Button variant="sub" onClick={onClose}>
+        닫기
+      </Button>
     </section>
   );
 };
