@@ -1,10 +1,10 @@
 export interface SelectedAnswerResponse {
   content: Array<string>;
   count: number;
-  selectedMembers: Array<Members>;
+  selectedMembers: Array<Member>;
 }
 
-export interface Members {
+export interface Member {
   meetingMemberId: number;
   name: string;
   profileImageFileUrl: string;
