@@ -9,7 +9,7 @@
     "baseUrl": "../../packages",
     "paths": {
       "@/*": ["./web-domains/src/*"],
-      "@sds/*": ["./sds/src/*"]
+      "@sds/*": ["./core/sds/src/*"]
     }
   },
   "include": [
