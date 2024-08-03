@@ -4,13 +4,13 @@ import { size } from '@sambad/sds/theme';
 
 import { useGetComments } from '@/result/common/apis/queries/useGetComments';
 import { Section } from '@/result/common/components';
+import { BaseParams } from '@/result/common/types/BaseParams';
 
 import { Comment } from '../components';
 
-import { BasePageParams } from './types';
-
-export const CommentListContainer = (params: BasePageParams) => {
-  const { data: comments } = useGetComments(params);
+export const CommentListContainer = (params: BaseParams) => {
+  const { questionId } = params;
+  const { data: comments } = useGetComments({ meetingId: 1, questionId });
 
   if (!comments?.contents?.length) return null;
 
