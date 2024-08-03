@@ -22,24 +22,24 @@ export const ShareGroupBackground = ({ css, ...rest }: ShareGroupBackgroundProps
         fill="black"
       />
       <rect
-        x="101.357"
-        y="61.418"
-        width="174"
-        height="208"
-        rx="17"
-        transform="rotate(1.20052 101.357 61.418)"
+        x="96.6758"
+        y="61.877"
+        width="183.476"
+        height="219.328"
+        rx="17.9258"
+        transform="rotate(1.20052 96.6758 61.877)"
         fill="#FF7664"
       />
       <rect
-        x="98.8965"
-        y="60.0488"
-        width="174"
-        height="208"
-        rx="17"
-        transform="rotate(-1.33038 98.8965 60.0488)"
+        x="94.0801"
+        y="60.4336"
+        width="183.476"
+        height="219.328"
+        rx="17.9258"
+        transform="rotate(-1.33038 94.0801 60.4336)"
         fill="#FF967C"
       />
-      <rect x="98" y="53" width="174" height="208" rx="17" fill="#FFBBA2" />
+      <rect x="93.1348" y="53" width="183.476" height="219.328" rx="17.9258" fill="#FFBBA2" />
       <circle cx="187.5" cy="71.5" r="6.5" fill="white" />
       <circle cx="296" cy="49.9316" r="4" fill="#FDE582" />
       <path
