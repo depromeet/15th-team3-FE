@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
 
+import { Z_INDEX } from '../../constants';
+
 export const wrapperCss = css({
   display: 'flex',
   justifyContent: 'center',
@@ -9,7 +11,7 @@ export const wrapperCss = css({
   height: '100%',
   width: '100%',
   inset: 0,
-  zIndex: 9999,
+  zIndex: Z_INDEX.modalBackDrop,
 });
 
 export const contentWrapperCss = css({
@@ -17,7 +19,7 @@ export const contentWrapperCss = css({
   background: colors.white,
   borderRadius: borderRadiusVariants.medium,
   width: '312px',
-  zIndex: 10000,
+  zIndex: Z_INDEX.modal,
 });
 
 export const overlayCss = css({
