@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { colors, size } from '@sambad/sds/theme';
+import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
 
 import { subTitleAttribute } from './constants';
 
@@ -13,8 +13,6 @@ export const segmentedCss = css({
 });
 
 export const aboutMeSectionCss = css({
-  padding: `${size['3xs']} 0`,
-
   '& > * + *': {
     paddingTop: size.sm,
   },
@@ -31,4 +29,17 @@ export const aboutMeSectionCss = css({
 export const titleCss = css({
   display: 'block',
   paddingBottom: size['6xs'],
+});
+
+export const answerContentCss = css({
+  borderRadius: borderRadiusVariants.medium,
+  padding: `${size['5xs']} ${size['xs']}`,
+  border: `1px solid ${colors.grey400}`,
+  backgroundColor: colors.grey200,
+  display: 'flex',
+  flexDirection: 'column',
+
+  '& > *:last-child': {
+    paddingTop: size['7xs'],
+  },
 });
