@@ -6,7 +6,7 @@ import { colors, size } from '@sambad/sds/theme';
 import { ShareGroupShareIcon } from '../../../../assets/ShareGroupShareIcon';
 import { ShareNextQuestionerBackground } from '../../../../assets/ShareNextQuestionerBackground';
 import { Toast } from '../../../../common/Toast';
-import { useModal } from '../../../select-relay-question/hooks/useModal';
+import { useModal } from '../../../../hooks/useModal';
 import { ShareRelayQuestion } from '../../../share-group/containers/ShareRelayQuestion/ShareRelayQuestion';
 
 import {

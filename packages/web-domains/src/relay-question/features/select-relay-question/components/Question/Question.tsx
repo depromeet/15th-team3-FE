@@ -3,8 +3,8 @@ import { colors } from '@sambad/sds/theme';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+import { useModal } from '../../../../hooks/useModal';
 import { useRelayQuestionQuery } from '../../hooks/queries/useRelayQuestionQuery';
-import { useModal } from '../../hooks/useModal';
 import { QuestionDetail } from '../QuestionDetail/QuestionDetail';
 
 import { questionImgWrapperCss, questionTextWrapperCss, wrapperCss } from './Question.styles';

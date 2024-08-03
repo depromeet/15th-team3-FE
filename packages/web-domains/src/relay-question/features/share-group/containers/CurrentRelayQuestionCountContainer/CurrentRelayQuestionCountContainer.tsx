@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { ShareGroupBackground } from '../../../../assets/ShareGroupBackground';
 import { ShareGroupCheckIcon } from '../../../../assets/ShareGroupCheckIcon';
 import { ShareGroupShareIcon } from '../../../../assets/ShareGroupShareIcon';
-import { useModal } from '../../../select-relay-question/hooks/useModal';
+import { useModal } from '../../../../hooks/useModal';
 import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { CurrentQuestionInfo } from '../../components/CurrentQuestionInfo/CurrentQuestionInfo';
 import { useActiveQuestionQuery } from '../../hooks/useActiveQuestionQuery';

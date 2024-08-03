@@ -1,7 +1,7 @@
 import { useOverlay } from '@toss/use-overlay';
 import { ComponentType, useCallback } from 'react';
 
-import { Modal } from '../../../common/Modal';
+import { Modal } from '../common/Modal';
 
 interface ModalContentProps {
   onConfirm: () => void;
