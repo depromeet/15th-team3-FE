@@ -2,6 +2,7 @@
 
 import { HTMLAttributes } from 'react';
 
+import { useGetMeetings } from '@/about-me/common/apis/queries/useGetMeetings';
 import { useGetMemberMe } from '@/about-me/common/apis/queries/useGetMemberMe';
 
 import { Profile } from '../components';
@@ -9,8 +10,10 @@ import { Profile } from '../components';
 type ProfileContainerProps = HTMLAttributes<HTMLDivElement>;
 
 export const ProfileContainer = (props: ProfileContainerProps) => {
-  // NOTE: 현재 스팩 상 한 유저는 한 모임에만 속할 수 있으므로 무조건적으로 1입니다.
-  const { data } = useGetMemberMe({ meetingId: 1 });
+  const { data: meetingsIdsData } = useGetMeetings();
+  // NOTE: 현재 스팩에서는 하나의 모임에만 가입할 수 있습니다.
+  const meetingId = meetingsIdsData?.meetingIds[0] || -1;
+  const { data } = useGetMemberMe({ meetingId });
 
   return (
     <section {...props}>
