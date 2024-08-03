@@ -1,9 +1,7 @@
 import { useGetMeetingTypes } from '@/common/apis/queries/useGetMeetingTypes';
 
 export const useMeetingTypesService = () => {
-  const res = useGetMeetingTypes();
+  const response = useGetMeetingTypes();
 
-  return {
-    meetingTypes: res.data?.contents,
-  };
+  return response;
 };
