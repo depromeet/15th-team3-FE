@@ -12,6 +12,7 @@ export const useMeetingMemberQuery = (meetingId: number) => {
   const { data, ...rest } = useQuery({
     queryKey: [RELAY_MEET_MEMBER_QUERY_KEY],
     queryFn: () => _getMeetingMember(meetingId),
+    enabled: !!meetingId,
   });
 
   return { meetingMembers: data?.contents, ...rest };

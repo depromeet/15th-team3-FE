@@ -27,7 +27,7 @@ export const ContentContainer = () => {
 
 const QuestionList = () => {
   const { myMeetings } = useMyMeetingsQuery();
-  const { questions, fetchStatus, fetchNextPage } = useRelayQuestionListQuery(myMeetings?.meetingIds[0] || -1);
+  const { questions, fetchStatus, fetchNextPage } = useRelayQuestionListQuery(myMeetings?.meetingIds[0]!);
   const { targetRef } = useIntersect({
     onIntersect: (entry) => {
       if (entry.isIntersecting && fetchStatus !== 'fetching') {
@@ -36,6 +36,7 @@ const QuestionList = () => {
     },
   });
 
+  if (!questions) return <div>loading</div>;
   if (questions.length === 0) return <div>empty list</div>;
 
   return (
@@ -64,7 +65,7 @@ const QuestionList = () => {
 const NextQuestionerList = () => {
   const queryClient = useQueryClient();
   const { myMeetings } = useMyMeetingsQuery();
-  const { meetingMembers } = useMeetingMemberQuery(myMeetings?.meetingIds[0] || -1);
+  const { meetingMembers } = useMeetingMemberQuery(myMeetings?.meetingIds[0]!);
 
   const myInfo = queryClient.getQueryData<MyInfoResponse>([USERS_QUERY_KEY]);
 
