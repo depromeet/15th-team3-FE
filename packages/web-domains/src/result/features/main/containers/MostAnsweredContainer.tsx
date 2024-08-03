@@ -2,13 +2,13 @@
 
 import { useGetMostSelected } from '@/result/common/apis/queries/useGetMostSelected';
 import { Section } from '@/result/common/components';
+import { BaseParams } from '@/result/common/types/BaseParams';
 
 import { MostAnswered, CountByMemberList } from '../components';
 
-import { BasePageParams } from './types';
-
-export const MostAnsweredContainers = (params: BasePageParams) => {
-  const { data } = useGetMostSelected(params);
+export const MostAnsweredContainers = (params: BaseParams) => {
+  const { questionId } = params;
+  const { data } = useGetMostSelected({ meetingId: 1, questionId });
 
   // NOTE: 홍길동님 외 N명 <- 에서 홍길동 자리에 위치시킬 이름
   const showName = data?.selectedMembers[0]?.name;

@@ -5,13 +5,13 @@ import { Fragment } from 'react/jsx-runtime';
 
 import { useGetSameSelected } from '@/result/common/apis/queries/useGetSameSelected';
 import { Section } from '@/result/common/components';
+import { BaseParams } from '@/result/common/types/BaseParams';
 
 import { WithMeMembers } from '../components';
 
-import { BasePageParams } from './types';
-
-export const WithMyMembersContainers = (params: BasePageParams) => {
-  const { data } = useGetSameSelected(params);
+export const WithMyMembersContainers = (params: BaseParams) => {
+  const { questionId } = params;
+  const { data } = useGetSameSelected({ meetingId: 1, questionId });
 
   const answered = data?.content?.join(', ');
   const title =
