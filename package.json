@@ -2,7 +2,7 @@
   "name": "15th-team3-fe",
   "private": true,
   "scripts": {
-    "dev:web": "turbo web#dev",
+    "dev:web": "turbo web#dev:https",
     "start:web": "turbo web#start",
     "build:web": "turbo web#build",
     "build": "turbo build",
