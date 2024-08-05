@@ -1,7 +1,6 @@
 import { Root as RadixToggleRoot, ToggleGroupSingleProps } from '@radix-ui/react-toggle-group';
-import { forwardRef, useState } from 'react';
-
 import { useControllableState } from '@sds/hooks';
+import { forwardRef, useState } from 'react';
 
 import { indicatorAttribute } from './constants';
 import { SegmentedControlProvider } from './context';
