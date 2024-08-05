@@ -12,8 +12,6 @@ interface AlreadyProgressingQuestionButtonProps {
 }
 
 export const AlreadyProgressingQuestionButton = ({ time }: AlreadyProgressingQuestionButtonProps) => {
-  //   const {} = useDialogContext();
-
   const countdownTimer = getRemainTime(time);
 
   return (

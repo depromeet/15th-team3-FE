@@ -6,7 +6,7 @@ import { Http } from '@/common/apis/base.api';
 
 import { PreviousQuestionListResponseType } from '../schema/useGetPreviousQuestionListQuery.type';
 
-type Params = { meetingId: string; page: number };
+type Params = { meetingId: number; page: number };
 interface Args<T, K = T> {
   params: Params;
   options?: UseQueryOptionsExcludedQueryKey<T, K>;

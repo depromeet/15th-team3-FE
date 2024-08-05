@@ -1,28 +1,19 @@
 'use client';
 
-import { AlreadyAnsweredQuestionNotification } from '../components/AlreadyAnsweredQuestionNotification';
-// import { Button } from '@sambad/sds/components';
-
-// import { Modal } from '../../../../common/components/Modal/Modal';
-// import { useDialogContext } from '../../../../common/contexts/DialogProvider';
-// import { ArrivedQuestionNotification } from '../components/ArrivedQuestionNotification';
-// import { useDialogContext } from '../../../../common/contexts/DialogProvider';
-// import { ExpiredQuestionNotification } from '../components/ExpiredQuestionNotification';
-// import {
-//   SelectedTargetMemberModal,
-//   SelectedTargetMemberNotification,
-// } from '../components/SelectedTargetMemberNotification';
-
+import { ArrivedQuestionNotification } from '../components/ArrivedQuestionNotification';
+import { SelectedTargetMemberNotification } from '../components/SelectedTargetMemberNotification';
+import { useNotificationService } from '../services/useNotificationService';
 export const NotificationContainer = () => {
-  // const { isOpen, close } = useDialogContext();
+  const { notfication, handleClose, isOpen } = useNotificationService();
 
-  //   return <ArrivedQuestionNotification isOpen={true} />;
   return (
     <>
-      <AlreadyAnsweredQuestionNotification isOpen={true} />
-      {/* <ExpiredQuestionNotification isOpen={true} /> */}
-      {/* <ProgressingQuestionNotification isOpen={isOpen} countdownTimer={dayjs().valueOf() + 4000000} onClose={close} /> */}
+      {notfication?.eventType === 'QUESTION_REGISTERED' && (
+        <ArrivedQuestionNotification isOpen={isOpen} onClose={handleClose} />
+      )}
+      {notfication?.eventType === 'TARGET_MEMBER' && (
+        <SelectedTargetMemberNotification isOpen={isOpen} onClose={handleClose} />
+      )}
     </>
   );
-  //   return <SelectedTargetMemberNotification isOpen={false} />;
 };

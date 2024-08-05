@@ -4,10 +4,10 @@ import { isAxiosError } from 'axios';
 import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 import { Http } from '../../../../common/apis/base.api';
-import { MeetingInfoResponse, MeetingTypeResponse } from '../schema/Meeting.schema';
+import { MeetingIdListResponseType } from '../schema/Meeting.schema';
 
 interface Args {
-  options?: UseQueryOptionsExcludedQueryKey<MeetingInfoResponse>;
+  options?: UseQueryOptionsExcludedQueryKey<MeetingIdListResponseType>;
 }
 
 export const MEETING_INFO_QUERY_KEY = 'MEETING_NAME_QUERY_KEY';
@@ -46,18 +46,8 @@ export const getGatherMeetingInfoPrefetch = (queryClient: QueryClient, cookie?: 
   return prefetch;
 };
 
-export async function getMeetingInfo(cookie?: ReadonlyRequestCookies): Promise<MeetingInfoResponse> {
-  const data = await Http.GET<MeetingTypeResponse>(`/v1/meetings/types`, {
-    headers: {
-      Cookie: cookie?.toString(),
-    },
-  });
+export async function getMeetingInfo(): Promise<MeetingIdListResponseType> {
+  const data = await Http.GET<MeetingIdListResponseType>(`/v1/meetings`);
 
-  if (data) {
-    return {
-      meetingName: '삼봤드의 모험',
-      meetingId: data.contents[0]?.meetingTypeId ?? 1,
-    };
-  }
   return data;
 }
