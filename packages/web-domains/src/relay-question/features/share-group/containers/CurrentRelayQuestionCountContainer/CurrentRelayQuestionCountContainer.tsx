@@ -8,6 +8,7 @@ import { ShareGroupBackground } from '../../../../assets/ShareGroupBackground';
 import { ShareGroupCheckIcon } from '../../../../assets/ShareGroupCheckIcon';
 import { ShareGroupShareIcon } from '../../../../assets/ShareGroupShareIcon';
 import { useModal } from '../../../../hooks/useModal';
+import { KakaoShareOpenGraphKeyType } from '../../../../utils/shareToKakao';
 import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { CurrentQuestionInfo } from '../../components/CurrentQuestionInfo/CurrentQuestionInfo';
 import { useActiveQuestionQuery } from '../../hooks/useActiveQuestionQuery';
@@ -31,12 +32,18 @@ export const CurrentRelayQuestionCountContainer = () => {
   const handleOpenShare = () => {
     openModal({
       component: ShareRelayQuestion,
-      componentProps: { title: '모임원들에게 릴레이 질문을' },
+      componentProps: {
+        title: '모임원들에게 릴레이 질문을',
+        openGraphKey: 'newQuestion' as KakaoShareOpenGraphKeyType,
+      },
     });
   };
 
   const goToShareNextQuestioner = () => {
-    router.push('/share-next-questioner');
+    const searchParams = new URLSearchParams(location.search);
+    const questionerName = searchParams.get('questioner-name');
+
+    router.push(`/share-next-questioner?questioner-name=${questionerName}`);
   };
 
   if (!activeQuestion) return <div>loading</div>;

@@ -87,7 +87,7 @@ const QuestionerRandomPick = () => {
   const { myMeetings } = useMyMeetingsQuery();
   const { postRelayQuestionInfo } = usePostRelayQuestionInfo(myMeetings?.meetingIds[0]!);
   const { questioner, refetchQuestioner } = useRandomNextQuestionerQuery({
-    meetingId: myMeetings?.meetingIds[0] || -1,
+    meetingId: myMeetings?.meetingIds[0]!,
     excludeMemberIds: [0],
   });
 
@@ -105,15 +105,15 @@ const QuestionerRandomPick = () => {
 
     const { meetingMemberId } = questioner;
     const searchParams = new URLSearchParams(location.search);
+    const questionId = Number(searchParams.get('question-id'));
 
     postRelayQuestionInfo(
-      { questionId: Number(searchParams.get('question-id')), meetingMemberId },
+      { questionId, meetingMemberId },
       {
         onSuccess: () => {},
       },
     );
-
-    router.push(`/share-group`);
+    router.push(`/share-group?question-id=${questionId}&questioner-name=${questioner.name}`);
   };
 
   return (
