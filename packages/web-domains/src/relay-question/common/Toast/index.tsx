@@ -14,7 +14,7 @@ interface ToastProps extends HTMLAttributes<HTMLDivElement> {
   children: string;
 }
 
-export const Toast = ({ children, showTime = 5000, isOpen, ...rest }: ToastProps) => {
+export const Toast = ({ children, showTime = 1500, isOpen, ...rest }: ToastProps) => {
   const [isShow, setIsShow] = useState<boolean>(isOpen);
   const safeShowTime = showTime < 1000 ? 1000 : showTime;
 
