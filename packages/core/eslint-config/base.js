@@ -21,7 +21,7 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+        groups: ['external', 'builtin', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
         pathGroups: [
           {
             pattern: '@sds/**',
