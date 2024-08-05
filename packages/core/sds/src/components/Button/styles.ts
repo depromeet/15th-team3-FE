@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-
 import { borderRadiusVariants, colors } from '@sds/theme';
 
 import { ButtonSize, ButtonVariant } from './types';

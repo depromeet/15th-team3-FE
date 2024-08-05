@@ -1,5 +1,4 @@
 // import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-// import { Suspense } from 'react';
 
 import { ContentContainer } from '../features/select-relay-question/containers/ContentContainer/ContentContainer';
 import { ProgressIndicatorContainer } from '../features/select-relay-question/containers/ProgressIndicatorContainer/ProgressIndicatorContainer';
@@ -14,13 +13,11 @@ export const SelectRelayQuestionScreen = async () => {
 
   return (
     // <HydrationBoundary state={dehydrate(queryClient)}>
-    // <Suspense>
     <QueryStringProvider>
       <ProgressIndicatorContainer />
       <ContentContainer />
       <RandomPickContainer />
     </QueryStringProvider>
-    // </Suspense>
     // </HydrationBoundary>
   );
 };

@@ -1,8 +1,7 @@
+import { colors } from '@sds/theme';
 import { ElementType, forwardRef, HTMLAttributes } from 'react';
 
-import { colors } from '@sds/theme';
-
-import { fontSizeByTypography, fontWeightVariants, fontWeightByTypography } from './styles';
+import { fontSizeByTypography, fontWeightByTypography, fontWeightVariants } from './styles';
 import { FontWeight, Typography } from './types';
 
 /**
