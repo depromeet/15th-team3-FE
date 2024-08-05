@@ -29,12 +29,13 @@ export const Questioner = ({ meetingId, meetingMemberId, imageUrl, name }: Quest
 
     if (isConfirm) {
       const searchParams = new URLSearchParams(location.search);
+      const questionId = Number(searchParams.get('question-id'));
 
       postRelayQuestionInfo(
-        { questionId: Number(searchParams.get('question-id')), meetingMemberId },
+        { questionId, meetingMemberId },
         {
           onSuccess: () => {
-            router.push('/share-group');
+            router.push(`/share-group?question-id=${questionId}&questioner-name=${name}`);
           },
         },
       );

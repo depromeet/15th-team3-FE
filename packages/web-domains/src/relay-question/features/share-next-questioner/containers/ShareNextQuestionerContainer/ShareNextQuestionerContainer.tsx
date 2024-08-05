@@ -6,6 +6,7 @@ import { colors, size } from '@sambad/sds/theme';
 import { ShareGroupShareIcon } from '../../../../assets/ShareGroupShareIcon';
 import { ShareNextQuestionerBackground } from '../../../../assets/ShareNextQuestionerBackground';
 import { useModal } from '../../../../hooks/useModal';
+import { KakaoShareOpenGraphKeyType } from '../../../../utils/shareToKakao';
 import { ShareRelayQuestion } from '../../../share-group/containers/ShareRelayQuestion/ShareRelayQuestion';
 
 import {
@@ -22,7 +23,7 @@ export const ShareNextQuestionerContainer = () => {
   const handleOpenShare = () => {
     openModal({
       component: ShareRelayQuestion,
-      componentProps: { title: '다음 릴레이 질문인에게' },
+      componentProps: { title: '다음 릴레이 질문인에게', openGraphKey: 'nextQuestioner' as KakaoShareOpenGraphKeyType },
     });
   };
 

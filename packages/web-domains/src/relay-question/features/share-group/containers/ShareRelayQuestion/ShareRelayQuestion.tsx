@@ -3,18 +3,24 @@ import { colors } from '@sambad/sds/theme';
 
 import { useToast } from '../../../../hooks/useToast';
 import { copyToClipboard } from '../../../../utils/copyClipboard';
+import { KakaoShareOpenGraphKeyType } from '../../../../utils/shareToKakao';
 import { CopyLink } from '../../components/CopyLink/CopyLink';
 import { ShareKakao } from '../../components/ShareKakao/ShareKakao';
 
 import { buttonWrapperCss, textWrapperCss } from './ShareRelayQuestion.styles';
 
-interface ShareRelayQuestionProps {
+export interface ShareRelayQuestionProps {
   title: string;
+  openGraphKey: KakaoShareOpenGraphKeyType;
   onClose: () => void;
 }
 
-export const ShareRelayQuestion = ({ title, onClose }: ShareRelayQuestionProps) => {
+export const ShareRelayQuestion = ({ title, openGraphKey, onClose }: ShareRelayQuestionProps) => {
   const openToast = useToast();
+
+  const searchParams = new URLSearchParams(location.search);
+  const questionId = Number(searchParams.get('question-id'));
+  const questionerName = searchParams.get('questioner-name') || '';
 
   const handleCopyLink = async () => {
     await copyToClipboard(window.location.href);
@@ -33,7 +39,7 @@ export const ShareRelayQuestion = ({ title, onClose }: ShareRelayQuestionProps) 
         </Txt>
       </div>
       <div css={buttonWrapperCss}>
-        <ShareKakao />
+        <ShareKakao openGraphKey={openGraphKey} questionId={questionId} questionerName={questionerName} />
         <CopyLink onClick={handleCopyLink} />
       </div>
       <Button variant="sub" onClick={onClose}>
