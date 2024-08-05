@@ -3,6 +3,7 @@ import { keepPreviousData } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
 import { useIntersect } from '@/common/hooks/useIntersect';
+import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 import { useGetPreviousQuestionList } from '@/home/common/apis/queries/useGetPreviousQuestionList';
 import { PreviousQuestionType } from '@/home/common/apis/schema/useGetPreviousQuestionListQuery.type';
 
@@ -12,11 +13,15 @@ export const usePreviousQuestionListService = () => {
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
 
+  const { data: meetingInfo } = useGetMeetingInfo({
+    options: { gcTime: Infinity },
+  });
+
   const { data, isFetching } = useGetPreviousQuestionList({
-    params: { meetingId: '1', page },
+    params: { meetingId: meetingInfo?.meetingIds[0]!, page },
     options: {
       placeholderData: keepPreviousData,
-      enabled: hasNextPage,
+      enabled: hasNextPage && !!meetingInfo?.meetingIds[0],
     },
   });
 

@@ -1,10 +1,37 @@
-// import { useState } from 'react';
+import { useEffect } from 'react';
 
-// export const useNotificationService = () => {
-//   const [isNotificationExist, setIsNotificationExist] = useState<boolean>(false);
+import { useDialogContext } from '@/common/contexts/DialogProvider';
+import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
+import { useGetNotification } from '@/home/common/apis/queries/useGetNotification';
 
-//   //   let isSelectedTargetMember = false;
-//   //   let isArrived;
+export const useNotificationService = () => {
+  const { isOpen, close, open } = useDialogContext();
+  const { data: meetingInfo } = useGetMeetingInfo({
+    options: { gcTime: Infinity },
+  });
 
-//   return {};
-// };
+  const { data: notfication, isRefetching } = useGetNotification({
+    params: { meetingId: meetingInfo?.meetingIds[0]! },
+    options: {
+      enabled: !!meetingInfo?.meetingIds,
+      refetchInterval: 1000 * 30,
+    },
+  });
+
+  const handleClose = () => {
+    close();
+  };
+
+  useEffect(() => {
+    if (notfication?.contents[0]) {
+      open();
+    }
+  }, [notfication, isRefetching]);
+
+  return {
+    notfication: notfication?.contents[0],
+    isOpen,
+    handleClose,
+    isRefetching,
+  };
+};

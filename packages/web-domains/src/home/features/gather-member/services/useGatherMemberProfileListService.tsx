@@ -7,7 +7,12 @@ export const useGatherMemberProfileListService = () => {
     options: { gcTime: Infinity },
   });
 
-  const { data } = useGetGatherMemberList({ params: { meetingId: meetingInfo?.meetingId ?? 1 } });
+  const { data } = useGetGatherMemberList({
+    params: { meetingId: meetingInfo?.meetingIds[0]! },
+    options: {
+      enabled: !!meetingInfo?.meetingIds[0],
+    },
+  });
 
   return {
     gatherMemberList: data?.contents,

@@ -1,7 +1,6 @@
 import { Txt } from '@sambad/sds/components';
 import { HTMLAttributes } from 'react';
 
-import { ProfileImage } from '../../../../../common/asset/profile';
 import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
 interface GatherNameProps extends HTMLAttributes<HTMLDivElement> {
@@ -21,7 +20,7 @@ export const GatherName = ({ gatherName, profileImage, ...rest }: GatherNameProp
         </Txt>
       </div>
       <div css={{ marginLeft: '4px', position: 'relative', top: '11px' }}>
-        <Avatar imageUrl={profileImage} Icon={ProfileImage} size={48} />
+        <Avatar imageUrl={profileImage} width={48} height={48} css={{ borderRadius: '50%' }} />
       </div>
     </div>
   );

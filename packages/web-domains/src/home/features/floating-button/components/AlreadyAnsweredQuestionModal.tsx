@@ -5,7 +5,7 @@ import { RectQuestion } from '@/common/asset/rectquestion';
 import { Modal, ModalProps } from '@/common/components/Modal/Modal';
 import { Avatar } from '@/home/common/components/Avatar/Avatar';
 
-export const AlreadyAnsweredQuestionNotification = ({ ...rest }: ModalProps) => {
+export const AlreadyAnsweredQuestionModal = ({ ...rest }: ModalProps) => {
   return (
     <Modal {...rest}>
       <div>

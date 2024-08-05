@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { useSetAtom } from 'jotai';
 
 import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
+import { useGetMyInfo } from '@/home/common/apis/queries/useGetMyInfo';
 import { homeGlobalTimeAtom, isProgessingQuestionAtom } from '@/home/common/atoms/home.atom';
 
 import { useGetProgressingQuestion } from '../../../common/apis/queries/useGetProgressingQuestion';
@@ -13,8 +14,13 @@ export const useProgressingQuestionService = () => {
     options: { gcTime: Infinity },
   });
 
+  const { data: myInfo } = useGetMyInfo({
+    params: { meetingId: meetingInfo?.meetingIds[0]! },
+    options: { enabled: !!meetingInfo?.meetingIds[0] },
+  });
+
   const { data: progressingQuestion } = useGetProgressingQuestion({
-    params: { meetingId: meetingInfo?.meetingId ?? 1 },
+    params: { meetingId: meetingInfo?.meetingIds[0]! },
     options: {
       select: (data) => {
         if (data?.isQuestionRegistered) {
@@ -26,13 +32,14 @@ export const useProgressingQuestionService = () => {
         }
         return data;
       },
-      enabled: !!meetingInfo,
+      enabled: !!meetingInfo?.meetingIds[0],
     },
   });
 
   return {
-    meetingId: meetingInfo?.meetingId,
-    gatherName: meetingInfo?.meetingName ?? '',
+    meetingId: meetingInfo?.meetingIds[0],
+    gatherName: '삼봤드의 모험',
     progressingQuestion,
+    myInfo,
   };
 };

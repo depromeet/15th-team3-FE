@@ -26,7 +26,7 @@ export const SelectedTargetMemberNotification = ({ ...rest }: SelectedTargetMemb
             릴레이 질문을 바로 작성해볼까요?
           </Txt>
           <Button css={{ marginTop: '28px' }}>
-            <Link href="#">
+            <Link href="/start-relay-question">
               <Txt typography="subTitle2" color={colors.white}>
                 릴레이 질문 시작하기
               </Txt>

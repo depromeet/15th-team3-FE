@@ -6,11 +6,11 @@ import Countdown from 'react-countdown';
 import { Modal, ModalProps } from '../../../../common/components/Modal/Modal';
 import { useDialogContext } from '../../../../common/contexts/DialogProvider';
 
-interface ProgressingQuestionNotificationProps extends ModalProps {
+interface ProgressingQuestionModalProps extends ModalProps {
   countdownTimer: number | string | Date;
 }
 
-export const ProgressingQuestionNotification = ({ countdownTimer, ...rest }: ProgressingQuestionNotificationProps) => {
+export const ProgressingQuestionModal = ({ countdownTimer, ...rest }: ProgressingQuestionModalProps) => {
   const { isOpen, close } = useDialogContext();
 
   const timer = countdownTimer ? countdownTimer : dayjs().valueOf();
