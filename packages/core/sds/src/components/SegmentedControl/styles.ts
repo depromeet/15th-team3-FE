@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+
 import { borderRadiusVariants, colors, size } from '@sds/theme';
 
 import { indicatorAttribute } from './constants';

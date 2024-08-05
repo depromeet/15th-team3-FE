@@ -1,5 +1,6 @@
-import { colors } from '@sds/theme';
 import { ButtonHTMLAttributes, forwardRef } from 'react';
+
+import { colors } from '@sds/theme';
 
 import { Icon } from '../Icon';
 

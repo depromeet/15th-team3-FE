@@ -1,5 +1,6 @@
-import { colors } from '@sds/theme';
 import { forwardRef, HTMLAttributes } from 'react';
+
+import { colors } from '@sds/theme';
 
 import { badgeCss } from './styles';
 

@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+
 import { size } from '@sds/theme';
 
 import { accordionItemStateAttribute, arrowIconAttribute, contentAttribute } from './constants';

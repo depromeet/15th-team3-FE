@@ -1,6 +1,7 @@
+import { forwardRef, HTMLAttributes } from 'react';
+
 import { colors } from '@sds/theme';
 import { composeEventHandlers } from '@sds/utils';
-import { forwardRef, HTMLAttributes } from 'react';
 
 import { Icon } from '../Icon';
 
