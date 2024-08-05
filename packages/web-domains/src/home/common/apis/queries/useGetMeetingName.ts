@@ -46,8 +46,12 @@ export const getGatherMeetingInfoPrefetch = (queryClient: QueryClient, cookie?: 
   return prefetch;
 };
 
-export async function getMeetingInfo(): Promise<MeetingIdListResponseType> {
-  const data = await Http.GET<MeetingIdListResponseType>(`/v1/meetings`);
+export async function getMeetingInfo(cookie?: ReadonlyRequestCookies): Promise<MeetingIdListResponseType> {
+  const data = await Http.GET<MeetingIdListResponseType>(`/v1/meetings`, {
+    headers: {
+      Cookie: cookie?.toString(),
+    },
+  });
 
   return data;
 }

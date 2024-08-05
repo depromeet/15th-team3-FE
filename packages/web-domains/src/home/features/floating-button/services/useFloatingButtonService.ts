@@ -15,7 +15,7 @@ export const useFloatingButtonService = () => {
 
   const showButton = isProgessingQuestion;
 
-  const startButtonActive = showButton && isSelectedTarget;
+  const startButtonActive = !showButton && isSelectedTarget;
   const countDownButtonActive = showButton && !isSelectedTarget;
 
   if (startButtonActive) {
