@@ -1,3 +1,5 @@
+'use client';
+
 import { Txt } from '@sambad/sds/components';
 import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 import Countdown from 'react-countdown';

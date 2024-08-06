@@ -2,8 +2,6 @@ import { Txt } from '@sambad/sds/components';
 import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
 
 import { ArrowIcon } from '../../../../../common/asset/arrow';
-import { ProfileImage } from '../../../../../common/asset/profile';
-import { QuestionImage } from '../../../../../common/asset/question';
 import { ProgressingQuestionType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
 import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
@@ -29,7 +27,12 @@ export const ActiveQuestion = ({ question }: ActiveQuestionProps) => {
           <Txt typography="title4" color={colors.grey600} css={{ marginRight: '4px' }}>
             {targetMember.name}
           </Txt>
-          <Avatar size={20} Icon={ProfileImage} />
+          <Avatar
+            imageUrl={targetMember.profileImageFileUrl ?? ''}
+            width={20}
+            height={20}
+            css={{ borderRadius: '50%' }}
+          />
         </span>
       </div>
       <div
@@ -41,7 +44,13 @@ export const ActiveQuestion = ({ question }: ActiveQuestionProps) => {
           padding: '24px 0',
         }}
       >
-        <Avatar imageUrl={questionImageFileUrl} alt="question-image" Icon={QuestionImage} />
+        <Avatar
+          imageUrl={questionImageFileUrl ?? ''}
+          alt="question-image"
+          width={64}
+          height={64}
+          css={{ borderRadius: borderRadiusVariants.medium }}
+        />
         <Txt typography="heading2" css={{ marginTop: '24px' }}>
           {title}
         </Txt>

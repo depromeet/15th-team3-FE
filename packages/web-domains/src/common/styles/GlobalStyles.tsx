@@ -42,13 +42,10 @@ const reset = css`
   body {
     max-width: 100vw;
     min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     line-height: 1.5;
     overflow-x: hidden;
   }
-
-  // #root-layout {
-  //   height: 100vh;
-  // }
 
   h1,
   h2,

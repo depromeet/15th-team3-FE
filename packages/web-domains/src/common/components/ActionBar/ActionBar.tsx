@@ -9,7 +9,7 @@ import { BackIcon } from '../../asset/back';
 import { actionBarWrapperStyles, addOnStyles, buttonStyles } from './ActionBar.styles';
 
 interface ActionBarProps extends HTMLAttributes<HTMLHeadElement> {
-  title: string;
+  title?: string;
   addOn?: ReactNode;
   onBack?: () => void;
 }
