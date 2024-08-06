@@ -22,6 +22,12 @@ module.exports = {
       'error',
       {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+        pathGroups: [
+          {
+            pattern: '@sds/**',
+            group: 'internal',
+          },
+        ],
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,
