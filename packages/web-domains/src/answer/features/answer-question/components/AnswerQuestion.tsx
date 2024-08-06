@@ -2,18 +2,12 @@ import { Txt, fontWeightVariants } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import { ReactNode } from 'react';
 
-import { AnswerQuestionType } from '@/answer/common/apis/schema/AnswerQuestion';
-
 interface AnswerQuestionProps {
-  question: AnswerQuestionType;
+  questionTitle: string;
   answers: ReactNode;
 }
 
-export const AnswerQuestion = ({ question, answers }: AnswerQuestionProps) => {
-  const {
-    content: { title },
-  } = question;
-
+export const AnswerQuestion = ({ questionTitle, answers }: AnswerQuestionProps) => {
   return (
     <>
       <div css={{ padding: '20px' }}>
@@ -29,10 +23,19 @@ export const AnswerQuestion = ({ question, answers }: AnswerQuestionProps) => {
           우리 모임원들은
         </Txt>
         <Txt as="p" typography="heading1" color={colors.black}>
-          {title}
+          {questionTitle}
         </Txt>
       </div>
-      <div css={{ padding: '24px 20px' }}>{answers}</div>
+      <div
+        css={{
+          padding: '24px 20px',
+          overflow: 'scroll',
+          msOverflowStyle: 'none',
+          scrollbarWidth: 'none',
+        }}
+      >
+        {answers}
+      </div>
     </>
   );
 };

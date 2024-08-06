@@ -2,11 +2,14 @@
 
 import { Button } from '@sambad/sds/components';
 
+import { AnswerOptions } from '../components/AnswerOptions';
 import { AnswerQuestion } from '../components/AnswerQuestion';
-import { BalanceQuestion } from '../components/BalanceQuestion';
 import { CommentBottomSheet } from '../components/CommentBottomSheet';
+import { useAnswerQuestionService } from '../services/useAnswerQuestionService';
 
 export const AnswerQuestionContainer = () => {
+  const { question, questionType, handleSubmitComment, handleSubmitAnswer } = useAnswerQuestionService();
+
   return (
     <section
       css={{
@@ -14,30 +17,14 @@ export const AnswerQuestionContainer = () => {
       }}
     >
       <AnswerQuestion
-        question={{
-          content: {
-            answers: [
-              { answerId: 1, content: '부먹이지!' },
-              { answerId: 2, content: '찍먹이지!' },
-            ],
-            questionId: 0,
-            questionImageFileUrl: 'test',
-            title: '탕수육 부먹 VS 찍먹',
-          },
-          meetingQuestionId: 0,
-        }}
-        answers={
-          <BalanceQuestion
-            answerOptionList={[
-              { answerId: 1, content: '부먹이지!' },
-              { answerId: 2, content: '찍먹이지!' },
-            ]}
-          />
-        }
+        questionTitle={question?.title ?? ''}
+        answers={<AnswerOptions questionType={questionType} answerOptionList={question?.answers ?? []} />}
       />
+
       <CommentBottomSheet
+        onCommentSubmit={handleSubmitComment}
         answerButton={
-          <Button variant="primary" size="large">
+          <Button variant="primary" size="large" onClick={handleSubmitAnswer} css={{ cursor: 'pointer' }}>
             답변 보내기
           </Button>
         }

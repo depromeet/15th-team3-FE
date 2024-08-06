@@ -26,13 +26,13 @@ export const ArrivedQuestionNotification = ({ ...rest }: ArrivedQuestionNotifica
             릴레이 질문에 바로 답변해볼까요?
           </Txt>
           <Button css={{ marginTop: '28px' }}>
-            <Link href="#">
+            <Link href="/answer/opening">
               <Txt typography="subTitle2" color={colors.white}>
-                릴레이 질문 시작하기
+                지금 답변할래요!
               </Txt>
             </Link>
           </Button>
-          <Button variant="sub" css={{ border: 'none' }}>
+          <Button variant="sub" css={{ border: 'none' }} onClick={close}>
             <Txt typography="title3" color={colors.black}>
               나중에 할게요
             </Txt>
