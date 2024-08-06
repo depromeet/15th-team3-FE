@@ -16,7 +16,12 @@ export const MostAnsweredContainers = (params: BaseParams) => {
   return (
     <Section title="모임원들이 가장 많이 한 답변은?">
       <MostAnswered contents={data?.content} />
-      <CountByMemberList showName={showName} count={data?.count} showCharacter />
+      <CountByMemberList
+        showName={showName}
+        count={data?.count}
+        showCharacter
+        href={`/question-result/${questionId}/answers/most-selected`}
+      />
     </Section>
   );
 };

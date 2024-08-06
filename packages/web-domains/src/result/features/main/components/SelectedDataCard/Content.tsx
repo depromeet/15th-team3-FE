@@ -2,6 +2,8 @@
 
 import { Button, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { Fragment } from 'react/jsx-runtime';
 
 import { SadUserIcon } from '../../assets';
@@ -22,6 +24,7 @@ interface MostAnsweredProps {
 }
 
 export const MostAnswered = (props: MostAnsweredProps) => {
+  const params = useParams<{ questionId: string }>();
   const { contents: contentsFromProps } = props;
 
   const contentText = contentsFromProps?.join(', ');
@@ -31,7 +34,9 @@ export const MostAnswered = (props: MostAnsweredProps) => {
       <Txt typography="heading1" color={colors.tertiary500} css={mostAnsweredTitleCss}>
         {contentText}
       </Txt>
-      <Button css={mostAnsweredButtonCss}>전체 통계보기</Button>
+      <Link href={`/question-result/${params.questionId}/statistics`}>
+        <Button css={mostAnsweredButtonCss}>전체 통계보기</Button>
+      </Link>
     </Fragment>
   );
 };
@@ -42,6 +47,7 @@ interface WithMeMembersProps {
 }
 
 export const WithMeMembers = (props: WithMeMembersProps) => {
+  const params = useParams<{ questionId: string }>();
   const { count = 0, members } = props;
 
   const noMembers = count === 0;
@@ -67,7 +73,13 @@ export const WithMeMembers = (props: WithMeMembersProps) => {
         </div>
       )}
 
-      {moreMembers && <CountByMemberList showName={members?.[0]?.name} count={count} />}
+      {moreMembers && (
+        <CountByMemberList
+          showName={members?.[0]?.name}
+          count={count}
+          href={`/question-result/${params.questionId}/answers/most-selected`}
+        />
+      )}
     </div>
   );
 };
