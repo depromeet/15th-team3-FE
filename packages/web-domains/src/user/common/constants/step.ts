@@ -1,5 +1,5 @@
 export const STEPS = {
-  BASIC_INFO: 'base-info',
+  BASIC_INFO: 'basic-info',
   EXTRA_INFO: 'extra-info',
   HOBBIES_INFO: 'hobby-info',
   MBTI_IFNO: 'mbti-info',
