@@ -26,7 +26,7 @@ export const MemberList = (props: MemberListProps) => {
           imgUrl={member.profileImageFileUrl}
           name={member.name}
           isOwner={member.role === 'OWNER'}
-          onClick={() => router.push(`/about-me/${member.meetingMemberId}`)}
+          onClick={() => router.push(`/about/${member.meetingMemberId}`)}
         />
       ))}
     </div>
