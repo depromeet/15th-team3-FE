@@ -63,7 +63,7 @@ export async function getGatherMemberList(
       Cookie: cookie?.toString(),
     },
   });
-  console.log({ contents });
+
   return {
     contents,
   };

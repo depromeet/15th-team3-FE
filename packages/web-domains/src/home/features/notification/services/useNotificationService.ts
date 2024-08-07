@@ -36,7 +36,7 @@ export const useNotificationService = () => {
     if (notfication?.contents[0]) {
       open();
     }
-  }, [notfication, isRefetching]);
+  }, [notfication]);
 
   return {
     notfication: notfication?.contents[0],

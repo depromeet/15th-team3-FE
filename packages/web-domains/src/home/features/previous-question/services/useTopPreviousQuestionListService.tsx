@@ -10,7 +10,6 @@ export const useTopPreviousQuestionListService = () => {
     params: { meetingId: meetingInfo?.meetingIds[0]! },
     options: {
       select: (data) => {
-        console.log({ data });
         return data;
       },
       enabled: !!meetingInfo?.meetingIds[0],
