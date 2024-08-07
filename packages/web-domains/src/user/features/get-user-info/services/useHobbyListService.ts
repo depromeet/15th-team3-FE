@@ -1,14 +1,13 @@
-import { useGetHobbyListQuery } from '../../../../common/apis/queries/useGetHobbyListQuery';
+import { useGetHobbyList } from '@/common/apis/queries/useGetHobbyList';
 
 export const useHobbyListService = () => {
-  const { data } = useGetHobbyListQuery({
-    options: {
-      select: (data) => data,
-      staleTime: 60 * 1000,
-    },
-  });
+  const queryParams = {
+    staleTime: 60 * 1000,
+  };
 
-  console.log(data);
+  const { data } = useGetHobbyList({
+    options: queryParams,
+  });
 
   return {
     hobbyList: data?.contents,

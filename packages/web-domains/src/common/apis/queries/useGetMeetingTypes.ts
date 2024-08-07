@@ -1,7 +1,15 @@
 import { useQuery, QueryClient } from '@tanstack/react-query';
 
 import { Http } from '../base.api';
-import { MeetingTypesResponse } from '../schema/MeetingTypesResponse';
+
+export interface MeetingType {
+  meetingTypeId: number;
+  content: string;
+}
+
+export interface MeetingTypesResponse {
+  contents: MeetingType[];
+}
 
 export const MEETING_TYPES_QUERY_KEY = 'MEETING_TYPES_QUERY_KEY';
 

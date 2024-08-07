@@ -1,15 +1,27 @@
 import { QueryClient, useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import { Http } from '../base.api';
-import { HobbyListResponse } from '../schema/HobbyListResponse';
 
-export const HOBBY_LIST_QUERY_KEY = 'HOBBY_LIST_QUERY_KEY';
+export type HobbyType = {
+  hobbyId: number;
+  content: string;
+};
 
-interface Args {
+export type HobbyListResponse = {
+  contents: HobbyType[];
+};
+
+interface QueryProps {
   options?: Omit<UseQueryOptions<HobbyListResponse, unknown, HobbyListResponse>, 'queryKey'>;
 }
 
-export const useGetHobbyListQuery = ({ options }: Args) => {
+export const HOBBY_LIST_QUERY_KEY = 'HOBBY_LIST_QUERY_KEY';
+
+const getHobbyList = () => Http.GET<HobbyListResponse>('/v1/hobbies');
+
+export const useGetHobbyList = (props: QueryProps) => {
+  const { options } = props;
+
   return useQuery({
     queryKey: [HOBBY_LIST_QUERY_KEY],
     queryFn: getHobbyList,
@@ -17,17 +29,13 @@ export const useGetHobbyListQuery = ({ options }: Args) => {
   });
 };
 
-export const getHobbyListPrefetchQuery = (queryClient: QueryClient) => {
+export const getHobbyListPrefetch = (queryClient: QueryClient) => {
   const prefetch = queryClient.prefetchQuery({
     queryKey: [HOBBY_LIST_QUERY_KEY],
     queryFn: getHobbyList,
   });
   return prefetch;
 };
-
-export async function getHobbyList(): Promise<HobbyListResponse> {
-  return await Http.GET('/v1/hobbies');
-}
 
 // export async function getHobbyList(): Promise<HobbyListResponse> {
 //   return {
