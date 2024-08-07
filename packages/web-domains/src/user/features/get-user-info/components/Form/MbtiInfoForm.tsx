@@ -4,9 +4,10 @@ import { Button } from '@sambad/sds/components';
 import { useSearchParams } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
-import { MBTI_TYPE } from '../../../../common/constants/mbti';
-import { STEPS } from '../../../../common/constants/step';
-import { useFormQueryString } from '../../hooks/useFormQueryString';
+import { MBTI_TYPE } from '@/user/common/constants/mbti';
+import { STEPS } from '@/user/common/constants/step';
+
+import { useGoNextStep } from '../../hooks/useGoNextStep';
 import { RadioGroup } from '../Radio';
 
 import { buttonWrapperCss } from './styles';
@@ -14,9 +15,10 @@ import { buttonWrapperCss } from './styles';
 interface MbtiFormType {
   mbti: string;
 }
+
 export const MbtiInfoForm = () => {
-  const { updateUrlParams } = useFormQueryString();
   const searchParams = useSearchParams();
+  const { goFormNextStep } = useGoNextStep();
   const { handleSubmit, control } = useForm<MbtiFormType>({
     defaultValues: {
       mbti: searchParams.get('mbti') || '',
@@ -24,7 +26,7 @@ export const MbtiInfoForm = () => {
   });
 
   const goToNextPage = (data: MbtiFormType) => {
-    updateUrlParams(STEPS.INTRO_INFO, data);
+    goFormNextStep(STEPS.INTRO_INFO, data);
   };
 
   return (

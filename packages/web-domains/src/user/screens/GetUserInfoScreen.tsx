@@ -1,7 +1,8 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
-import { getHobbyListPrefetchQuery } from '../../common/apis/queries/useGetHobbyListQuery';
 import { GetUserInfoContainer } from '../features/get-user-info/containers/GetUserInfoContainer';
+
+// import { getHobbyListPrefetch } from '@/common/apis/queries/useGetHobbyList';
 
 export const GetUserInfoScreen = async () => {
   const { queryClient } = await getServerSideProps();
@@ -16,7 +17,7 @@ export const GetUserInfoScreen = async () => {
 const getServerSideProps = async () => {
   const queryClient = new QueryClient();
 
-  await getHobbyListPrefetchQuery(queryClient);
+  // await getHobbyListPrefetch(queryClient);
 
   return { queryClient };
 };

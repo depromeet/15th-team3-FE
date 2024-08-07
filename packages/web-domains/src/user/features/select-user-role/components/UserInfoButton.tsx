@@ -2,8 +2,6 @@ import { Button } from '@sambad/sds/components';
 import { size } from '@sambad/sds/theme';
 import Link from 'next/link';
 
-import { STEPS } from '../../../common/constants/step';
-
 interface FloatingButtonProps {
   selectedValue: string;
 }
@@ -11,7 +9,7 @@ interface FloatingButtonProps {
 export const UserInfoButton = (props: FloatingButtonProps) => {
   const { selectedValue } = props;
 
-  const href = selectedValue === 'owner' ? `/user/${selectedValue}?step=${STEPS.BASIC_INFO}` : 'meeting/participate';
+  const href = selectedValue === 'owner' ? '/meeting/new' : '/meeting/participate';
 
   return (
     <div

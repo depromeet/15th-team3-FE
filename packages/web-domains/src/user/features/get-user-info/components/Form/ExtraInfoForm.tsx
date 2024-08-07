@@ -4,8 +4,9 @@ import { Button } from '@sambad/sds/components';
 import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
-import { STEPS } from '../../../../common/constants/step';
-import { useFormQueryString } from '../../hooks/useFormQueryString';
+import { STEPS } from '@/user/common/constants/step';
+
+import { useGoNextStep } from '../../hooks/useGoNextStep';
 import { TextInput } from '../TextInput/TextInput';
 
 import { buttonWrapperCss } from './styles';
@@ -17,7 +18,7 @@ interface ExtraInfo {
 
 export const ExtraInfoForm = () => {
   const searchParams = useSearchParams();
-  const { updateUrlParams } = useFormQueryString();
+  const { goFormNextStep } = useGoNextStep();
 
   const {
     register,
@@ -31,7 +32,7 @@ export const ExtraInfoForm = () => {
   });
 
   const goToNextPage = (data: ExtraInfo) => {
-    updateUrlParams(STEPS.HOBBIES_INFO, data);
+    goFormNextStep(STEPS.HOBBIES_INFO, data);
   };
 
   return (

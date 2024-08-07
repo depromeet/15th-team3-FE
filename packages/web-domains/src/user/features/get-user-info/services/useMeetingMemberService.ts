@@ -6,19 +6,20 @@ export const useMeetingMemberService = () => {
   const router = useRouter();
   const { mutateAsync } = useCreateMeetingMember();
 
-  const handleParticipateMeeting = async (params: Params) => {
+  const participateMeeting = async (params: Params) => {
     await mutateAsync(params, {
       onSuccess: (res) => {
-        // console.log(res.data.meetingId);
         console.log(res);
         // 멤버로 가입된 경우
-        router.push('/user/member/closing');
-
+        if (params.role === 'MEMBER') {
+          router.push(`/user/member/closing?inviteCode=${params.inviteCode}`);
+        }
         // 오너로 가입된 경우
+        if (params.role === 'OWNER') {
+          router.push(`/meeting/new/closing?inviteCode=${params.inviteCode}`);
+        }
       },
-      // 에러 처리 필요
       onError: (res) => {
-        // 세부사항 Error 코드로 비교
         if (res.response?.status === 404) {
           alert('모임을 찾을 수 없습니다.');
         }
@@ -29,5 +30,5 @@ export const useMeetingMemberService = () => {
     });
   };
 
-  return { handleParticipateMeeting };
+  return { participateMeeting };
 };

@@ -3,10 +3,10 @@
 import { Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
 
-import { CheckIcon } from '../../../common/assets/icons/CheckIcon';
-import { OnwerCaracter } from '../../../common/assets/icons/OnwerCharacter';
+import { CheckIcon } from '@/user/common/assets/icons/CheckIcon';
+import { OnwerCaracter } from '@/user/common/assets/icons/OnwerCharacter';
 
-export const OwnerClosingContainer = () => {
+export const OwnerStartContainer = () => {
   return (
     <section
       css={{
@@ -29,7 +29,7 @@ export const OwnerClosingContainer = () => {
       >
         <CheckIcon />
         <Txt as="p" color={colors.black} typography="heading1" css={{ textAlign: 'center', marginTop: size['3xs'] }}>
-          모임장 정보 입력이
+          모임 정보 입력이
         </Txt>
         <Txt as="p" color={colors.black} typography="heading1" css={{ textAlign: 'center' }}>
           완료되었어요!

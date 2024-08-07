@@ -4,11 +4,19 @@ import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import Image from 'next/image';
 
+import { useGetMeetingName } from '@/common/apis/queries/useGetMeetingName';
+
 import ClosingBackground from '../../../common/assets/images/member-closing-background.png';
 import MemberCharacter from '../../../common/assets/images/member-closing.png';
 
-export const MemberClosingContainer = () => {
-  const meetingName = '삼밨드의 모험';
+interface MemberClosingContainerProps {
+  inviteCode: string;
+}
+
+export const MemberClosingContainer = (props: MemberClosingContainerProps) => {
+  const { inviteCode } = props;
+
+  const { data } = useGetMeetingName({ inviteCode });
 
   return (
     <section
@@ -31,9 +39,11 @@ export const MemberClosingContainer = () => {
           zIndex: '10',
         }}
       >
-        <Txt as="p" color={colors.primary500} typography="heading1" css={{ textAlign: 'center' }}>
-          {meetingName}
-        </Txt>
+        {data?.name && (
+          <Txt as="p" color={colors.primary500} typography="heading1" css={{ textAlign: 'center' }}>
+            {data?.name}
+          </Txt>
+        )}
         <Txt as="p" color={colors.black} typography="heading1" css={{ textAlign: 'center' }}>
           가입이 완료되었어요!
         </Txt>

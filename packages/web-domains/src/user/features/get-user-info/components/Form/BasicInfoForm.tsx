@@ -5,22 +5,23 @@ import { size, colors } from '@sambad/sds/theme';
 import { useSearchParams } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
-import { STEPS } from '../../../../common/constants/step';
-import { useFormQueryString } from '../../hooks/useFormQueryString';
+import { STEPS } from '@/user/common/constants/step';
+
+import { useGoNextStep } from '../../hooks/useGoNextStep';
 import { RadioGroup } from '../Radio/';
 import { TextInput } from '../TextInput/TextInput';
 
 import { buttonWrapperCss } from './styles';
 
 export interface BasicInfo {
-  name: string;
+  userName: string;
   birth: string;
   gender: string;
 }
 
 export const BasicInfoForm = () => {
   const searchParams = useSearchParams();
-  const { updateUrlParams } = useFormQueryString();
+  const { goFormNextStep } = useGoNextStep();
 
   const {
     register,
@@ -29,14 +30,14 @@ export const BasicInfoForm = () => {
     formState: { isValid },
   } = useForm<BasicInfo>({
     defaultValues: {
-      name: searchParams.get('name') || '',
+      userName: searchParams.get('userName') || '',
       birth: searchParams.get('birth') || '',
       gender: searchParams.get('gender') || '',
     },
   });
 
   const goToNextPage = (data: BasicInfo) => {
-    updateUrlParams(STEPS.EXTRA_INFO, data);
+    goFormNextStep(STEPS.EXTRA_INFO, data);
   };
 
   return (
@@ -55,7 +56,7 @@ export const BasicInfoForm = () => {
         answerNumber={1}
         placeholder="이름을 입력해주세요"
         errorMessage="2자 이상, 5자 이하로 입력해주세요."
-        {...register('name', { required: true, minLength: 2, maxLength: 5 })}
+        {...register('userName', { required: true, minLength: 2, maxLength: 5 })}
       />
       <TextInput
         label="생년월일이 언제이신가요?"

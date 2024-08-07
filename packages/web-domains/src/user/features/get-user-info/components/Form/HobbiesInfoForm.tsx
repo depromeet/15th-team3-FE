@@ -4,9 +4,10 @@ import { Button } from '@sambad/sds/components';
 import { useSearchParams } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
-import { HobbyType } from '../../../../../common/apis/schema/HobbyListResponse';
-import { STEPS } from '../../../../common/constants/step';
-import { useFormQueryString } from '../../hooks/useFormQueryString';
+import { HobbyType } from '@/common/apis/queries/useGetHobbyList';
+import { STEPS } from '@/user/common/constants/step';
+
+import { useGoNextStep } from '../../hooks/useGoNextStep';
 import { CheckboxGroup } from '../Checkbox';
 
 import { buttonWrapperCss } from './styles';
@@ -21,7 +22,7 @@ interface Hobbies {
 
 export const HobbiesInfoForm = ({ hobbyList }: HobbiesFormProps) => {
   const searchParams = useSearchParams();
-  const { updateUrlParams } = useFormQueryString();
+  const { goFormNextStep } = useGoNextStep();
 
   const {
     control,
@@ -35,7 +36,7 @@ export const HobbiesInfoForm = ({ hobbyList }: HobbiesFormProps) => {
 
   const goToNextPage = (data: Hobbies) => {
     const { hobbyIds } = data;
-    updateUrlParams(STEPS.MBTI_IFNO, { hobbyIds: hobbyIds.toString() });
+    goFormNextStep(STEPS.MBTI_IFNO, { hobbyIds: hobbyIds.toString() });
   };
 
   if (!hobbyList || !hobbyList.length) return null;

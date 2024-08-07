@@ -1,5 +1,12 @@
 import { MemberClosingScreen } from '@sambad/web-domains/user';
 
-export default function page() {
-  return <MemberClosingScreen />;
+interface MemberClosingPageProps {
+  searchParams: { inviteCode: string };
+}
+
+export default async function page(props: MemberClosingPageProps) {
+  const {
+    searchParams: { inviteCode },
+  } = props;
+  return <MemberClosingScreen inviteCode={inviteCode} />;
 }
