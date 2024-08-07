@@ -1,9 +1,9 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { AxiosError, AxiosResponse } from 'axios';
 
-import { Http } from '../base.api';
-
 import { MbtiType } from '@/user/common/constants/mbti';
+
+import { Http } from '../base.api';
 
 interface MeetingMemberReponse {
   meetingId: number;
