@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = process.env.STAGE === 'production' ? 'https://api.moring.one' : `https://dev-api.moring.one`;
+export const baseURL = process.env.STAGE === 'production' ? 'https://api.moring.one' : `https://dev-api.moring.one`;
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
