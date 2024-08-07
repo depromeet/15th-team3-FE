@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation';
 import { CSSProperties } from 'react';
 
 import { SelectedAnswerResponse } from '@/result/common/apis/schema/SelectedAnswerResponse';
@@ -10,6 +11,7 @@ interface MemberListProps {
 
 export const MemberList = (props: MemberListProps) => {
   const { members } = props;
+  const router = useRouter();
 
   const style = {
     display: 'flex',
@@ -24,6 +26,7 @@ export const MemberList = (props: MemberListProps) => {
           imgUrl={member.profileImageFileUrl}
           name={member.name}
           isOwner={member.role === 'OWNER'}
+          onClick={() => router.push(`/about-me/${member.meetingMemberId}`)}
         />
       ))}
     </div>
