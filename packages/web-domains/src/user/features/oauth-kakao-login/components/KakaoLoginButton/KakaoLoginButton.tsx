@@ -1,9 +1,10 @@
 import { Button, Txt } from '@sambad/sds/components';
 import Link from 'next/link';
 
-import { KakaoIcon } from '../../../../common/assets/icons/KakaoIcon';
+import { baseURL } from '@/common/apis/base.api';
 
-const KAKAO_URL = 'oauth2/authorization/kakao';
+import { KakaoIcon } from '../../../../common/assets/icons/KakaoIcon';
+const KAKAO_URL = `${baseURL}/oauth2/authorization/kakao`;
 
 export const KakaoLoginButton = () => {
   return (
