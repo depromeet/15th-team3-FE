@@ -1,24 +1,19 @@
-import { forwardRef } from 'react';
+import { ReactNode, forwardRef } from 'react';
 
 import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 
-import { PreviousQuestionItem } from './PreviousQuestionItem';
-
 interface PreviousQuestionListProps {
+  renderItem: (item: PreviousQuestionType) => ReactNode;
   questionList: PreviousQuestionType[];
 }
 
 export const PreviousQuestionList = forwardRef<HTMLDivElement, PreviousQuestionListProps>(
-  ({ questionList }, targetRef) => {
+  ({ questionList, renderItem }, targetRef) => {
     console.log(targetRef);
 
     return (
       <>
-        <ul>
-          {questionList.map((question) => (
-            <PreviousQuestionItem key={question.meetingQuestionId} question={question} />
-          ))}
-        </ul>
+        <ul>{questionList.map((question) => renderItem(question))}</ul>
         <div ref={targetRef}></div>
       </>
     );

@@ -5,11 +5,12 @@ import { colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 import { AngleRightIcon } from '../../../../../../core/sds/src/components/Icon/assets/AngleRight';
+import { HomePreviousQuestionItem } from '../components/PreviousQuestion/HomePreviousQuestionItem';
 import { HomePreviousQuestionList } from '../components/PreviousQuestion/HomePreviousQuestionList';
 import { useTopPreviousQuestionListService } from '../services/useTopPreviousQuestionListService';
 
 export const TopPreviousQuestionListContainer = () => {
-  const { previousQuestionList } = useTopPreviousQuestionListService();
+  const { previousQuestionList, meetingId } = useTopPreviousQuestionListService();
 
   if (!previousQuestionList || !previousQuestionList.contents.length) {
     return null;
@@ -32,7 +33,12 @@ export const TopPreviousQuestionListContainer = () => {
           </span>
         </Link>
       </Txt>
-      <HomePreviousQuestionList questionList={previousQuestionList.contents} />
+      <HomePreviousQuestionList
+        questionList={previousQuestionList.contents}
+        renderItem={(item) => (
+          <HomePreviousQuestionItem key={item.meetingQuestionId} question={item} meetingId={meetingId} />
+        )}
+      />
     </section>
   );
 };

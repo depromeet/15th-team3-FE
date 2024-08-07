@@ -1,14 +1,14 @@
 import { borderRadiusVariants, colors } from '@sambad/sds/theme';
+import { ReactNode } from 'react';
 
 import { TopPreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 
-import { HomePreviousQuestionItem } from './HomePreviousQuestionItem';
-
 interface HomePreviousQuestionListProps {
+  renderItem: (item: TopPreviousQuestionType) => ReactNode;
   questionList: [TopPreviousQuestionType, TopPreviousQuestionType];
 }
 
-export const HomePreviousQuestionList = ({ questionList }: HomePreviousQuestionListProps) => {
+export const HomePreviousQuestionList = ({ renderItem, questionList }: HomePreviousQuestionListProps) => {
   return (
     <ul
       css={{
@@ -17,9 +17,7 @@ export const HomePreviousQuestionList = ({ questionList }: HomePreviousQuestionL
         border: `1px solid ${colors.grey300}`,
       }}
     >
-      {questionList.map((question) => (
-        <HomePreviousQuestionItem key={question.meetingQuestionId} question={question} />
-      ))}
+      {questionList.map((question) => renderItem(question))}
     </ul>
   );
 };

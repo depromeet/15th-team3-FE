@@ -48,5 +48,5 @@ export const usePreviousQuestionListService = () => {
     }
   }, [data]);
 
-  return { previousQuestionList, isFetching, targetRef, fetchNextPage };
+  return { previousQuestionList, isFetching, targetRef, meetingId: meetingInfo?.meetingIds[0] ?? 1, fetchNextPage };
 };

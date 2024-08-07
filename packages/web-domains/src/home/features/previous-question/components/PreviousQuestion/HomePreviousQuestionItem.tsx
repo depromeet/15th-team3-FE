@@ -6,11 +6,12 @@ import { AngleRightIcon } from '../../../../../../../core/sds/src/components/Ico
 import { TopPreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 
 interface HomePreviousQuestionItemProps {
+  meetingId: number;
   question: TopPreviousQuestionType;
 }
 
-export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemProps) => {
-  const { content, engagementRate, title } = question;
+export const HomePreviousQuestionItem = ({ meetingId, question }: HomePreviousQuestionItemProps) => {
+  const { content, engagementRate, title, meetingQuestionId } = question;
 
   return (
     <li
@@ -24,7 +25,7 @@ export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemP
       }}
     >
       <Link
-        href="/home"
+        href={`/question-result/${meetingId}/${meetingQuestionId}`}
         css={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
       >
         <div css={{ flex: '1' }}>

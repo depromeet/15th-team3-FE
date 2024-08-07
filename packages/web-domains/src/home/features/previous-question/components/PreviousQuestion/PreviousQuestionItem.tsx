@@ -7,11 +7,12 @@ import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPrevi
 import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
 interface PreviousQuestionItemProps {
+  meetingId: number;
   question: PreviousQuestionType;
 }
 
-export const PreviousQuestionItem = ({ question }: PreviousQuestionItemProps) => {
-  const { title, questionNumber, targetMember, questionImageFileUrl, startDate } = question;
+export const PreviousQuestionItem = ({ meetingId, question }: PreviousQuestionItemProps) => {
+  const { title, questionNumber, targetMember, questionImageFileUrl, startDate, meetingQuestionId } = question;
 
   const questionTime = dayjs(startDate).format('YYYY-MM-DD');
 
@@ -24,7 +25,7 @@ export const PreviousQuestionItem = ({ question }: PreviousQuestionItemProps) =>
         listStyle: 'none',
       }}
     >
-      <Link href="/home/previous-question" css={{ display: 'flex' }}>
+      <Link href={`/question-result/${meetingId}/${meetingQuestionId}`} css={{ display: 'flex' }}>
         <div
           css={{
             display: 'flex',

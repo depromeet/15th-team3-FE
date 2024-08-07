@@ -1,5 +1,6 @@
 import { Txt } from '@sambad/sds/components';
 import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
+import Link from 'next/link';
 
 import { ArrowIcon } from '../../../../../common/asset/arrow';
 import { ProgressingQuestionType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
@@ -98,7 +99,9 @@ export const ActiveQuestion = ({ question }: ActiveQuestionProps) => {
             },
           }}
         >
-          <ArrowIcon />
+          <Link href="/answer/opening">
+            <ArrowIcon />
+          </Link>
         </button>
       </div>
     </div>
