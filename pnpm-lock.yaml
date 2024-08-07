@@ -237,9 +237,6 @@ importers:
       eslint-plugin-storybook:
         specifier: ^0.8.0
         version: 0.8.0(eslint@8.57.0)(typescript@5.5.3)
-      react:
-        specifier: ^18
-        version: 18.2.0
       storybook:
         specifier: ^8.2.2
         version: 8.2.3
