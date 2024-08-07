@@ -1,7 +1,13 @@
 import { ParticipateClosingScreen } from '@/participate-meeting';
 
-// SearchParams Screen으로 내려주기
+interface ParticipateClosingPageProps {
+  searchParams: { inviteCode: string };
+}
 
-export default async function page() {
-  return <ParticipateClosingScreen />;
+export default async function page(props: ParticipateClosingPageProps) {
+  const {
+    searchParams: { inviteCode },
+  } = props;
+
+  return <ParticipateClosingScreen inviteCode={inviteCode} />;
 }

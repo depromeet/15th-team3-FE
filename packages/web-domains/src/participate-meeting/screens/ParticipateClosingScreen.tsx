@@ -2,18 +2,35 @@ import { HydrationBoundary, dehydrate, QueryClient } from '@tanstack/react-query
 
 import { ParticipateClosingContainer } from '../features/participate-meeting-closing/containers/ParticipateClosingContainer';
 
-// SearchParams 받아오기
-export const ParticipateClosingScreen = async () => {
+// import { getMeetingNamePrefetch } from '@/common/apis/queries/useGetMeetingName';
+
+interface SearchParams {
+  inviteCode: string;
+}
+
+export const ParticipateClosingScreen = async (searchParams: SearchParams) => {
+  const { inviteCode } = searchParams;
+
   const { queryClient } = await getServerSideProps();
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <ParticipateClosingContainer />
+      <ParticipateClosingContainer inviteCode={inviteCode} />
     </HydrationBoundary>
   );
 };
 
+// async (searchParams: SearchParams) => {
 const getServerSideProps = async () => {
+  // const { inviteCode } = searchParams;
   const queryClient = new QueryClient();
-  // 초대 코드를 활용한 모임 정보
+
+  // const prefetchProps = {
+  //   queryClient: queryClient,
+  //   inviteCode,
+  // };
+
+  // await getMeetingNamePrefetch(prefetchProps);
+
   return { queryClient };
 };
