@@ -1,13 +1,13 @@
 'use client';
 import { Button, fontWeightVariants } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
-import { Attributes, useState } from 'react';
+import { Attributes, useEffect, useState } from 'react';
 
 import { AnswerQuestionOptionType } from '@/answer/common/apis/schema/AnswerQuestion';
 
 interface MultipleDescriptiveAnswerQuestionProps {
   answerOptionList: Array<AnswerQuestionOptionType>;
-  onSelect?: (answer: AnswerQuestionOptionType) => void;
+  onChangeAnswerList?: (answerIdList: number[]) => void;
 }
 
 const buttonStyles: Record<'selected' | 'default', Attributes['css']> = {
@@ -33,7 +33,7 @@ const buttonStyles: Record<'selected' | 'default', Attributes['css']> = {
 
 export const MultipleDescriptiveAnswerQuestion = ({
   answerOptionList,
-  onSelect,
+  onChangeAnswerList,
 }: MultipleDescriptiveAnswerQuestionProps) => {
   const [selectedOption, setSelectedOption] = useState<Array<AnswerQuestionOptionType>>([]);
 
@@ -55,9 +55,12 @@ export const MultipleDescriptiveAnswerQuestion = ({
     } else {
       setSelectedOption([...selectedOption, answer]);
     }
-
-    onSelect?.(answer);
   };
+
+  useEffect(() => {
+    const answerIdList = answerOptionList.map((option) => option.answerId);
+    onChangeAnswerList?.(answerIdList);
+  }, [selectedOption]);
 
   return (
     <ul css={{ listStyle: 'none' }}>

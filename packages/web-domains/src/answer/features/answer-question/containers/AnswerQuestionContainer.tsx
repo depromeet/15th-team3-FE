@@ -8,7 +8,8 @@ import { CommentBottomSheet } from '../components/CommentBottomSheet';
 import { useAnswerQuestionService } from '../services/useAnswerQuestionService';
 
 export const AnswerQuestionContainer = () => {
-  const { question, questionType, handleSubmitComment, handleSubmitAnswer } = useAnswerQuestionService();
+  const { question, questionType, handleSubmitComment, handleSubmitAnswer, handleAnswerList } =
+    useAnswerQuestionService();
 
   return (
     <section
@@ -18,7 +19,13 @@ export const AnswerQuestionContainer = () => {
     >
       <AnswerQuestion
         questionTitle={question?.title ?? ''}
-        answers={<AnswerOptions questionType={questionType} answerOptionList={question?.answers ?? []} />}
+        answers={
+          <AnswerOptions
+            questionType={questionType}
+            answerOptionList={question?.answers ?? []}
+            onChangeAnswer={handleAnswerList}
+          />
+        }
       />
 
       <CommentBottomSheet

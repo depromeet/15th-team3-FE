@@ -8,7 +8,7 @@ import { AnswerQuestionOptionType } from '@/answer/common/apis/schema/AnswerQues
 
 interface BalanceQuestionProps {
   answerOptionList: [AnswerQuestionOptionType, AnswerQuestionOptionType];
-  onSelect?: (answer: AnswerQuestionOptionType) => void;
+  onChangeAnswerList?: (answerIdList: number[]) => void;
 }
 
 const buttonStyles: Record<'selected' | 'default', Interpolation<Theme>> = {
@@ -30,7 +30,7 @@ const buttonStyles: Record<'selected' | 'default', Interpolation<Theme>> = {
   },
 };
 
-export const BalanceQuestion = ({ answerOptionList, onSelect }: BalanceQuestionProps) => {
+export const BalanceQuestion = ({ answerOptionList, onChangeAnswerList }: BalanceQuestionProps) => {
   const [selectedOption, setSelectedOption] = useState<AnswerQuestionOptionType | null>(answerOptionList[0] || null);
 
   const topQuestion = answerOptionList[0];
@@ -38,12 +38,13 @@ export const BalanceQuestion = ({ answerOptionList, onSelect }: BalanceQuestionP
 
   const handleClickAnswer = (answer: AnswerQuestionOptionType) => () => {
     setSelectedOption(answer);
-    onSelect?.(answer);
   };
 
   useEffect(() => {
-    onSelect?.(topQuestion);
-  }, []);
+    if (selectedOption) {
+      onChangeAnswerList?.([selectedOption.answerId]);
+    }
+  }, [selectedOption]);
 
   return (
     <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>

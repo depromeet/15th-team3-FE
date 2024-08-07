@@ -6,7 +6,7 @@ import { Http } from '@/common/apis/base.api';
 type Params = { meetingId: number; meetingQuestionId: number; content: string };
 
 interface Args {
-  options?: UseMutationOptions<{} | undefined, unknown, any>;
+  options?: UseMutationOptions<{} | undefined, unknown, Params>;
 }
 
 export const useCommentMutation = ({ options }: Args) => {

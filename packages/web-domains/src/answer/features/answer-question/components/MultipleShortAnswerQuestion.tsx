@@ -1,13 +1,14 @@
 'use client';
+
 import { Button, fontWeightVariants } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
-import { Attributes, useState } from 'react';
+import { Attributes, useEffect, useState } from 'react';
 
 import { AnswerQuestionOptionType } from '@/answer/common/apis/schema/AnswerQuestion';
 
 interface MultipleShortAnswerQuestionProps {
   answerOptionList: Array<AnswerQuestionOptionType>;
-  onSelect?: (answer: AnswerQuestionOptionType) => void;
+  onChangeAnswerList?: (answerIdList: number[]) => void;
 }
 
 const buttonStyles: Record<'selected' | 'default', Attributes['css']> = {
@@ -31,7 +32,10 @@ const buttonStyles: Record<'selected' | 'default', Attributes['css']> = {
   },
 };
 
-export const MultipleShortAnswerQuestion = ({ answerOptionList, onSelect }: MultipleShortAnswerQuestionProps) => {
+export const MultipleShortAnswerQuestion = ({
+  answerOptionList,
+  onChangeAnswerList,
+}: MultipleShortAnswerQuestionProps) => {
   const [selectedOption, setSelectedOption] = useState<Array<AnswerQuestionOptionType>>([]);
 
   const isSelected = (answer: AnswerQuestionOptionType) => {
@@ -52,9 +56,12 @@ export const MultipleShortAnswerQuestion = ({ answerOptionList, onSelect }: Mult
     } else {
       setSelectedOption([...selectedOption, answer]);
     }
-
-    onSelect?.(answer);
   };
+
+  useEffect(() => {
+    const answerIdList = answerOptionList.map((option) => option.answerId);
+    onChangeAnswerList?.(answerIdList);
+  }, [selectedOption]);
 
   return (
     <div css={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', rowGap: '8px', columnGap: '8.75px' }}>
