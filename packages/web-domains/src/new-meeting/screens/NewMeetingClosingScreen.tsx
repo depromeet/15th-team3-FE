@@ -1,12 +1,13 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
+import { DialogContextProvider } from '@/common/contexts/DialogProvider';
+
 import { ToastProvider } from '../common/components/Toast/ToastProvider';
 import { InviteLinkShareContainer } from '../features/new-meeting-closing/containers/InviteLinkShareContainer';
 import NewMeetingButtonContainer from '../features/new-meeting-closing/containers/NewMeetingButtonContainer';
 import NewMeetingClosingContainer from '../features/new-meeting-closing/containers/NewMeetingClosingContainer';
 
-import { getMeetingNamePrefetch } from '@/common/apis/queries/useGetMeetingName';
-import { DialogContextProvider } from '@/common/contexts/DialogProvider';
+// import { getMeetingNamePrefetch } from '@/common/apis/queries/useGetMeetingName';
 
 interface SearchParams {
   inviteCode: string;
@@ -15,7 +16,8 @@ interface SearchParams {
 export const NewMeetingClosingScreen = async (searchParams: SearchParams) => {
   const { inviteCode } = searchParams;
 
-  const { queryClient } = await getServerSideProps(searchParams);
+  // const { queryClient } = await getServerSideProps(searchParams);
+  const { queryClient } = await getServerSideProps();
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
@@ -30,16 +32,17 @@ export const NewMeetingClosingScreen = async (searchParams: SearchParams) => {
   );
 };
 
-const getServerSideProps = async (searchParams: SearchParams) => {
-  const { inviteCode } = searchParams;
+// const getServerSideProps = async (searchParams: SearchParams) => {
+const getServerSideProps = async () => {
+  // const { inviteCode } = searchParams;
   const queryClient = new QueryClient();
 
-  const prefetchProps = {
-    queryClient: queryClient,
-    inviteCode,
-  };
+  // const prefetchProps = {
+  //   queryClient: queryClient,
+  //   inviteCode,
+  // };
 
-  await getMeetingNamePrefetch(prefetchProps);
+  // await getMeetingNamePrefetch(prefetchProps);
 
   return { queryClient };
 };

@@ -2,6 +2,5 @@ import { Params, useGetMeetingName } from '@/common/apis/queries/useGetMeetingNa
 
 export const useGetMeetingNameService = (params: Params) => {
   const response = useGetMeetingName(params);
-
   return response;
 };

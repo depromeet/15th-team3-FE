@@ -10,6 +10,7 @@ export default function NewMeetingButtonContainer() {
   const handleOpen = () => {
     open();
   };
+
   return (
     <div
       css={{
