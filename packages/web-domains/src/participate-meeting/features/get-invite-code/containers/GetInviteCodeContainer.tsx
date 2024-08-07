@@ -2,13 +2,34 @@
 
 import { Button } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
 
 import { BackgroundImage } from '../components/BackgroundImage';
 import { InviteCodeHeader } from '../components/InviteCodeHeader';
 import { InviteCodeInput } from '../components/InviteCodeInput';
 
+interface InviteCode {
+  inviteCode: string;
+}
+
 export const GetInviteCodeContainer = () => {
-  // 초대 코드 확인 후 소개 페이지로 이동
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm<InviteCode>({
+    defaultValues: {
+      inviteCode: '',
+    },
+  });
+
+  const goToParticipateMeeting = handleSubmit(({ inviteCode }) => {
+    router.push(`/meeting/participate/closing?inviteCode=${inviteCode}`);
+  });
+
   return (
     <div
       css={{
@@ -21,7 +42,7 @@ export const GetInviteCodeContainer = () => {
       }}
     >
       <InviteCodeHeader />
-      <div
+      <form
         css={{
           position: 'relative',
           display: 'flex',
@@ -30,8 +51,8 @@ export const GetInviteCodeContainer = () => {
           marginTop: '40px',
         }}
       >
-        <InviteCodeInput placeholder="초대 코드 입력" />
-      </div>
+        <InviteCodeInput placeholder="초대 코드 입력" {...register('inviteCode', { required: true })} />
+      </form>
       <BackgroundImage />
       <div
         css={{
@@ -42,7 +63,9 @@ export const GetInviteCodeContainer = () => {
           padding: '0 20px',
         }}
       >
-        <Button size="large">완료</Button>
+        <Button size="large" disabled={!isValid} onClick={goToParticipateMeeting}>
+          완료
+        </Button>
       </div>
     </div>
   );
