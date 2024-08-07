@@ -146,6 +146,22 @@ importers:
         specifier: ^5.3.3
         version: 5.5.3
 
+  packages/core/react-utils:
+    dependencies:
+      react:
+        specifier: ^18
+        version: 18.2.0
+    devDependencies:
+      '@sambad/eslint-config':
+        specifier: workspace:^
+        version: link:../eslint-config
+      '@sambad/typescript-config':
+        specifier: workspace:^
+        version: link:../typescript-config
+      '@types/react':
+        specifier: ^18.3.3
+        version: 18.3.3
+
   packages/core/sds:
     dependencies:
       '@radix-ui/react-toggle-group':
@@ -158,6 +174,9 @@ importers:
       '@sambad/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@sambad/react-utils':
+        specifier: workspace:^
+        version: link:../react-utils
       '@sambad/types-utils':
         specifier: workspace:*
         version: link:../types-utils
@@ -4269,15 +4288,12 @@ packages:
 
   /@types/range-parser@1.2.7:
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
-<<<<<<< HEAD
     dev: true
 
   /@types/react-copy-to-clipboard@5.0.7:
     resolution: {integrity: sha512-Gft19D+as4M+9Whq1oglhmK49vqPhcLzk8WfvfLvaYMIPYanyfLy0+CwFucMJfdKoSFyySPmkkWn8/E6voQXjQ==}
     dependencies:
       '@types/react': 18.3.3
-=======
->>>>>>> a7a37b9 (chore: react-hook-form의존성 변경)
     dev: true
 
   /@types/react-dom@18.3.0:
@@ -9570,7 +9586,7 @@ packages:
   /object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
-    dev: true
+
   /object-inspect@1.13.2:
     resolution: {integrity: sha512-IRZSRuzJiynemAXPYtPe5BoI/RESNYR7TYm50MC5Mqbd3Jmw5y790sErYw3V6SryFJD64b74qQQs9wn5Bg/k3g==}
     engines: {node: '>= 0.4'}
