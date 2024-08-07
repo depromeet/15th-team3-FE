@@ -1,5 +1,5 @@
 {
-  "extends": "@sambad/typescript-config/react-library.json",
+  "extends": "@sambad/typescript-config/nextjs.json",
   "compilerOptions": {
     "outDir": "dist",
     "baseUrl": ".",
@@ -8,6 +8,11 @@
       "@sds/*": ["../core/sds/src/*"]
     }
   },
-  "include": ["src", "../../apps/web/layout/RootLayout.styles.ts", "../../apps/web/layout/RootLayout.tsx"],
+  "include": [
+    "src",
+    "../../apps/web/layout/RootLayout.styles.ts",
+    "../../apps/web/layout/RootLayout.tsx",
+    "images.d.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }
