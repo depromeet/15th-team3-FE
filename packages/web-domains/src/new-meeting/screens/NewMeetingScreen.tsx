@@ -1,6 +1,7 @@
-import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-
 // import { getMeetingTypesPrefetch } from '@/common/apis/queries/useGetMeetingTypes';
+
+import { HydrationBoundary, dehydrate, QueryClient } from '@tanstack/react-query';
+import { Suspense } from 'react';
 
 import { GetMeetingInfoContainer } from '../features/get-meeting-info/containers/GetMeetingInfoContainer';
 
@@ -9,7 +10,9 @@ export const NewMeetingScreen = async () => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <GetMeetingInfoContainer />
+      <Suspense>
+        <GetMeetingInfoContainer />
+      </Suspense>
     </HydrationBoundary>
   );
 };

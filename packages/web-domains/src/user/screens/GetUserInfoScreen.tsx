@@ -1,4 +1,5 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { Suspense } from 'react';
 
 import { GetUserInfoContainer } from '../features/get-user-info/containers/GetUserInfoContainer';
 
@@ -9,7 +10,9 @@ export const GetUserInfoScreen = async () => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <GetUserInfoContainer />
+      <Suspense>
+        <GetUserInfoContainer />
+      </Suspense>
     </HydrationBoundary>
   );
 };
