@@ -25,13 +25,13 @@ export const ArrivedQuestionNotification = ({ ...rest }: ArrivedQuestionNotifica
           <Txt as="p" typography="body3" color={colors.grey600}>
             릴레이 질문에 바로 답변해볼까요?
           </Txt>
-          <Button css={{ marginTop: '28px' }}>
-            <Link href="/answer/opening">
+          <Link href="/answer/opening" css={{ marginTop: '28px' }}>
+            <Button>
               <Txt typography="subTitle2" color={colors.white}>
                 지금 답변할래요!
               </Txt>
-            </Link>
-          </Button>
+            </Button>
+          </Link>
           <Button variant="sub" css={{ border: 'none' }} onClick={close}>
             <Txt typography="title3" color={colors.black}>
               나중에 할게요

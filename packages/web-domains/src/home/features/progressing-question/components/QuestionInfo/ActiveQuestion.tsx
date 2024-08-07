@@ -80,29 +80,29 @@ export const ActiveQuestion = ({ question }: ActiveQuestionProps) => {
             }}
           />
         </div>
-        <button
-          css={{
-            flexShrink: 0,
-            width: '48px',
-            height: '48px',
-            borderRadius: borderRadiusVariants.round,
-            backgroundColor: colors.primary500,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            ':hover': {
-              backgroundColor: colors.primary600,
-            },
-            ':pressed': {
-              backgroundColor: colors.primary600,
-            },
-          }}
-        >
-          <Link href="/answer/opening">
+        <Link href="/answer/opening">
+          <button
+            css={{
+              flexShrink: 0,
+              width: '48px',
+              height: '48px',
+              borderRadius: borderRadiusVariants.round,
+              backgroundColor: colors.primary500,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              ':hover': {
+                backgroundColor: colors.primary600,
+              },
+              ':pressed': {
+                backgroundColor: colors.primary600,
+              },
+            }}
+          >
             <ArrowIcon />
-          </Link>
-        </button>
+          </button>
+        </Link>
       </div>
     </div>
   );
