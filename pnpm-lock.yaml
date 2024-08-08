@@ -149,6 +149,22 @@ importers:
         specifier: ^5.3.3
         version: 5.5.3
 
+  packages/core/react-utils:
+    dependencies:
+      react:
+        specifier: ^18
+        version: 18.2.0
+    devDependencies:
+      '@sambad/eslint-config':
+        specifier: workspace:^
+        version: link:../eslint-config
+      '@sambad/typescript-config':
+        specifier: workspace:^
+        version: link:../typescript-config
+      '@types/react':
+        specifier: ^18.3.3
+        version: 18.3.3
+
   packages/core/sds:
     dependencies:
       '@radix-ui/react-toggle-group':
@@ -161,6 +177,9 @@ importers:
       '@sambad/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@sambad/react-utils':
+        specifier: workspace:^
+        version: link:../react-utils
       '@sambad/types-utils':
         specifier: workspace:*
         version: link:../types-utils
