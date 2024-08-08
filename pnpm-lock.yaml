@@ -119,6 +119,15 @@ importers:
         specifier: ^5
         version: 5.5.3
 
+  packages/core/css-utils:
+    dependencies:
+      '@sambad/eslint-config':
+        specifier: workspace:^
+        version: link:../eslint-config
+      '@sambad/typescript-config':
+        specifier: workspace:^
+        version: link:../typescript-config
+
   packages/core/eslint-config:
     devDependencies:
       '@tanstack/eslint-plugin-query':
@@ -281,6 +290,12 @@ importers:
 
   packages/web-domains:
     dependencies:
+      '@sambad/css-utils':
+        specifier: workspace:*
+        version: link:../core/css-utils
+      '@tanstack/react-query':
+        specifier: ^5.50.1
+        version: 5.51.1(react@18.2.0)
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -7250,7 +7265,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.2.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
+      eslint-module-utils: 2.8.1(@typescript-eslint/parser@6.21.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       hasown: 2.0.2
       is-core-module: 2.14.0
       is-glob: 4.0.3
