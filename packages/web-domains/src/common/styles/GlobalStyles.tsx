@@ -41,7 +41,6 @@ const reset = css`
 
   body {
     max-width: 100vw;
-    min-height: 100vh;
     line-height: 1.5;
     overflow-x: hidden;
   }
