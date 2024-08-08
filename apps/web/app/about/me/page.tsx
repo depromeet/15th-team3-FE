@@ -1,3 +1,7 @@
 import { AboutMeScreen } from '@/about-me';
 
-export default AboutMeScreen;
+const AboutMePage = () => {
+  return <AboutMeScreen />;
+};
+
+export default AboutMePage;
