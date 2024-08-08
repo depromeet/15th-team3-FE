@@ -8,7 +8,8 @@
     "./home": "./src/home/index.ts",
     "./user": "./src/user/index.ts",
     "./participate-meeting": "./src/participate-meeting/index.ts",
-    "./commmon": "./src/common/index.ts"
+    "./commmon": "./src/common/index.ts",
+    "./about-me": "./src/about-me/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
