@@ -1,0 +1,1 @@
+export { SadUserIcon } from './SadUserIcon';

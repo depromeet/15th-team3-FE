@@ -6,6 +6,8 @@ import { AngleSmallUpIcon } from './assets/AngleSmallUp';
 import { AngleUpIcon } from './assets/AngleUp';
 import { CaretDownIcon } from './assets/CaretDown';
 import { CommentsIcon } from './assets/CommentsIcon';
+import { CrownIcon } from './assets/Crown';
+import { Landscape } from './assets/Landscape';
 import { SadUserIcon } from './assets/SadUserIcon';
 import { ShareIcon } from './assets/Share';
 import { XIcon } from './assets/XIcon';
@@ -22,4 +24,6 @@ export const iconMap = {
   'comments-icon': CommentsIcon,
   'x-icon': XIcon,
   'sad-user': SadUserIcon,
+  landscape: Landscape,
+  crown: CrownIcon,
 };
