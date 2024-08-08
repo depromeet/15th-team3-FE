@@ -32,6 +32,7 @@ export default function RootLayout({
         <Providers>
           <ViewportLayout>{children}</ViewportLayout>
         </Providers>
+        <KakaoScript />
       </body>
     </html>
   );
