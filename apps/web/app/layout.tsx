@@ -27,11 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <KakaoScript />
       <body className={pretendard.className}>
         <Providers>
           <ViewportLayout>{children}</ViewportLayout>
         </Providers>
-        <KakaoScript />
       </body>
     </html>
   );
