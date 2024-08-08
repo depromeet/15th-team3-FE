@@ -110,10 +110,11 @@ const QuestionerRandomPick = () => {
     postRelayQuestionInfo(
       { questionId, meetingMemberId },
       {
-        onSuccess: () => {},
+        onSuccess: () => {
+          router.push(`/share-group?question-id=${questionId}&questioner-name=${questioner.name}`);
+        },
       },
     );
-    router.push(`/share-group?question-id=${questionId}&questioner-name=${questioner.name}`);
   };
 
   return (
