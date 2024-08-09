@@ -3,7 +3,7 @@ import { isAxiosError } from 'axios';
 
 import { Http } from '@/common/apis/base.api';
 
-type Params = { meetingId: number; meetingQuestionId: number; answerIds: number[] };
+type Params = { meetingId: string; meetingQuestionId: string; answerIds: number[] };
 
 interface Args {
   options?: UseMutationOptions<{} | undefined, unknown, Params>;

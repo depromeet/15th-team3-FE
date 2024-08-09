@@ -1,20 +1,18 @@
 'use client';
 
-import { Button } from '@sambad/sds/components';
-
+import { AnswerButton } from '../../floating-button/components/AnswerButton';
 import { AnswerOptions } from '../components/AnswerOptions';
 import { AnswerQuestion } from '../components/AnswerQuestion';
-import { CommentBottomSheet } from '../components/CommentBottomSheet';
 import { useAnswerQuestionService } from '../services/useAnswerQuestionService';
 
 export const AnswerQuestionContainer = () => {
-  const { question, questionType, handleSubmitComment, handleSubmitAnswer, handleAnswerList } =
-    useAnswerQuestionService();
+  const { question, questionType, isNotAnswerd, moveToCommentPage, handleAnswerList } = useAnswerQuestionService();
 
   return (
     <section
       css={{
         position: 'relative',
+        paddingBottom: '100px',
       }}
     >
       <AnswerQuestion
@@ -27,15 +25,7 @@ export const AnswerQuestionContainer = () => {
           />
         }
       />
-
-      <CommentBottomSheet
-        onCommentSubmit={handleSubmitComment}
-        answerButton={
-          <Button variant="primary" size="large" onClick={handleSubmitAnswer} css={{ cursor: 'pointer' }}>
-            답변 보내기
-          </Button>
-        }
-      />
+      <AnswerButton disabled={isNotAnswerd} onClick={moveToCommentPage} />
     </section>
   );
 };

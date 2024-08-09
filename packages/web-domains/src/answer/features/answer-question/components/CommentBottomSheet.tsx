@@ -3,7 +3,7 @@ import { colors } from '@sambad/sds/theme';
 import { ReactNode, forwardRef, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { CommentInput } from './CommentInput';
+import { CommentInput } from '../../comment/components/CommentInput';
 
 interface CommentBottomSheetProps {
   onCommentSubmit?: (content: string) => void;
