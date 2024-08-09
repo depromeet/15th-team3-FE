@@ -59,7 +59,7 @@ export const MultipleShortAnswerQuestion = ({
   };
 
   useEffect(() => {
-    const answerIdList = answerOptionList.map((option) => option.answerId);
+    const answerIdList = selectedOption.map((option) => option.answerId);
     onChangeAnswerList?.(answerIdList);
   }, [selectedOption]);
 

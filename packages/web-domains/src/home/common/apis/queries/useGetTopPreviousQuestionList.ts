@@ -65,6 +65,7 @@ export async function getTopPreviousQuestionList(
       Cookie: cookie?.toString(),
     },
   });
+  console.log(data);
 
   return data;
 }

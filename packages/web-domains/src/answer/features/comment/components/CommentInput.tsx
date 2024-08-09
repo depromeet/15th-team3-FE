@@ -30,7 +30,6 @@ export const CommentInput = forwardRef<HTMLInputElement, CommentInputProps>(
       border: `1px solid ${isExceedLength ? colors.primary500 : colors.grey600}`,
       backgroundColor: colors.grey200,
       width: '100%',
-      // height: size['2xl'],
       height: '48px',
       borderRadius: borderRadiusVariants.medium,
       padding: '12px 16px',

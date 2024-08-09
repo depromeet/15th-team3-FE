@@ -1,14 +1,13 @@
-import { isAxiosError } from 'axios';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useAtom } from 'jotai';
+import { useParams, useRouter } from 'next/navigation';
 
-import { useAnswerQuestionMutation } from '@/answer/common/apis/mutations/useAnswerQuestionMutation';
-import { useCommentMutation } from '@/answer/common/apis/mutations/useCommentMutation';
 import { useGetQuestion } from '@/answer/common/apis/queries/useGetQuestion';
+import { answerAtoms } from '@/answer/common/atoms/answer.atom';
 import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 
 export const useAnswerQuestionService = () => {
-  const [answerList, setAnswerList] = useState<number[]>([]);
+  const { questionId } = useParams<{ questionId: string }>();
+  const [answerList, setAnswerList] = useAtom(answerAtoms.answerList);
   const { push } = useRouter();
   const { data: meetingInfo } = useGetMeetingInfo({
     options: { gcTime: Infinity },
@@ -21,30 +20,8 @@ export const useAnswerQuestionService = () => {
     },
   });
 
-  const { mutateAsync: sendCommentMutate } = useCommentMutation({});
-  const { mutateAsync: sendAnswerMutate } = useAnswerQuestionMutation({});
-
-  const handleSubmitComment = async (content: string) => {
-    const meetingId = meetingInfo?.meetingIds[0] ?? 1;
-
-    try {
-      if (question?.meetingQuestionId) {
-        await sendCommentMutate({ content, meetingId, meetingQuestionId: question.meetingQuestionId });
-      }
-    } catch (error) {
-      if (isAxiosError(error)) {
-        console.log(error);
-      }
-    }
-  };
-
-  const handleSubmitAnswer = async () => {
-    const meetingId = meetingInfo?.meetingIds[0] ?? 1;
-    if (question?.meetingQuestionId) {
-      await sendAnswerMutate({ meetingId, meetingQuestionId: question.meetingQuestionId, answerIds: answerList });
-    }
-
-    push('/answer/closing');
+  const moveToCommentPage = async () => {
+    push(`/answer/${questionId}/comment`);
   };
 
   const handleAnswerList = (answerIdList: number[]) => {
@@ -52,10 +29,10 @@ export const useAnswerQuestionService = () => {
   };
 
   return {
+    isNotAnswerd: !answerList.length,
     question: question?.content,
     questionType: question?.questionType,
-    handleSubmitComment,
-    handleSubmitAnswer,
+    moveToCommentPage,
     handleAnswerList,
   };
 };

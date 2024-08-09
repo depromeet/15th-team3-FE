@@ -7,7 +7,7 @@ import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPrevi
 import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
 interface PreviousQuestionItemProps {
-  meetingId: number;
+  meetingId?: number;
   question: PreviousQuestionType;
 }
 

@@ -17,10 +17,7 @@ export const AnswerClosingContainer = () => {
         }}
       >
         <ClosingMessage />
-        {!!answerGlobalTime && (
-          <AnswerCountDown timer={answerGlobalTime} css={{ marginTop: '26px', padding: '12px 40px' }} />
-        )}
-
+        <AnswerCountDown timer={answerGlobalTime} css={{ marginTop: '26px', padding: '12px 40px' }} />
         <ClosingButton />
       </section>
     </>

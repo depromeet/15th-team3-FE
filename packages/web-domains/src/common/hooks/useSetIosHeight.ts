@@ -4,7 +4,7 @@ import { useEffect } from 'react';
  * IOS Safari 브라우저 뷰포트 스크롤 생기는 이슈 대응용
  */
 
-export const useSetHeight = () => {
+export const useSetIosHeight = () => {
   useEffect(() => {
     const setVh = () => {
       let vh = window.innerHeight * 0.01;
