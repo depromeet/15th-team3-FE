@@ -18,6 +18,6 @@ export const useTopPreviousQuestionListService = () => {
 
   return {
     previousQuestionList,
-    meetingId: meetingInfo?.meetingIds[0] ?? 1,
+    meetingId: meetingInfo?.meetingIds[0],
   };
 };

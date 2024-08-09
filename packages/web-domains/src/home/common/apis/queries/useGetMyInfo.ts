@@ -1,6 +1,7 @@
 import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
 import { useQuery, QueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 import { Http } from '../../../../common/apis/base.api';
 import { MeResponseType } from '../schema/Me.schema';
@@ -31,12 +32,12 @@ export const useGetMyInfo = ({ params, options }: Args) => {
   });
 };
 
-export const getMyInfoPrefetch = (params: Params, queryClient: QueryClient) => {
+export const getMyInfoPrefetch = (params: Params, queryClient: QueryClient, cookie: ReadonlyRequestCookies) => {
   const prefetch = queryClient.prefetchQuery({
-    queryKey: [MY_INFO_QUERY_KEY],
+    queryKey: [MY_INFO_QUERY_KEY, params.meetingId],
     queryFn: async () => {
       try {
-        return await getMyInfo(params);
+        return await getMyInfo(params, cookie);
       } catch (error) {
         if (isAxiosError(error)) {
           console.log(error);
@@ -48,9 +49,13 @@ export const getMyInfoPrefetch = (params: Params, queryClient: QueryClient) => {
   return prefetch;
 };
 
-export async function getMyInfo(params: Params): Promise<MeResponseType> {
+export async function getMyInfo(params: Params, cookie?: ReadonlyRequestCookies): Promise<MeResponseType> {
   const { meetingId } = params;
-  const data = await Http.GET<MeResponseType>(`/v1/meetings/${meetingId}/members/me`);
+  const data = await Http.GET<MeResponseType>(`/v1/meetings/${meetingId}/members/me`, {
+    headers: {
+      Cookie: cookie?.toString(),
+    },
+  });
 
   return data;
 }

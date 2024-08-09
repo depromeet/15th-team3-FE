@@ -1,6 +1,7 @@
 import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
 import { QueryClient, useQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 import { Http } from '@/common/apis/base.api';
 
@@ -34,12 +35,16 @@ export const useGetPreviousQuestionList = <T = PreviousQuestionListResponseType 
   });
 };
 
-export const getPreviousQuestionListPrefetch = (params: Params, queryClient: QueryClient) => {
+export const getPreviousQuestionListPrefetch = (
+  params: Params,
+  queryClient: QueryClient,
+  cookie: ReadonlyRequestCookies,
+) => {
   const prefetch = queryClient.prefetchQuery({
     queryKey: [PREVIOUS_QUESTION_QUERY_KEY, params.meetingId, params.page],
     queryFn: async () => {
       try {
-        const data = await getPreviousQuestionList(params);
+        const data = await getPreviousQuestionList(params, cookie);
         return data;
       } catch (error) {
         if (isAxiosError(error)) {
@@ -52,11 +57,20 @@ export const getPreviousQuestionListPrefetch = (params: Params, queryClient: Que
   return prefetch;
 };
 
-export async function getPreviousQuestionList(params: Params): Promise<PreviousQuestionListResponseType | undefined> {
+export async function getPreviousQuestionList(
+  params: Params,
+  cookie?: ReadonlyRequestCookies,
+): Promise<PreviousQuestionListResponseType | undefined> {
   const { meetingId, page } = params;
   const data = await Http.GET<PreviousQuestionListResponseType>(
     `/v1/meetings/${meetingId}/questions/inactive?page=${page}`,
+    {
+      headers: {
+        Cookie: cookie?.toString(),
+      },
+    },
   );
+  console.log(data);
 
   return data;
   // return {

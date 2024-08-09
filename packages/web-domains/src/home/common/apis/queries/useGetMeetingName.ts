@@ -29,7 +29,7 @@ export const useGetMeetingInfo = ({ options }: Args) => {
   });
 };
 
-export const getGatherMeetingInfoPrefetch = (queryClient: QueryClient, cookie?: ReadonlyRequestCookies) => {
+export const getMeetingInfoPrefetch = (queryClient: QueryClient, cookie?: ReadonlyRequestCookies) => {
   const prefetch = queryClient.prefetchQuery({
     queryKey: [MEETING_INFO_QUERY_KEY],
     queryFn: async () => {

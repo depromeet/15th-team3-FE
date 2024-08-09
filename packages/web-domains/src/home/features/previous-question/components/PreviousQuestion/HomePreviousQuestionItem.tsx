@@ -6,7 +6,7 @@ import { AngleRightIcon } from '../../../../../../../core/sds/src/components/Ico
 import { TopPreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
 
 interface HomePreviousQuestionItemProps {
-  meetingId: number;
+  meetingId?: number;
   question: TopPreviousQuestionType;
 }
 

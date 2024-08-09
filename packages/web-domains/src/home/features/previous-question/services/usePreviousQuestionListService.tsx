@@ -44,9 +44,8 @@ export const usePreviousQuestionListService = () => {
 
     if (data?.contents.length) {
       setPreviousQuestionList([...previousQuestionList, ...data.contents]);
-      console.log(previousQuestionList);
     }
   }, [data]);
 
-  return { previousQuestionList, isFetching, targetRef, meetingId: meetingInfo?.meetingIds[0] ?? 1, fetchNextPage };
+  return { previousQuestionList, isFetching, targetRef, meetingId: meetingInfo?.meetingIds[0], fetchNextPage };
 };
