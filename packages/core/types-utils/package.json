@@ -2,6 +2,9 @@
   "name": "@sambad/types-utils",
   "version": "0.0.0",
   "private": true,
+  "exports": {
+    "./tanstack": "./tanstack/index.d.ts"
+  },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "type-check": "tsc --noEmit"
