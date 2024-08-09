@@ -42,6 +42,8 @@ export const KakaoShareModal = ({ title, openGraphKey, isOpen, onClose, ...rest 
 
     return () => {
       document.body.style.overflow = 'auto';
+
+      setIsToastOpen(false);
     };
   }, [isOpen]);
 
