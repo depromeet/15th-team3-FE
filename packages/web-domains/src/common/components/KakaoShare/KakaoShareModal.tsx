@@ -6,10 +6,10 @@ import { HTMLAttributes, useEffect, useState } from 'react';
 
 import { Modal } from '../Modal/Modal';
 
-import { CopyLinkButton } from './CopyLinkButton';
+import { CopyLinkButton } from './CopyLink';
 import { copyToClipboard } from './copyToClipboard.utils';
 import { KakaoShareOpenGraphKeyType } from './generateKakaoShare.utils';
-import { ShareKakaoButton } from './KakaoShareButton';
+import { ShareKakaoButton } from './KakaoShare';
 import { buttonWrapperCss, textWrapperCss } from './KakaoShareModal.styles';
 import { Toast } from './Toast';
 

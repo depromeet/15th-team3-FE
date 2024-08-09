@@ -5,7 +5,7 @@ import { colors, size } from '@sambad/sds/theme';
 import { ReactNode, useEffect } from 'react';
 
 import { wrapperCss } from './Toast.styles';
-import { ToastCheck } from './ToastCheck';
+import { ToastCheckIcon } from './ToastCheckIcon';
 
 interface ToastProps {
   duration?: number;
@@ -26,7 +26,7 @@ export const Toast = ({ children, duration = 1500, onClose }: ToastProps) => {
 
   return (
     <div css={wrapperCss}>
-      <ToastCheck css={{ marginBottom: size['4xs'] }} />
+      <ToastCheckIcon css={{ marginBottom: size['4xs'] }} />
       <Txt color={colors.white} typography="title3" fontWeight="medium">
         {children}
       </Txt>

@@ -66,7 +66,7 @@ export const generateKakaoShare = ({ openGraphKey, questionId, questionerName }:
   Kakao.Share.sendDefault({
     objectType: 'feed',
     content: {
-      title: 'Moring',
+      title: '모링',
       description,
       imageUrl,
       imageWidth: 600,

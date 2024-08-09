@@ -2,7 +2,7 @@ import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 
 import { KakaoShareOpenGraphKeyType, generateKakaoShare } from './generateKakaoShare.utils';
-import { wrapperCss } from './KakaoShareButton.styles';
+import { wrapperCss } from './KakaoShare.styles';
 import { KakaoShareIcon } from './KakaoShareIcon';
 
 interface ShareKakaoProps {

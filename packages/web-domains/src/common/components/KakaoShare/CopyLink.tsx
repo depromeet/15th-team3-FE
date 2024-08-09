@@ -2,7 +2,7 @@ import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import { HTMLAttributes } from 'react';
 
-import { wrapperCss } from './CopyLinkButton.styles';
+import { wrapperCss } from './CopyLink.styles';
 import { CopyLinkIcon } from './CopyLinkIcon';
 
 export const CopyLinkButton = (rest: HTMLAttributes<HTMLDivElement>) => {
