@@ -1,36 +1,30 @@
-// import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
-
-// import { getProgressingQuestionPrefetch } from '../common/apis/queries/useGetProgressingQuestion';
-// import { CommentBottomSheet } from '../features/answer-question/components/CommentBottomSheet';
 import { HydrationBoundary, dehydrate, QueryClient } from '@tanstack/react-query';
+import { cookies } from 'next/headers';
 
+import { getMeetingInfoPrefetch } from '@/home/common/apis/queries/useGetMeetingName';
+
+import { getProgressingQuestionPrefetch } from '../common/apis/queries/useGetProgressingQuestion';
 import { AnswerQuestionContainer } from '../features/answer-question/containers/AnswerQuestionContainer';
-// import { OpeningButtonContainer } from '../features/floating-button/components/StartButton';
-// import { ProgressingQuestionContainer } from '../features/progressing-question/containers/ProgressingQuestionContainer';
-// import { TobBarContainer } from '../features/top-bar/containers/TopBarContainer';
 
 export const AnswerQuestionScreen = async () => {
-  const { queryClient } = await getServerSideProps();
+  const { queryClient } = await getServerSideProps({ meetingId: 2 });
 
   return (
-    // <></>
     <HydrationBoundary state={dehydrate(queryClient)}>
       <AnswerQuestionContainer />
-
-      {/* <ProgressingQuestionContainer />
-    // <OpeningButtonContainer /> */}
     </HydrationBoundary>
   );
 };
 
-const getServerSideProps = async () => {
+const getServerSideProps = async (params: { meetingId: number }) => {
   const queryClient = new QueryClient();
 
-  // await getProgressingQuestionPrefetch(queryClient);
-  // try {
-  //   console.log('');
-  // } catch (error: unknown) {
-  //   console.log(error);
-  // }
+  try {
+    const cookie = cookies();
+    await getMeetingInfoPrefetch(queryClient, cookie);
+    await getProgressingQuestionPrefetch(params, queryClient, cookie);
+  } catch (error: unknown) {
+    console.log(error);
+  }
   return { queryClient };
 };

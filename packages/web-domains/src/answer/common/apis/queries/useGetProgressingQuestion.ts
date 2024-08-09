@@ -1,6 +1,7 @@
 import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
 import { QueryClient, useQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 import { ProgressingQuestionType } from '@/answer/common/apis/schema/useGetProgressingQuestionQuery.type';
 import { Http } from '@/common/apis/base.api';
@@ -31,12 +32,16 @@ export const useGetProgressingQuestion = ({ params, options }: Args) => {
   });
 };
 
-export const getProgressingQuestionPrefetch = (params: Params, queryClient: QueryClient) => {
+export const getProgressingQuestionPrefetch = (
+  params: Params,
+  queryClient: QueryClient,
+  cookie: ReadonlyRequestCookies,
+) => {
   const prefetch = queryClient.prefetchQuery({
     queryKey: [PROGRESSING_QUESTION_QUERY_KEY, params.meetingId],
     queryFn: async () => {
       try {
-        const data = await getProgressingQuestion(params);
+        const data = await getProgressingQuestion(params, cookie);
         return data;
       } catch (error) {
         if (isAxiosError(error)) {
@@ -49,8 +54,16 @@ export const getProgressingQuestionPrefetch = (params: Params, queryClient: Quer
   return prefetch;
 };
 
-export async function getProgressingQuestion(params: Params): Promise<ProgressingQuestionType> {
+export async function getProgressingQuestion(
+  params: Params,
+  cookie?: ReadonlyRequestCookies,
+): Promise<ProgressingQuestionType> {
   const { meetingId } = params;
-  const data = await Http.GET<ProgressingQuestionType>(`/v1/meetings/${meetingId}/questions/active`);
+  const data = await Http.GET<ProgressingQuestionType>(`/v1/meetings/${meetingId}/questions/active`, {
+    headers: {
+      Cookie: cookie?.toString(),
+    },
+  });
+
   return data;
 }

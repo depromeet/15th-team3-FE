@@ -1,31 +1,32 @@
-// import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
+import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
+import { cookies } from 'next/headers';
 
-// import { getProgressingQuestionPrefetch } from '../common/apis/queries/useGetProgressingQuestion';
+import { getMeetingInfoPrefetch } from '@/home/common/apis/queries/useGetMeetingName';
 
+import { getProgressingQuestionPrefetch } from '../common/apis/queries/useGetProgressingQuestion';
 import { ProgressingQuestionContainer } from '../features/progressing-question/containers/ProgressingQuestionContainer';
 import { TobBarContainer } from '../features/top-bar/containers/TopBarContainer';
 
 export const AnswerOpeningScreen = async () => {
-  // const { queryClient } = await getServerSideProps();
+  const { queryClient } = await getServerSideProps({ meetingId: 2 });
 
   return (
-    // <HydrationBoundary state={dehydrate(queryClient)}>
-    <>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <TobBarContainer />
       <ProgressingQuestionContainer />
-    </>
-    // </HydrationBoundary>
+    </HydrationBoundary>
   );
 };
 
-// const getServerSideProps = async () => {
-//   const queryClient = new QueryClient();
+const getServerSideProps = async (params: { meetingId: number }) => {
+  const queryClient = new QueryClient();
 
-//   await getProgressingQuestionPrefetch(queryClient);
-//   try {
-//     console.log('');
-//   } catch (error: unknown) {
-//     console.log(error);
-//   }
-//   return { queryClient };
-// };
+  try {
+    const cookie = cookies();
+    await getMeetingInfoPrefetch(queryClient, cookie);
+    await getProgressingQuestionPrefetch(params, queryClient, cookie);
+  } catch (error: unknown) {
+    console.log(error);
+  }
+  return { queryClient };
+};
