@@ -1,13 +1,8 @@
-import { Interpolation, Theme } from '@emotion/react';
 import { HTMLAttributes } from 'react';
 
-interface CopyLinkIconProps extends HTMLAttributes<SVGSVGElement> {
-  css?: Interpolation<Theme>;
-}
-
-export const CopyLinkIcon = ({ css, ...rest }: CopyLinkIconProps) => {
+export const CopyLinkIcon = (rest: HTMLAttributes<SVGSVGElement>) => {
   return (
-    <svg height="80" width="80" fill="none" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" css={css} {...rest}>
+    <svg height="80" width="80" fill="none" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" {...rest}>
       <path
         d="M0 40C0 17.9086 17.9086 0 40 0V0C62.0914 0 80 17.9086 80 40V40C80 62.0914 62.0914 80 40 80V80C17.9086 80 0 62.0914 0 40V40Z"
         fill="#F5F5F5"
