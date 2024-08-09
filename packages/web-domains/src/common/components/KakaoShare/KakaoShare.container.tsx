@@ -14,17 +14,9 @@ export interface ShareRelayQuestionProps {
   title: string;
   openGraphKey: KakaoShareOpenGraphKeyType;
   onClose: () => void;
-  toastMessage: string;
-  toastShowTime?: number;
 }
 
-export const KakaoShareContainer = ({
-  title,
-  openGraphKey,
-  toastMessage,
-  toastShowTime,
-  onClose,
-}: ShareRelayQuestionProps) => {
+export const KakaoShareContainer = ({ title, openGraphKey, onClose }: ShareRelayQuestionProps) => {
   const [isToastOpen, setIsToastOpen] = useState<boolean>(false);
 
   const searchParams = new URLSearchParams(location.search);
@@ -52,8 +44,8 @@ export const KakaoShareContainer = ({
         닫기
       </Button>
       {isToastOpen && (
-        <Toast showTime={toastShowTime} onClose={() => setIsToastOpen(false)}>
-          {toastMessage}
+        <Toast showTime={1500} onClose={() => setIsToastOpen(false)}>
+          링크를 복사했어요!
         </Toast>
       )}
     </section>

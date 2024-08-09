@@ -12,19 +12,9 @@ interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
   title: string;
   openGraphKey: KakaoShareOpenGraphKeyType;
-  toastMessage: string;
-  toastShowTime?: number;
 }
 
-export const KakaoShareModal = ({
-  title,
-  openGraphKey,
-  toastMessage,
-  toastShowTime,
-  isOpen,
-  onClose,
-  ...rest
-}: ModalProps) => {
+export const KakaoShareModal = ({ title, openGraphKey, isOpen, onClose, ...rest }: ModalProps) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -39,13 +29,7 @@ export const KakaoShareModal = ({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} {...rest}>
-      <KakaoShareContainer
-        title={title}
-        openGraphKey={openGraphKey}
-        onClose={onClose}
-        toastMessage={toastMessage}
-        toastShowTime={toastShowTime}
-      />
+      <KakaoShareContainer title={title} openGraphKey={openGraphKey} onClose={onClose} />
     </Modal>
   );
 };
