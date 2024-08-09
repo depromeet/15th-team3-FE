@@ -8,18 +8,16 @@ import { wrapperCss } from './Toast.styles';
 import { ToastCheck } from './ToastCheck';
 
 interface ToastProps extends HTMLAttributes<HTMLDivElement> {
-  showTime?: number;
+  duration?: number;
   children: string;
   onClose: () => void;
 }
 
-export const Toast = ({ children, showTime = 1500, onClose, ...rest }: ToastProps) => {
-  const safeShowTime = showTime < 1000 ? 1000 : showTime;
-
+export const Toast = ({ children, duration = 1500, onClose, ...rest }: ToastProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, safeShowTime);
+    }, duration);
 
     return () => {
       clearTimeout(timer);

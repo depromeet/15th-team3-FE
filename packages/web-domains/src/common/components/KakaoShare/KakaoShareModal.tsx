@@ -66,7 +66,7 @@ export const KakaoShareModal = ({ title, openGraphKey, isOpen, onClose, ...rest 
           닫기
         </Button>
         {isToastOpen && (
-          <Toast showTime={1500} onClose={() => setIsToastOpen(false)}>
+          <Toast duration={1500} onClose={() => setIsToastOpen(false)}>
             링크를 복사했어요!
           </Toast>
         )}
