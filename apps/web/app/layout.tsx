@@ -16,6 +16,12 @@ const pretendard = localFont({
 export const metadata: Metadata = {
   title: '모링 moring',
   description: '우리가 스스로 꿰메는 모임 팔찌',
+  verification: {
+    google: 'google-site-verification=MqPBe2aLGPleycDxdUvmdNi_e3z6_eV10PrQZDThB-M',
+    other: {
+      'naver-site-verification': 'd30a244c9a2384e8572c4e6ffd407d4e4139cbbc',
+    },
+  },
 };
 
 export default function RootLayout({
