@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import { borderRadiusVariants, colors } from '@sds/theme';
+import { borderRadiusVariants, colors, size } from '@sds/theme';
 
 import { fontWeightVariants } from '../Typography';
 
@@ -91,5 +91,17 @@ export const buttonCss = css({
 
   '&:disabled': {
     cursor: 'not-allowed',
+  },
+});
+
+export const leftDecorCss = css({
+  display: 'inline-flex',
+  marginRight: size['6xs'],
+
+  // NOTE: icon
+  '& svg, & path': {
+    width: 20,
+    height: 20,
+    fill: `var(${buttonColorVar})`,
   },
 });
