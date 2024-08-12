@@ -11,6 +11,10 @@ interface ClosingMessageProps {
 const ClosingMessage = (props: ClosingMessageProps) => {
   const { name } = props;
 
+  if (!name) {
+    null;
+  }
+
   return (
     <div
       css={{

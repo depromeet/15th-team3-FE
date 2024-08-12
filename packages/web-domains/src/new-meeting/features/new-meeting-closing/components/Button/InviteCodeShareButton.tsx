@@ -11,7 +11,7 @@ interface InviteCodeCopyButtonProps {
   inviteCode: string;
 }
 export const InviteCodeShareButton = (props: InviteCodeCopyButtonProps) => {
-  const { inviteCode = '0AF781' } = props;
+  const { inviteCode } = props;
 
   if (!inviteCode) {
     return null;
@@ -24,23 +24,28 @@ export const InviteCodeShareButton = (props: InviteCodeCopyButtonProps) => {
   };
 
   return (
-    <CopyToClipboard text={inviteCode} onCopy={handleOpenToast}>
-      <Button
-        variant="sub"
-        size="medium"
-        css={{
-          marginTop: '6px',
-          width: 'auto',
-          height: '53px',
-          padding: '14px 46px',
-          borderRadius: borderRadiusVariants.medium,
-        }}
-      >
-        <CopyIcon />
-        <Txt typography="subtitle1" color={colors.black} css={{ marginLeft: size['6xs'] }}>
-          {inviteCode}
-        </Txt>
-      </Button>
-    </CopyToClipboard>
+    <>
+      <Txt typography="title2" color={colors.grey600}>
+        초대 코드 복사하기
+      </Txt>
+      <CopyToClipboard text={inviteCode} onCopy={handleOpenToast}>
+        <Button
+          variant="sub"
+          size="medium"
+          css={{
+            marginTop: '6px',
+            width: 'auto',
+            height: '53px',
+            padding: '14px 46px',
+            borderRadius: borderRadiusVariants.medium,
+          }}
+        >
+          <CopyIcon />
+          <Txt typography="subtitle1" color={colors.black} css={{ marginLeft: size['6xs'] }}>
+            {inviteCode}
+          </Txt>
+        </Button>
+      </CopyToClipboard>
+    </>
   );
 };

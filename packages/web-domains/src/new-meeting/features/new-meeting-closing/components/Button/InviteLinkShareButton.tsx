@@ -11,14 +11,14 @@ export const InviteLinkShareButton = ({ inviteCode }: { inviteCode: string | nul
   const { addToast } = useToast();
 
   const handleCopyUrl = () => {
-    addToast(() => CopyToast({ content: '링크가 복사되었습니다.' }));
+    addToast(() => CopyToast({ content: '링크를 복사했어요!' }));
   };
 
   if (!inviteCode) {
     return null;
   }
 
-  const copyUrl = `/meeting/participate?inviteCode=${inviteCode}`;
+  const copyUrl = window.location.href;
 
   return (
     <div css={{ margin: `${size['3xs']} ${size.xs}`, textAlign: 'center' }}>

@@ -1,6 +1,5 @@
 'use client';
 
-import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import Image from 'next/image';
 
@@ -41,9 +40,6 @@ const NewMeetingClosingContainer = (props: NewMeetingClosingContainerProps) => {
           alignItems: 'center',
         }}
       >
-        <Txt typography="title2" color={colors.grey600}>
-          초대 코드 복사하기
-        </Txt>
         <InviteCodeShareButton inviteCode={inviteCode} />
       </div>
       <div

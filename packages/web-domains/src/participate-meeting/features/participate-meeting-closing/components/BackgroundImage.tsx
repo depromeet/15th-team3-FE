@@ -16,9 +16,9 @@ export const BackgroundImage = () => {
     >
       <div
         css={{
+          position: 'relative',
           width: '80%',
           aspectRatio: '1',
-          position: 'relative',
         }}
       >
         <Image src={Character} alt="meeting-character" priority fill />
