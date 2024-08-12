@@ -8,8 +8,6 @@ export const useCreateMeetingService = () => {
   const { participateMeeting } = useMeetingMemberService();
 
   const createMeeting = async (meetingParams: CreateMeetingParams, meetingMemberParams: CreateMeetingMemberParams) => {
-    console.log(meetingParams);
-    console.log(meetingMemberParams);
     await mutateAsync(meetingParams, {
       onSuccess: (res) => {
         const { inviteCode } = res.data;
@@ -17,7 +15,9 @@ export const useCreateMeetingService = () => {
         participateMeeting(meetingMemberParams);
       },
       onError: (res) => {
-        console.log(res);
+        if (res.response?.status === 400) {
+          alert('생성할 수 있는 모임을 초과했습니다.');
+        }
       },
     });
   };

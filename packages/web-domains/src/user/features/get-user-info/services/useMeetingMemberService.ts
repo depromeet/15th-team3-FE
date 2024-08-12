@@ -8,8 +8,7 @@ export const useMeetingMemberService = () => {
 
   const participateMeeting = async (params: Params) => {
     await mutateAsync(params, {
-      onSuccess: (res) => {
-        console.log(res);
+      onSuccess: () => {
         // 멤버로 가입된 경우
         if (params.role === 'MEMBER') {
           router.push(`/user/member/closing?inviteCode=${params.inviteCode}`);

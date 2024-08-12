@@ -14,7 +14,6 @@ const useCustomSearchParams = () => {
   const updateUrlParams = useCallback(
     (url: string, params: Record<string, any>) => {
       const currentParams = new URLSearchParams(searchParams.toString());
-      console.log(params);
       Object.keys(params).forEach((key) => {
         if (params[key]) {
           currentParams.set(key, params[key]);
