@@ -14,9 +14,8 @@ import { NotificationContainer } from '../features/notification/containers/Notif
 import { TopPreviousQuestionListContainer } from '../features/previous-question/containers/TopPreviousQuestionListContainer';
 import { ProgressingQuestionContainer } from '../features/progressing-question/containers/ProgressingQuestionContainer';
 
-// export const HomeScreen = async ({params}: {params: {meetingId: string}}) => {
 export const HomeScreen = async () => {
-  const { queryClient } = await getServerSideProps({ meetingId: 2 });
+  const { queryClient } = await getServerSideProps();
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
@@ -33,22 +32,26 @@ export const HomeScreen = async () => {
   );
 };
 
-const getServerSideProps = async (params: { meetingId: number }) => {
+const getServerSideProps = async () => {
   const queryClient = new QueryClient();
   try {
     const cookie = cookies();
+    const data = await getMeetingInfoPrefetch(queryClient, cookie);
+    const meetingId = data?.meetingIds[0];
 
-    await getMeetingInfoPrefetch(queryClient, cookie);
-    const myInfoPrefetch = getMyInfoPrefetch(params, queryClient, cookie);
-    const gatherMemberPrefetch = getGatherMemberListPrefetch(params, queryClient, cookie);
-    const topPreviousQuestionListPrefetch = getTopPreviousQuestionPrefetch(params, queryClient, cookie);
-    const progressingQuestionPrefetch = getProgressingQuestionPrefetch(params, queryClient, cookie);
-    await Promise.all([
-      myInfoPrefetch,
-      gatherMemberPrefetch,
-      topPreviousQuestionListPrefetch,
-      progressingQuestionPrefetch,
-    ]);
+    if (typeof meetingId === 'number') {
+      const params = { meetingId };
+      const myInfoPrefetch = getMyInfoPrefetch(params, queryClient, cookie);
+      const gatherMemberPrefetch = getGatherMemberListPrefetch(params, queryClient, cookie);
+      const topPreviousQuestionListPrefetch = getTopPreviousQuestionPrefetch(params, queryClient, cookie);
+      const progressingQuestionPrefetch = getProgressingQuestionPrefetch(params, queryClient, cookie);
+      await Promise.all([
+        myInfoPrefetch,
+        gatherMemberPrefetch,
+        topPreviousQuestionListPrefetch,
+        progressingQuestionPrefetch,
+      ]);
+    }
   } catch (error: unknown) {
     console.log(error);
   }

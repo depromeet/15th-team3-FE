@@ -10,7 +10,7 @@ interface HomePreviousQuestionItemProps {
   question: TopPreviousQuestionType;
 }
 
-export const HomePreviousQuestionItem = ({ meetingId, question }: HomePreviousQuestionItemProps) => {
+export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemProps) => {
   const { content, engagementRate, title, meetingQuestionId } = question;
 
   return (
@@ -25,7 +25,7 @@ export const HomePreviousQuestionItem = ({ meetingId, question }: HomePreviousQu
       }}
     >
       <Link
-        href={`/question-result/${meetingId}/${meetingQuestionId}`}
+        href={`/question-result/${meetingQuestionId}`}
         css={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
       >
         <div css={{ flex: '1' }}>

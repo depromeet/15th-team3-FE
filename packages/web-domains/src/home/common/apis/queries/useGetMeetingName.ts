@@ -30,11 +30,14 @@ export const useGetMeetingInfo = ({ options }: Args) => {
 };
 
 export const getMeetingInfoPrefetch = (queryClient: QueryClient, cookie?: ReadonlyRequestCookies) => {
-  const prefetch = queryClient.prefetchQuery({
+  const prefetch = queryClient.fetchQuery({
     queryKey: [MEETING_INFO_QUERY_KEY],
     queryFn: async () => {
       try {
-        return await getMeetingInfo(cookie);
+        const data = await getMeetingInfo(cookie);
+        console.log({ data });
+        return data;
+        // return await getMeetingInfo(cookie);
       } catch (error) {
         if (isAxiosError(error)) {
           console.log(error);

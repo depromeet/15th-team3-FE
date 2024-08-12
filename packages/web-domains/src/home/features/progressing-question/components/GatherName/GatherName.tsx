@@ -1,4 +1,5 @@
 import { Txt } from '@sambad/sds/components';
+import Link from 'next/link';
 import { HTMLAttributes } from 'react';
 
 import { Avatar } from '../../../../common/components/Avatar/Avatar';
@@ -20,7 +21,9 @@ export const GatherName = ({ gatherName, profileImage, ...rest }: GatherNameProp
         </Txt>
       </div>
       <div css={{ marginLeft: '4px', position: 'relative', top: '11px' }}>
-        <Avatar imageUrl={profileImage} width={48} height={48} css={{ borderRadius: '50%' }} />
+        <Link href="/about/me">
+          <Avatar imageUrl={profileImage} width={48} height={48} css={{ borderRadius: '50%' }} />
+        </Link>
       </div>
     </div>
   );

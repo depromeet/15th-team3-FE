@@ -8,7 +8,7 @@ import { PreviousQuestionList } from '../components/PreviousQuestion/PreviousQue
 import { usePreviousQuestionListService } from '../services/usePreviousQuestionListService';
 
 export const PreviousQuestionListContainer = () => {
-  const { previousQuestionList, targetRef, meetingId } = usePreviousQuestionListService();
+  const { previousQuestionList, targetRef } = usePreviousQuestionListService();
 
   if (!previousQuestionList || !previousQuestionList.length) {
     return <ActionBar title="이전 질문" css={{ paddingTop: '8px' }} />;
@@ -19,9 +19,7 @@ export const PreviousQuestionListContainer = () => {
       <ActionBar title="이전 질문" css={{ paddingTop: '8px' }} />
       <PreviousQuestionList
         questionList={previousQuestionList}
-        renderItem={(item) => (
-          <PreviousQuestionItem key={item.meetingQuestionId} meetingId={meetingId} question={item} />
-        )}
+        renderItem={(item) => <PreviousQuestionItem key={item.meetingQuestionId} question={item} />}
         ref={targetRef as MutableRefObject<HTMLDivElement>}
       />
     </>

@@ -11,7 +11,7 @@ interface PreviousQuestionItemProps {
   question: PreviousQuestionType;
 }
 
-export const PreviousQuestionItem = ({ meetingId, question }: PreviousQuestionItemProps) => {
+export const PreviousQuestionItem = ({ question }: PreviousQuestionItemProps) => {
   const { title, questionNumber, targetMember, questionImageFileUrl, startDate, meetingQuestionId } = question;
 
   const questionTime = dayjs(startDate).format('YYYY-MM-DD');
@@ -25,7 +25,7 @@ export const PreviousQuestionItem = ({ meetingId, question }: PreviousQuestionIt
         listStyle: 'none',
       }}
     >
-      <Link href={`/question-result/${meetingId}/${meetingQuestionId}`} css={{ display: 'flex' }}>
+      <Link href={`/question-result/${meetingQuestionId}`} css={{ display: 'flex' }}>
         <div
           css={{
             display: 'flex',

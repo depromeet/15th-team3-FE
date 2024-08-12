@@ -7,7 +7,7 @@ import { getProgressingQuestionPrefetch } from '../common/apis/queries/useGetPro
 import { AnswerQuestionContainer } from '../features/answer-question/containers/AnswerQuestionContainer';
 
 export const AnswerQuestionScreen = async () => {
-  const { queryClient } = await getServerSideProps({ meetingId: 2 });
+  const { queryClient } = await getServerSideProps();
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
@@ -16,13 +16,19 @@ export const AnswerQuestionScreen = async () => {
   );
 };
 
-const getServerSideProps = async (params: { meetingId: number }) => {
+const getServerSideProps = async () => {
   const queryClient = new QueryClient();
 
   try {
     const cookie = cookies();
-    await getMeetingInfoPrefetch(queryClient, cookie);
-    await getProgressingQuestionPrefetch(params, queryClient, cookie);
+    const data = await getMeetingInfoPrefetch(queryClient, cookie);
+    const meetingId = data?.meetingIds[0];
+
+    if (typeof meetingId === 'number') {
+      const params = { meetingId };
+      await getMeetingInfoPrefetch(queryClient, cookie);
+      await getProgressingQuestionPrefetch(params, queryClient, cookie);
+    }
   } catch (error: unknown) {
     console.log(error);
   }
