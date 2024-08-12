@@ -11,7 +11,7 @@ export const InviteCodeHeader = () => {
         에 오신걸 환영해요!
       </Txt>
       <Txt as="p" typography="body3" color={colors.grey600} css={{ marginTop: size['6xs'] }}>
-        모임장이 보내준 초대 코드를 입력해주세요
+        모임장이 보내준 초대 코드를
       </Txt>
       <Txt as="p" typography="body3" color={colors.grey600}>
         입력해주세요
