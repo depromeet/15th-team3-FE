@@ -18,7 +18,7 @@ export const MEMBER_QUERY_KEY = 'MEMBER_QUERY_KEY';
 const queryFn = ({ meetingId, meetingMemberId }: Params) =>
   Http.GET<MeetingMemberResponse>(`/v1/meetings/${meetingId}/members/${meetingMemberId}`);
 
-export const useGetMemberMe = (props: QueryProps) => {
+export const useGetMember = (props: QueryProps) => {
   const { options, ...params } = props;
 
   return useQuery({
