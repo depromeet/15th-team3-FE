@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 
-import { borderRadiusVariants, colors } from '@sds/theme';
+import { borderRadiusVariants, colors, size } from '@sds/theme';
+
+import { fontWeightVariants } from '../Typography';
 
 import { ButtonSize, ButtonVariant } from './types';
 
@@ -26,11 +28,13 @@ export const buttonSizeVariants: Record<ButtonSize, ButtonSizeVariants> = {
 const buttonBackgroundColorVar = '--sambad-button-background-color';
 const buttonBorderVar = '--sambad-button-border';
 const buttonColorVar = '--sambad-button-color';
+const buttonHoverColorVar = '--sambad-button-hover-color';
 
 interface ButtonVariantVariants {
   [buttonBackgroundColorVar]: string;
   [buttonBorderVar]: string;
   [buttonColorVar]: string;
+  [buttonHoverColorVar]?: string;
 }
 
 export const buttonVariantVariants: Record<ButtonVariant, ButtonVariantVariants> = {
@@ -38,11 +42,13 @@ export const buttonVariantVariants: Record<ButtonVariant, ButtonVariantVariants>
     [buttonBackgroundColorVar]: colors.black,
     [buttonBorderVar]: 'none',
     [buttonColorVar]: colors.white,
+    [buttonHoverColorVar]: colors.grey700,
   },
   sub: {
     [buttonBackgroundColorVar]: colors.white,
     [buttonBorderVar]: `1px solid ${colors.grey500}`,
     [buttonColorVar]: colors.black,
+    [buttonHoverColorVar]: colors.grey300,
   },
 };
 
@@ -62,6 +68,7 @@ export const buttonDisabledVariants: Record<ButtonVariant, ButtonVariantVariants
 export const buttonCss = css({
   width: '100%',
   height: `var(${buttonHeightVar})`,
+  transition: 'background-color 0.3s ease',
 
   display: 'flex',
   justifyContent: 'center',
@@ -70,6 +77,7 @@ export const buttonCss = css({
   color: `var(${buttonColorVar})`,
   fontSize: `var(${buttonFontSizeVar})`,
   lineHeight: '150%',
+  fontWeight: fontWeightVariants.semibold,
 
   border: `var(${buttonBorderVar})`,
   borderRadius: borderRadiusVariants.round,
@@ -77,7 +85,23 @@ export const buttonCss = css({
 
   cursor: 'pointer',
 
+  '&:hover': {
+    backgroundColor: `var(${buttonHoverColorVar})`,
+  },
+
   '&:disabled': {
     cursor: 'not-allowed',
+  },
+});
+
+export const leftDecorCss = css({
+  display: 'inline-flex',
+  marginRight: size['6xs'],
+
+  // NOTE: icon
+  '& svg, & path': {
+    width: 20,
+    height: 20,
+    fill: `var(${buttonColorVar})`,
   },
 });
