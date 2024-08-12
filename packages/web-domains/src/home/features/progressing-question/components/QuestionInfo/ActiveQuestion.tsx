@@ -73,7 +73,7 @@ export const ActiveQuestion = ({ question }: ActiveQuestionProps) => {
               ':after': {
                 content: '""',
                 display: 'block',
-                width: `${(responseCount / totalMeetingMemberCount) * 100}%`,
+                width: `${Math.min(1, responseCount / totalMeetingMemberCount) * 100}%`,
                 height: size['7xs'],
                 backgroundColor: colors.primary500,
               },
