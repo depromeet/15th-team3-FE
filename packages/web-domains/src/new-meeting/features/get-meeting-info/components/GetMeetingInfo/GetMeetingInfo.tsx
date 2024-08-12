@@ -62,7 +62,7 @@ export const GetMeetingInfo = (props: GetMeetingInfoProps) => {
               maxLength: { value: 10, message: '10자 이하로 입력해주세요.' },
             })}
             errorMessage="2자 이상, 10자 이하로 입력해주세요"
-            placeholder="직업을 입력해주세요"
+            placeholder="모임의 이름을 입력해주세요"
             css={{ marginTop: '8px' }}
           />
         </div>
