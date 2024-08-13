@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 
-export const CircleKakao = () => {
+interface CircleKakaoProps extends HTMLAttributes<SVGElement> {}
+
+export const CircleKakao = (props: CircleKakaoProps) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={80} height={80} fill="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width={80} height={80} fill="none" {...props}>
       <path fill="#FEE500" d="M0 40C0 17.909 17.909 0 40 0s40 17.909 40 40-17.909 40-40 40S0 62.091 0 40Z" />
       <path
         fill="#000"
