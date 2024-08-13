@@ -10,6 +10,7 @@ import { PROGRESSING_QUESTION_QUERY_KEY } from '@/answer/common/apis/queries/use
 import { answerAtoms } from '@/answer/common/atoms/answer.atom';
 import { GATHER_MEMBER_QUERY_KEY } from '@/home/common/apis/queries/useGetGatherMemberList';
 import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
+import { NOTIFICATION_QUERY_KEY } from '@/home/common/apis/queries/useGetNotification';
 import { TOP_PREVIOUS_QUESTION_QUERY_KEY } from '@/home/common/apis/queries/useGetTopPreviousQuestionList';
 
 export const useCommentService = () => {
@@ -34,9 +35,23 @@ export const useCommentService = () => {
         await sendCommentMutate({ content: comment, meetingId, meetingQuestionId: questionId });
       }
 
-      queryClient.invalidateQueries({
-        queryKey: [PROGRESSING_QUESTION_QUERY_KEY, TOP_PREVIOUS_QUESTION_QUERY_KEY, GATHER_MEMBER_QUERY_KEY],
+      const questionInvalidate = queryClient.invalidateQueries({
+        queryKey: [PROGRESSING_QUESTION_QUERY_KEY],
       });
+      const topPreviousQuestionInvalidate = queryClient.invalidateQueries({
+        queryKey: [TOP_PREVIOUS_QUESTION_QUERY_KEY],
+      });
+
+      const gatherMemberInvalidate = queryClient.invalidateQueries({
+        queryKey: [GATHER_MEMBER_QUERY_KEY],
+      });
+
+      const notificationInvalidate = queryClient.invalidateQueries({
+        queryKey: [NOTIFICATION_QUERY_KEY],
+      });
+
+      Promise.all([questionInvalidate, topPreviousQuestionInvalidate, gatherMemberInvalidate, notificationInvalidate]);
+
       push('/answer/closing');
     } catch (error) {
       if (isAxiosError(error)) {
