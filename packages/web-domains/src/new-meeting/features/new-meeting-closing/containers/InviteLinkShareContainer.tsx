@@ -41,7 +41,7 @@ export const InviteLinkShareContainer = (props: InviteLinkShareContainerProps) =
           </Txt>
         </div>
         <div css={{ margin: `${size['2xs']} 0`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <ShareKakaoButton />
+          <ShareKakaoButton inviteCode={inviteCode} />
           <InviteLinkShareButton inviteCode={inviteCode} />
         </div>
       </div>
