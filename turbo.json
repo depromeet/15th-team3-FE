@@ -24,5 +24,6 @@
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "web#start": {}
-  }
+  },
+  "globalEnv": ["NEXT_PUBLIC_KAKAO_API_KEY"]
 }
