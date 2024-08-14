@@ -24,7 +24,6 @@ export const answerContentCss = css({
   overflow: 'auto',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
   alignItems: 'center',
   gap: `${size['6xs']}`,
 });
