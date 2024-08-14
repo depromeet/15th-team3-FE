@@ -1,26 +1,22 @@
 'use client';
 
-import { Txt } from '@sambad/sds/components';
 import { size } from '@sambad/sds/theme';
+
+import { EmptyView } from '@/common/components';
 
 import { HobbyList, IntroduceBox } from '../components';
 import { useGetMemberByParams } from '../hooks/useGetMemberByParams';
 
-import { subTitleAttribute } from './constants';
-import { titleCss } from './styles';
-
 export const AboutMeContainer = () => {
   const { data } = useGetMemberByParams();
 
+  const hasNoInfo = !data?.hobbies.length && !data?.introduction.length;
+
+  if (hasNoInfo) return <EmptyView title="아직 입력한 정보가 없어요" style={{ height: '300px' }} />;
+
   return (
     <section style={{ padding: `${size['4xs']} 0` }}>
-      <Txt typography="subtitle1" css={titleCss} {...subTitleAttribute.attribute}>
-        모임원들과 이런 걸 함께하고 싶어요
-      </Txt>
       <HobbyList contents={data?.hobbies} />
-      <Txt typography="subtitle1" css={titleCss} {...subTitleAttribute.attribute}>
-        저는 이런 사람이에요
-      </Txt>
       <IntroduceBox content={data?.introduction} />
     </section>
   );
