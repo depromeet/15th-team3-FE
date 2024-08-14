@@ -23,6 +23,7 @@ export const generateKakaoShare = ({ shareLink, shareImageUrl, shareDescription 
       imageHeight: 800,
       link: {
         webUrl: shareLink,
+        mobileWebUrl: shareLink,
       },
     },
   });
