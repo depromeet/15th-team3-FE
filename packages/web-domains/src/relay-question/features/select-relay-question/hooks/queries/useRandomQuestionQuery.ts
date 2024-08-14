@@ -9,11 +9,11 @@ const _getRandomQuestion = async (excludeQuestionIds: number[]) =>
   await Http.GET<RelayQuestionResponse>(`/v1/questions/random?excludeQuestionIds=${excludeQuestionIds.join(',')}`);
 
 export const useRandomQuestionQuery = (excludeQuestionIds: number[]) => {
-  const { data, ...rest } = useQuery({
+  const { data, refetch, ...rest } = useQuery({
     queryKey: [RANDOM_QUESTION_QUERY_KEY, excludeQuestionIds],
     queryFn: () => _getRandomQuestion(excludeQuestionIds),
     enabled: false,
   });
 
-  return { question: data, ...rest };
+  return { question: data, refetchQuestion: refetch, ...rest };
 };

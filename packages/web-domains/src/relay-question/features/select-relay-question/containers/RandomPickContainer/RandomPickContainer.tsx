@@ -17,6 +17,7 @@ import { QuestionerDetail } from '../../components/QuestionerDetail/QuestionerDe
 import { ToolTip } from '../../components/ToolTip/ToolTip';
 import { useQueryStringContext } from '../../contexts/QueryStringContext';
 import { usePostRelayQuestionInfo } from '../../hooks/mutations/usePostRelayQuestionInfo';
+import { useMemberMeQuery } from '../../hooks/queries/useMemberMeQuery';
 import { useRandomNextQuestionerQuery } from '../../hooks/queries/useRandomNextQuestionerQuery';
 import { useRandomQuestionQuery } from '../../hooks/queries/useRandomQuestionQuery';
 import { useToolTipShow } from '../../hooks/useToolTipShow';
@@ -36,7 +37,10 @@ const QuestionRandomPick = () => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isShowToolTip } = useToolTipShow({ showTime: 5000 });
-  const { question, refetch: refetchQuestion } = useRandomQuestionQuery([]);
+
+  const { myMeetings } = useMyMeetingsQuery();
+  const { memberMe } = useMemberMeQuery(findCurrentMeetingId(myMeetings));
+  const { question, refetchQuestion } = useRandomQuestionQuery([memberMe?.meetingMemberId!]);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -87,12 +91,15 @@ const QuestionerRandomPick = () => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isShowToolTip } = useToolTipShow({ showTime: 5000 });
+
   const { myMeetings } = useMyMeetingsQuery();
-  const { postRelayQuestionInfo } = usePostRelayQuestionInfo(findCurrentMeetingId(myMeetings));
+  const { memberMe } = useMemberMeQuery(findCurrentMeetingId(myMeetings));
   const { questioner, refetchQuestioner } = useRandomNextQuestionerQuery({
     meetingId: findCurrentMeetingId(myMeetings),
-    excludeMemberIds: [0],
+    excludeMemberIds: [memberMe?.meetingMemberId!],
   });
+
+  const { postRelayQuestionInfo } = usePostRelayQuestionInfo(findCurrentMeetingId(myMeetings));
 
   const handleOpenModal = () => {
     setIsOpen(true);

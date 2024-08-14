@@ -37,3 +37,17 @@ export interface NextRelayQuestionerResponse {
 export interface MeetingMemberResponse {
   contents: NextRelayQuestionerResponse[];
 }
+
+export interface MemberMeDto {
+  meetingMemberId: number;
+  name: string;
+  profileImageFileUrl: string;
+  role: string;
+  gender: 'MALE' | 'FEMALE';
+  birth: string;
+  job: string;
+  location: string;
+  hobbies: string[];
+  mbti: string;
+  introduction: string;
+}
