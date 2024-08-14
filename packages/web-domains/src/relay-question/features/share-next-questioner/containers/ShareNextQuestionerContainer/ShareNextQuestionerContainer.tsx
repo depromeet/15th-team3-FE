@@ -2,6 +2,7 @@
 
 import { Button, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
+import Link from 'next/link';
 
 import { ShareGroupShareIcon } from '../../../../assets/ShareGroupShareIcon';
 import { ShareNextQuestionerBackground } from '../../../../assets/ShareNextQuestionerBackground';
@@ -48,7 +49,9 @@ export const ShareNextQuestionerContainer = () => {
             <ShareGroupShareIcon css={{ marginRight: size['6xs'] }} />
             다음 질문인에게 공유하기
           </Button>
-          <Button variant="sub">제일 먼저 답변하기</Button>
+          <Link href="/answer/opening">
+            <Button variant="sub">제일 먼저 답변하기</Button>
+          </Link>
         </div>
       </div>
     </section>
