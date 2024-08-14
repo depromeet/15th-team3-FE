@@ -8,6 +8,7 @@ import { Modal } from '@/new-meeting/common/components/Modal/Modal';
 
 import { InviteLinkShareButton } from '../components/Button/InviteLinkShareButton';
 import ShareKakaoButton from '../components/Button/ShareKakaoButton';
+import { useGetMeetingNameService } from '../services/useGetMeetingNameService';
 
 interface InviteLinkShareContainerProps {
   inviteCode: string;
@@ -16,6 +17,8 @@ interface InviteLinkShareContainerProps {
 export const InviteLinkShareContainer = (props: InviteLinkShareContainerProps) => {
   const { inviteCode } = props;
   const { isOpen, close } = useDialogContext();
+
+  const { data } = useGetMeetingNameService({ inviteCode });
 
   const handleClose = () => {
     close();
@@ -41,7 +44,7 @@ export const InviteLinkShareContainer = (props: InviteLinkShareContainerProps) =
           </Txt>
         </div>
         <div css={{ margin: `${size['2xs']} 0`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <ShareKakaoButton inviteCode={inviteCode} />
+          <ShareKakaoButton inviteCode={inviteCode} name={data?.name} />
           <InviteLinkShareButton inviteCode={inviteCode} />
         </div>
       </div>
