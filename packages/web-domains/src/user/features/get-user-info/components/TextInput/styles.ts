@@ -8,7 +8,8 @@ export const inputCss = css({
   border: `1px solid ${colors.grey400}`,
   padding: '12px 16px',
   borderRadius: borderRadiusVariants.medium,
-  ':focus': { outline: `1px solid ${colors.grey600}` },
+  ':focus': { borderColor: colors.grey600 },
+  outline: 'none',
 });
 
 export const textInputcss = css({
@@ -24,5 +25,6 @@ export const textAreaCss = css({
   backgroundColor: colors.grey200,
   border: `1px solid ${colors.grey400}`,
   borderRadius: borderRadiusVariants.medium,
-  ':focus': { outline: `1px solid ${colors.grey600}` },
+  ':focus': { borderColor: colors.grey600 },
+  outline: 'none',
 });
