@@ -22,6 +22,7 @@ export const useProgressingQuestionService = () => {
   const { data: progressingQuestion } = useGetProgressingQuestion({
     params: { meetingId: meetingInfo?.meetingIds[0]! },
     options: {
+      refetchInterval: 1000 * 30,
       select: (data) => {
         if (data?.isQuestionRegistered) {
           setIsProgressingQuestion(true);
