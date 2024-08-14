@@ -21,10 +21,12 @@ const queryFn = ({ meetingId, meetingMemberId }: Params) =>
 export const useGetMember = (props: QueryProps) => {
   const { options, ...params } = props;
 
+  console.log(!!params.meetingMemberId);
+
   return useQuery({
     queryKey: [MEMBER_QUERY_KEY, params],
     queryFn: () => queryFn(params),
-    enabled: params.meetingId !== -1,
+    enabled: params.meetingId !== -1 && !!params.meetingMemberId === true,
     staleTime: 1000 * 60 * 60 * 24,
     ...options,
   });

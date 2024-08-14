@@ -12,7 +12,7 @@ export const useGetMemberByParams = () => {
   const params = useParams<{ meetingMemberId?: string }>();
   const meetingMemberId = Number(params.meetingMemberId);
 
-  const isMe = meetingMemberId == null;
+  const isMe = !!meetingMemberId === false;
 
   const useGetMemberQuery = isMe ? useGetMemberMe : useGetMember;
 
