@@ -18,6 +18,8 @@ export const useGetMeetings = (props: QueryProps = {}) => {
   return useQuery({
     queryKey: [MEETINGS_QUERY_KEY],
     queryFn,
+    gcTime: Infinity,
+    staleTime: Infinity,
     ...options,
   });
 };

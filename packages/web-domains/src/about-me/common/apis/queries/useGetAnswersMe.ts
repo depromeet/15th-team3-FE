@@ -24,6 +24,7 @@ export const useGetAnswersMe = (props: QueryProps) => {
     queryKey: [ANSWERS_ME_QUERY_KEY, params],
     queryFn: () => queryFn(params),
     enabled: params.meetingId !== -1,
+    staleTime: 1000 * 60 * 60,
     ...options,
   });
 };

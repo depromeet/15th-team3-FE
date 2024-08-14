@@ -25,6 +25,7 @@ export const useGetMember = (props: QueryProps) => {
     queryKey: [MEMBER_QUERY_KEY, params],
     queryFn: () => queryFn(params),
     enabled: params.meetingId !== -1,
+    staleTime: 1000 * 60 * 60 * 24,
     ...options,
   });
 };
