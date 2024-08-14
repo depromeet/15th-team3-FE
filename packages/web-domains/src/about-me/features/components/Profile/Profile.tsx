@@ -5,7 +5,7 @@ import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 import Image from 'next/image';
 
 import { badgeContainerCss, nameCss, rootCss } from './styles';
-import { generateGender } from './utils';
+import { generateAge, generateGender } from './utils';
 
 interface ProfileProps {
   imageUrl?: string;
@@ -22,8 +22,7 @@ const colorMap = [colors.secondary100, colors.primary100, colors.tertiary50, col
 export const Profile = (props: ProfileProps) => {
   const { name, imageUrl, birth: birthFromProps, gender: genderFromProps, mbti, location, job } = props;
 
-  // FIXME: dayjs로 나이 변환 예정
-  const age = birthFromProps;
+  const age = birthFromProps && generateAge(birthFromProps);
   const gender = generateGender(genderFromProps);
 
   const infoBadges = [age, gender, mbti, location, job].filter(Boolean);

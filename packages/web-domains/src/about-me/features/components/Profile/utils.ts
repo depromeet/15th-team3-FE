@@ -9,3 +9,13 @@ export const generateGender = (gender?: 'FEMALE' | 'MALE') => {
 
   return undefined;
 };
+
+export const generateAge = (age: string) => {
+  // NOTE 예외처리
+  if (!age.includes('-')) return '';
+
+  const year = age.split('-')[0] || '';
+  const displayYear = [...year].slice(-2).join('');
+
+  return `${displayYear}년생`;
+};
