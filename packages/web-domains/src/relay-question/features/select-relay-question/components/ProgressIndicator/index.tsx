@@ -17,7 +17,7 @@ export const ProgressIndicator = forwardRef<HTMLDivElement, PropsWithChildren<Pr
     return (
       <div ref={ref} {...rest} css={progressIndicatorCss({ flexDirection })}>
         {Array.from({ length: totalStep }).map((_, index) => (
-          <ProgressIndicator.Step key={index} isCurrent={index === currentStepIndex} basis={basis} />
+          <ProgressIndicator.Step key={index} isCurrent={index <= currentStepIndex} basis={basis} />
         ))}
         {children}
       </div>
