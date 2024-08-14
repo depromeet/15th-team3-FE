@@ -11,6 +11,7 @@ import { useProgressingQuestionService } from '../services/useProgressingQuestio
 
 export const ProgressingQuestionContainer = () => {
   const { progressingQuestion } = useProgressingQuestionService();
+  const isNowAnswered = !progressingQuestion?.isAnswered;
 
   if (!progressingQuestion) {
     return null;
@@ -23,7 +24,7 @@ export const ProgressingQuestionContainer = () => {
           모임원들이 답변 중이에요
         </Txt>
         <Txt as="p" typography="heading1" color={colors.black}>
-          릴레이 질문에 답변해보세요!
+          {isNowAnswered ? '릴레이 질문에 답변해보세요!' : '이미 답변한 질문이에요!'}
         </Txt>
       </div>
       <QuestionInfo question={progressingQuestion} />
@@ -32,7 +33,7 @@ export const ProgressingQuestionContainer = () => {
         totalMeetingMemberCount={progressingQuestion.totalMeetingMemberCount}
       />
       <AnswerCountDown timer={progressingQuestion.startTime} css={{ marginTop: '40px' }} />
-      <StartButton questionId={progressingQuestion.meetingQuestionId} />
+      {isNowAnswered && <StartButton questionId={progressingQuestion.meetingQuestionId} />}
     </section>
   );
 };

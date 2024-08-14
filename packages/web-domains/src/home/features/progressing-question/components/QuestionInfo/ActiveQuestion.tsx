@@ -11,8 +11,15 @@ interface ActiveQuestionProps {
 }
 
 export const ActiveQuestion = ({ question }: ActiveQuestionProps) => {
-  const { responseCount, targetMember, questionImageFileUrl, title, totalMeetingMemberCount, questionNumber } =
-    question;
+  const {
+    responseCount,
+    targetMember,
+    questionImageFileUrl,
+    title,
+    totalMeetingMemberCount,
+    questionNumber,
+    isAnswered,
+  } = question;
 
   return (
     <div css={{ backgroundColor: colors.white, padding: '20px', borderRadius: '16px' }}>
@@ -80,29 +87,31 @@ export const ActiveQuestion = ({ question }: ActiveQuestionProps) => {
             }}
           />
         </div>
-        <Link href="/answer/opening">
-          <button
-            css={{
-              flexShrink: 0,
-              width: '48px',
-              height: '48px',
-              borderRadius: borderRadiusVariants.round,
-              backgroundColor: colors.primary500,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              ':hover': {
-                backgroundColor: colors.primary600,
-              },
-              ':pressed': {
-                backgroundColor: colors.primary600,
-              },
-            }}
-          >
-            <ArrowIcon />
-          </button>
-        </Link>
+        {!isAnswered && (
+          <Link href="/answer/opening">
+            <button
+              css={{
+                flexShrink: 0,
+                width: '48px',
+                height: '48px',
+                borderRadius: borderRadiusVariants.round,
+                backgroundColor: colors.primary500,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                ':hover': {
+                  backgroundColor: colors.primary600,
+                },
+                ':pressed': {
+                  backgroundColor: colors.primary600,
+                },
+              }}
+            >
+              <ArrowIcon />
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
