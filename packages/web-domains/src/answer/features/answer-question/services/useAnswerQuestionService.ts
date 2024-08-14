@@ -13,10 +13,12 @@ export const useAnswerQuestionService = () => {
     options: { gcTime: Infinity },
   });
 
+  const meetingId = meetingInfo?.meetings[0]?.meetingId;
+
   const { data: question } = useGetQuestion({
-    params: { meetingId: meetingInfo?.meetingIds[0]! },
+    params: { meetingId: meetingId! },
     options: {
-      enabled: !!meetingInfo?.meetingIds[0],
+      enabled: !!meetingId,
     },
   });
 

@@ -27,7 +27,11 @@ export const useCommentService = () => {
   });
 
   const handleSubmit = async () => {
-    const meetingId = meetingInfo?.meetingIds[0] ?? 1;
+    const meetingId = meetingInfo?.meetings[0]?.meetingId;
+
+    if (!meetingId) {
+      return;
+    }
 
     try {
       await sendAnswerMutate({ meetingId: meetingId.toString(), meetingQuestionId: questionId, answerIds: answerList });

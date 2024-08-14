@@ -35,9 +35,7 @@ export const getMeetingInfoPrefetch = (queryClient: QueryClient, cookie?: Readon
     queryFn: async () => {
       try {
         const data = await getMeetingInfo(cookie);
-        console.log({ data });
         return data;
-        // return await getMeetingInfo(cookie);
       } catch (error) {
         if (isAxiosError(error)) {
           console.log(error);

@@ -24,7 +24,7 @@ const getServerSideProps = async () => {
   try {
     const cookie = cookies();
     const data = await getMeetingInfoPrefetch(queryClient, cookie);
-    const meetingId = data?.meetingIds[0];
+    const meetingId = data?.meetings[0]?.meetingId;
 
     if (typeof meetingId === 'number') {
       const params = { meetingId };

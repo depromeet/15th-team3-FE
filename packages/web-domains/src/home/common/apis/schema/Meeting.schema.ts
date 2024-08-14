@@ -18,6 +18,9 @@ export type MeetingInfoResponse = MeetingInfoType | undefined;
 
 export type MeetingIdListResponseType =
   | {
-      meetingIds: Array<number>;
+      meetings: Array<{
+        meetingId: number;
+        name: string;
+      }>;
     }
   | undefined;

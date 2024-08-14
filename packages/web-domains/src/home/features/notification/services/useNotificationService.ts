@@ -17,15 +17,17 @@ export const useNotificationService = () => {
     options: { gcTime: Infinity },
   });
 
+  const meetingId = meetingInfo?.meetings[0]?.meetingId;
+
   const progressingQuestionData: ProgressingQuestionType | undefined = queryClient.getQueryData([
     PROGRESSING_QUESTION_QUERY_KEY,
-    meetingInfo?.meetingIds[0],
+    meetingId,
   ]);
 
   const { data: notfication, isRefetching } = useGetNotification({
-    params: { meetingId: meetingInfo?.meetingIds[0]! },
+    params: { meetingId: meetingId! },
     options: {
-      enabled: !!meetingInfo?.meetingIds,
+      enabled: !!meetingId,
       refetchInterval: 1000 * 30,
       select: (data) => {
         if (!data?.contents.length) {

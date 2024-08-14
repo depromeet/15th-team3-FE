@@ -14,13 +14,15 @@ export const useProgressingQuestionService = () => {
     options: { gcTime: Infinity },
   });
 
+  const meetingId = meetingInfo?.meetings[0]?.meetingId;
+
   const { data: myInfo } = useGetMyInfo({
-    params: { meetingId: meetingInfo?.meetingIds[0]! },
-    options: { enabled: !!meetingInfo?.meetingIds[0] },
+    params: { meetingId: meetingId! },
+    options: { enabled: !!meetingId },
   });
 
   const { data: progressingQuestion } = useGetProgressingQuestion({
-    params: { meetingId: meetingInfo?.meetingIds[0]! },
+    params: { meetingId: meetingId! },
     options: {
       refetchInterval: 1000 * 30,
       select: (data) => {
@@ -33,12 +35,12 @@ export const useProgressingQuestionService = () => {
         }
         return data;
       },
-      enabled: !!meetingInfo?.meetingIds[0],
+      enabled: !!meetingId,
     },
   });
 
   return {
-    meetingId: meetingInfo?.meetingIds[0],
+    meetingId,
     gatherName: '삼봤드의 모험',
     progressingQuestion,
     myInfo,

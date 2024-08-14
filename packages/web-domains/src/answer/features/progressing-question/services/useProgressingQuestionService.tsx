@@ -12,8 +12,10 @@ export const useProgressingQuestionService = () => {
     options: { gcTime: Infinity },
   });
 
+  const meetingId = meetingInfo?.meetings[0]?.meetingId;
+
   const { data: progressingQuestion } = useGetProgressingQuestion({
-    params: { meetingId: meetingInfo?.meetingIds[0]! },
+    params: { meetingId: meetingId! },
     options: {
       select: (data) => {
         if (data?.startTime) {
@@ -26,7 +28,7 @@ export const useProgressingQuestionService = () => {
   });
 
   return {
-    meetingId: meetingInfo?.meetingIds[0],
+    meetingId,
     gatherName: '삼봤드의 모험',
     progressingQuestion,
   };

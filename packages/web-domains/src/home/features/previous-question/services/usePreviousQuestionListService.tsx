@@ -1,5 +1,4 @@
 import { keepPreviousData } from '@tanstack/react-query';
-// import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { useIntersect } from '@/common/hooks/useIntersect';
@@ -8,7 +7,6 @@ import { useGetPreviousQuestionList } from '@/home/common/apis/queries/useGetPre
 import { PreviousQuestionType } from '@/home/common/apis/schema/useGetPreviousQuestionListQuery.type';
 
 export const usePreviousQuestionListService = () => {
-  // const { meetingId } = useParams<{ meetingId: string }>();
   const [previousQuestionList, setPreviousQuestionList] = useState<Array<PreviousQuestionType>>([]);
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
@@ -17,11 +15,13 @@ export const usePreviousQuestionListService = () => {
     options: { gcTime: Infinity },
   });
 
+  const meetingId = meetingInfo?.meetings[0]?.meetingId;
+
   const { data, isFetching } = useGetPreviousQuestionList({
-    params: { meetingId: meetingInfo?.meetingIds[0]!, page },
+    params: { meetingId: meetingId!, page },
     options: {
       placeholderData: keepPreviousData,
-      enabled: hasNextPage && !!meetingInfo?.meetingIds[0],
+      enabled: hasNextPage && !!meetingId,
     },
   });
 
@@ -47,5 +47,5 @@ export const usePreviousQuestionListService = () => {
     }
   }, [data]);
 
-  return { previousQuestionList, isFetching, targetRef, meetingId: meetingInfo?.meetingIds[0], fetchNextPage };
+  return { previousQuestionList, isFetching, targetRef, meetingId, fetchNextPage };
 };
