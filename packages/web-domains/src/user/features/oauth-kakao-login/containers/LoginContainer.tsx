@@ -4,7 +4,8 @@ import { Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
 import Image from 'next/image';
 
-import Logo from '../../../common/assets/images/logo.png';
+import Logo from '@/user/common/assets/images/logo.png';
+
 import { BackGround } from '../components/BackgroundImage/BackGround';
 
 export const LoginContainer = () => {
@@ -12,7 +13,6 @@ export const LoginContainer = () => {
     <section
       css={{
         position: 'relative',
-        overflow: 'hidden',
         width: '100%',
         height: '100dvh',
       }}
@@ -20,11 +20,12 @@ export const LoginContainer = () => {
       <div
         css={{
           position: 'relative',
+          height: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          marginTop: '310px',
-          zIndex: 10,
+          justifyContent: 'center',
+          zIndex: 1,
         }}
       >
         <Image src={Logo} alt="logo" width={146} height={46} priority />
