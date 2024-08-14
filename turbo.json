@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["STAGE", "NEXT_PUBLIC_STAGE"],
+  "globalEnv": ["STAGE", "NEXT_PUBLIC_STAGE", "NEXT_PUBLIC_KAKAO_API_KEY"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -25,6 +25,5 @@
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "web#start": {}
-  },
-  "globalEnv": ["NEXT_PUBLIC_KAKAO_API_KEY"]
+  }
 }
