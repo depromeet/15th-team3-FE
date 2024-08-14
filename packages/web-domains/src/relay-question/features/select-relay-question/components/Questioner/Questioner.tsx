@@ -1,6 +1,6 @@
 import { Txt } from '@sambad/sds/components';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { useModal } from '../../../../hooks/useModal';
 import { usePostRelayQuestionInfo } from '../../hooks/mutations/usePostRelayQuestionInfo';
@@ -20,6 +20,7 @@ export const Questioner = ({ meetingId, meetingMemberId, imageUrl, name }: Quest
   const { postRelayQuestionInfo } = usePostRelayQuestionInfo(meetingId);
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleOpenModal = async () => {
     const isConfirm = await openModal({
@@ -28,7 +29,6 @@ export const Questioner = ({ meetingId, meetingMemberId, imageUrl, name }: Quest
     });
 
     if (isConfirm) {
-      const searchParams = new URLSearchParams(location.search);
       const questionId = Number(searchParams.get('question-id'));
 
       postRelayQuestionInfo(

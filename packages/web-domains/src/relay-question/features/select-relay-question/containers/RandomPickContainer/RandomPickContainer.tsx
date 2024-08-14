@@ -3,7 +3,7 @@
 import { css } from '@emotion/react';
 import { Button } from '@sambad/sds/components';
 import { size } from '@sambad/sds/theme';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 import { findCurrentMeetingId } from '@/relay-question/utils/findCurrentMeetingId';
@@ -83,6 +83,7 @@ const QuestionRandomPick = () => {
 
 const QuestionerRandomPick = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isShowToolTip } = useToolTipShow({ showTime: 5000 });
@@ -106,7 +107,6 @@ const QuestionerRandomPick = () => {
     if (!questioner) return;
 
     const { meetingMemberId } = questioner;
-    const searchParams = new URLSearchParams(location.search);
     const questionId = Number(searchParams.get('question-id'));
 
     postRelayQuestionInfo(
