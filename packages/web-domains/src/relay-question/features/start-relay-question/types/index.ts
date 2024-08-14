@@ -7,5 +7,8 @@ export interface MyInfoResponse {
 }
 
 export interface MyMeetingsResponse {
-  meetingIds: number[];
+  meetings: {
+    meetingId: number;
+    name: string;
+  }[];
 }

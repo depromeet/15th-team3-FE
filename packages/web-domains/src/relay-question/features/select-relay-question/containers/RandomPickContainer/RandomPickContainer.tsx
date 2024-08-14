@@ -6,6 +6,8 @@ import { size } from '@sambad/sds/theme';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import { findCurrentMeetingId } from '@/relay-question/utils/findCurrentMeetingId';
+
 import { RelayRandomButtonDocumentIcon } from '../../../../assets/RelayRandomButtonIcon';
 import { Modal } from '../../../../common/Modal';
 import { FIRST_STEP } from '../../../../constants';
@@ -85,9 +87,9 @@ const QuestionerRandomPick = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isShowToolTip } = useToolTipShow({ showTime: 5000 });
   const { myMeetings } = useMyMeetingsQuery();
-  const { postRelayQuestionInfo } = usePostRelayQuestionInfo(myMeetings?.meetingIds[0]!);
+  const { postRelayQuestionInfo } = usePostRelayQuestionInfo(findCurrentMeetingId(myMeetings));
   const { questioner, refetchQuestioner } = useRandomNextQuestionerQuery({
-    meetingId: myMeetings?.meetingIds[0]!,
+    meetingId: findCurrentMeetingId(myMeetings),
     excludeMemberIds: [0],
   });
 

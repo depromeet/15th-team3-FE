@@ -4,6 +4,8 @@ import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import { useQueryClient } from '@tanstack/react-query';
 
+import { findCurrentMeetingId } from '@/relay-question/utils/findCurrentMeetingId';
+
 import { FIRST_STEP } from '../../../../constants';
 import { useIntersect } from '../../../../hooks/useIntersection';
 import { MY_INFO_QUERY_KEY } from '../../../start-relay-question/hooks/queries/useMyInfoQuery';
@@ -27,7 +29,8 @@ export const ContentContainer = () => {
 
 const QuestionList = () => {
   const { myMeetings } = useMyMeetingsQuery();
-  const { questions, fetchStatus, fetchNextPage } = useRelayQuestionListQuery(myMeetings?.meetingIds[0]!);
+  const { questions, fetchStatus, fetchNextPage } = useRelayQuestionListQuery(findCurrentMeetingId(myMeetings));
+
   const { targetRef } = useIntersect({
     onIntersect: (entry) => {
       if (entry.isIntersecting && fetchStatus !== 'fetching') {
@@ -65,7 +68,7 @@ const QuestionList = () => {
 const NextQuestionerList = () => {
   const queryClient = useQueryClient();
   const { myMeetings } = useMyMeetingsQuery();
-  const { meetingMembers } = useMeetingMemberQuery(myMeetings?.meetingIds[0]!);
+  const { meetingMembers } = useMeetingMemberQuery(findCurrentMeetingId(myMeetings));
 
   const myInfo = queryClient.getQueryData<MyInfoResponse>([MY_INFO_QUERY_KEY]);
 
@@ -95,7 +98,7 @@ const NextQuestionerList = () => {
             imageUrl={profileImageFileUrl}
             name={name}
             meetingMemberId={meetingMemberId}
-            meetingId={myMeetings?.meetingIds[0] || -1}
+            meetingId={findCurrentMeetingId(myMeetings)}
           />
         ))}
       </ul>
