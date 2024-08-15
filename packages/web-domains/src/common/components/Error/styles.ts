@@ -27,6 +27,7 @@ export const titleCss = css({
 
 export const descriptionCss = css({
   textAlign: 'center',
+  marginBottom: '50px',
 });
 
 export const buttonsContainer = css({
