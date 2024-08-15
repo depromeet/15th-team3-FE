@@ -4,9 +4,13 @@ import { AngleRightIcon } from './assets/AngleRight';
 import { AngleSmallDownIcon } from './assets/AngleSmallDown';
 import { AngleSmallUpIcon } from './assets/AngleSmallUp';
 import { AngleUpIcon } from './assets/AngleUp';
+import { BellIcon } from './assets/BellIcon';
 import { CaretDownIcon } from './assets/CaretDown';
 import { CommentsIcon } from './assets/CommentsIcon';
+import { HomeIcon } from './assets/HomeIcon';
+import { QuestionIcon } from './assets/QuestionIcon';
 import { ShareIcon } from './assets/Share';
+import { UserIcon } from './assets/UserIcon';
 import { XIcon } from './assets/XIcon';
 
 export const iconMap = {
@@ -20,4 +24,8 @@ export const iconMap = {
   'share-icon': ShareIcon,
   'comments-icon': CommentsIcon,
   'x-icon': XIcon,
+  'home-icon': HomeIcon,
+  'question-icon': QuestionIcon,
+  'bell-icon': BellIcon,
+  'user-icon': UserIcon,
 };
