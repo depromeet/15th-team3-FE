@@ -3,6 +3,32 @@ import { IconAssetProps } from '../types';
 export const HomeIcon = (props: IconAssetProps) => {
   const { color = 'white', size = 24 } = props;
 
+  if (color === 'black') {
+    return (
+      <svg width={size} height={size} viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#clip0_4775_37619)">
+          <path
+            d="M12.375 14.9922C10.7182 14.9922 9.375 16.3353 9.375 17.9922V23.9922H15.375V17.9922C15.375 16.3353 14.0318 14.9922 12.375 14.9922Z"
+            fill="black"
+          />
+          <path
+            d="M17.375 17.9929V23.9929H21.375C23.0318 23.9929 24.375 22.6497 24.375 20.9929V11.8719C24.3752 11.3524 24.1733 10.8532 23.812 10.4799L15.314 1.29285C13.8146 -0.329491 11.2839 -0.4291 9.66155 1.07034C9.58449 1.14159 9.51023 1.21579 9.43903 1.29285L0.956016 10.4769C0.583734 10.8517 0.374859 11.3586 0.375 11.8869V20.9929C0.375 22.6497 1.71816 23.9929 3.375 23.9929H7.37498V17.9929C7.39369 15.2661 9.59527 13.0393 12.2534 12.9752C15.0005 12.9089 17.3541 15.1736 17.375 17.9929Z"
+            fill="black"
+          />
+          <path
+            d="M12.375 14.9922C10.7182 14.9922 9.375 16.3353 9.375 17.9922V23.9922H15.375V17.9922C15.375 16.3353 14.0318 14.9922 12.375 14.9922Z"
+            fill="black"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_4775_37619">
+            <rect width={size} height={size} fill="white" transform="translate(0.375)" />
+          </clipPath>
+        </defs>
+      </svg>
+    );
+  }
+
   return (
     <svg width={size} height={size} viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_4773_2372)">

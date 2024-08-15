@@ -10,7 +10,14 @@ export const FloatingButtonContainer = () => {
 
   return (
     <div
-      css={{ position: 'fixed', bottom: '40px', margin: '0 auto', width: '100%', maxWidth: '600px', padding: '0 20px' }}
+      css={{
+        position: 'fixed',
+        bottom: '98px',
+        margin: '0 auto',
+        width: '100%',
+        maxWidth: '600px',
+        padding: '0 20px',
+      }}
     >
       {buttonType === 'start' && <StartRelayQuestionButton onClick={handleClickRelayStartButton} />}
       {buttonType === 'countdown' && <AlreadyProgressingQuestionButton time={homeGlobalTime} />}

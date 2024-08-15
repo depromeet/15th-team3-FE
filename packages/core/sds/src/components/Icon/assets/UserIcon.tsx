@@ -3,6 +3,21 @@ import { IconAssetProps } from '../types';
 export const UserIcon = (props: IconAssetProps) => {
   const { color = 'white', size = 24 } = props;
 
+  if (color === 'black') {
+    return (
+      <svg width={size} height={size} viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M12.625 12C15.9387 12 18.625 9.31371 18.625 6C18.625 2.68629 15.9387 0 12.625 0C9.31129 0 6.625 2.68629 6.625 6C6.625 9.31371 9.31129 12 12.625 12Z"
+          fill="black"
+        />
+        <path
+          d="M12.625 14C7.65672 14.0055 3.63053 18.0317 3.625 23C3.625 23.5523 4.0727 24 4.62498 24H20.625C21.1772 24 21.625 23.5523 21.625 23C21.6195 18.0317 17.5933 14.0055 12.625 14Z"
+          fill="black"
+        />
+      </svg>
+    );
+  }
+
   return (
     <svg width={size} height={size} viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_4773_9118)">

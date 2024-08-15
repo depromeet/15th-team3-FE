@@ -3,6 +3,30 @@ import { IconAssetProps } from '../types';
 export const QuestionIcon = (props: IconAssetProps) => {
   const { color = 'white', size = 24 } = props;
 
+  if (color === 'black') {
+    return (
+      <svg width={size} height={size} viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#clip0_4775_36922)">
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M15.4578 0.464988C17.0414 0.92245 18.5131 1.70294 19.7801 2.75729C21.0403 3.80365 22.0738 5.09606 22.8174 6.5555C23.5611 8.01494 23.9992 9.61073 24.1051 11.2453V11.3083V18.9993C24.1035 20.3249 23.5762 21.5957 22.6388 22.5331C21.7015 23.4704 20.4307 23.9977 19.1051 23.9993H12.1231C9.07472 23.9988 6.14082 22.8382 3.91709 20.7531C1.69337 18.6681 0.346501 15.8149 0.149981 12.7729C-0.0465402 9.73091 0.922014 6.72813 2.85898 4.3743C4.79594 2.02046 7.55612 0.492007 10.5791 0.0992888C12.2131 -0.11699 13.8743 0.00752527 15.4578 0.464988Z"
+            fill="black"
+          />
+          <path
+            d="M12.1089 6C13.6458 6 14.8452 6.68736 15.7073 8.06207C15.9858 8.5751 16.125 9.10307 16.125 9.64598V9.82529C16.125 11.2299 15.3218 12.3456 13.7154 13.1724L13.137 13.3218V14.3379C13.046 14.9755 12.714 15.2943 12.1411 15.2943H12.1089C11.6538 15.2943 11.3325 15.0651 11.1451 14.6069L11.113 14.4276V12.5149C11.113 12.0119 11.4235 11.6931 12.0447 11.5586C13.0407 11.5586 13.7047 11.1103 14.0366 10.2138L14.1009 9.73563C14.1009 8.85402 13.5976 8.25632 12.5909 7.94253L12.1089 7.88276C11.1879 7.88276 10.5453 8.36092 10.1812 9.31724C10.1812 10.2138 9.83852 10.6621 9.15311 10.6621H9.0246C8.61764 10.6621 8.31777 10.4031 8.125 9.88506V9.61609C8.125 8.30115 8.85325 7.22529 10.3097 6.38851C10.8934 6.13946 11.4931 6.00996 12.1089 6ZM12.1089 17.1172C12.6926 17.1172 13.0353 17.446 13.137 18.1034C13.0192 18.7011 12.698 19 12.1732 19H12.0768C11.5306 19 11.2093 18.6912 11.113 18.0736V18.0138C11.113 17.5556 11.4449 17.2567 12.1089 17.1172Z"
+            fill="white"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_4775_36922">
+            <rect width={size} height={size} fill="white" transform="translate(0.125)" />
+          </clipPath>
+        </defs>
+      </svg>
+    );
+  }
+
   return (
     <svg width={size} height={size} viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_4773_9105)">
@@ -19,10 +43,10 @@ export const QuestionIcon = (props: IconAssetProps) => {
       </g>
       <defs>
         <clipPath id="clip0_4773_9105">
-          <rect width={size} height={size} fill={color} transform="translate(0.125)" />
+          <rect width={size} height={size} fill="white" transform="translate(0.125)" />
         </clipPath>
         <clipPath id="clip1_4773_9105">
-          <rect width={size} height={size} fill={color} transform="translate(0.125)" />
+          <rect width={size} height={size} fill="white" transform="translate(0.125)" />
         </clipPath>
       </defs>
     </svg>
