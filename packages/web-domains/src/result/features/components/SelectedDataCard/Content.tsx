@@ -42,6 +42,7 @@ export const WithMeMembers = (props: WithMeMembersProps) => {
   const noMembers = count === 0;
   const moreMembers = count >= 5;
   const fewMembers = !noMembers && !moreMembers;
+  const profileUrls = members.map((member) => member.imgUrl);
 
   return (
     <div css={withMyMembersContainerCss}>

@@ -10,14 +10,14 @@ import { memberCharacterCss, memberListCss, memberListTextButtonCss } from './st
 export interface CountByMemberListProps {
   showName?: string;
   count?: number;
-  showCharacter?: boolean;
   href?: string;
+  profileUrls?: Array<string>;
 }
 
 export const CountByMemberList = (props: CountByMemberListProps) => {
-  const { showName, count = 0, showCharacter = false, href = '' } = props;
+  const { showName, count = 0, href = '', profileUrls } = props;
 
-  const countText = count === 1 ? `${showName}님이 선택했어요` : `${showName}님 외 ${count}명이 선택했어요`;
+  const countText = count === 1 ? `${showName}님이 선택했어요` : `${showName}님 외 ${count - 1}명이 선택했어요`;
 
   return (
     <div css={memberListCss} {...countByMemberListAttribute.attribute}>
@@ -29,9 +29,11 @@ export const CountByMemberList = (props: CountByMemberListProps) => {
           전체보기
         </TextButton>
       </Link>
-      {showCharacter && (
+      {profileUrls?.length && (
         <div css={memberCharacterCss}>
-          <Profile imgUrl="" imgSize={20} />
+          {profileUrls.map((url) => (
+            <Profile key={url} imgUrl={url} imgSize={20} />
+          ))}
         </div>
       )}
     </div>
