@@ -2,6 +2,12 @@
 
 import { Button, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
+import { Fragment } from 'react/jsx-runtime';
+
+import { SadUserIcon } from '../../assets';
+
+import { CountByMemberList } from './CountByMemberList';
+import { Profile } from './Profile';
 import {
   mostAnsweredButtonCss,
   mostAnsweredTitleCss,
@@ -9,10 +15,6 @@ import {
   withMeMembersCss,
   withMyMembersContainerCss,
 } from './styles';
-import { Fragment } from 'react/jsx-runtime';
-import { SadUserIcon } from '../../assets';
-import { Profile } from './Profile';
-import { CountByMemberList } from './CountByMemberList';
 
 interface MostAnsweredProps {
   title: string;
@@ -42,7 +44,6 @@ export const WithMeMembers = (props: WithMeMembersProps) => {
   const noMembers = count === 0;
   const moreMembers = count >= 5;
   const fewMembers = !noMembers && !moreMembers;
-  const profileUrls = members.map((member) => member.imgUrl);
 
   return (
     <div css={withMyMembersContainerCss}>
