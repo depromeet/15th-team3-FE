@@ -1,3 +1,3 @@
 export interface MeetingResponse {
-  meetingIds: Array<number>;
+  meetings: Array<{ meetingId: number; name: string }>;
 }

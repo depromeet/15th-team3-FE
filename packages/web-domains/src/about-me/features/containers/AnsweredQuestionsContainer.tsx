@@ -12,7 +12,7 @@ import { answerContentCss } from './styles';
 export const AnsweredQuestionsContainer = () => {
   const { data: meetingsIdsData } = useGetMeetings();
   // NOTE: 현재 스팩에서는 하나의 모임에만 가입할 수 있습니다.
-  const meetingId = meetingsIdsData?.meetingIds[0] || -1;
+  const meetingId = meetingsIdsData?.meetings[0]?.meetingId || -1;
   const { data: answers } = useGetAnswersMe({ meetingId });
 
   if (answers?.contents?.length === 0) {
