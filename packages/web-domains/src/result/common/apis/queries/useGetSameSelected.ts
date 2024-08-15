@@ -24,6 +24,7 @@ export const useGetSameSelected = (props: QueryProps) => {
   return useQuery({
     queryKey: [SAME_SELECTED_QUERY_KEY, params],
     queryFn: () => queryFn(params),
+    enabled: params.meetingId !== -1,
     ...options,
   });
 };

@@ -26,6 +26,7 @@ export const useGetStatistics = (props: QueryProps) => {
   return useQuery({
     queryKey: [ANSWERS_QUERY_KEY, params],
     queryFn: () => queryFn(params),
+    enabled: params.meetingId !== -1,
     ...options,
   });
 };

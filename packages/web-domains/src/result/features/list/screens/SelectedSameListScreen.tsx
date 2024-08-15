@@ -23,7 +23,7 @@ const getServerSideProps = async (params: BaseParams) => {
   try {
     await getMeetingsPrefetch({ queryClient });
     const data = queryClient.getQueryData<MeetingResponse>([MEETINGS_QUERY_KEY]);
-    const meetingId = data?.meetingIds[0];
+    const meetingId = data?.meetings[0]?.meetingId;
 
     if (!meetingId) {
       throw new Error('No meetingId found');

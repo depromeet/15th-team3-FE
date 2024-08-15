@@ -1,6 +1,7 @@
 'use client';
 
 import { Txt, TxtProps } from '@sambad/sds/components';
+import { borderRadiusVariants } from '@sds/theme';
 import Image from 'next/image';
 import { HTMLAttributes } from 'react';
 
@@ -18,7 +19,15 @@ export const Profile = (props: ProfileProps) => {
 
   return (
     <div css={profileCss} {...restProps}>
-      {imgUrl && <Image src={imgUrl} width={imgSize} height={imgSize} alt={`${name}_프로필_이미지`} />}
+      {imgUrl && (
+        <Image
+          src={imgUrl}
+          width={imgSize}
+          height={imgSize}
+          alt={`${name}_프로필_이미지`}
+          style={{ borderRadius: borderRadiusVariants.round }}
+        />
+      )}
       {name && <Txt typography={nameTypography}>{name}</Txt>}
     </div>
   );

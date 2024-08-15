@@ -24,6 +24,7 @@ export const useGetDetailedQuestionData = (props: QueryProps) => {
   return useQuery({
     queryKey: [DETAILED_QUESTION_DATA_QUERY_KEY, params],
     queryFn: () => queryFn(params),
+    enabled: params.meetingId !== -1,
     ...options,
   });
 };

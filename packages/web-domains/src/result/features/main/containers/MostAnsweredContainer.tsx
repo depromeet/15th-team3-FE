@@ -11,11 +11,12 @@ export const MostAnsweredContainers = (params: BaseParams) => {
   const { questionId } = params;
   const { data: meetingsIdsData } = useGetMeetings();
   // NOTE: 현재 스팩에서는 하나의 모임에만 가입할 수 있습니다.
-  const meetingId = meetingsIdsData?.meetingIds[0] || -1;
+  const meetingId = meetingsIdsData?.meetings[0]?.meetingId || -1;
   const { data } = useGetMostSelected({ meetingId, questionId });
 
   // NOTE: 홍길동님 외 N명 <- 에서 홍길동 자리에 위치시킬 이름
   const showName = data?.selectedMembers[0]?.name;
+  const profileUrls = data?.selectedMembers.map((member) => member.profileImageFileUrl);
 
   return (
     <Section title="모임원들이 가장 많이 한 답변은?">
@@ -23,7 +24,7 @@ export const MostAnsweredContainers = (params: BaseParams) => {
       <CountByMemberList
         showName={showName}
         count={data?.count}
-        showCharacter
+        profileUrls={profileUrls}
         href={`/question-result/${questionId}/answers/most-selected`}
       />
     </Section>
