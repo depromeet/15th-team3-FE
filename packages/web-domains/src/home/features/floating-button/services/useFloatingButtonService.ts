@@ -35,7 +35,7 @@ export const useFloatingButtonService = () => {
       open();
       return;
     }
-    push('#');
+    push('/start-relay-question');
   };
 
   return {
