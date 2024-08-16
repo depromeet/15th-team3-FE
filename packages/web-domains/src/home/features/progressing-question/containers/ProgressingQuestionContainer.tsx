@@ -10,11 +10,11 @@ import { ProgressingQuestionInfo } from '../components/QuestionInfo/ProgressingQ
 import { useProgressingQuestionService } from '../services/useProgressingQuestionService';
 
 export const ProgressingQuestionContainer = () => {
-  const { gatherName, progressingQuestion, myInfo } = useProgressingQuestionService();
+  const { gatherName, progressingQuestion } = useProgressingQuestionService();
 
   return (
     <section css={{ width: '100%', backgroundColor: colors.primary100, padding: '0 20px' }}>
-      <GatherName gatherName={gatherName} profileImage={myInfo?.profileImageFileUrl} />
+      <GatherName gatherName={gatherName} />
       {progressingQuestion && (
         <ProgressingQuestionInfo
           css={{ padding: '18px 0 20px;' }}

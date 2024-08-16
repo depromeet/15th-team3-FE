@@ -1,5 +1,5 @@
-import { HomeScreen } from '@sambad/web-domains/home';
+import { QuestionScreen } from '@sambad/web-domains/home';
 
 export const dynamic = 'force-dynamic';
 
-export default HomeScreen;
+export default QuestionScreen;

@@ -1,15 +1,11 @@
 import { Txt } from '@sambad/sds/components';
-import Link from 'next/link';
 import { HTMLAttributes } from 'react';
 
-import { Avatar } from '../../../../common/components/Avatar/Avatar';
-
 interface GatherNameProps extends HTMLAttributes<HTMLDivElement> {
-  gatherName: string;
-  profileImage?: string;
+  gatherName?: string;
 }
 
-export const GatherName = ({ gatherName, profileImage, ...rest }: GatherNameProps) => {
+export const GatherName = ({ gatherName, ...rest }: GatherNameProps) => {
   return (
     <div css={{ padding: '32px 0 24px', display: 'flex', justifyContent: 'space-between' }} {...rest}>
       <div>
@@ -19,11 +15,6 @@ export const GatherName = ({ gatherName, profileImage, ...rest }: GatherNameProp
         <Txt typography="heading2" as="h2">
           모임원들과 더 가까워져 볼까요?
         </Txt>
-      </div>
-      <div css={{ marginLeft: '4px', position: 'relative', top: '11px' }}>
-        <Link href="/about/me">
-          <Avatar imageUrl={profileImage} width={48} height={48} css={{ borderRadius: '50%' }} />
-        </Link>
       </div>
     </div>
   );

@@ -29,7 +29,7 @@ export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemP
         css={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
       >
         <div css={{ flex: '1' }}>
-          <Txt as="p" typography="heading3" color={colors.tertiary500} css={{ marginBottom: '4px' }}>
+          <Txt as="p" typography="heading3" color={colors.primary500} css={{ marginBottom: '4px' }}>
             {content}
             <Txt typography="title2">이/가 가장 많았어요.</Txt>
           </Txt>

@@ -20,6 +20,9 @@ importers:
       jotai:
         specifier: ^2.9.1
         version: 2.9.1(react@18.2.0)
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       next:
         specifier: 14.2.4
         version: 14.2.4(@babel/core@7.24.9)(react-dom@18.2.0)(react@18.2.0)
@@ -33,6 +36,9 @@ importers:
       '@turbo/gen':
         specifier: ^1.12.4
         version: 1.13.4(@swc/core@1.5.7)(@types/node@20.14.10)(typescript@5.5.3)
+      '@types/lodash':
+        specifier: ^4.17.7
+        version: 4.17.7
       cspell:
         specifier: ^8.10.0
         version: 8.10.4
@@ -4252,6 +4258,10 @@ packages:
 
   /@types/lodash@4.17.6:
     resolution: {integrity: sha512-OpXEVoCKSS3lQqjx9GGGOapBeuW5eUboYHRlHP9urXPX25IKZ6AnP5ZRxtVf63iieUbsHxLn8NQ5Nlftc6yzAA==}
+    dev: true
+
+  /@types/lodash@4.17.7:
+    resolution: {integrity: sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==}
     dev: true
 
   /@types/mdx@2.0.13:
@@ -9112,7 +9122,6 @@ packages:
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /log-symbols@3.0.0:
     resolution: {integrity: sha512-dSkNGuI7iG3mfvDzUuYZyvk5dD9ocYCYzNU6CYDE6+Xqd+gwme6Z00NS3dUh8mq/73HaEtT7m6W+yUPtU6BZnQ==}

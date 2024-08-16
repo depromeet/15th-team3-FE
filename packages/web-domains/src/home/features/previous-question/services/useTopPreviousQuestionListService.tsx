@@ -6,7 +6,7 @@ export const useTopPreviousQuestionListService = () => {
     options: { gcTime: Infinity },
   });
 
-  const meetingId = meetingInfo?.meetings[0]?.meetingId;
+  const meetingId = meetingInfo && meetingInfo.meetings[0] && meetingInfo.meetings[0].meetingId;
 
   const { data: previousQuestionList } = useGetTopPreviousQuestionList({
     params: { meetingId: meetingId! },

@@ -26,8 +26,7 @@ const Tab = ({ tabList, children }: PropsWithChildren<TabProps>) => {
         padding: '0 8px',
         backgroundColor: colors.white,
         margin: '0 auto',
-        border: `1px solid ${colors.grey400}`,
-        borderBottom: 'none',
+        borderTop: `1px solid ${colors.grey400}`,
       }}
     >
       {tabList?.map(({ path, Icon, title }) => <TabItem key={path} path={path} Icon={Icon} title={title} />)}

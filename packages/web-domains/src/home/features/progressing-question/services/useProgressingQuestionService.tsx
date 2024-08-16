@@ -48,6 +48,5 @@ export const useProgressingQuestionService = () => {
     meetingId,
     gatherName: '삼봤드의 모험',
     progressingQuestion,
-    myInfo,
   };
 };

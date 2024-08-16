@@ -15,7 +15,7 @@ export const usePreviousQuestionListService = () => {
     options: { gcTime: Infinity },
   });
 
-  const meetingId = meetingInfo?.meetings[0]?.meetingId;
+  const meetingId = meetingInfo && meetingInfo?.meetings[0]?.meetingId;
 
   const { data, isFetching } = useGetPreviousQuestionList({
     params: { meetingId: meetingId!, page },

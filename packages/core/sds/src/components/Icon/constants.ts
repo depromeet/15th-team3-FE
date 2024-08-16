@@ -7,8 +7,10 @@ import { AngleUpIcon } from './assets/AngleUp';
 import { BellIcon } from './assets/BellIcon';
 import { CaretDownIcon } from './assets/CaretDown';
 import { CommentsIcon } from './assets/CommentsIcon';
+import { ConnectStar } from './assets/ConnectStar';
 import { HomeIcon } from './assets/HomeIcon';
 import { QuestionIcon } from './assets/QuestionIcon';
+import { SearchIcon } from './assets/SearchIcon';
 import { ShareIcon } from './assets/Share';
 import { UserIcon } from './assets/UserIcon';
 import { XIcon } from './assets/XIcon';
@@ -28,4 +30,6 @@ export const iconMap = {
   'question-icon': QuestionIcon,
   'bell-icon': BellIcon,
   'user-icon': UserIcon,
+  'connect-star': ConnectStar,
+  'search-icon': SearchIcon,
 };

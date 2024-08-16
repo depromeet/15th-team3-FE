@@ -1,22 +1,21 @@
 'use client';
 
-import { Txt } from '@sambad/sds/components';
+import { Icon } from '@sds/components';
 
 import { GatherMemberProfileList } from '../components/GatherMemberProfile/GatherMemberProfileList';
+import { GatherMemberSearchInput } from '../components/GatherMemberSearch/GatherMemberSearchInput';
 import { useGatherMemberProfileListService } from '../services/useGatherMemberProfileListService';
 
 export const GatherMemberProfileListContainer = () => {
-  const { gatherMemberList } = useGatherMemberProfileListService();
-
-  if (!gatherMemberList || !gatherMemberList.length) {
-    return null;
-  }
+  const { gatherMemberList, searchInput, handleChangeSearchInput } = useGatherMemberProfileListService();
 
   return (
-    <section css={{ width: '100%', padding: '18px 20px 12px' }}>
-      <Txt as="p" typography="subtitle1" css={{ marginBottom: '14px' }}>
-        모임원 프로필
-      </Txt>
+    <section css={{ width: '100%', padding: '24px 20px' }}>
+      <GatherMemberSearchInput
+        BeforeIcon={<Icon name="search-icon" size={16} />}
+        value={searchInput}
+        onChange={handleChangeSearchInput}
+      />
       <GatherMemberProfileList memberList={gatherMemberList} />
     </section>
   );
