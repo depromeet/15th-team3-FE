@@ -1,4 +1,5 @@
 import { Providers } from '@/common';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { RootLayout as ViewportLayout } from '@sambad/web-domains/commmon';
 import dayjs from 'dayjs';
 import localFont from 'next/font/local';
@@ -33,6 +34,7 @@ export default function RootLayout({
           <ViewportLayout>{children}</ViewportLayout>
         </Providers>
       </body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || ''} />
     </html>
   );
 }
