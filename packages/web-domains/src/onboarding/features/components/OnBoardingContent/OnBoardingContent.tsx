@@ -1,12 +1,12 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 interface OnBoardingContentProps {
-  src?: string;
+  imageUrl?: string | StaticImageData;
 }
 export const OnBoardingContent = (props: OnBoardingContentProps) => {
-  const { src } = props;
+  const { imageUrl } = props;
 
-  if (!src) {
+  if (!imageUrl) {
     return null;
   }
 
@@ -20,7 +20,7 @@ export const OnBoardingContent = (props: OnBoardingContentProps) => {
       }}
     >
       <div css={{ position: 'relative', width: '90%' }}>
-        <Image src={src} alt="on-boarding-img" fill priority style={{ objectFit: 'contain' }} />
+        <Image src={imageUrl} alt="on-boarding-img" fill priority style={{ objectFit: 'contain' }} />
       </div>
     </div>
   );
