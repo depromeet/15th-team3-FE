@@ -1,20 +1,20 @@
 import { css } from '@emotion/react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 interface BackGroundProps {
-  src?: string;
+  imageUrl?: string | StaticImageData;
 }
 
 export const BackGroundImage = (props: BackGroundProps) => {
-  const { src } = props;
+  const { imageUrl } = props;
 
-  if (!src) {
+  if (!imageUrl) {
     return null;
   }
 
   return (
     <div css={backGroundImageCss}>
-      <Image src={src} alt="background-img" fill priority />
+      <Image src={imageUrl} alt="background-img" fill priority />
     </div>
   );
 };

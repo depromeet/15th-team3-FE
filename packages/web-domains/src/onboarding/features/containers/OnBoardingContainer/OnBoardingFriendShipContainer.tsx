@@ -1,5 +1,7 @@
 'use client';
 
+import { Fragment } from 'react/jsx-runtime';
+
 import { HandIcon } from '@/onboarding/common/assets/icons/HandIcon';
 import BgImage from '@/onboarding/common/assets/images/bg-friendship.png';
 
@@ -9,10 +11,10 @@ import { OnBoardingContent } from '../../components/OnBoardingContent/OnBoarding
 
 export const OnBoardingFriendShipContainer = () => {
   return (
-    <>
+    <Fragment>
       <Header Icon={<HandIcon />} title="릴레이 질문으로" subTitle="나만의 자기소개서 완성!" />
       <OnBoardingContent />
-      <BackGroundImage src={BgImage} />
-    </>
+      <BackGroundImage imageUrl={BgImage} />
+    </Fragment>
   );
 };

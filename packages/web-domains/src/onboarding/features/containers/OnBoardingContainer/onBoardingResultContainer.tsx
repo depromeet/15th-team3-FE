@@ -1,5 +1,6 @@
 'use client';
 import { colors } from '@sds/theme';
+import { Fragment } from 'react/jsx-runtime';
 
 import { QuestionIcon } from '@/onboarding/common/assets/icons/QuestionIcon';
 import BgImage from '@/onboarding/common/assets/images/bg-result.png';
@@ -11,14 +12,14 @@ import { OnBoardingContent } from '../../components/OnBoardingContent/OnBoarding
 
 export const OnBoardingResultContainer = () => {
   return (
-    <>
+    <Fragment>
       <Header
         Icon={<QuestionIcon color={colors.tertiary500} />}
         title="우리 모임원들이"
         subTitle="어떤 답변을 했는지 볼 수 있고"
       />
-      <OnBoardingContent src={OnBoardingImage} />
-      <BackGroundImage src={BgImage} />
-    </>
+      <OnBoardingContent imageUrl={OnBoardingImage} />
+      <BackGroundImage imageUrl={BgImage} />
+    </Fragment>
   );
 };
