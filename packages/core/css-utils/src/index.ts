@@ -1,0 +1,1 @@
+export { getBorder } from './getBorder';

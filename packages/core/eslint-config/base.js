@@ -21,7 +21,7 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+        groups: ['external', 'builtin', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
         pathGroups: [
           {
             pattern: '@sds/**',
@@ -43,6 +43,7 @@ module.exports = {
       },
     ],
     'no-undef': 'off',
+    'no-redeclare': 'off',
     'no-duplicate-imports': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
