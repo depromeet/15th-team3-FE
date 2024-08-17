@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
+    "./about-me": "./src/about-me/index.ts",
     "./result": "./src/result/index.ts",
     "./new-meeting": "./src/new-meeting/index.ts",
     "./answer": "./src/answer/index.ts",
