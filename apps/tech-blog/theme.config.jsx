@@ -11,4 +11,5 @@ export default {
       images: [{ url: '' }],
     },
   }),
+  footer: '',
 };
