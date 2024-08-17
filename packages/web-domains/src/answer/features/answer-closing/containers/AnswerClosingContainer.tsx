@@ -2,7 +2,7 @@
 
 import { KakaoShareModal } from '@/common';
 
-import { AnswerCountDown } from '../../../common/components/AnswerCountdown';
+import { AnswerCountDown } from '../../../common/components/Countdown/AnswerCountdown';
 import { ClosingButton } from '../../floating-button/components/ClosingButton';
 import { ClosingMessage } from '../components/ClosingMessage';
 import { useAnswerClosingService } from '../services/useAnswerClosingService';
