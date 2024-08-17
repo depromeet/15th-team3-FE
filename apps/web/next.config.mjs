@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   async redirects() {
     return [
@@ -9,17 +10,27 @@ const nextConfig = {
       },
     ];
   },
-  compiler: {
-    emotion: true,
-  },
   images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'file.moring.one',
-        port: '',
+        pathname: '/images/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'file.moring.one',
+        pathname: '/uploaded/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'file.moring.one',
+        pathname: '/defaults/**',
       },
     ],
+  },
+  compiler: {
+    emotion: true,
   },
 };
 

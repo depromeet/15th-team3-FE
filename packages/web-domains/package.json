@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
+    "./result": "./src/result/index.ts",
     "./new-meeting": "./src/new-meeting/index.ts",
     "./answer": "./src/answer/index.ts",
     "./home": "./src/home/index.ts",
@@ -16,6 +17,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@sambad/css-utils": "workspace:^",
     "@tanstack/react-query": "^5.50.1",
     "@toss/use-overlay": "^1.4.0",
     "axios": "^1.7.2",
