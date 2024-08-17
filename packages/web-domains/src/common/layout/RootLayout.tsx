@@ -6,13 +6,13 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-export const RootLayout = ({ children }: RootLayoutProps) => {
-  const layoutStyle: CSSProperties = {
-    width: '100%',
-    maxWidth: '600px',
-    margin: '0 auto',
-  };
+const layoutStyle: CSSProperties = {
+  width: '100%',
+  maxWidth: '600px',
+  margin: '0 auto',
+};
 
+export const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <main style={layoutStyle}>
       <GlobalStyle />

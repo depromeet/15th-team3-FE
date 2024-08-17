@@ -8,8 +8,11 @@ import { BellIcon } from './assets/BellIcon';
 import { CaretDownIcon } from './assets/CaretDown';
 import { CommentsIcon } from './assets/CommentsIcon';
 import { ConnectStar } from './assets/ConnectStar';
+import { CrownIcon } from './assets/Crown';
 import { HomeIcon } from './assets/HomeIcon';
+import { Landscape } from './assets/Landscape';
 import { QuestionIcon } from './assets/QuestionIcon';
+import { SadUserIcon } from './assets/SadUserIcon';
 import { SearchIcon } from './assets/SearchIcon';
 import { ShareIcon } from './assets/Share';
 import { UserIcon } from './assets/UserIcon';
@@ -32,4 +35,7 @@ export const iconMap = {
   'user-icon': UserIcon,
   'connect-star': ConnectStar,
   'search-icon': SearchIcon,
+  'sad-user': SadUserIcon,
+  landscape: Landscape,
+  crown: CrownIcon,
 };
