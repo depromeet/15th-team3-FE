@@ -35,7 +35,6 @@
     "chromatic": "^11.5.5",
     "eslint": "^8.57.0",
     "eslint-plugin-storybook": "^0.8.0",
-    "react": "^18",
     "storybook": "^8.2.2",
     "typescript": "^5.3.3"
   },

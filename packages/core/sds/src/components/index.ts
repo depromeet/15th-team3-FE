@@ -5,3 +5,4 @@ export * from './TextButton';
 export * from './Badge';
 export * from './SegmentedControl';
 export * from './Accordion';
+export * from './Loader';
