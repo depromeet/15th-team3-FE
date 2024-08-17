@@ -17,6 +17,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'file.moring.one',
+        port: '',
       },
     ],
   },

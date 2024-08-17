@@ -293,6 +293,12 @@ importers:
 
   packages/web-domains:
     dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.50.1
+        version: 5.51.1(react@18.2.0)
+      '@toss/use-overlay':
+        specifier: ^1.4.0
+        version: 1.4.0(react@18.2.0)
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -4158,6 +4164,14 @@ packages:
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
     dev: true
 
+  /@toss/use-overlay@1.4.0(react@18.2.0):
+    resolution: {integrity: sha512-1fkKRwUWaPn1fPTHeYiOdnQu4j6sHLDfJZS1smsarPxWxUlr1+FikNIjzYQGAVXgNjxw0cqNfKR4HvVSsM5w3A==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /@tsconfig/node10@1.0.11:
     resolution: {integrity: sha512-DcRjDCujK/kCk/cUe8Xz8ZSpm8mS3mNNpta+jGCA6USEDfktlNvm1+IuZ9eTcDbNk41BHwpHHeW+N1lKCz4zOw==}
     dev: true
@@ -7346,7 +7360,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.2.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
+      eslint-module-utils: 2.8.1(@typescript-eslint/parser@6.21.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       hasown: 2.0.2
       is-core-module: 2.14.0
       is-glob: 4.0.3

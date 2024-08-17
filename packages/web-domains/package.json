@@ -8,13 +8,16 @@
     "./home": "./src/home/index.ts",
     "./user": "./src/user/index.ts",
     "./participate-meeting": "./src/participate-meeting/index.ts",
-    "./common": "./src/common/index.ts"
+    "./common": "./src/common/index.ts",
+    "./relay-question": "./src/relay-question/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.50.1",
+    "@toss/use-overlay": "^1.4.0",
     "axios": "^1.7.2",
     "react-copy-to-clipboard": "^5.1.0",
     "react-hook-form": "^7.52.1",

@@ -12,7 +12,7 @@ export const size = {
   md: '32px',
   lg: '36px',
   xl: '40px',
-  '2xl': '28px',
+  '2xl': '48px',
   '3xl': '56px',
   '4xl': '64px',
   '5xl': '72px',

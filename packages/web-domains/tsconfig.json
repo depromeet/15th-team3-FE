@@ -6,7 +6,12 @@
     "paths": {
       "@/*": ["./src/*"],
       "@sds/*": ["../core/sds/src/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "src",
