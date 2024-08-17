@@ -4,11 +4,11 @@
   "private": true,
   "exports": {
     "./new-meeting": "./src/new-meeting/index.ts",
-    "./first-domain": "./src/first-domain/index.ts",
-    "./second-domain": "./src/second-domain/index.ts",
+    "./answer": "./src/answer/index.ts",
+    "./home": "./src/home/index.ts",
     "./user": "./src/user/index.ts",
     "./participate-meeting": "./src/participate-meeting/index.ts",
-    "./commmon": "./src/common/index.ts"
+    "./common": "./src/common/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -17,7 +17,8 @@
   "dependencies": {
     "axios": "^1.7.2",
     "react-copy-to-clipboard": "^5.1.0",
-    "react-hook-form": "^7.52.1"
+    "react-hook-form": "^7.52.1",
+    "react-countdown": "^2.3.5"
   },
   "devDependencies": {
     "@sambad/eslint-config": "workspace:*",

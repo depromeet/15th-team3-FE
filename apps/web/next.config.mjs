@@ -1,15 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async rewrites() {
+  async redirects() {
     return [
       {
-        source: '/api/:path*',
-        destination: 'https://dev-api.moring.one/:path*',
+        source: '/',
+        destination: '/auth',
+        permanent: true,
       },
     ];
   },
   compiler: {
     emotion: true,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'file.moring.one',
+      },
+    ],
   },
 };
 

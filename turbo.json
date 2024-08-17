@@ -25,5 +25,11 @@
     },
     "web#start": {}
   },
-  "globalEnv": ["NEXT_PUBLIC_KAKAO_API_KEY", "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID"]
+  "globalEnv": [
+    "NEXT_PUBLIC_KAKAO_API_KEY",
+    "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID",
+    "STAGE",
+    "NEXT_PUBLIC_STAGE",
+    "NEXT_PUBLIC_KAKAO_API_KEY"
+  ]
 }

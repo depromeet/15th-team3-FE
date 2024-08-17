@@ -1,6 +1,5 @@
-import { Providers } from '@/common';
+import { Providers, RootLayout as ViewportLayout } from '@/common';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { RootLayout as ViewportLayout } from '@sambad/web-domains/commmon';
 import dayjs from 'dayjs';
 import localFont from 'next/font/local';
 

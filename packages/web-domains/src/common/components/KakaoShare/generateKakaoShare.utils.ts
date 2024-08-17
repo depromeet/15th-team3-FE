@@ -12,7 +12,7 @@ interface ShareToKakaoProps {
 
 export const generateKakaoShare = ({ shareLink, shareImageUrl, shareDescription }: ShareToKakaoProps) => {
   const { Kakao } = window;
-
+  console.log(shareLink);
   Kakao.Share.sendDefault({
     objectType: 'feed',
     content: {
