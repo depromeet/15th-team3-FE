@@ -20,6 +20,7 @@ export const memberListTextButtonCss = css({
 });
 
 export const memberCharacterCss = css({
+  display: 'flex',
   '& > * + *': {
     marginLeft: size['7xs'],
   },
