@@ -1,19 +1,14 @@
 export default {
-  footer: <p>MIT 2023 © Nextra.</p>,
-  head: ({ meta }) => (
+  head: () => (
     <>
-      {meta.description && <meta name="description" content={meta.description} />}
-      {meta.tag && <meta name="keywords" content={meta.tag} />}
-      {meta.author && <meta name="author" content={meta.author} />}
+      <title>삼봤드의 모험 팀 기술 블로그</title>
+      <link rel="icon" href="/favicon.ico" />
+      <meta name="description" content="삼봤드의 모험 팀의 개발과 디자인에 대한 이야기를 다룹니다." />
     </>
   ),
-  readMore: 'Read More →',
-  postFooter: null,
-  darkMode: false,
-  navs: [
-    {
-      url: 'https://github.com/shuding/nextra',
-      name: 'Nextra',
+  useNextSeoProps: () => ({
+    openGraph: {
+      images: [{ url: '' }],
     },
-  ],
+  }),
 };
