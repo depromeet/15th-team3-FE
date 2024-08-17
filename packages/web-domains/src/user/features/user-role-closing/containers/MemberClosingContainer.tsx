@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useGetMeetingName } from '@/common/apis/queries/useGetMeetingName';
 
 import ClosingBackground from '../../../common/assets/images/member-closing-background.png';
-import MemberCharacter from '../../../common/assets/images/member-closing.png';
+import MemberCharacter from '../../../common/assets/images/member-closing-character.png';
 
 interface MemberClosingContainerProps {
   inviteCode: string;
