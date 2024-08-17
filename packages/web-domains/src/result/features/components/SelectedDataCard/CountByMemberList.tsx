@@ -1,9 +1,10 @@
 'use client';
 
 import { TextButton, Txt } from '@sambad/sds/components';
-import { memberCharacterCss, memberListCss, memberListTextButtonCss } from './styles';
-import { Profile } from './Profile';
+
 import { countByMemberListAttribute } from './constants';
+import { Profile } from './Profile';
+import { memberCharacterCss, memberListCss, memberListTextButtonCss } from './styles';
 
 export interface CountByMemberListProps {
   showName?: string;

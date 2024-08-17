@@ -9,10 +9,6 @@ export const headerCss = css({
   padding: `${size['6xs']} ${size['xs']}`,
 });
 
-const itemsContainerCss = css({
-  borderRadius: `0 0 ${borderRadiusVariants.medium} ${borderRadiusVariants.medium}`,
-});
-
 export const itemCss = css({
   display: 'flex',
   alignItems: 'center',

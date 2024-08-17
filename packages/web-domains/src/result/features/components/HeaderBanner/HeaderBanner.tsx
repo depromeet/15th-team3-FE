@@ -1,8 +1,9 @@
 'use client';
 
 import { Txt } from '@sambad/sds/components';
-import { bannerCss, thumbnailCss, titleCss } from './styles';
 import Image from 'next/image';
+
+import { bannerCss, thumbnailCss, titleCss } from './styles';
 
 interface HeaderBannerProps {
   thumbnail: string;

@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { getBorder } from '@sambad/css-utils';
 import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
+
 import { commentAttribute, countByMemberListAttribute } from './constants';
 
 const commentSelector = commentAttribute.querySelector;

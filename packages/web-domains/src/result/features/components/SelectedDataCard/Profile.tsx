@@ -2,8 +2,9 @@
 
 import { Txt, TxtProps } from '@sambad/sds/components';
 import Image from 'next/image';
-import { profileCss } from './styles';
 import { HTMLAttributes } from 'react';
+
+import { profileCss } from './styles';
 
 export interface ProfileProps extends HTMLAttributes<HTMLDivElement> {
   imgUrl?: string;
