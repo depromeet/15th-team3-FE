@@ -1,6 +1,9 @@
 import { Txt } from '@sambad/sds/components';
+import { borderRadiusVariants } from '@sds/theme';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+
+import { generateDate } from '@/../utils/generateDate';
 
 import { titleAttribute } from './constants';
 import { containerCss, descriptionCss, textContainerCss, titleCss } from './styles';
@@ -28,7 +31,7 @@ export const SummaryCard = (props: SummaryCardProps) => {
           {description}
         </Txt>
         <Txt typography="title4" fontWeight="regular">
-          {date}
+          {generateDate(date)}
           {' · '}
           {writer}
         </Txt>
@@ -39,7 +42,7 @@ export const SummaryCard = (props: SummaryCardProps) => {
         width={130}
         height={90}
         sizes="(max-width: 480px) 100px, 75px"
-        style={{ margin: 0 }}
+        style={{ margin: 0, borderRadius: borderRadiusVariants.small }}
       />
     </div>
   );
