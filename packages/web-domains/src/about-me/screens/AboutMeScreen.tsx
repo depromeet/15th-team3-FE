@@ -1,5 +1,6 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
+import { getAnswersPrefetch } from '../common/apis/queries/useGetAnswers';
 import { getAnswersMePrefetch } from '../common/apis/queries/useGetAnswersMe';
 import { getMeetingsPrefetch, MEETINGS_QUERY_KEY } from '../common/apis/queries/useGetMeetings';
 import { getMemberPrefetch } from '../common/apis/queries/useGetMember';
@@ -37,7 +38,7 @@ export const getServerSideProps = async (meetingMemberId?: number) => {
     if (meetingMemberId) {
       await Promise.all([
         getMemberPrefetch({ meetingId, meetingMemberId, queryClient }),
-        getAnswersMePrefetch({ meetingId, queryClient }),
+        getAnswersPrefetch({ meetingId, meetingMemberId, queryClient }),
       ]);
     } else {
       await Promise.all([

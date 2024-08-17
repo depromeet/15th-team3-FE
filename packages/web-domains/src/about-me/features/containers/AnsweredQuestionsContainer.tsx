@@ -3,17 +3,14 @@
 import { Accordion, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
 
-import { useGetAnswersMe } from '@/about-me/common/apis/queries/useGetAnswersMe';
-import { useGetMeetings } from '@/about-me/common/apis/queries/useGetMeetings';
 import { EmptyView } from '@/common/components';
+
+import { useGetAnswersByParams } from '../hooks/useGetAnswersByParams';
 
 import { answerContentCss } from './styles';
 
 export const AnsweredQuestionsContainer = () => {
-  const { data: meetingsIdsData } = useGetMeetings();
-  // NOTE: 현재 스팩에서는 하나의 모임에만 가입할 수 있습니다.
-  const meetingId = meetingsIdsData?.meetings[0]?.meetingId || -1;
-  const { data: answers } = useGetAnswersMe({ meetingId });
+  const { data: answers } = useGetAnswersByParams();
 
   if (answers?.contents?.length === 0) {
     return <EmptyView title="아직 답변한 릴레이 질문이 없어요" style={{ height: '300px' }} />;
