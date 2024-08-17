@@ -5,8 +5,7 @@ import { colors, size } from '@sambad/sds/theme';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { KakaoShareModal } from '@/common';
-import { getWebDomain } from '@/common/getWebdomain';
+import { KakaoShareModal, getWebDomain } from '@/common';
 import { useActiveQuestionQuery } from '@/relay-question/features/share-group/hooks/useActiveQuestionQuery';
 import { useMyMeetingsQuery } from '@/relay-question/features/start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { findCurrentMeetingId } from '@/relay-question/utils/findCurrentMeetingId';

@@ -1,7 +1,9 @@
 export const getWebDomain = () => {
-  const NEXT_PUBLIC_STAGE = process.env.NEXT_PUBLIC_STAGE;
+  const STAGE = process.env.NEXT_PUBLIC_STAGE;
 
-  switch (NEXT_PUBLIC_STAGE) {
+  console.log({ STAGE });
+
+  switch (STAGE) {
     case 'production':
       return 'https://moring.one';
     case 'development':
