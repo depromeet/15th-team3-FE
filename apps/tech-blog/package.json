@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@sambad/sds": "workspace:*",
     "next": "14.2.5",
     "nextra": "^2.13.4",
     "nextra-theme-blog": "^2.13.4",

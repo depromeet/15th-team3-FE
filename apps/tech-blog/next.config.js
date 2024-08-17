@@ -3,4 +3,11 @@ const withNextra = require('nextra')({
   themeConfig: './theme.config.jsx',
 });
 
-module.exports = withNextra();
+const nextConfig = {
+  compiler: {
+    emotion: true,
+  },
+  transpilePackages: ['@sambad/sds'],
+};
+
+module.exports = withNextra(nextConfig);
