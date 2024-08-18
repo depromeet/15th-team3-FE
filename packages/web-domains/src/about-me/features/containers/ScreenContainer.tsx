@@ -3,10 +3,10 @@
 import { colors, size } from '@sambad/sds/theme';
 import { Fragment } from 'react';
 
+import { ActionBar } from '@/common/components/ActionBar/ActionBar';
+
 import { ProfileContainer } from './ProfileContainer';
 import { SegmentedControlContainer } from './SegmentedControlContainer';
-
-import { ActionBar } from '@/common/components/ActionBar/ActionBar';
 
 export const ScreenContainer = () => {
   return (

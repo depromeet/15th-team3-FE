@@ -1,7 +1,5 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
-import { CommentListContainer, HeaderContainer, MostAnsweredContainers, WithMyMembersContainers } from '../containers';
-
 import { getCommentsPrefetch } from '@/result/common/apis/queries/useGetComments';
 import { getDetailedQuestionDataPrefetch } from '@/result/common/apis/queries/useGetDetailedQuestionData';
 import { getMeetingsPrefetch, MEETINGS_QUERY_KEY } from '@/result/common/apis/queries/useGetMeetings';
@@ -10,6 +8,8 @@ import { getSameSelectedPrefetch } from '@/result/common/apis/queries/useGetSame
 import { MeetingResponse } from '@/result/common/apis/schema/MeetingResponse';
 import { BaseLayout } from '@/result/common/components';
 import { BaseParams } from '@/result/common/types/BaseParams';
+
+import { CommentListContainer, HeaderContainer, MostAnsweredContainers, WithMyMembersContainers } from '../containers';
 
 export const ResultMainScreen = async (params: BaseParams) => {
   const { queryClient } = await getServerSideProps(params);
