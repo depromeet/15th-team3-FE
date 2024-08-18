@@ -1,45 +1,7 @@
-import { Txt } from '@sambad/sds/components';
-import { borderRadiusVariants, colors, shadow } from '@sambad/sds/theme';
-import dayjs from 'dayjs';
-import { HTMLAttributes } from 'react';
-import Countdown from 'react-countdown';
+import { Txt } from '@sds/components';
+import { colors, borderRadiusVariants, shadow } from '@sds/theme';
 
-import { getRemainTime } from '../../../home/common/utils/getRemainTime';
-
-interface AnswerCountDownProps extends HTMLAttributes<HTMLDivElement> {
-  timer: string | number | Date;
-}
-
-export const AnswerCountDown = ({ timer, ...rest }: AnswerCountDownProps) => {
-  const remainTime = getRemainTime(timer);
-
-  const isTenminuteleft = remainTime <= dayjs().minute(10).valueOf();
-
-  return (
-    <section
-      css={{
-        width: '100%',
-        padding: '0 40px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-      {...rest}
-    >
-      <Txt as="p" typography="body4" css={{ marginBottom: '8px' }} color={colors.grey600}>
-        마감까지 남은 시간
-      </Txt>
-      <Countdown
-        date={remainTime}
-        renderer={({ hours, minutes, seconds }) => (
-          <CountdownRender hours={hours} minutes={minutes} seconds={seconds} isTenminuteleft={isTenminuteleft} />
-        )}
-      />
-    </section>
-  );
-};
-
-const CountdownRender = ({
+export const AnswerCountdownRender = ({
   hours,
   minutes,
   seconds,

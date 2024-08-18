@@ -53,11 +53,11 @@ jobs:
           destination-repository-name: ${{needs.variable.outputs.DESTINATION_REPOSITORY}}
           user-email: ${{secrets.EMAIL}}
           commit-message: 'chore: ${{inputs.user_name}} deploy ${{inputs.stage}}'
-          target-branch: ${{inputs.stage == 'prodction' && 'main' || 'main' }}
+          target-branch: ${{inputs.stage == 'production' && 'main' || 'main' }}
       - name: get deploy information
         id: deploy-information
         run: echo "target-repository=${{needs.variable.outputs.DESTINATION_REPOSITORY}}" >> "$GITHUB_OUTPUT" |
-          echo "target-branch=${{inputs.stage == 'prodction' && 'main' || 'main' }}" >> "$GITHUB_OUTPUT"
+          echo "target-branch=${{inputs.stage == 'production' && 'main' || 'main' }}" >> "$GITHUB_OUTPUT"
   info:
     name: get deploy information
     runs-on: ubuntu-latest
