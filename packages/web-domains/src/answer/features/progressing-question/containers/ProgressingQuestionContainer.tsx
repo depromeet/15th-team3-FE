@@ -3,7 +3,7 @@
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 
-import { AnswerCountDown } from '../../../common/components/AnswerCountdown';
+import { AnswerCountDown } from '../../../common/components/Countdown/AnswerCountdown';
 import { StartButton } from '../../floating-button/components/StartButton';
 import { QuestionInfo } from '../components/QuestionInfo';
 import { ResponseGuageBar } from '../components/ResponseGuageBar';
