@@ -1,10 +1,9 @@
-const STAGE = process.env.NEXT_PUBLIC_STAGE;
+// const STAGE = process.env.NEXT_PUBLIC_STAGE;
 
 export const getWebDomain = () => {
-  /**
-   * 왜 안됨?
-   */
-  switch (STAGE) {
+  console.log(process.env.NEXT_PUBLIC_STAGE);
+
+  switch (process.env.NEXT_PUBLIC_STAGE) {
     case 'production':
       return 'https://moring.one';
     case 'development':
