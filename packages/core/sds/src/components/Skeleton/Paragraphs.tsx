@@ -8,18 +8,16 @@ export interface SkeletonParagraphsProps extends HTMLAttributes<HTMLDivElement> 
   count?: number;
 }
 
-export const SkeletonParagraphs = forwardRef<HTMLDivElement, SkeletonParagraphsProps>(
-  (props: SkeletonParagraphsProps) => {
-    const { count = 3 } = props;
+export const SkeletonParagraphs = forwardRef<HTMLDivElement, SkeletonParagraphsProps>((props, ref) => {
+  const { count = 3 } = props;
 
-    return (
-      <div css={paragraphsContainer}>
-        {Array.from({ length: count }, (_, index) => (
-          <SkeletonImpl key={index} />
-        ))}
-      </div>
-    );
-  },
-);
+  return (
+    <div css={paragraphsContainer} ref={ref}>
+      {Array.from({ length: count }, (_, index) => (
+        <SkeletonImpl key={index} />
+      ))}
+    </div>
+  );
+});
 
 SkeletonParagraphs.displayName = 'SkeletonParagraphs';
