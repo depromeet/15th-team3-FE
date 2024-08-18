@@ -1,10 +1,13 @@
 'use client';
 
+import { Fragment } from 'react';
+
+import { MemberList } from '../components';
+
+import { ActionBar } from '@/common/components/ActionBar/ActionBar';
 import { useGetMeetings } from '@/result/common/apis/queries/useGetMeetings';
 import { useGetSameSelected } from '@/result/common/apis/queries/useGetSameSelected';
 import { BaseParams } from '@/result/common/types/BaseParams';
-
-import { MemberList } from '../components';
 
 export const SelectedSameListContainer = (params: BaseParams) => {
   const { questionId } = params;
@@ -13,5 +16,10 @@ export const SelectedSameListContainer = (params: BaseParams) => {
   const meetingId = meetingsIdsData?.meetings[0]?.meetingId || -1;
   const { data } = useGetSameSelected({ meetingId, questionId });
 
-  return <MemberList members={data?.selectedMembers} />;
+  return (
+    <Fragment>
+      <ActionBar title="나와 같은 답을 한 모임원" />
+      <MemberList members={data?.selectedMembers} />
+    </Fragment>
+  );
 };

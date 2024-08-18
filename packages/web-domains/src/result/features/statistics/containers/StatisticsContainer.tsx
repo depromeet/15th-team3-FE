@@ -1,12 +1,13 @@
 'use client';
 
 import { borderRadiusVariants, colors } from '@sambad/sds/theme';
+import { Fragment } from 'react';
+
+import { RankListHeader, RankListItem } from '../components';
 
 import { useGetMeetings } from '@/result/common/apis/queries/useGetMeetings';
 import { useGetStatistics } from '@/result/common/apis/queries/useGetStatistics';
 import { BaseParams } from '@/result/common/types/BaseParams';
-
-import { RankListHeader, RankListItem } from '../components';
 
 export const StatisticsContainer = (params: BaseParams) => {
   const { data: meetingsIdsData } = useGetMeetings();
@@ -20,11 +21,11 @@ export const StatisticsContainer = (params: BaseParams) => {
   };
 
   return (
-    <div>
+    <Fragment>
       <RankListHeader />
       <div style={style}>
         {data?.contents.map((data, index) => <RankListItem key={index} {...data} content={data.answerContent} />)}
       </div>
-    </div>
+    </Fragment>
   );
 };
