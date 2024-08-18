@@ -8,6 +8,7 @@ import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName'
 import { useGetGatherMemberList } from '../../../common/apis/queries/useGetGatherMemberList';
 
 export const useGatherMemberProfileListService = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [searchInput, setSearchInput] = useState<string>('');
   const [gatherMemberList, setGatherMemberList] = useState<MemberType[]>([]);
   const { data: meetingInfo } = useGetMeetingInfo({
@@ -37,6 +38,14 @@ export const useGatherMemberProfileListService = () => {
     }
   };
 
+  const inviteModalOpen = () => {
+    setIsOpen(true);
+  };
+
+  const inviteModalClose = () => {
+    setIsOpen(false);
+  };
+
   useEffect(() => {
     if (data?.contents) {
       setGatherMemberList(data?.contents);
@@ -54,8 +63,11 @@ export const useGatherMemberProfileListService = () => {
   }, [searchInput]);
 
   return {
+    isOpen,
     searchInput,
     gatherMemberList,
     handleChangeSearchInput,
+    inviteModalOpen,
+    inviteModalClose,
   };
 };

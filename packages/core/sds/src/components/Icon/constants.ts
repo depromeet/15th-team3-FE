@@ -1,3 +1,4 @@
+import { AddUser } from './assets/AddUser';
 import { AngleDownIcon } from './assets/AngleDown';
 import { AngleLeftIcon } from './assets/AngleLeft';
 import { AngleRightIcon } from './assets/AngleRight';
@@ -36,6 +37,7 @@ export const iconMap = {
   'connect-star': ConnectStar,
   'search-icon': SearchIcon,
   'sad-user': SadUserIcon,
+  'add-user': AddUser,
   landscape: Landscape,
   crown: CrownIcon,
 };
