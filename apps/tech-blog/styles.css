@@ -5,3 +5,17 @@ h1 {
 img {
   margin: 0 !important;
 }
+
+/* NOTE: 블로그 최대너비 오버라이드 하여 커스텀 */
+.nx-prose {
+  max-width: 90ch !important;
+}
+
+/* NOTE: article 영역 padding-top 오버라이드 하여 커스텀 */
+article {
+  padding-top: 2rem !important;
+}
+
+article > h1:first-child {
+  display: none;
+}

@@ -7,6 +7,7 @@ import { Fragment } from 'react';
 import { generateDate } from './generateDate';
 
 export interface RenderArticleBase {
+  title: string;
   tags: string[];
   writer: string;
   role: 'Frontend Developer' | 'Server Developer' | 'Designer';
@@ -15,13 +16,16 @@ export interface RenderArticleBase {
 }
 
 export const RenderArticleBase = (props: RenderArticleBase) => {
-  const { tags, writer, role, date, thumbnail } = props;
+  const { title, tags, writer, role, date, thumbnail } = props;
 
   return (
     <Fragment>
       <div css={imageCss}>
         <Image src={thumbnail} alt="thumbnail" layout="responsive" width={700} height={358} />
       </div>
+      <Txt as="h1" typography="heading1" style={{ fontSize: '48px' }}>
+        {title}
+      </Txt>
       <div css={badgeContainers}>
         {tags.map((tag) => (
           <Badge key={tag} color={colors.grey300}>
@@ -43,7 +47,7 @@ export const RenderArticleBase = (props: RenderArticleBase) => {
 
 const badgeContainers = css({
   display: 'flex',
-  marginBottom: size['2xs'],
+  margin: `${size['2xs']} 0`,
 
   '& > * + *': {
     marginLeft: size['7xs'],
