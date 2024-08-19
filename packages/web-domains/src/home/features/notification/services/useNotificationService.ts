@@ -1,9 +1,11 @@
 import { useQueryClient } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import { useEffect } from 'react';
 
 import { PROGRESSING_QUESTION_QUERY_KEY } from '@/answer/common/apis/queries/useGetProgressingQuestion';
 import { ProgressingQuestionType } from '@/answer/common/apis/schema/useGetProgressingQuestionQuery.type';
 import { useDialogContext } from '@/common/contexts/DialogProvider';
+import { useInActiveEventMutation } from '@/home/common/apis/mutations/useInActiveEventMutation';
 import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 import { useGetNotification } from '@/home/common/apis/queries/useGetNotification';
 
@@ -37,8 +39,22 @@ export const useNotificationService = () => {
     },
   });
 
+  const { mutateAsync } = useInActiveEventMutation();
+
   const handleClose = () => {
     close();
+  };
+
+  const handleClickActionLater = async () => {
+    try {
+      if (meetingId) {
+        await mutateAsync({ eventId: meetingId });
+      }
+    } catch (error) {
+      if (isAxiosError(error)) {
+        console.log(error);
+      }
+    }
   };
 
   useEffect(() => {
@@ -51,6 +67,7 @@ export const useNotificationService = () => {
     notfication: notfication?.contents[0],
     isOpen,
     handleClose,
+    handleClickActionLater,
     isRefetching,
     isNotAnswerd: !progressingQuestionData?.isAnswered,
     isNotRegistered: !progressingQuestionData?.isQuestionRegistered,
