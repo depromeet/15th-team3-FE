@@ -14,6 +14,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'static.toss.im', // NOTE: 테스트를 위해 추가합니다.
       },
+      {
+        protocol: 'https',
+        hostname: 'file.moring.one',
+      },
     ],
   },
 };
