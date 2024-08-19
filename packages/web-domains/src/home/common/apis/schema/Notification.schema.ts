@@ -1,7 +1,9 @@
 export type NotificationType = {
   eventId: number;
-  eventType: 'QUESTION_REGISTERED' | 'TARGET_MEMBER';
+  eventType: NotificationEventType;
 };
+
+export type NotificationEventType = 'QUESTION_REGISTERED' | 'TARGET_MEMBER' | 'GREETING';
 
 export type NotificationResponseType =
   | {
