@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Txt } from '@sambad/sds/components';
+import { Button, Icon, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
@@ -35,7 +35,9 @@ export const MostAnswered = (props: MostAnsweredProps) => {
         {contentText}
       </Txt>
       <Link href={`/question-result/${params.questionId}/statistics`}>
-        <Button css={mostAnsweredButtonCss}>전체 통계보기</Button>
+        <Button css={mostAnsweredButtonCss} leftDecor={<Icon name="stats" />}>
+          전체 통계보기
+        </Button>
       </Link>
     </Fragment>
   );
