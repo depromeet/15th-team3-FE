@@ -78,7 +78,7 @@ export const KakaoShareModal = ({
           <ShareKakaoButton shareImageUrl={imageUrl} shareDescription={description} shareLink={link} />
           <CopyLinkButton onClick={handleCopyLink} />
         </div>
-        <Button variant="sub" onClick={onClose}>
+        <Button variant="sub" size="large" onClick={onClose}>
           닫기
         </Button>
         {isToastOpen && (

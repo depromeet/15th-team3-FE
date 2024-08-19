@@ -32,6 +32,7 @@ export const StartQuestionContainer = () => {
 
           <section css={startQuestionBackgroundCss}>
             <Button
+              size="large"
               style={{ zIndex: Z_INDEX.relayStartButton }}
               onClick={() => router.push('/select-relay-question?current-step=1')}
             >
