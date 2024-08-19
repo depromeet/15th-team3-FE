@@ -30,7 +30,7 @@ export const AnsweredQuestionsContainer = () => {
             <Accordion.Content>
               <div css={answerContentCss}>
                 <Txt typography="heading3">{answer.content}</Txt>
-                <Txt typography="body2">{answer.commentContent}</Txt>
+                {answer.commentContent != null && <Txt typography="body2">{answer.commentContent}</Txt>}
               </div>
             </Accordion.Content>
           </Accordion.Item>

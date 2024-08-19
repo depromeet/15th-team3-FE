@@ -39,7 +39,7 @@ export const answerContentCss = css({
   display: 'flex',
   flexDirection: 'column',
 
-  '& > *:last-child': {
-    paddingTop: size['7xs'],
+  '& > * + *': {
+    marginTop: size['7xs'],
   },
 });
