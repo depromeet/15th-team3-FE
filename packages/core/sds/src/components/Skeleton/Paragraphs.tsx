@@ -9,10 +9,10 @@ export interface SkeletonParagraphsProps extends HTMLAttributes<HTMLDivElement> 
 }
 
 export const SkeletonParagraphs = forwardRef<HTMLDivElement, SkeletonParagraphsProps>((props, ref) => {
-  const { count = 3 } = props;
+  const { count = 3, ...restProps } = props;
 
   return (
-    <div css={paragraphsContainer} ref={ref}>
+    <div css={paragraphsContainer} ref={ref} {...restProps}>
       {Array.from({ length: count }, (_, index) => (
         <SkeletonImpl key={index} />
       ))}
