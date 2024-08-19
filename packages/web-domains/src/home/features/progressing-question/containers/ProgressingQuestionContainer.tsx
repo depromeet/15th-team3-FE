@@ -14,7 +14,7 @@ export const ProgressingQuestionContainer = () => {
 
   return (
     <section css={{ width: '100%', backgroundColor: colors.primary100, padding: '0 20px' }}>
-      <GatherName gatherName={gatherName} />
+      <GatherName gatherName={gatherName} subTitle="릴레이질문으로 더 가까워져 볼까요?" />
       {progressingQuestion && (
         <ProgressingQuestionInfo
           css={{ padding: '18px 0 20px;' }}

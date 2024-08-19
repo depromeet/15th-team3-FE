@@ -16,6 +16,7 @@ import { QuestionIcon } from './assets/QuestionIcon';
 import { SadUserIcon } from './assets/SadUserIcon';
 import { SearchIcon } from './assets/SearchIcon';
 import { ShareIcon } from './assets/Share';
+import { UpAndDown } from './assets/UpAndDown';
 import { UserIcon } from './assets/UserIcon';
 import { XIcon } from './assets/XIcon';
 
@@ -38,6 +39,7 @@ export const iconMap = {
   'search-icon': SearchIcon,
   'sad-user': SadUserIcon,
   'add-user': AddUser,
+  'up-and-down': UpAndDown,
   landscape: Landscape,
   crown: CrownIcon,
 };

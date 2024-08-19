@@ -10,7 +10,7 @@ export const MeetingIntroContainer = () => {
 
   return (
     <section css={{ width: '100%', backgroundColor: colors.primary100, padding: '0 20px' }}>
-      <GatherName gatherName={gatherName} />
+      <GatherName gatherName={gatherName} subTitle="우리 모임의 모임원들이에요!" />
     </section>
   );
 };
