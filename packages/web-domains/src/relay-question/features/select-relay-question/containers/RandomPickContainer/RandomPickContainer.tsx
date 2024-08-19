@@ -8,13 +8,13 @@ import { useState } from 'react';
 
 import { findCurrentMeetingId } from '@/relay-question/utils/findCurrentMeetingId';
 
+import { ToolTip } from '../../../../../common/components/ToolTip/ToolTip';
 import { RelayRandomButtonDocumentIcon } from '../../../../assets/RelayRandomButtonIcon';
 import { Modal } from '../../../../common/Modal';
 import { FIRST_STEP } from '../../../../constants';
 import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { QuestionDetail } from '../../components/QuestionDetail/QuestionDetail';
 import { QuestionerDetail } from '../../components/QuestionerDetail/QuestionerDetail';
-import { ToolTip } from '../../components/ToolTip/ToolTip';
 import { useQueryStringContext } from '../../contexts/QueryStringContext';
 import { usePostRelayQuestionInfo } from '../../hooks/mutations/usePostRelayQuestionInfo';
 import { useMemberMeQuery } from '../../hooks/queries/useMemberMeQuery';
