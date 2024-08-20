@@ -13,7 +13,7 @@ export const GatherMemberProfileListContainer = () => {
   }
 
   return (
-    <section css={{ width: '100%', padding: '18px 20px 12px' }}>
+    <section css={{ width: '100%', padding: '18px 20px 112px' }}>
       <Txt as="p" typography="subtitle1" css={{ marginBottom: '14px' }}>
         모임원 프로필
       </Txt>
