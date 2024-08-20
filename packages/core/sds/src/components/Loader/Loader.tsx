@@ -1,10 +1,9 @@
 import { forwardRef, ImgHTMLAttributes } from 'react';
 
 import { containerModeAttribute } from './constants';
+import loadingImageUrl from './images/loading.png';
 import { containerCss } from './styles';
 import { LoaderMode } from './types';
-
-const loadingImageUrl = 'https://file.moring.one/defaults/loading.png';
 
 export interface LoaderProps extends ImgHTMLAttributes<HTMLImageElement> {
   size?: number;
@@ -16,7 +15,7 @@ export const Loader = forwardRef<HTMLImageElement, LoaderProps>((props, ref) => 
 
   return (
     <div css={containerCss} {...containerModeAttribute.attribute(mode)}>
-      <img ref={ref} src={loadingImageUrl} width={size} height={size} alt="loading" {...restProps} />
+      <img ref={ref} src={loadingImageUrl.src} width={size} height={size} alt="loading" {...restProps} />
     </div>
   );
 });
