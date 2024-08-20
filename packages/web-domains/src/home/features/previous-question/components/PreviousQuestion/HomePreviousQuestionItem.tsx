@@ -1,5 +1,5 @@
 import { Txt } from '@sambad/sds/components';
-import { colors, borderRadiusVariants } from '@sambad/sds/theme';
+import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 import { AngleRightIcon } from '../../../../../../../core/sds/src/components/Icon/assets/AngleRight';
@@ -31,7 +31,9 @@ export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemP
         <div css={{ flex: '1' }}>
           <Txt as="p" typography="heading3" color={colors.tertiary500} css={{ marginBottom: '4px' }}>
             {content}
-            <Txt typography="title2">이/가 가장 많았어요.</Txt>
+            <Txt typography="title2" color={colors.black}>
+              이/가 가장 많았어요.
+            </Txt>
           </Txt>
           <Txt as="p" typography="body3" color={colors.grey600} css={{ marginBottom: '8px' }}>
             {title}

@@ -1,4 +1,5 @@
 import { Txt } from '@sambad/sds/components';
+import { colors } from '@sds/theme';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -47,7 +48,7 @@ export const Questioner = ({ meetingId, meetingMemberId, imageUrl, name }: Quest
       <div css={imgWrapperCss}>
         <Image src={imageUrl} alt={name} width={40} height={40} />
       </div>
-      <Txt typography="title2" fontWeight="medium">
+      <Txt typography="title2" color={colors.black} fontWeight="medium">
         {name}
       </Txt>
     </li>
