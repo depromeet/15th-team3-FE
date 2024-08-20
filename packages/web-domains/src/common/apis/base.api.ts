@@ -28,4 +28,9 @@ export class Http {
     const response = await axiosInstance.delete<Response>(...args);
     return response.data;
   }
+
+  static async PATCH<Request = unknown, Response = unknown>(...args: Parameters<typeof axiosInstance.patch>) {
+    const response = await axiosInstance.patch<Request, Response>(...args);
+    return response;
+  }
 }

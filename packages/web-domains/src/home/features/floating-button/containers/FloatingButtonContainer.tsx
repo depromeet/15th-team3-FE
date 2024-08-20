@@ -6,7 +6,8 @@ import { StartRelayQuestionButton } from '../components/StartRelayQuestionButton
 import { useFloatingButtonService } from '../services/useFloatingButtonService';
 
 export const FloatingButtonContainer = () => {
-  const { buttonType, homeGlobalTime, handleClose, isOpen, handleClickRelayStartButton } = useFloatingButtonService();
+  const { buttonType, homeGlobalTime, handleClose, isOpen, handleClickRelayStartButton, open } =
+    useFloatingButtonService();
 
   return (
     <div
@@ -20,7 +21,7 @@ export const FloatingButtonContainer = () => {
       }}
     >
       {buttonType === 'start' && <StartRelayQuestionButton onClick={handleClickRelayStartButton} />}
-      {buttonType === 'countdown' && <AlreadyProgressingQuestionButton time={homeGlobalTime} />}
+      {buttonType === 'countdown' && <AlreadyProgressingQuestionButton time={homeGlobalTime} onClick={open} />}
       <ProgressingQuestionModal isOpen={isOpen} countdownTimer={homeGlobalTime} onClose={handleClose} />
     </div>
   );

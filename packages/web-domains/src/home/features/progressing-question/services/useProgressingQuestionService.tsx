@@ -3,7 +3,12 @@ import { useSetAtom } from 'jotai';
 
 import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 import { useGetMyInfo } from '@/home/common/apis/queries/useGetMyInfo';
-import { homeGlobalTimeAtom, isProgessingQuestionAtom, isSelectedTargetAtom } from '@/home/common/atoms/home.atom';
+import {
+  homeGlobalTimeAtom,
+  isNextTargetAtom,
+  isProgessingQuestionAtom,
+  isSelectedTargetAtom,
+} from '@/home/common/atoms/home.atom';
 
 import { useGetProgressingQuestion } from '../../../common/apis/queries/useGetProgressingQuestion';
 
@@ -11,6 +16,7 @@ export const useProgressingQuestionService = () => {
   const setIsProgressingQuestion = useSetAtom(isProgessingQuestionAtom);
   const setHomeGlobalTime = useSetAtom(homeGlobalTimeAtom);
   const setSelectedTarget = useSetAtom(isSelectedTargetAtom);
+  const setIsNextTarget = useSetAtom(isNextTargetAtom);
   const { data: meetingInfo } = useGetMeetingInfo({
     options: { gcTime: Infinity },
   });
@@ -37,6 +43,10 @@ export const useProgressingQuestionService = () => {
 
         if (data?.startTime) {
           setHomeGlobalTime(dayjs(data.startTime).valueOf());
+        }
+
+        if (data?.nextTargetMember?.meetingMemberId === myInfo?.meetingMemberId) {
+          setIsNextTarget(true);
         }
         return data;
       },
