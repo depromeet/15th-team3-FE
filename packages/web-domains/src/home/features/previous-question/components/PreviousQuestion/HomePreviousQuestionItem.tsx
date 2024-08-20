@@ -41,13 +41,12 @@ export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemP
             typography="title4"
             color={colors.grey600}
             css={{
-              display: 'inline',
+              display: 'inline-block',
               backgroundColor: colors.grey300,
               height: '18px',
               textAlign: 'center',
               padding: '0 8px',
               borderRadius: borderRadiusVariants.medium,
-              lineHeight: '16px',
             }}
           >
             참여율 {engagementRate}%
