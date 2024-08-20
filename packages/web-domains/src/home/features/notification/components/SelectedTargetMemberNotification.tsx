@@ -2,11 +2,8 @@ import { Button, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 
-import { RectQuestion } from '../../../../common/asset/rectquestion';
 import { Modal, ModalProps } from '../../../../common/components/Modal/Modal';
 import { useDialogContext } from '../../../../common/contexts/DialogProvider';
-import { Avatar } from '../../../common/components/Avatar/Avatar';
-
 interface SelectedTargetMemberNotificationProps extends ModalProps {}
 
 export const SelectedTargetMemberNotification = ({ ...rest }: SelectedTargetMemberNotificationProps) => {
@@ -16,9 +13,6 @@ export const SelectedTargetMemberNotification = ({ ...rest }: SelectedTargetMemb
     <Modal {...rest} isOpen={isOpen} onClose={close}>
       <div>
         <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <span css={{ marginBottom: '20px' }}>
-            <Avatar Icon={RectQuestion} size={80} />
-          </span>
           <Txt as="p" typography="heading2" css={{ marginBottom: '8px' }}>
             릴레이 질문인으로 선택되었어요!
           </Txt>
