@@ -3,11 +3,11 @@
 import { Accordion, Loader, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sds/theme';
 
+import { EmptyView } from '@/common/components';
+
 import { useGetAnswersByParams } from '../hooks/useGetAnswersByParams';
 
 import { answerContentCss, questionLoaderSectionCss } from './styles';
-
-import { EmptyView } from '@/common/components';
 
 export const AnsweredQuestionsContainer = () => {
   const { data: answers, isLoading } = useGetAnswersByParams();
