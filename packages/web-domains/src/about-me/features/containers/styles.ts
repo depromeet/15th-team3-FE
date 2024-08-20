@@ -43,3 +43,10 @@ export const answerContentCss = css({
     paddingTop: size['7xs'],
   },
 });
+
+export const questionLoaderSectionCss = css({
+  position: 'relative',
+  width: '100%',
+  height: 'calc(100dvh - 396px)',
+  minHeight: 'auto',
+});

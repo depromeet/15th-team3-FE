@@ -1,19 +1,27 @@
 'use client';
 
-import { Accordion, Txt } from '@sambad/sds/components';
-import { colors, size } from '@sambad/sds/theme';
-
-import { EmptyView } from '@/common/components';
+import { Accordion, Loader, Txt } from '@sambad/sds/components';
+import { colors, size } from '@sds/theme';
 
 import { useGetAnswersByParams } from '../hooks/useGetAnswersByParams';
 
-import { answerContentCss } from './styles';
+import { answerContentCss, questionLoaderSectionCss } from './styles';
+
+import { EmptyView } from '@/common/components';
 
 export const AnsweredQuestionsContainer = () => {
-  const { data: answers } = useGetAnswersByParams();
+  const { data: answers, isLoading } = useGetAnswersByParams();
 
   if (answers?.contents?.length === 0) {
     return <EmptyView title="아직 답변한 릴레이 질문이 없어요" style={{ height: '300px' }} />;
+  }
+
+  if (isLoading) {
+    return (
+      <div css={questionLoaderSectionCss}>
+        <Loader mode="transparent" />
+      </div>
+    );
   }
 
   return (
