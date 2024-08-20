@@ -3,8 +3,8 @@ import { QueryClient, useQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
-import { ProgressingQuestionType } from '@/answer/common/apis/schema/useGetProgressingQuestionQuery.type';
 import { Http } from '@/common/apis/base.api';
+import { ProgressingQuestionType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 
 type Params = { meetingId: number };
 
