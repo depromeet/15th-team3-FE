@@ -7,9 +7,11 @@ import { Modal, ModalProps } from '../../../../common/components/Modal/Modal';
 import { useDialogContext } from '../../../../common/contexts/DialogProvider';
 import { Avatar } from '../../../common/components/Avatar/Avatar';
 
-interface ArrivedQuestionNotificationProps extends ModalProps {}
+interface ArrivedQuestionNotificationProps extends ModalProps {
+  onClickAnswerLater?: () => void;
+}
 
-export const ArrivedQuestionNotification = ({ ...rest }: ArrivedQuestionNotificationProps) => {
+export const ArrivedQuestionNotification = ({ onClickAnswerLater, ...rest }: ArrivedQuestionNotificationProps) => {
   const { isOpen, close } = useDialogContext();
 
   return (
@@ -32,7 +34,14 @@ export const ArrivedQuestionNotification = ({ ...rest }: ArrivedQuestionNotifica
               </Txt>
             </Button>
           </Link>
-          <Button variant="sub" css={{ border: 'none' }} onClick={close}>
+          <Button
+            variant="sub"
+            css={{ border: 'none' }}
+            onClick={() => {
+              onClickAnswerLater?.();
+              close();
+            }}
+          >
             <Txt typography="title3" color={colors.black}>
               나중에 할게요
             </Txt>
