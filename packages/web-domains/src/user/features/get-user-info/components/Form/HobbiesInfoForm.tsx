@@ -48,12 +48,16 @@ export const HobbiesInfoForm = ({ hobbyList }: HobbiesFormProps) => {
           name="hobbyIds"
           control={control}
           rules={{
-            validate: (value) => value.length <= 3 || '최대 3개까지 선택할 수 있습니다.',
+            validate: (value) => value.length <= 3 || '최대 3개까지 선택할 수 있습니다',
           }}
           render={({ field: { value, onChange } }) => (
             <CheckboxGroup value={value} onValueChange={onChange}>
               {hobbyList?.map(({ hobbyId, content }) => (
-                <CheckboxGroup.Item key={hobbyId} label={content} value={hobbyId} />
+                <CheckboxGroup.Item
+                  key={hobbyId}
+                  label={(isChecked) => <CheckboxGroup.Label isChecked={isChecked} title={content} />}
+                  value={hobbyId}
+                />
               ))}
             </CheckboxGroup>
           )}

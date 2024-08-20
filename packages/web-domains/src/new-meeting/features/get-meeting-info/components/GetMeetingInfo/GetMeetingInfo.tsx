@@ -57,9 +57,9 @@ export const GetMeetingInfo = (props: GetMeetingInfoProps) => {
           <Label title="#01" subTitle="모임의 이름은 무엇인가요?" />
           <TextField
             {...register('meetingName', {
-              required: '이름은 필수 입력 사항입니다.',
-              minLength: { value: 2, message: '2자 이상 입력해주세요.' },
-              maxLength: { value: 10, message: '10자 이하로 입력해주세요.' },
+              required: '이름은 필수 입력 사항입니다',
+              minLength: { value: 2, message: '2자 이상 입력해주세요' },
+              maxLength: { value: 10, message: '10자 이하로 입력해주세요' },
             })}
             errorMessage="2자 이상, 10자 이하로 입력해주세요"
             placeholder="모임의 이름을 입력해주세요"
@@ -73,19 +73,23 @@ export const GetMeetingInfo = (props: GetMeetingInfoProps) => {
               name="meetingTypeIds"
               control={control}
               rules={{
-                validate: (value) => value.length <= 2 || '최대 2개까지 선택해주세요.',
+                validate: (value) => value.length <= 2 || '최대 2개까지 선택해주세요',
               }}
               render={({ field: { value, onChange } }) => (
                 <CheckboxGroup value={value} onValueChange={onChange}>
                   {meetingTypes?.map((type, idx) => (
-                    <CheckboxGroup.Item key={idx} label={type.content} value={type.meetingTypeId} />
+                    <CheckboxGroup.Item
+                      key={idx}
+                      value={type.meetingTypeId}
+                      label={(isChecked) => <CheckboxGroup.Label title={type.content} isChecked={isChecked} />}
+                    />
                   ))}
                 </CheckboxGroup>
               )}
             />
           </div>
-          <Txt as="p" typography="body4" color={colors.grey500} css={{ marginTop: size['7xs'] }}>
-            최대 2개까지만 선택해주세요.
+          <Txt as="p" typography="body4" color={colors.grey600} css={{ marginTop: size['7xs'] }}>
+            최대 2개까지만 선택해주세요
           </Txt>
         </div>
         <div css={buttonWrapperCss}>

@@ -55,19 +55,19 @@ export const BasicInfoForm = () => {
         label="이름이 무엇인가요?"
         answerNumber={1}
         placeholder="이름을 입력해주세요"
-        errorMessage="2자 이상, 5자 이하로 입력해주세요."
+        errorMessage="2자 이상, 5자 이하로 입력해주세요"
         {...register('userName', { required: true, minLength: 2, maxLength: 5 })}
       />
       <TextInput
-        label="생년월일이 언제이신가요?"
+        label="나이가 어떻게 되나요?"
         answerNumber={2}
-        placeholder="생년월일 8자리를 입력해주세요."
+        placeholder="생년월일 8자리를 입력해주세요"
         {...register('birth', {
           required: true,
           maxLength: 8,
           pattern: {
             value: /^\d{8}$/,
-            message: '생년월일은 숫자 8자리여야 합니다.',
+            message: '생년월일은 숫자 8자리여야 합니다',
           },
         })}
       />
@@ -87,8 +87,14 @@ export const BasicInfoForm = () => {
             rules={{ validate: (value) => value === 'MALE' || value === 'FEMALE' }}
             render={({ field: { onChange, value } }) => (
               <RadioGroup value={value} onChange={onChange}>
-                <RadioGroup.Item label="🙋‍♂️ 남자" value="MALE" />
-                <RadioGroup.Item label="🙋‍♀️ 여자" value="FEMALE" />
+                <RadioGroup.Item
+                  value="MALE"
+                  label={(isChecked) => <RadioGroup.Label title="🙋‍♂️ 남자" isChecked={isChecked} />}
+                />
+                <RadioGroup.Item
+                  value="FEMALE"
+                  label={(isChecked) => <RadioGroup.Label title="🙋‍♀️ 여자" isChecked={isChecked} />}
+                />
               </RadioGroup>
             )}
           />

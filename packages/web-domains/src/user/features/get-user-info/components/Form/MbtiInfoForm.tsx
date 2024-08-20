@@ -38,7 +38,11 @@ export const MbtiInfoForm = () => {
           render={({ field: { onChange, value } }) => (
             <RadioGroup value={value} onChange={onChange}>
               {MBTI_TYPE.map(({ label, value }) => (
-                <RadioGroup.Item key={value} label={label} value={value} />
+                <RadioGroup.Item
+                  key={value}
+                  value={value}
+                  label={(isChecked) => <RadioGroup.Label title={label} isChecked={isChecked} />}
+                />
               ))}
             </RadioGroup>
           )}
