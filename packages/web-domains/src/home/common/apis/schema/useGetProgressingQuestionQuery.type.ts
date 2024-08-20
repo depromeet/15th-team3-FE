@@ -10,6 +10,7 @@ export type ProgressingQuestionType = {
   isAnswered: boolean;
   isQuestionRegistered: boolean;
   targetMember: MemberType;
+  nextTargetMember: MemberType | null;
 };
 
 export type MemberType = {
