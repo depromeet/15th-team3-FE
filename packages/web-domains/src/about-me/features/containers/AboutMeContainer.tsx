@@ -2,10 +2,10 @@
 
 import { size } from '@sambad/sds/theme';
 
-import { EmptyView } from '@/common/components';
-
 import { HobbyList, IntroduceBox } from '../components';
 import { useGetMemberByParams } from '../hooks/useGetMemberByParams';
+
+import { EmptyView } from '@/common/components';
 
 export const AboutMeContainer = () => {
   const { data } = useGetMemberByParams();
