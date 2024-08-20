@@ -24,7 +24,12 @@ export const GatherMemberProfile = ({ member }: GatherMemberProfileProps) => {
         }}
       >
         <div css={{ alignItems: 'center', display: 'flex' }}>
-          <Avatar imageUrl={profileImageFileUrl} width={40} height={40} css={{ borderRadius: '50%' }} />
+          <Avatar
+            imageUrl={profileImageFileUrl}
+            width={40}
+            height={40}
+            css={{ borderRadius: '50%', objectFit: 'cover' }}
+          />
           <Txt typography="title2" css={{ marginLeft: '12px' }}>
             {name}
           </Txt>
