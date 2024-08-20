@@ -34,7 +34,7 @@ export const Profile = ({ profileImageUrl }: ProfileProps) => {
   return (
     <section css={profileSectionCss}>
       <div css={profileIntroductionCss}>
-        <Txt typography="heading1" color={colors.black}>
+        <Txt typography="heading1" color={colors.black} fontWeight="bold">
           이번 릴레이 질문인은 바로 나!
         </Txt>
         <Txt color={colors.grey600} style={{ textAlign: 'center' }}>
