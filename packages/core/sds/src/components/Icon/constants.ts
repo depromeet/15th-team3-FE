@@ -7,6 +7,7 @@ import { AngleSmallUpIcon } from './assets/AngleSmallUp';
 import { AngleUpIcon } from './assets/AngleUp';
 import { BellIcon } from './assets/BellIcon';
 import { CaretDownIcon } from './assets/CaretDown';
+import { CloseIcon } from './assets/CloseIcon';
 import { CommentsIcon } from './assets/CommentsIcon';
 import { ConnectStar } from './assets/ConnectStar';
 import { CrownIcon } from './assets/Crown';
@@ -16,10 +17,10 @@ import { QuestionIcon } from './assets/QuestionIcon';
 import { SadUserIcon } from './assets/SadUserIcon';
 import { SearchIcon } from './assets/SearchIcon';
 import { ShareIcon } from './assets/Share';
-import { UpAndDown } from './assets/UpAndDown';
-import { UserIcon } from './assets/UserIcon';
 import { Stats } from './assets/Stats';
+import { UpAndDown } from './assets/UpAndDown';
 import { Upload } from './assets/Upload';
+import { UserIcon } from './assets/UserIcon';
 import { XIcon } from './assets/XIcon';
 
 export const iconMap = {
@@ -42,6 +43,7 @@ export const iconMap = {
   'sad-user': SadUserIcon,
   'add-user': AddUser,
   'up-and-down': UpAndDown,
+  'close-icon': CloseIcon,
   landscape: Landscape,
   crown: CrownIcon,
   stats: Stats,

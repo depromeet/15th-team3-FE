@@ -22,35 +22,8 @@ export const ProgressingQuestionContainer = () => {
         subTitle="릴레이질문으로 더 가까워져 볼까요?"
         onClick={handleOpenBottmSheet}
       />
-      <BottomSheet isOpen={isOpen} onClose={handleCloseBottomSheet}>
+      <BottomSheet title="모임 변경하기" isOpen={isOpen} onClose={handleCloseBottomSheet}>
         <div css={{ height: '500px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
         <div css={{ height: '50px', border: '1px solid black' }}>test</div>
       </BottomSheet>
       {progressingQuestion && (
