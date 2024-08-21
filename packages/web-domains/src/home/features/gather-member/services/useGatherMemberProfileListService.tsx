@@ -1,9 +1,9 @@
 import { debounce } from 'lodash';
 import { useEffect, useState } from 'react';
 
-import { MemberType } from '@/answer/common/apis/schema/useGetProgressingQuestionQuery.type';
 import { getKeywordRegex } from '@/common/utils/getKeywordRegex';
 import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
+import { MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 
 import { useGetGatherMemberList } from '../../../common/apis/queries/useGetGatherMemberList';
 
