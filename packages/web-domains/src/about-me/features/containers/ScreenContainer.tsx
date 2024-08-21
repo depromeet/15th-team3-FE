@@ -1,6 +1,6 @@
 'use client';
 
-import { colors, size } from '@sambad/sds/theme';
+import { colors, shadow, size } from '@sambad/sds/theme';
 import { Button } from '@sds/components';
 
 import { useCreateHandWavings } from '@/about-me/common/apis/mutates/useCreateHandWavings';
@@ -33,7 +33,13 @@ export const ScreenContainer = () => {
         <SegmentedControlContainer style={sectionStyle} />
       </div>
       {!isMy && (
-        <Button size="large" onClick={handleHandWaving} css={handWavingButtonCss}>
+        <Button
+          size="large"
+          disabled={isProgressHandWavings}
+          onClick={handleHandWaving}
+          css={handWavingButtonCss}
+          style={{ boxShadow: isProgressHandWavings ? shadow.elevation3 : undefined }}
+        >
           {isProgressHandWavings ? '손 흔들어 인사하기' : '손 흔들어 인사하기 완료!'}
         </Button>
       )}
