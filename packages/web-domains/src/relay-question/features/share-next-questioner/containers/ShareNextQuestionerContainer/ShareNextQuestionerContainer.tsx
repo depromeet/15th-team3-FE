@@ -54,7 +54,9 @@ export const ShareNextQuestionerContainer = () => {
               다음 질문인에게 공유하기
             </Button>
             <Link href="/answer/opening">
-              <Button variant="sub">제일 먼저 답변하기</Button>
+              <Button variant="sub" size="large">
+                제일 먼저 답변하기
+              </Button>
             </Link>
           </div>
         </div>
