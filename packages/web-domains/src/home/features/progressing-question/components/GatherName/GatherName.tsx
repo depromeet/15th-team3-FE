@@ -5,7 +5,7 @@ import { HTMLAttributes } from 'react';
 import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
 interface GatherNameProps extends HTMLAttributes<HTMLDivElement> {
-  gatherName: string;
+  gatherName?: string;
   profileImage?: string;
 }
 
