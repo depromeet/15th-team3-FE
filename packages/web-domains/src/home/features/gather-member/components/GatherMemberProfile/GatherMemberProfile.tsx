@@ -1,8 +1,9 @@
 import { Txt } from '@sambad/sds/components';
+import { borderRadiusVariants } from '@sds/theme';
 import Link from 'next/link';
 
-import { MemberType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
-import { Avatar } from '../../../../common/components/Avatar/Avatar';
+import { MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
+import { Avatar } from '@/home/common/components/Avatar/Avatar';
 
 interface GatherMemberProfileProps {
   member: MemberType;
@@ -28,7 +29,7 @@ export const GatherMemberProfile = ({ member }: GatherMemberProfileProps) => {
             imageUrl={profileImageFileUrl}
             width={40}
             height={40}
-            css={{ borderRadius: '50%', objectFit: 'cover' }}
+            css={{ borderRadius: borderRadiusVariants.round, objectFit: 'cover' }}
           />
           <Txt typography="title2" css={{ marginLeft: '12px' }}>
             {name}

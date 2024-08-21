@@ -1,9 +1,9 @@
 import { Txt } from '@sambad/sds/components';
 import { borderRadiusVariants, colors } from '@sambad/sds/theme';
+import { AngleRightIcon } from '@sds/components/Icon/assets/AngleRight';
 import Link from 'next/link';
 
-import { AngleRightIcon } from '../../../../../../../core/sds/src/components/Icon/assets/AngleRight';
-import { TopPreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
+import { TopPreviousQuestionType } from '@/home/common/apis/schema/useGetPreviousQuestionListQuery.type';
 
 interface HomePreviousQuestionItemProps {
   meetingId?: number;
