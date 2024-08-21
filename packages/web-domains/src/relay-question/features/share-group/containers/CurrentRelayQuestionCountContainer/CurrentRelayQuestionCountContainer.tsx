@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Txt } from '@sambad/sds/components';
+import { Button, Icon, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -10,7 +10,6 @@ import { findCurrentMeetingId } from '@/relay-question/utils/findCurrentMeetingI
 
 import { ShareGroupBackground } from '../../../../assets/ShareGroupBackground';
 import { ShareGroupCheckIcon } from '../../../../assets/ShareGroupCheckIcon';
-import { ShareGroupShareIcon } from '../../../../assets/ShareGroupShareIcon';
 import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { CurrentQuestionInfo } from '../../components/CurrentQuestionInfo/CurrentQuestionInfo';
 import { useActiveQuestionQuery } from '../../hooks/useActiveQuestionQuery';
@@ -70,12 +69,13 @@ export const CurrentRelayQuestionCountContainer = () => {
         </div>
 
         <div css={buttonWrapperCss}>
-          <Button css={firstButtonCss} onClick={handleOpenShare}>
-            <ShareGroupShareIcon css={{ marginRight: size['6xs'] }} />
+          <Button css={firstButtonCss} onClick={handleOpenShare} size="large" leftDecor={<Icon name="upload" />}>
             단톡방에 공유하기
           </Button>
           <Link href="/share-next-questioner">
-            <Button variant="sub">다음</Button>
+            <Button variant="sub" size="large">
+              다음
+            </Button>
           </Link>
         </div>
       </section>

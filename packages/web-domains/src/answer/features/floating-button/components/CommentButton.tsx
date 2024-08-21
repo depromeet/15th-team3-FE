@@ -24,7 +24,7 @@ export const CommentButton = ({ disabled, onClick, ...rest }: CommentButtonProps
 
   return (
     <div css={{ position: 'absolute', bottom: '40px', width: '100%', maxWidth: '600px', padding: '0 20px' }}>
-      <Button {...rest} css={buttonStyles} onClick={handleAnswer}>
+      <Button size="large" {...rest} css={buttonStyles} onClick={handleAnswer}>
         답변 보내기
       </Button>
     </div>
