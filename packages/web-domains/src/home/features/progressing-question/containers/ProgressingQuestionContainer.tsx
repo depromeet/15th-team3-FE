@@ -3,6 +3,8 @@
 import { colors } from '@sambad/sds/theme';
 import dayjs from 'dayjs';
 
+import { BottomSheet } from '@/home/common/components/BottomSheet/BottomSheet';
+
 import { GatherName } from '../components/GatherName/GatherName';
 import { ActiveQuestion } from '../components/QuestionInfo/ActiveQuestion';
 import { InActiveQuestion } from '../components/QuestionInfo/InActiveQuestion';
@@ -10,11 +12,47 @@ import { ProgressingQuestionInfo } from '../components/QuestionInfo/ProgressingQ
 import { useProgressingQuestionService } from '../services/useProgressingQuestionService';
 
 export const ProgressingQuestionContainer = () => {
-  const { gatherName, progressingQuestion } = useProgressingQuestionService();
+  const { isOpen, handleCloseBottomSheet, handleOpenBottmSheet, gatherName, progressingQuestion } =
+    useProgressingQuestionService();
 
   return (
     <section css={{ width: '100%', backgroundColor: colors.primary100, padding: '0 20px' }}>
-      <GatherName gatherName={gatherName} subTitle="릴레이질문으로 더 가까워져 볼까요?" />
+      <GatherName
+        gatherName={gatherName}
+        subTitle="릴레이질문으로 더 가까워져 볼까요?"
+        onClick={handleOpenBottmSheet}
+      />
+      <BottomSheet isOpen={isOpen} onClose={handleCloseBottomSheet}>
+        <div css={{ height: '500px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
+      </BottomSheet>
       {progressingQuestion && (
         <ProgressingQuestionInfo
           css={{ padding: '18px 0 20px;' }}

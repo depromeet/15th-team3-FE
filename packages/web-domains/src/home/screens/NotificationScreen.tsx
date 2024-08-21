@@ -1,5 +1,6 @@
 import { HydrationBoundary, dehydrate, QueryClient } from '@tanstack/react-query';
 
+import { HomeNavigationConatiner } from '../features/home-navigation/containers/HomeNavigationContainer';
 import { NotificationListContainer } from '../features/notification/containers/NotificationListContainer';
 
 export const NotificationScreen = async () => {
@@ -8,6 +9,7 @@ export const NotificationScreen = async () => {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <NotificationListContainer />
+      <HomeNavigationConatiner />
     </HydrationBoundary>
   );
 };

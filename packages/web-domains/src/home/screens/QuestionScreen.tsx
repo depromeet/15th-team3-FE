@@ -8,6 +8,7 @@ import { getMyInfoPrefetch } from '../common/apis/queries/useGetMyInfo';
 import { getProgressingQuestionPrefetch } from '../common/apis/queries/useGetProgressingQuestion';
 import { getTopPreviousQuestionPrefetch } from '../common/apis/queries/useGetTopPreviousQuestionList';
 import { FloatingButtonContainer } from '../features/floating-button/containers/FloatingButtonContainer';
+import { HomeNavigationConatiner } from '../features/home-navigation/containers/HomeNavigationContainer';
 import { NotificationContainer } from '../features/notification/containers/NotificationContainer';
 import { TopPreviousQuestionListContainer } from '../features/previous-question/containers/TopPreviousQuestionListContainer';
 import { ProgressingQuestionContainer } from '../features/progressing-question/containers/ProgressingQuestionContainer';
@@ -25,6 +26,7 @@ export const QuestionScreen = async () => {
       <DialogContextProvider>
         <NotificationContainer />
       </DialogContextProvider>
+      <HomeNavigationConatiner />
     </HydrationBoundary>
   );
 };

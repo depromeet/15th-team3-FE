@@ -7,7 +7,7 @@ export const MyprofileContainer = () => {
   return (
     <div css={{ height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Txt typography="title2" color={colors.black}>
-        마이 프로필
+        프로필
       </Txt>
     </div>
   );

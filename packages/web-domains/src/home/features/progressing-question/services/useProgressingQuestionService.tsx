@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { useSetAtom } from 'jotai';
+import { useEffect, useState } from 'react';
 
 import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 import { useGetMyInfo } from '@/home/common/apis/queries/useGetMyInfo';
@@ -13,6 +14,8 @@ import {
 import { useGetProgressingQuestion } from '../../../common/apis/queries/useGetProgressingQuestion';
 
 export const useProgressingQuestionService = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const setIsProgressingQuestion = useSetAtom(isProgessingQuestionAtom);
   const setHomeGlobalTime = useSetAtom(homeGlobalTimeAtom);
   const setSelectedTarget = useSetAtom(isSelectedTargetAtom);
@@ -54,9 +57,26 @@ export const useProgressingQuestionService = () => {
     },
   });
 
+  const handleOpenBottmSheet = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseBottomSheet = () => {
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    }
+  }, [isOpen]);
+
   return {
+    isOpen,
     meetingId,
     gatherName: '삼봤드의 모험',
     progressingQuestion,
+    handleCloseBottomSheet,
+    handleOpenBottmSheet,
   };
 };

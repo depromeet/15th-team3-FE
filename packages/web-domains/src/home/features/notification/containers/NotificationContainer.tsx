@@ -9,6 +9,7 @@ export const NotificationContainer = () => {
 
   return (
     <>
+      <ArrivedQuestionNotification isOpen={true} onClose={handleClose} onClickAnswerLater={handleClickActionLater} />
       {notfication?.eventType === 'QUESTION_REGISTERED' && isNotAnswerd && (
         <ArrivedQuestionNotification
           isOpen={isOpen}

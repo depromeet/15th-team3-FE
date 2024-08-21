@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import { getGatherMemberListPrefetch } from '../common/apis/queries/useGetGatherMemberList';
 import { getMeetingInfoPrefetch } from '../common/apis/queries/useGetMeetingName';
 import { GatherMemberProfileListContainer } from '../features/gather-member/containers/GatherMemberProfileListContainer';
+import { HomeNavigationConatiner } from '../features/home-navigation/containers/HomeNavigationContainer';
 import { MeetingIntroContainer } from '../features/meeting-intro/containers/MeetingIntroContainer';
 
 export const HomeScreen = async () => {
@@ -13,6 +14,7 @@ export const HomeScreen = async () => {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <MeetingIntroContainer />
       <GatherMemberProfileListContainer />
+      <HomeNavigationConatiner />
     </HydrationBoundary>
   );
 };
