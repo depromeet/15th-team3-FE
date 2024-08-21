@@ -85,12 +85,19 @@ export const buttonCss = css({
 
   cursor: 'pointer',
 
-  '&:hover': {
-    backgroundColor: `var(${buttonHoverColorVar})`,
-  },
-
   '&:disabled': {
     cursor: 'not-allowed',
+  },
+
+  '@media (hover: none) and (pointer: coarse)': {
+    '&:not(:disabled):active': {
+      backgroundColor: `var(${buttonHoverColorVar})`,
+    },
+  },
+  '@media (hover: hover) and (pointer: fine)': {
+    '&:not(:disabled):hover': {
+      backgroundColor: `var(${buttonHoverColorVar})`,
+    },
   },
 });
 
