@@ -9,14 +9,14 @@ import { MeetingResponse } from '@/result/common/apis/schema/MeetingResponse';
 import { BaseLayout } from '@/result/common/components';
 import { BaseParams } from '@/result/common/types/BaseParams';
 
-import { HeaderContainer, MostAnsweredContainers, WithMyMembersContainers, CommentListContainer } from '../containers';
+import { CommentListContainer, HeaderContainer, MostAnsweredContainers, WithMyMembersContainers } from '../containers';
 
 export const ResultMainScreen = async (params: BaseParams) => {
   const { queryClient } = await getServerSideProps(params);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <BaseLayout header={<HeaderContainer {...params} />}>
+      <BaseLayout title="릴레이 질문 결과" header={<HeaderContainer {...params} />}>
         <MostAnsweredContainers {...params} />
         <WithMyMembersContainers {...params} />
         <CommentListContainer {...params} />

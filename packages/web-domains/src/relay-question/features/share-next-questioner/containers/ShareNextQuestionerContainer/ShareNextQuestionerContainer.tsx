@@ -1,7 +1,7 @@
 'use client';
 
-import { Button, Txt } from '@sambad/sds/components';
-import { colors, size } from '@sambad/sds/theme';
+import { Button, Icon, Txt } from '@sambad/sds/components';
+import { colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -10,7 +10,6 @@ import { useActiveQuestionQuery } from '@/relay-question/features/share-group/ho
 import { useMyMeetingsQuery } from '@/relay-question/features/start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { findCurrentMeetingId } from '@/relay-question/utils/findCurrentMeetingId';
 
-import { ShareGroupShareIcon } from '../../../../assets/ShareGroupShareIcon';
 import { ShareNextQuestionerBackground } from '../../../../assets/ShareNextQuestionerBackground';
 
 import {
@@ -51,8 +50,7 @@ export const ShareNextQuestionerContainer = () => {
         <div css={footerWrapperCss}>
           <ShareNextQuestionerBackground />
           <div css={buttonWrapperCss}>
-            <Button css={shareButtonCss} onClick={handleOpenShare}>
-              <ShareGroupShareIcon css={{ marginRight: size['6xs'] }} />
+            <Button css={shareButtonCss} onClick={handleOpenShare} size="large" leftDecor={<Icon name="upload" />}>
               다음 질문인에게 공유하기
             </Button>
             <Link href="/answer/opening">

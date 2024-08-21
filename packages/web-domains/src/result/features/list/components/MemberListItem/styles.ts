@@ -6,6 +6,7 @@ export const containerCss = css({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
+  cursor: 'pointer',
 
   '& img': {
     marginRight: size['5xs'],
