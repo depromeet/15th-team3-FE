@@ -10,6 +10,7 @@ import { CrownIcon } from './assets/Crown';
 import { Landscape } from './assets/Landscape';
 import { SadUserIcon } from './assets/SadUserIcon';
 import { ShareIcon } from './assets/Share';
+import { Stats } from './assets/Stats';
 import { Upload } from './assets/Upload';
 import { XIcon } from './assets/XIcon';
 
@@ -27,5 +28,6 @@ export const iconMap = {
   'share-icon': ShareIcon,
   'comments-icon': CommentsIcon,
   'x-icon': XIcon,
+  stats: Stats,
   upload: Upload,
 };
