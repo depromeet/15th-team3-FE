@@ -25,6 +25,7 @@ export const useProgressingQuestionService = () => {
   });
 
   const meetingId = meetingInfo?.meetings[0]?.meetingId;
+  const meetingTitle = meetingInfo?.meetings[0]?.name;
 
   const { data: myInfo } = useGetMyInfo({
     params: { meetingId: meetingId! },
@@ -74,7 +75,7 @@ export const useProgressingQuestionService = () => {
   return {
     isOpen,
     meetingId,
-    gatherName: '삼봤드의 모험',
+    gatherName: meetingTitle,
     progressingQuestion,
     handleCloseBottomSheet,
     handleOpenBottmSheet,
