@@ -4,6 +4,7 @@ import { colors, shadow, size } from '@sambad/sds/theme';
 import { Button } from '@sds/components';
 
 import { useCreateHandWavings } from '@/about-me/common/apis/mutates/useCreateHandWavings';
+import { useGetHandWavingsStatus } from '@/about-me/common/apis/queries/useGetHandWavingsStatus';
 import { ActionBar } from '@/common/components/ActionBar/ActionBar';
 
 import { useGetFirstMeetingId } from '../hooks/useGetFirstMeetingId';
@@ -16,10 +17,13 @@ import { handWavingButtonCss, screenRootCss } from './styles';
 export const ScreenContainer = () => {
   const { isMy, meetingMemberId } = useIsMyByParams();
   const { meetingId } = useGetFirstMeetingId();
-  const { mutate, isSuccess: wavingSuccess } = useCreateHandWavings();
+  const { data: wavingStatusData, isSuccess: getWavingStatusSuccess } = useGetHandWavingsStatus({
+    meetingId,
+    receiverMemberId: meetingMemberId,
+  });
+  const { mutate, isSuccess: sendWavingSuccess } = useCreateHandWavings();
 
-  // FIXME: 현재 손흔들기 응답 상태에 따라서도 같이 처리할 예정
-  const isProgressHandWavings = wavingSuccess;
+  const isProgressHandWavings = sendWavingSuccess || wavingStatusData?.status === 'REQUESTED';
 
   const handleHandWaving = () => {
     mutate({ meetingId, receiverMemberId: meetingMemberId });
@@ -32,7 +36,7 @@ export const ScreenContainer = () => {
         <ProfileContainer style={{ marginBottom: size['5xs'] }} />
         <SegmentedControlContainer style={sectionStyle} />
       </div>
-      {!isMy && (
+      {!isMy && getWavingStatusSuccess && (
         <Button
           size="large"
           disabled={isProgressHandWavings}
