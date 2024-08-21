@@ -18,6 +18,8 @@ import { SearchIcon } from './assets/SearchIcon';
 import { ShareIcon } from './assets/Share';
 import { UpAndDown } from './assets/UpAndDown';
 import { UserIcon } from './assets/UserIcon';
+import { Stats } from './assets/Stats';
+import { Upload } from './assets/Upload';
 import { XIcon } from './assets/XIcon';
 
 export const iconMap = {
@@ -42,4 +44,6 @@ export const iconMap = {
   'up-and-down': UpAndDown,
   landscape: Landscape,
   crown: CrownIcon,
+  stats: Stats,
+  upload: Upload,
 };
