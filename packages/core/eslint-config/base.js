@@ -1,3 +1,4 @@
+const { group } = require('node:console');
 const { resolve } = require('node:path');
 
 const project = resolve(process.cwd(), 'tsconfig.json');
@@ -25,6 +26,10 @@ module.exports = {
         pathGroups: [
           {
             pattern: '@sds/**',
+            group: 'internal',
+          },
+          {
+            pattern: '@/**',
             group: 'internal',
           },
         ],

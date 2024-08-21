@@ -1,19 +1,25 @@
 import { colors, size } from '@sambad/sds/theme';
-import { ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
+
+import { ActionBar } from '@/common/components/ActionBar/ActionBar';
 
 interface BaseLayoutProps {
+  title?: string;
   header: ReactNode;
   children: ReactNode;
 }
 
 export const BaseLayout = (props: BaseLayoutProps) => {
-  const { header, children } = props;
+  const { title, header, children } = props;
 
   return (
-    <div style={layoutStyle}>
-      {header}
-      <div style={contentStyle}>{children}</div>
-    </div>
+    <Fragment>
+      {title != null && <ActionBar title={title} />}
+      <div style={layoutStyle}>
+        {header}
+        <div style={contentStyle}>{children}</div>
+      </div>
+    </Fragment>
   );
 };
 
