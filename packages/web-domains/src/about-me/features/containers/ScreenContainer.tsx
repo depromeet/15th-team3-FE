@@ -40,7 +40,7 @@ export const ScreenContainer = () => {
           css={handWavingButtonCss}
           style={{ boxShadow: isProgressHandWavings ? shadow.elevation3 : undefined }}
         >
-          {isProgressHandWavings ? '손 흔들어 인사하기' : '손 흔들어 인사하기 완료!'}
+          {isProgressHandWavings ? '손 흔들어 인사하기 완료!' : '손 흔들어 인사하기'}
         </Button>
       )}
     </div>
