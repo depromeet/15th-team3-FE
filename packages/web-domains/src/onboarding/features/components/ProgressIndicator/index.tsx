@@ -32,7 +32,7 @@ export interface StepProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const Step = ({ isCurrent, basis, ...rest }: StepProps) => {
-  let color = '#E1E1E1';
+  let color = '#FFFFFF4D';
 
   if (isCurrent) {
     color = colors.white;

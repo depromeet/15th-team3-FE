@@ -7,7 +7,7 @@ import { ReactNode } from 'react';
 interface HeaderProps {
   title: string;
   subTitle: string;
-  Icon: ReactNode | (() => JSX.Element); //
+  Icon: ReactNode | (() => JSX.Element);
 }
 export const Header = (props: HeaderProps) => {
   const { title, subTitle, Icon } = props;
@@ -15,11 +15,9 @@ export const Header = (props: HeaderProps) => {
     <header
       css={{
         position: 'relative',
-        zIndex: '10',
+        zIndex: '100',
         padding: `${size.xs} ${size['2xs']}`,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        textAlign: 'center',
       }}
     >
       {typeof Icon === 'function' ? Icon() : Icon}
@@ -27,7 +25,7 @@ export const Header = (props: HeaderProps) => {
         as="h1"
         typography="heading1"
         color={colors.black}
-        css={{ textAlign: 'center', '& span': { display: 'block' }, marginTop: '16px' }}
+        css={{ '& span': { display: 'block' }, marginTop: '12px' }}
       >
         {title}
         <span>{subTitle}</span>
