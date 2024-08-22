@@ -8,12 +8,12 @@ const homeGlobalTimeAtom = atom<number | null>(null);
 
 const isNextTargetAtom = atom<boolean>(false);
 
-const currentMeetingId = atom<number | null>(null);
+const currentMeeting = atom<{ meetingId: number; name: string } | null>(null);
 
 export const HomeAtoms = {
   isNextTargetAtom,
   homeGlobalTimeAtom,
   isSelectedTargetAtom,
   isProgessingQuestionAtom,
-  currentMeetingId,
+  currentMeeting,
 };

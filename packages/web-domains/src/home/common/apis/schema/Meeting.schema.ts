@@ -22,5 +22,6 @@ export type MeetingIdListResponseType =
         meetingId: number;
         name: string;
       }>;
+      lastMeetingId: number;
     }
   | undefined;

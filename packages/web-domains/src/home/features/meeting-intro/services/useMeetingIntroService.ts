@@ -1,15 +1,11 @@
 import { useState } from 'react';
 
-import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
+import { useSetCurrentMeeting } from '@/home/common/hooks/useSetCurrentMeeting';
 
 export const useMeetingIntroService = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { data: meetingInfo } = useGetMeetingInfo({
-    options: { gcTime: Infinity },
-  });
+  const { meetingId, meetingInfo, gatherName } = useSetCurrentMeeting();
 
-  const meetingId = meetingInfo?.meetings[0]?.meetingId;
-  const meetingTitle = meetingInfo?.meetings[0]?.name;
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleOpenBottmSheet = () => {
     setIsOpen(true);
@@ -21,8 +17,9 @@ export const useMeetingIntroService = () => {
 
   return {
     isOpen,
+    meetingInfo,
     meetingId,
-    gatherName: meetingTitle,
+    gatherName,
     handleOpenBottmSheet,
     handleCloseBottomSheet,
   };

@@ -1,4 +1,4 @@
-import { Icon, Txt } from '@sambad/sds/components';
+import { Icon, Skeleton, Txt } from '@sambad/sds/components';
 import { HTMLAttributes } from 'react';
 
 interface GatherNameProps extends HTMLAttributes<HTMLDivElement> {
@@ -15,10 +15,18 @@ export const GatherName = ({ gatherName, subTitle, onClick, ...rest }: GatherNam
           css={{ cursor: 'pointer', display: 'flex', alignItems: 'center', marginBottom: '4px' }}
           onClick={onClick}
         >
-          <Txt typography="heading1" color="#ff7664" as="h1">
-            {gatherName}
-          </Txt>
-          <Icon name="up-and-down" size={20} />
+          {gatherName ? (
+            <>
+              <Txt typography="heading1" color="#ff7664" as="h1">
+                {gatherName}
+              </Txt>
+              <Icon name="up-and-down" size={20} />
+            </>
+          ) : (
+            <Skeleton
+              css={{ width: '150px', height: '24px', marginBottom: '12px', top: '8px', position: 'relative' }}
+            />
+          )}
         </button>
         <Txt typography="heading2" as="h2">
           {subTitle}

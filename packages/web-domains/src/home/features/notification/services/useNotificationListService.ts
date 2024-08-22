@@ -1,91 +1,25 @@
-// import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
-// import { useGetNotification } from '@/home/common/apis/queries/useGetNotification';
-import { NotificationType } from '@/home/common/apis/schema/Notification.schema';
+import { useGetEvents } from '@/home/common/apis/queries/useGetEvents';
+import { useGetMyInfo } from '@/home/common/apis/queries/useGetMyInfo';
+import { useSetCurrentMeeting } from '@/home/common/hooks/useSetCurrentMeeting';
 
 export const useNotificationListService = () => {
-  // const { data: meetingInfo } = useGetMeetingInfo({
-  //   options: { gcTime: Infinity },
-  // });
+  const { meetingId, meetingInfo } = useSetCurrentMeeting();
 
-  // const meetingId = meetingInfo?.meetings[0]?.meetingId;
+  console.log(meetingId);
+  const { data: myInfo } = useGetMyInfo({
+    params: { meetingId: meetingId! },
+    options: { enabled: !!meetingId },
+  });
 
-  // const { data: notfication } = useGetNotification({
-  //   params: { meetingId: meetingId! },
-  //   options: {
-  //     enabled: !!meetingId,
-  //     refetchInterval: 1000 * 30,
-  //   },
-  // });
-
-  const notficationList: NotificationType[] = [
-    {
-      eventId: 0,
-      eventType: 'QUESTION_REGISTERED',
+  const { data } = useGetEvents({
+    params: { meetingId: meetingId! },
+    options: {
+      enabled: !!meetingId,
     },
-    {
-      eventId: 1,
-      eventType: 'TARGET_MEMBER',
-    },
-    {
-      eventId: 2,
-      eventType: 'GREETING',
-    },
-    {
-      eventId: 3,
-      eventType: 'QUESTION_REGISTERED',
-    },
-    {
-      eventId: 4,
-      eventType: 'QUESTION_REGISTERED',
-    },
-    {
-      eventId: 5,
-      eventType: 'TARGET_MEMBER',
-    },
-    {
-      eventId: 6,
-      eventType: 'GREETING',
-    },
-    {
-      eventId: 7,
-      eventType: 'QUESTION_REGISTERED',
-    },
-    {
-      eventId: 8,
-      eventType: 'QUESTION_REGISTERED',
-    },
-    {
-      eventId: 9,
-      eventType: 'TARGET_MEMBER',
-    },
-    {
-      eventId: 10,
-      eventType: 'GREETING',
-    },
-    {
-      eventId: 11,
-      eventType: 'QUESTION_REGISTERED',
-    },
-    {
-      eventId: 12,
-      eventType: 'QUESTION_REGISTERED',
-    },
-    {
-      eventId: 13,
-      eventType: 'TARGET_MEMBER',
-    },
-    {
-      eventId: 14,
-      eventType: 'GREETING',
-    },
-    {
-      eventId: 15,
-      eventType: 'QUESTION_REGISTERED',
-    },
-  ];
+  });
 
   return {
-    notficationList,
-    // notficationList: notfication?.contents,
+    notficationList: data?.contents ?? [],
+    myMemberId: myInfo?.meetingMemberId,
   };
 };

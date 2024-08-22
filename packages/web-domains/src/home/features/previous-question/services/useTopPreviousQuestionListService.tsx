@@ -1,14 +1,14 @@
-import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
+import { useAtomValue } from 'jotai';
+
 import { useGetTopPreviousQuestionList } from '@/home/common/apis/queries/useGetTopPreviousQuestionList';
+import { HomeAtoms } from '@/home/common/atoms/home.atom';
 
 export const useTopPreviousQuestionListService = () => {
-  const { data: meetingInfo } = useGetMeetingInfo({
-    options: { gcTime: Infinity },
-  });
+  const currentMeeting = useAtomValue(HomeAtoms.currentMeeting);
 
-  const meetingId = meetingInfo && meetingInfo.meetings[0] && meetingInfo.meetings[0].meetingId;
+  const meetingId = currentMeeting?.meetingId;
 
-  const { data: previousQuestionList } = useGetTopPreviousQuestionList({
+  const { data: previousQuestionList, isLoading } = useGetTopPreviousQuestionList({
     params: { meetingId: meetingId! },
     options: {
       select: (data) => {
@@ -19,6 +19,7 @@ export const useTopPreviousQuestionListService = () => {
   });
 
   return {
+    isLoading,
     previousQuestionList,
     meetingId,
   };

@@ -11,6 +11,7 @@ import { CloseIcon } from './assets/CloseIcon';
 import { CommentsIcon } from './assets/CommentsIcon';
 import { ConnectStar } from './assets/ConnectStar';
 import { CrownIcon } from './assets/Crown';
+import { HandShaving } from './assets/HandShaving';
 import { HomeIcon } from './assets/HomeIcon';
 import { Landscape } from './assets/Landscape';
 import { QuestionIcon } from './assets/QuestionIcon';
@@ -44,6 +45,7 @@ export const iconMap = {
   'add-user': AddUser,
   'up-and-down': UpAndDown,
   'close-icon': CloseIcon,
+  'hand-shaving': HandShaving,
   landscape: Landscape,
   crown: CrownIcon,
   stats: Stats,

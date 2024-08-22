@@ -1,3 +1,4 @@
+import { useAtomValue } from 'jotai';
 import { debounce } from 'lodash';
 import { useEffect, useState } from 'react';
 
@@ -5,20 +6,17 @@ import { getWebDomain } from '@/common';
 import { generateInviteLink } from '@/common/utils/generateInviteLink';
 import { getKeywordRegex } from '@/common/utils/getKeywordRegex';
 import { useGetInviteCode } from '@/home/common/apis/queries/useGetInviteCode';
-import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 import { MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
+import { HomeAtoms } from '@/home/common/atoms/home.atom';
 
 import { useGetGatherMemberList } from '../../../common/apis/queries/useGetGatherMemberList';
 
 export const useGatherMemberProfileListService = () => {
+  const currentMeeting = useAtomValue(HomeAtoms.currentMeeting);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [searchInput, setSearchInput] = useState<string>('');
   const [gatherMemberList, setGatherMemberList] = useState<MemberType[]>([]);
-  const { data: meetingInfo } = useGetMeetingInfo({
-    options: { gcTime: Infinity },
-  });
-
-  const meetingId = meetingInfo?.meetings[0]?.meetingId;
+  const meetingId = currentMeeting?.meetingId;
 
   const { data } = useGetGatherMemberList({
     params: { meetingId: meetingId! },

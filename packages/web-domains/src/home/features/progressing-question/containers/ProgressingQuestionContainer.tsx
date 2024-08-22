@@ -24,9 +24,8 @@ export const ProgressingQuestionContainer = () => {
       />
       <BottomSheet title="모임 변경하기" isOpen={isOpen} onClose={handleCloseBottomSheet}>
         <div css={{ height: '500px', border: '1px solid black' }}>test</div>
-        <div css={{ height: '50px', border: '1px solid black' }}>test</div>
       </BottomSheet>
-      {progressingQuestion && (
+      {progressingQuestion ? (
         <ProgressingQuestionInfo
           css={{ padding: '18px 0 20px;' }}
           renderQuestion={
@@ -38,6 +37,13 @@ export const ProgressingQuestionContainer = () => {
                 time={dayjs(progressingQuestion.startTime).valueOf()}
               />
             )
+          }
+        />
+      ) : (
+        <ProgressingQuestionInfo
+          css={{ padding: '18px 0 20px;' }}
+          renderQuestion={
+            <div css={{ backgroundColor: colors.white, padding: '32px 20px', borderRadius: '16px', height: '182px' }} />
           }
         />
       )}

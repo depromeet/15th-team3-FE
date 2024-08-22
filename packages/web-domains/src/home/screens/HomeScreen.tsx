@@ -1,6 +1,8 @@
 import { HydrationBoundary, dehydrate, QueryClient } from '@tanstack/react-query';
 import { cookies } from 'next/headers';
 
+import { getCurrentMeeting } from '@/common/utils/getCurrentMeeting';
+
 import { getGatherMemberListPrefetch } from '../common/apis/queries/useGetGatherMemberList';
 import { getMeetingInfoPrefetch } from '../common/apis/queries/useGetMeetingName';
 import { GatherMemberProfileListContainer } from '../features/gather-member/containers/GatherMemberProfileListContainer';
@@ -24,7 +26,7 @@ const getServerSideProps = async () => {
   try {
     const cookie = cookies();
     const data = await getMeetingInfoPrefetch(queryClient, cookie);
-    const meetingId = data?.meetings[0]?.meetingId;
+    const meetingId = getCurrentMeeting(data)?.meetingId;
 
     if (typeof meetingId === 'number') {
       const params = { meetingId };

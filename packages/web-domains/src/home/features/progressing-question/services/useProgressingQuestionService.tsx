@@ -2,25 +2,20 @@ import dayjs from 'dayjs';
 import { useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
-import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 import { useGetMyInfo } from '@/home/common/apis/queries/useGetMyInfo';
 import { HomeAtoms } from '@/home/common/atoms/home.atom';
+import { useSetCurrentMeeting } from '@/home/common/hooks/useSetCurrentMeeting';
 
 import { useGetProgressingQuestion } from '../../../common/apis/queries/useGetProgressingQuestion';
 
 export const useProgressingQuestionService = () => {
+  const { meetingId, gatherName } = useSetCurrentMeeting();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const setIsProgressingQuestion = useSetAtom(HomeAtoms.isProgessingQuestionAtom);
   const setHomeGlobalTime = useSetAtom(HomeAtoms.homeGlobalTimeAtom);
   const setSelectedTarget = useSetAtom(HomeAtoms.isSelectedTargetAtom);
   const setIsNextTarget = useSetAtom(HomeAtoms.isNextTargetAtom);
-  const { data: meetingInfo } = useGetMeetingInfo({
-    options: { gcTime: Infinity },
-  });
-
-  const meetingId = meetingInfo?.meetings[0]?.meetingId;
-  const meetingTitle = meetingInfo?.meetings[0]?.name;
 
   const { data: myInfo } = useGetMyInfo({
     params: { meetingId: meetingId! },
@@ -32,19 +27,15 @@ export const useProgressingQuestionService = () => {
     options: {
       refetchInterval: 1000 * 30,
       select: (data) => {
-        if (data?.isQuestionRegistered) {
+        if (progressingQuestion?.isQuestionRegistered) {
           setIsProgressingQuestion(true);
         }
 
-        if (data?.targetMember.meetingMemberId === myInfo?.meetingMemberId) {
+        if (progressingQuestion?.targetMember.meetingMemberId === myInfo?.meetingMemberId) {
           setSelectedTarget(true);
         }
 
-        if (data?.startTime) {
-          setHomeGlobalTime(dayjs(data.startTime).valueOf());
-        }
-
-        if (data?.nextTargetMember?.meetingMemberId === myInfo?.meetingMemberId) {
+        if (progressingQuestion?.nextTargetMember?.meetingMemberId === myInfo?.meetingMemberId) {
           setIsNextTarget(true);
         }
         return data;
@@ -67,10 +58,16 @@ export const useProgressingQuestionService = () => {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (progressingQuestion?.startTime) {
+      setHomeGlobalTime(dayjs(progressingQuestion.startTime).valueOf());
+    }
+  }, [progressingQuestion]);
+
   return {
     isOpen,
     meetingId,
-    gatherName: meetingTitle,
+    gatherName,
     progressingQuestion,
     handleCloseBottomSheet,
     handleOpenBottmSheet,
