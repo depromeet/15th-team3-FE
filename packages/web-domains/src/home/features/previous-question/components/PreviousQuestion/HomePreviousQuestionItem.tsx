@@ -29,10 +29,14 @@ export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemP
         css={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
       >
         <div css={{ flex: '1' }}>
-          <Txt as="p" typography="heading3" color={colors.primary500} css={{ marginBottom: '4px' }}>
-            {content}
-            <Txt typography="title2">이/가 가장 많았어요.</Txt>
-          </Txt>
+          {content ? (
+            <Txt as="p" typography="heading3" color={colors.primary500} css={{ marginBottom: '4px' }}>
+              {content}
+              <Txt typography="title2">이/가 가장 많았어요.</Txt>
+            </Txt>
+          ) : (
+            <Txt typography="title2">아무도 답변하지 않았어요...</Txt>
+          )}
           <Txt as="p" typography="body3" color={colors.grey600} css={{ marginBottom: '8px' }}>
             {title}
           </Txt>

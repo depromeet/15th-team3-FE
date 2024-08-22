@@ -1,6 +1,8 @@
 import { debounce } from 'lodash';
 import { useEffect, useState } from 'react';
 
+import { getWebDomain } from '@/common';
+import { generateInviteLink } from '@/common/utils/generateInviteLink';
 import { getKeywordRegex } from '@/common/utils/getKeywordRegex';
 import { useGetInviteCode } from '@/home/common/apis/queries/useGetInviteCode';
 import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
@@ -70,7 +72,7 @@ export const useGatherMemberProfileListService = () => {
 
   return {
     isOpen,
-    inviteCode,
+    inviteLink: generateInviteLink(inviteCode?.code) ?? `${getWebDomain()}`,
     searchInput,
     gatherMemberList,
     handleChangeSearchInput,

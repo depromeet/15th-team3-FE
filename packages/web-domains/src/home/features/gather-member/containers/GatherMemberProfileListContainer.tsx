@@ -9,8 +9,15 @@ import { GatherMemberSearchInput } from '../components/GatherMemberSearch/Gather
 import { useGatherMemberProfileListService } from '../services/useGatherMemberProfileListService';
 
 export const GatherMemberProfileListContainer = () => {
-  const { isOpen, gatherMemberList, searchInput, handleChangeSearchInput, inviteModalClose, inviteModalOpen } =
-    useGatherMemberProfileListService();
+  const {
+    isOpen,
+    gatherMemberList,
+    searchInput,
+    inviteLink,
+    handleChangeSearchInput,
+    inviteModalClose,
+    inviteModalOpen,
+  } = useGatherMemberProfileListService();
 
   return (
     <section css={{ width: '100%', padding: '24px 20px' }}>
@@ -32,6 +39,7 @@ export const GatherMemberProfileListContainer = () => {
         onClose={inviteModalClose}
         topTitle="모임원들을 모링으로"
         bottomTitle="초대해보세요!"
+        shareLink={inviteLink}
       />
     </section>
   );
