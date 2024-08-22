@@ -53,3 +53,12 @@ export const screenRootCss = css({
   position: 'relative',
   height: '100dvh',
 });
+
+export const profileRootCss = css({
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: `${size['xs']} ${size['2xs']} ${size['md']}`,
+  backgroundColor: colors.white,
+});

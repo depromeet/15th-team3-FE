@@ -3,8 +3,9 @@
 import { Badge, Txt } from '@sambad/sds/components';
 import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 import Image from 'next/image';
+import { Fragment } from 'react';
 
-import { badgeContainerCss, nameCss, rootCss } from './styles';
+import { badgeContainerCss, nameCss } from './styles';
 import { generateAge, generateGender } from './utils';
 
 interface ProfileProps {
@@ -28,7 +29,7 @@ export const Profile = (props: ProfileProps) => {
   const infoBadges = [age, gender, mbti, location, job].filter(Boolean);
 
   return (
-    <section css={rootCss}>
+    <Fragment>
       {imageUrl != null && (
         <Image
           src={imageUrl}
@@ -48,6 +49,6 @@ export const Profile = (props: ProfileProps) => {
           </Badge>
         ))}
       </div>
-    </section>
+    </Fragment>
   );
 };
