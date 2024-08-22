@@ -17,7 +17,7 @@ interface CurrentQuestionerInfoProps {
 export const CurrentQuestionInfo = ({ questionCount, questioner }: CurrentQuestionerInfoProps) => {
   return (
     <div css={wrapperCss}>
-      <Txt color={colors.primary600} style={{ fontWeight: 900, fontSize: '34px' }}>
+      <Txt color={colors.primary600} style={{ fontWeight: 900, fontSize: '40px' }}>
         Q.
       </Txt>
       <div css={countWrapperCss}>

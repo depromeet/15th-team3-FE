@@ -3,10 +3,10 @@ import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
 
 export const wrapperCss = css({
   width: '100%',
-  maxWidth: '144px',
+  maxWidth: '168px',
   position: 'absolute',
-  top: 80,
-  left: '49.5%',
+  top: 94,
+  left: '50.5%',
   transform: 'translateX(-50%)',
 });
 
@@ -17,7 +17,7 @@ export const countWrapperCss = css({
   padding: `${size['6xs']} ${size['2xs']}`,
   borderRadius: `${borderRadiusVariants.large}`,
   backgroundColor: `${colors.primary100}`,
-  marginBottom: size['2xl'],
+  marginBottom: size['3xl'],
 });
 
 export const profileWrapperCss = css({

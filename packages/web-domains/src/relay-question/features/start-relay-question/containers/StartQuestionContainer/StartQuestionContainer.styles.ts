@@ -17,7 +17,7 @@ export const startQuestionContentCss = css({
 
 export const startQuestionBackgroundCss = css({
   width: '100%',
-  maxWidth: '430px',
+  maxWidth: '600px',
   height: 'max-content',
   padding: `${size['2xs']} ${size['2xs']} ${size.xl} ${size['2xs']}`,
   position: 'relative',

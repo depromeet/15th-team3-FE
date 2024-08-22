@@ -38,7 +38,7 @@ export const StartQuestionContainer = () => {
             >
               시작하기
             </Button>
-            <RelayStartBackground css={{ width: '100%', position: 'absolute', bottom: 0 }} />
+            <RelayStartBackground css={{ width: '100%', height: 'auto', position: 'absolute', bottom: 0 }} />
           </section>
         </div>
       </div>
