@@ -1,4 +1,5 @@
 import { Txt } from '@sambad/sds/components';
+import { colors } from '@sds/theme';
 import { HTMLAttributes, ReactNode } from 'react';
 
 interface ProgressingQuestionInfoProps extends HTMLAttributes<HTMLDivElement> {
@@ -8,7 +9,7 @@ interface ProgressingQuestionInfoProps extends HTMLAttributes<HTMLDivElement> {
 export const ProgressingQuestionInfo = ({ renderQuestion, ...rest }: ProgressingQuestionInfoProps) => {
   return (
     <div {...rest}>
-      <Txt typography="subtitle1" as="p" css={{ marginBottom: '8px' }}>
+      <Txt typography="subtitle1" color={colors.black} as="p" css={{ marginBottom: '8px' }}>
         진행 중인 릴레이 질문
       </Txt>
       {renderQuestion}

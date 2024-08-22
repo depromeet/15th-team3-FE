@@ -1,4 +1,5 @@
 import { Txt } from '@sambad/sds/components';
+import { colors } from '@sds/theme';
 import Link from 'next/link';
 import { HTMLAttributes } from 'react';
 
@@ -16,7 +17,7 @@ export const GatherName = ({ gatherName, profileImage, ...rest }: GatherNameProp
         <Txt typography="heading1" color="#ff7664" as="h1" css={{ marginBottom: '4px' }}>
           {gatherName}
         </Txt>
-        <Txt typography="heading2" as="h2">
+        <Txt typography="heading2" color={colors.black} as="h2">
           모임원들과 더 가까워져 볼까요?
         </Txt>
       </div>

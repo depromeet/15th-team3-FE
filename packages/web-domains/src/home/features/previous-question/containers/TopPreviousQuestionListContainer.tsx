@@ -21,6 +21,7 @@ export const TopPreviousQuestionListContainer = () => {
       <Txt
         as="p"
         typography="subtitle1"
+        color={colors.grey800}
         css={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}
       >
         이전 질문

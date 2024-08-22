@@ -39,13 +39,13 @@ export const QuestionDetail = ({
 }: QuestionDetailProps) => {
   return (
     <div css={wrapperCss}>
-      <Txt typography="heading3" fontWeight="bold">
+      <Txt typography="heading3" color={colors.black} fontWeight="bold">
         질문 미리보기
       </Txt>
       <div css={imageWrapperCss}>
         <Image src={imageUrl} alt={title} width={64} height={64} />
       </div>
-      <Txt typography="heading2" fontWeight="bold" css={{ textAlign: 'center' }}>
+      <Txt typography="heading2" color={colors.black} fontWeight="bold" css={{ textAlign: 'center' }}>
         {title}
       </Txt>
       <Txt color={colors.grey500} typography="title4" fontWeight="medium" css={answerExampleTextCss}>

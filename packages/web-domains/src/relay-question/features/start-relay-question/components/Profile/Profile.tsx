@@ -34,7 +34,9 @@ export const Profile = ({ profileImageUrl }: ProfileProps) => {
   return (
     <section css={profileSectionCss}>
       <div css={profileIntroductionCss}>
-        <Txt typography="heading1">이번 릴레이 질문인은 바로 나!</Txt>
+        <Txt typography="heading1" color={colors.black} fontWeight="bold">
+          이번 릴레이 질문인은 바로 나!
+        </Txt>
         <Txt color={colors.grey600} style={{ textAlign: 'center' }}>
           릴레이 질문을 통해서 모임원들에게
           <br /> 궁금한 질문을 물어보세요

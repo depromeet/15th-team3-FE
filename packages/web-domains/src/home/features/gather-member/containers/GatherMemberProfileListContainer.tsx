@@ -1,6 +1,7 @@
 'use client';
 
 import { Txt } from '@sambad/sds/components';
+import { colors } from '@sds/theme';
 
 import { GatherMemberProfileList } from '../components/GatherMemberProfile/GatherMemberProfileList';
 import { useGatherMemberProfileListService } from '../services/useGatherMemberProfileListService';
@@ -14,7 +15,7 @@ export const GatherMemberProfileListContainer = () => {
 
   return (
     <section css={{ width: '100%', padding: '18px 20px 112px' }}>
-      <Txt as="p" typography="subtitle1" css={{ marginBottom: '14px' }}>
+      <Txt as="p" typography="subtitle1" color={colors.grey800} css={{ marginBottom: '14px' }}>
         모임원 프로필
       </Txt>
       <GatherMemberProfileList memberList={gatherMemberList} />
