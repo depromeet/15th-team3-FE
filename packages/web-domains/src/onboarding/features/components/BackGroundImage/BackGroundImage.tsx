@@ -13,18 +13,18 @@ export const BackGroundImage = (props: BackGroundProps) => {
   }
 
   return (
-    <div css={backGroundImageCss}>
-      <Image src={imageUrl} alt="background-img" fill priority />
+    <div css={backGroundContainerCss}>
+      <Image src={imageUrl} alt="background-img" fill priority style={{ objectFit: 'contain' }} />
     </div>
   );
 };
 
-const backGroundImageCss = css({
+const backGroundContainerCss = css({
   position: 'absolute',
-  top: '50%',
+  top: '0',
   left: '50%',
-  transform: 'translate(-50%, -50%)',
+  transform: 'translate(-50%, 0)',
   width: '100%',
-  aspectRatio: '1',
-  zIndex: '1',
+  height: 'calc(100% - 116px)',
+  zIndex: '-1',
 });

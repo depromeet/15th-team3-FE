@@ -1,5 +1,3 @@
-'use client';
-
 import { colors } from '@sds/theme';
 import { CSSProperties, PropsWithChildren } from 'react';
 

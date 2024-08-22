@@ -9,14 +9,15 @@ import { StartButton } from '../../components/Button/StartButton';
 
 interface FloatingButtonContainerProps {
   step: StepType;
+  redirectUrl?: string;
 }
 
 export const FloatingButtonContainer = (props: FloatingButtonContainerProps) => {
-  const { step } = props;
+  const { step, redirectUrl } = props;
 
   return (
     <div css={buttonWrapperCss} style={{ background: backGroundStyles[step] || 'none' }}>
-      {step === STEPS.ABOUT_ME ? <StartButton /> : <NextButton />}
+      {step === STEPS.ABOUT_ME ? <StartButton redirectUrl={redirectUrl} /> : <NextButton />}
     </div>
   );
 };
