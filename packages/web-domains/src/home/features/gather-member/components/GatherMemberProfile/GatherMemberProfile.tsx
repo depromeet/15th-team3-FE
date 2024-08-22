@@ -10,7 +10,7 @@ interface GatherMemberProfileProps {
 }
 
 export const GatherMemberProfile = ({ member }: GatherMemberProfileProps) => {
-  const { name, role, profileImageFileUrl, meetingMemberId } = member;
+  const { name, role, profileImageFileUrl, meetingMemberId, isHandWaved } = member;
   const isOwner = role === 'OWNER';
 
   return (
@@ -29,7 +29,7 @@ export const GatherMemberProfile = ({ member }: GatherMemberProfileProps) => {
           <ProfileImage imageUrl={profileImageFileUrl} isConnection={isOwner} />
           <Txt typography="title2" css={{ marginTop: '12px' }}>
             {name}
-            {isOwner && (
+            {isHandWaved && (
               <Txt typography="title1" css={{ paddingLeft: '4px', bottom: '1px', position: 'relative' }}>
                 👑
               </Txt>
