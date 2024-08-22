@@ -81,7 +81,7 @@ export const BottomSheet = ({
             />
           </div>
         )}
-        <div css={{ overflow: 'auto', height: '100%', padding: '0 20px' }} ref={setContentRef}>
+        <div css={{ overflow: 'auto', height: '100%', padding: `0 20px ${title ? '0' : '60px'}` }} ref={setContentRef}>
           {children}
         </div>
       </div>
