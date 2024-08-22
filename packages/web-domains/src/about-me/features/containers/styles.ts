@@ -61,4 +61,8 @@ export const profileRootCss = css({
   alignItems: 'center',
   padding: `${size['xs']} ${size['2xs']} ${size['md']}`,
   backgroundColor: colors.white,
+
+  '& > * + *': {
+    marginTop: size['xs'],
+  },
 });
