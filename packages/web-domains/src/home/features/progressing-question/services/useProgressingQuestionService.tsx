@@ -4,22 +4,17 @@ import { useEffect, useState } from 'react';
 
 import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 import { useGetMyInfo } from '@/home/common/apis/queries/useGetMyInfo';
-import {
-  homeGlobalTimeAtom,
-  isNextTargetAtom,
-  isProgessingQuestionAtom,
-  isSelectedTargetAtom,
-} from '@/home/common/atoms/home.atom';
+import { HomeAtoms } from '@/home/common/atoms/home.atom';
 
 import { useGetProgressingQuestion } from '../../../common/apis/queries/useGetProgressingQuestion';
 
 export const useProgressingQuestionService = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const setIsProgressingQuestion = useSetAtom(isProgessingQuestionAtom);
-  const setHomeGlobalTime = useSetAtom(homeGlobalTimeAtom);
-  const setSelectedTarget = useSetAtom(isSelectedTargetAtom);
-  const setIsNextTarget = useSetAtom(isNextTargetAtom);
+  const setIsProgressingQuestion = useSetAtom(HomeAtoms.isProgessingQuestionAtom);
+  const setHomeGlobalTime = useSetAtom(HomeAtoms.homeGlobalTimeAtom);
+  const setSelectedTarget = useSetAtom(HomeAtoms.isSelectedTargetAtom);
+  const setIsNextTarget = useSetAtom(HomeAtoms.isNextTargetAtom);
   const { data: meetingInfo } = useGetMeetingInfo({
     options: { gcTime: Infinity },
   });

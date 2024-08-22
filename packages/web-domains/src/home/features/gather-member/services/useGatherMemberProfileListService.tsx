@@ -2,6 +2,7 @@ import { debounce } from 'lodash';
 import { useEffect, useState } from 'react';
 
 import { getKeywordRegex } from '@/common/utils/getKeywordRegex';
+import { useGetInviteCode } from '@/home/common/apis/queries/useGetInviteCode';
 import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 import { MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 
@@ -22,6 +23,11 @@ export const useGatherMemberProfileListService = () => {
     options: {
       enabled: !!meetingId,
     },
+  });
+
+  const { data: inviteCode } = useGetInviteCode({
+    params: { meetingId: meetingId! },
+    options: { enabled: !!meetingId },
   });
 
   const handleChangeSearchInput = (value: string) => {
@@ -64,6 +70,7 @@ export const useGatherMemberProfileListService = () => {
 
   return {
     isOpen,
+    inviteCode,
     searchInput,
     gatherMemberList,
     handleChangeSearchInput,

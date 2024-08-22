@@ -2,21 +2,16 @@ import { useAtomValue } from 'jotai';
 import { useRouter } from 'next/navigation';
 
 import { useDialogContext } from '@/common/contexts/DialogProvider';
-import {
-  homeGlobalTimeAtom,
-  isNextTargetAtom,
-  isProgessingQuestionAtom,
-  isSelectedTargetAtom,
-} from '@/home/common/atoms/home.atom';
+import { HomeAtoms } from '@/home/common/atoms/home.atom';
 
 export const useFloatingButtonService = () => {
   const { isOpen, open, close } = useDialogContext();
   const { push } = useRouter();
 
-  const homeGlobalTime = useAtomValue(homeGlobalTimeAtom);
-  const isProgessingQuestion = useAtomValue(isProgessingQuestionAtom);
-  const isSelectedTarget = useAtomValue(isSelectedTargetAtom);
-  const isNextTarget = useAtomValue(isNextTargetAtom);
+  const homeGlobalTime = useAtomValue(HomeAtoms.homeGlobalTimeAtom);
+  const isProgessingQuestion = useAtomValue(HomeAtoms.isProgessingQuestionAtom);
+  const isSelectedTarget = useAtomValue(HomeAtoms.isSelectedTargetAtom);
+  const isNextTarget = useAtomValue(HomeAtoms.isNextTargetAtom);
   let buttonType: 'start' | 'countdown' | null = null;
 
   const showButton = isProgessingQuestion;
