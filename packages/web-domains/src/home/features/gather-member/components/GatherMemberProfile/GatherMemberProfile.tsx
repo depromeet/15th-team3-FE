@@ -26,10 +26,10 @@ export const GatherMemberProfile = ({ member }: GatherMemberProfileProps) => {
     >
       <Link href={`/about/${meetingMemberId}`}>
         <div css={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
-          <ProfileImage imageUrl={profileImageFileUrl} isConnection={isOwner} />
+          <ProfileImage imageUrl={profileImageFileUrl} isConnection={isHandWaved} />
           <Txt typography="title2" css={{ marginTop: '12px' }}>
             {name}
-            {isHandWaved && (
+            {isOwner && (
               <Txt typography="title1" css={{ paddingLeft: '4px', bottom: '1px', position: 'relative' }}>
                 👑
               </Txt>
