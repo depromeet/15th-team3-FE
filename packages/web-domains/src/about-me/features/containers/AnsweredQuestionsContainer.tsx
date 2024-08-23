@@ -34,7 +34,7 @@ export const AnsweredQuestionsContainer = () => {
           <Accordion.Item key={answer.idx} value={`${answer.idx}`}>
             <div css={checkboxAndTriggerCss}>
               <If condition={isModifyPage}>
-                <Checkbox {...checkboxAttribute.attribute} />
+                <Checkbox defaultChecked={!answer.isHidden} {...checkboxAttribute.attribute} />
               </If>
               <Accordion.Trigger>
                 <Txt typography="subtitle1" color={colors.primary500} style={{ paddingRight: size['6xs'] }}>

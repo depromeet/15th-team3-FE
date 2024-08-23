@@ -7,4 +7,5 @@ interface Content {
   title: string;
   content: Array<string>;
   commentContent: string;
+  isHidden: boolean;
 }
