@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useSetCurrentMeeting } from '@/home/common/hooks/useSetCurrentMeeting';
 
 export const useMeetingIntroService = () => {
-  const { meetingId, meetingInfo, gatherName } = useSetCurrentMeeting();
+  const { meetingId, meetingInfo, gatherName, handleChangeCurrentMeeting } = useSetCurrentMeeting();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -22,5 +22,6 @@ export const useMeetingIntroService = () => {
     gatherName,
     handleOpenBottmSheet,
     handleCloseBottomSheet,
+    handleChangeCurrentMeeting,
   };
 };

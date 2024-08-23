@@ -6,9 +6,10 @@ import Link from 'next/link';
 
 interface StartButtonProps {
   questionId: number;
+  meetingId?: number;
 }
 
-export const StartButton = ({ questionId }: StartButtonProps) => {
+export const StartButton = ({ questionId, meetingId }: StartButtonProps) => {
   return (
     <div
       css={{
@@ -20,7 +21,7 @@ export const StartButton = ({ questionId }: StartButtonProps) => {
         padding: '0 20px',
       }}
     >
-      <Link href={`/answer/${questionId}`}>
+      <Link href={`/${meetingId}/answer/${questionId}`}>
         <Button css={{ height: size['3xl'] }}>
           <Txt typography="subtitle1" color={colors.white}>
             시작하기

@@ -1,23 +1,22 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
+import { useAtomValue } from 'jotai';
 import { useEffect } from 'react';
 
 import { PROGRESSING_QUESTION_QUERY_KEY } from '@/answer/common/apis/queries/useGetProgressingQuestion';
 import { useDialogContext } from '@/common/contexts/DialogProvider';
 import { useInActiveEventMutation } from '@/home/common/apis/mutations/useInActiveEventMutation';
-import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 import { useGetNotification } from '@/home/common/apis/queries/useGetNotification';
 import { ProgressingQuestionType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
+import { HomeAtoms } from '@/home/common/atoms/home.atom';
 
 export const useNotificationService = () => {
   const queryClient = useQueryClient();
+  const currentMeeting = useAtomValue(HomeAtoms.currentMeeting);
 
   const { isOpen, close, open } = useDialogContext();
-  const { data: meetingInfo } = useGetMeetingInfo({
-    options: { gcTime: Infinity },
-  });
 
-  const meetingId = meetingInfo?.meetings[0]?.meetingId;
+  const meetingId = currentMeeting?.meetingId;
 
   const progressingQuestionData: ProgressingQuestionType | undefined = queryClient.getQueryData([
     PROGRESSING_QUESTION_QUERY_KEY,
@@ -62,6 +61,10 @@ export const useNotificationService = () => {
       open();
     }
   }, [notfication]);
+
+  useEffect(() => {
+    close();
+  }, [currentMeeting]);
 
   return {
     notfication: notfication?.contents[0],

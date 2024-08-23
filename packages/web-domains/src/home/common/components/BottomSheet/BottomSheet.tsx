@@ -15,7 +15,6 @@ interface BottomSheetProps {
 
 export const BottomSheet = ({
   title,
-
   isOpen,
   onClose,
   children,

@@ -9,7 +9,7 @@ import { useSetCurrentMeeting } from '@/home/common/hooks/useSetCurrentMeeting';
 import { useGetProgressingQuestion } from '../../../common/apis/queries/useGetProgressingQuestion';
 
 export const useProgressingQuestionService = () => {
-  const { meetingId, gatherName } = useSetCurrentMeeting();
+  const { meetingId, gatherName, meetingInfo, handleChangeCurrentMeeting } = useSetCurrentMeeting();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const setIsProgressingQuestion = useSetAtom(HomeAtoms.isProgessingQuestionAtom);
@@ -26,20 +26,7 @@ export const useProgressingQuestionService = () => {
     params: { meetingId: meetingId! },
     options: {
       refetchInterval: 1000 * 30,
-      select: (data) => {
-        if (progressingQuestion?.isQuestionRegistered) {
-          setIsProgressingQuestion(true);
-        }
 
-        if (progressingQuestion?.targetMember.meetingMemberId === myInfo?.meetingMemberId) {
-          setSelectedTarget(true);
-        }
-
-        if (progressingQuestion?.nextTargetMember?.meetingMemberId === myInfo?.meetingMemberId) {
-          setIsNextTarget(true);
-        }
-        return data;
-      },
       enabled: !!meetingId,
     },
   });
@@ -59,17 +46,31 @@ export const useProgressingQuestionService = () => {
   }, [isOpen]);
 
   useEffect(() => {
+    if (progressingQuestion?.isQuestionRegistered) {
+      setIsProgressingQuestion(true);
+    }
+
     if (progressingQuestion?.startTime) {
       setHomeGlobalTime(dayjs(progressingQuestion.startTime).valueOf());
     }
-  }, [progressingQuestion]);
+
+    if (progressingQuestion?.targetMember?.meetingMemberId === myInfo?.meetingMemberId) {
+      setSelectedTarget(true);
+    }
+
+    if (progressingQuestion?.nextTargetMember?.meetingMemberId === myInfo?.meetingMemberId) {
+      setIsNextTarget(true);
+    }
+  }, [progressingQuestion, myInfo]);
 
   return {
+    meetingInfo,
     isOpen,
     meetingId,
     gatherName,
     progressingQuestion,
     handleCloseBottomSheet,
     handleOpenBottmSheet,
+    handleChangeCurrentMeeting,
   };
 };

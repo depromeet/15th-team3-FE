@@ -9,7 +9,6 @@ import { useCommentMutation } from '@/answer/common/apis/mutations/useCommentMut
 import { PROGRESSING_QUESTION_QUERY_KEY } from '@/answer/common/apis/queries/useGetProgressingQuestion';
 import { answerAtoms } from '@/answer/common/atoms/answer.atom';
 import { GATHER_MEMBER_QUERY_KEY } from '@/home/common/apis/queries/useGetGatherMemberList';
-import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 import { NOTIFICATION_QUERY_KEY } from '@/home/common/apis/queries/useGetNotification';
 import { TOP_PREVIOUS_QUESTION_QUERY_KEY } from '@/home/common/apis/queries/useGetTopPreviousQuestionList';
 
@@ -18,25 +17,19 @@ export const useCommentService = () => {
   const { push } = useRouter();
   const [comment, setComment] = useState<string>('');
   const answerList = useAtomValue(answerAtoms.answerList);
-  const { questionId } = useParams<{ questionId: string }>();
+  const { meetingId, questionId } = useParams<{ meetingId: string; questionId: string }>();
   const { mutateAsync: sendCommentMutate } = useCommentMutation({});
   const { mutateAsync: sendAnswerMutate } = useAnswerQuestionMutation({});
 
-  const { data: meetingInfo } = useGetMeetingInfo({
-    options: { gcTime: Infinity },
-  });
-
   const handleSubmit = async () => {
-    const meetingId = meetingInfo?.meetings[0]?.meetingId;
-
     if (!meetingId) {
       return;
     }
 
     try {
-      await sendAnswerMutate({ meetingId: meetingId.toString(), meetingQuestionId: questionId, answerIds: answerList });
+      await sendAnswerMutate({ meetingId: meetingId, meetingQuestionId: questionId, answerIds: answerList });
       if (comment.length) {
-        await sendCommentMutate({ content: comment, meetingId, meetingQuestionId: questionId });
+        await sendCommentMutate({ content: comment, meetingId: parseInt(meetingId), meetingQuestionId: questionId });
       }
 
       const questionInvalidate = queryClient.invalidateQueries({
@@ -56,7 +49,7 @@ export const useCommentService = () => {
 
       Promise.all([questionInvalidate, topPreviousQuestionInvalidate, gatherMemberInvalidate, notificationInvalidate]);
 
-      push('/answer/closing');
+      push(`/${meetingId}/answer/closing`);
     } catch (error) {
       if (isAxiosError(error)) {
         console.log(error);

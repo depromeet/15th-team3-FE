@@ -1,3 +1,4 @@
+import { AddMeeting } from './assets/AddMeeting';
 import { AddUser } from './assets/AddUser';
 import { AngleDownIcon } from './assets/AngleDown';
 import { AngleLeftIcon } from './assets/AngleLeft';
@@ -7,8 +8,9 @@ import { AngleSmallUpIcon } from './assets/AngleSmallUp';
 import { AngleUpIcon } from './assets/AngleUp';
 import { BellIcon } from './assets/BellIcon';
 import { CaretDownIcon } from './assets/CaretDown';
-import { CloseIcon } from './assets/CloseIcon';
 import { CheckIcon } from './assets/Check';
+import { CheckIconMeet } from './assets/CheckIcon';
+import { CloseIcon } from './assets/CloseIcon';
 import { CommentsIcon } from './assets/CommentsIcon';
 import { ConnectStar } from './assets/ConnectStar';
 import { CrownIcon } from './assets/Crown';
@@ -47,6 +49,8 @@ export const iconMap = {
   'up-and-down': UpAndDown,
   'close-icon': CloseIcon,
   'hand-shaving': HandShaving,
+  'check-icon': CheckIconMeet,
+  'add-meeting': AddMeeting,
   landscape: Landscape,
   crown: CrownIcon,
   stats: Stats,

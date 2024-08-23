@@ -3,17 +3,21 @@ import { colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 import { Modal, ModalProps } from '../../../../common/components/Modal/Modal';
-import { useDialogContext } from '../../../../common/contexts/DialogProvider';
 
 interface ArrivedQuestionNotificationProps extends ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
   onClickAnswerLater?: () => void;
 }
 
-export const ArrivedQuestionNotification = ({ onClickAnswerLater, ...rest }: ArrivedQuestionNotificationProps) => {
-  const { isOpen, close } = useDialogContext();
-
+export const ArrivedQuestionNotification = ({
+  isOpen,
+  onClose,
+  onClickAnswerLater,
+  ...rest
+}: ArrivedQuestionNotificationProps) => {
   return (
-    <Modal {...rest} isOpen={isOpen} onClose={close}>
+    <Modal {...rest} isOpen={isOpen} onClose={onClose}>
       <div css={{ padding: '12px 0 0' }}>
         <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Txt as="p" typography="heading2" css={{ marginBottom: '8px' }} color={colors.black}>
@@ -34,7 +38,7 @@ export const ArrivedQuestionNotification = ({ onClickAnswerLater, ...rest }: Arr
             css={{ border: 'none' }}
             onClick={() => {
               onClickAnswerLater?.();
-              close();
+              onClose();
             }}
           >
             <Txt typography="title3" color={colors.black}>

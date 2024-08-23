@@ -13,7 +13,11 @@ import { useTopPreviousQuestionListService } from '../services/useTopPreviousQue
 export const TopPreviousQuestionListContainer = () => {
   const { previousQuestionList, meetingId, isLoading } = useTopPreviousQuestionListService();
 
-  if (isLoading || !previousQuestionList || !previousQuestionList.contents.length) {
+  if (!previousQuestionList || !previousQuestionList.contents.length) {
+    return null;
+  }
+
+  if (isLoading) {
     return (
       <section css={{ width: '100%', padding: '32px 20px 12px' }}>
         <Txt

@@ -22,7 +22,7 @@ export const FloatingButtonContainer = () => {
     >
       {buttonType === 'start' && <StartRelayQuestionButton onClick={handleClickRelayStartButton} />}
       {buttonType === 'countdown' && <AlreadyProgressingQuestionButton time={homeGlobalTime} onClick={open} />}
-      <ProgressingQuestionModal isOpen={isOpen} countdownTimer={homeGlobalTime} onClose={handleClose} />
+      <ProgressingQuestionModal isOpen={isOpen} time={homeGlobalTime} onClose={handleClose} />
     </div>
   );
 };

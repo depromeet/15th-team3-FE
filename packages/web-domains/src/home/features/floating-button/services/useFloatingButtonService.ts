@@ -1,10 +1,14 @@
 import { useAtomValue } from 'jotai';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import { useDialogContext } from '@/common/contexts/DialogProvider';
 import { HomeAtoms } from '@/home/common/atoms/home.atom';
 
 export const useFloatingButtonService = () => {
+  const currentMeeting = useAtomValue(HomeAtoms.currentMeeting);
+  const [buttonType, setButtonType] = useState<'start' | 'countdown' | null>(null);
+
   const { isOpen, open, close } = useDialogContext();
   const { push } = useRouter();
 
@@ -12,20 +16,22 @@ export const useFloatingButtonService = () => {
   const isProgessingQuestion = useAtomValue(HomeAtoms.isProgessingQuestionAtom);
   const isSelectedTarget = useAtomValue(HomeAtoms.isSelectedTargetAtom);
   const isNextTarget = useAtomValue(HomeAtoms.isNextTargetAtom);
-  let buttonType: 'start' | 'countdown' | null = null;
 
-  const showButton = isProgessingQuestion;
+  useEffect(() => {
+    const showButton = isProgessingQuestion;
+    const startButtonActive = !showButton && isSelectedTarget;
+    const countDownButtonActive = showButton && isNextTarget;
 
-  const startButtonActive = !showButton && isSelectedTarget;
-  const countDownButtonActive = showButton && isNextTarget;
+    if (startButtonActive) {
+      setButtonType('start');
+      return;
+    }
 
-  if (startButtonActive) {
-    buttonType = 'start';
-  }
-
-  if (countDownButtonActive) {
-    buttonType = 'countdown';
-  }
+    if (countDownButtonActive) {
+      setButtonType('countdown');
+      return;
+    }
+  }, [isProgessingQuestion, isSelectedTarget, isNextTarget, currentMeeting]);
 
   const handleClose = () => {
     close();
@@ -36,7 +42,7 @@ export const useFloatingButtonService = () => {
       open();
       return;
     }
-    push('/start-relay-question');
+    push(`${currentMeeting?.meetingId}/start-relay-question`);
   };
 
   return {
