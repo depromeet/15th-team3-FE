@@ -2,23 +2,23 @@ import { Button, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 
-import { RectQuestion } from '../../../../common/asset/rectquestion';
 import { Modal, ModalProps } from '../../../../common/components/Modal/Modal';
 import { useDialogContext } from '../../../../common/contexts/DialogProvider';
-import { Avatar } from '../../../common/components/Avatar/Avatar';
 
-interface SelectedTargetMemberNotificationProps extends ModalProps {}
+interface SelectedTargetMemberNotificationProps extends ModalProps {
+  onClickAnswerLater?: () => void;
+}
 
-export const SelectedTargetMemberNotification = ({ ...rest }: SelectedTargetMemberNotificationProps) => {
+export const SelectedTargetMemberNotification = ({
+  onClickAnswerLater,
+  ...rest
+}: SelectedTargetMemberNotificationProps) => {
   const { isOpen, close } = useDialogContext();
 
   return (
     <Modal {...rest} isOpen={isOpen} onClose={close}>
-      <div>
+      <div css={{ padding: '12px 0 0' }}>
         <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <span css={{ marginBottom: '20px' }}>
-            <Avatar Icon={RectQuestion} size={80} />
-          </span>
           <Txt as="p" typography="heading2" css={{ marginBottom: '8px' }}>
             릴레이 질문인으로 선택되었어요!
           </Txt>
@@ -32,6 +32,18 @@ export const SelectedTargetMemberNotification = ({ ...rest }: SelectedTargetMemb
               </Txt>
             </Button>
           </Link>
+          <Button
+            variant="sub"
+            css={{ border: 'none' }}
+            onClick={() => {
+              onClickAnswerLater?.();
+              close();
+            }}
+          >
+            <Txt typography="title3" color={colors.black}>
+              나중에 할게요
+            </Txt>
+          </Button>
         </div>
       </div>
     </Modal>

@@ -1,18 +1,13 @@
 import { Txt, Button } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 
-import { RectQuestion } from '@/common/asset/rectquestion';
 import { Modal, ModalProps } from '@/common/components/Modal/Modal';
-import { Avatar } from '@/home/common/components/Avatar/Avatar';
 
 export const AlreadyAnsweredQuestionModal = ({ ...rest }: ModalProps) => {
   return (
     <Modal {...rest}>
-      <div>
+      <div css={{ padding: '12px 0 0' }}>
         <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <span css={{ marginBottom: '20px' }}>
-            <Avatar Icon={RectQuestion} size={80} />
-          </span>
           <Txt as="p" typography="heading2" css={{ marginBottom: '8px' }} color={colors.black}>
             이미 답변한 릴레이 질문이에요!
           </Txt>
