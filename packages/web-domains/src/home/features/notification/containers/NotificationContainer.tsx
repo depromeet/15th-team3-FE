@@ -17,7 +17,11 @@ export const NotificationContainer = () => {
         />
       )}
       {notfication?.eventType === 'TARGET_MEMBER' && isNotRegistered && (
-        <SelectedTargetMemberNotification isOpen={isOpen} onClose={handleClose} />
+        <SelectedTargetMemberNotification
+          isOpen={isOpen}
+          onClose={handleClose}
+          onClickAnswerLater={handleClickActionLater}
+        />
       )}
     </>
   );
