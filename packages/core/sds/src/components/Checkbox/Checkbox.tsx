@@ -16,7 +16,15 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
-  const { label, checked: checkedFromProps, defaultChecked, onCheckedChange, disabled, ...restProps } = props;
+  const {
+    label,
+    checked: checkedFromProps,
+    defaultChecked,
+    onCheckedChange,
+    disabled,
+    style: styleFromProps,
+    ...restProps
+  } = props;
 
   const id = useId();
 
@@ -28,10 +36,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
 
   const rootStyle = {
     ...checkedVariants[checked ? 'checked' : 'default'],
+    ...styleFromProps,
   } as CSSProperties;
 
   return (
-    <div css={checkboxRootCss} style={rootStyle}>
+    <div css={checkboxRootCss} style={rootStyle} {...restProps}>
       <input
         ref={ref}
         id={id}
@@ -46,7 +55,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
         aria-checked={checked}
         aria-disabled={disabled}
         tabIndex={0}
-        {...restProps}
       />
       <span css={indicatorCss} />
       {checked && <Icon css={iconCss} name="check" size={12} color={colors.white} />}
