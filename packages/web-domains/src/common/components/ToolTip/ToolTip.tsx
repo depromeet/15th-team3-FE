@@ -3,8 +3,7 @@ import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import { PropsWithChildren } from 'react';
 
-import { RelayToolTipPolygon } from '../../../relay-question/assets/RelayToolTipPolygon';
-
+import { RelayToolTipPolygon } from './RelayToolTipPolygon';
 import { textWrapperCss, wrapperCss } from './ToolTip.styles';
 
 export const ToolTip = ({ children }: PropsWithChildren) => {
