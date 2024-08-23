@@ -1,9 +1,9 @@
 import { Txt } from '@sambad/sds/components';
-import { colors, borderRadiusVariants } from '@sambad/sds/theme';
+import { borderRadiusVariants, colors } from '@sambad/sds/theme';
+import { AngleRightIcon } from '@sds/components/Icon/assets/AngleRight';
 import Link from 'next/link';
 
-import { AngleRightIcon } from '../../../../../../../core/sds/src/components/Icon/assets/AngleRight';
-import { TopPreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
+import { TopPreviousQuestionType } from '@/home/common/apis/schema/useGetPreviousQuestionListQuery.type';
 
 interface HomePreviousQuestionItemProps {
   meetingId?: number;
@@ -32,7 +32,9 @@ export const HomePreviousQuestionItem = ({ question }: HomePreviousQuestionItemP
           {content ? (
             <Txt as="p" typography="heading3" color={colors.primary500} css={{ marginBottom: '4px' }}>
               {content}
-              <Txt typography="title2">이/가 가장 많았어요.</Txt>
+              <Txt typography="title2" color={colors.black}>
+                이/가 가장 많았어요.
+              </Txt>
             </Txt>
           ) : (
             <Txt typography="title2">아무도 답변하지 않았어요...</Txt>

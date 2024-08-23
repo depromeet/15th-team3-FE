@@ -43,7 +43,7 @@ const QuestionList = () => {
   return (
     <section>
       <div css={questionTextBoxCss}>
-        <Txt typography="heading1" fontWeight="bold">
+        <Txt typography="heading1" color={colors.black} fontWeight="bold">
           어떤 질문으로 물어볼까요?
         </Txt>
       </div>
@@ -74,7 +74,7 @@ const NextQuestionerList = () => {
   return (
     <section>
       <div css={questionTextBoxCss}>
-        <Txt typography="heading1" fontWeight="bold">
+        <Txt typography="heading1" color={colors.black} fontWeight="bold">
           다음 릴레이 질문인은 <br />
           누구로 할까요?
         </Txt>

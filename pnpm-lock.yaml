@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@emotion/react':
         specifier: ^11.11.4
-        version: 11.11.4(react@18.2.0)
+        version: 11.11.4(@types/react@18.3.3)(react@18.2.0)
       '@tanstack/react-query':
         specifier: ^5.50.1
         version: 5.51.1(react@18.2.0)
@@ -194,9 +194,24 @@ importers:
 
   packages/core/sds:
     dependencies:
+      '@emotion/react':
+        specifier: ^11
+        version: 11.11.4(@types/react@18.3.3)(react@18.2.0)
       '@radix-ui/react-toggle-group':
         specifier: ^1.1.0
         version: 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.2.0)(react@18.2.0)
+      '@sambad/css-utils':
+        specifier: workspace:*
+        version: link:../css-utils
+      '@sambad/react-utils':
+        specifier: workspace:*
+        version: link:../react-utils
+      react:
+        specifier: ^18
+        version: 18.2.0
+      react-dom:
+        specifier: ^18
+        version: 18.2.0(react@18.2.0)
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^1.6.1
@@ -204,9 +219,6 @@ importers:
       '@sambad/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@sambad/react-utils':
-        specifier: workspace:^
-        version: link:../react-utils
       '@sambad/types-utils':
         specifier: workspace:*
         version: link:../types-utils
@@ -2201,7 +2213,7 @@ packages:
     resolution: {integrity: sha512-30FAj7/EoJ5mwVPOWhAyCX+FPfMDrVecJAM+Iw9NRoSl4BBAQeqj4cApHHUXOVvIPgLVDsCFoz/hGD+5QQD1GQ==}
     dev: false
 
-  /@emotion/react@11.11.4(react@18.2.0):
+  /@emotion/react@11.11.4(@types/react@18.3.3)(react@18.2.0):
     resolution: {integrity: sha512-t8AjMlF0gHpvvxk5mAtCqR4vmxiGHCeJBaQO6gncUSdklELOgtwjerNY2yuJNfwnc6vi16U/+uMF+afIawJ9iw==}
     peerDependencies:
       '@types/react': '*'
@@ -2217,6 +2229,7 @@ packages:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.3.1
+      '@types/react': 18.3.3
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
     transitivePeerDependencies:

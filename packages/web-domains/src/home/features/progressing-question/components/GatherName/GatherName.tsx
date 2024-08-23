@@ -1,4 +1,5 @@
 import { Icon, Skeleton, Txt } from '@sambad/sds/components';
+import { colors } from '@sds/theme';
 import { HTMLAttributes } from 'react';
 
 interface GatherNameProps extends HTMLAttributes<HTMLDivElement> {
@@ -28,7 +29,7 @@ export const GatherName = ({ gatherName, subTitle, onClick, ...rest }: GatherNam
             />
           )}
         </button>
-        <Txt typography="heading2" as="h2">
+        <Txt typography="heading2" color={colors.black} as="h2">
           {subTitle}
         </Txt>
       </div>

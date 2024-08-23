@@ -57,7 +57,7 @@ export const CurrentRelayQuestionCountContainer = () => {
           </div>
 
           <div css={backgroundWrapperCss}>
-            <ShareGroupBackground css={{ width: '100%' }} />
+            <ShareGroupBackground />
             <CurrentQuestionInfo
               questionCount={activeQuestion.questionNumber}
               questioner={{

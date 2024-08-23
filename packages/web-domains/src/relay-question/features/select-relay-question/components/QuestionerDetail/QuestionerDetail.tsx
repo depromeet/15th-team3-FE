@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { Button, Txt } from '@sambad/sds/components';
-import { size } from '@sambad/sds/theme';
+import { colors, size } from '@sambad/sds/theme';
 import Image from 'next/image';
 
 import { RelayRePickQuestioner } from '../../../../assets/RelayRePickQuestioner';
@@ -30,7 +30,7 @@ export const QuestionerDetail = ({
       <div css={imgWrapperCss}>
         <Image src={imageUrl} alt={name} width={80} height={80} />
       </div>
-      <Txt typography="heading2" fontWeight="bold" css={nameCss}>
+      <Txt typography="heading2" color={colors.black} fontWeight="bold" css={nameCss}>
         {name}
       </Txt>
       <div css={buttonWrapperCss}>

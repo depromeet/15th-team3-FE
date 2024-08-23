@@ -3,6 +3,7 @@
 import { Icon } from '@sds/components';
 
 import { KakaoShareModal } from '@/common';
+import { colors } from '@sds/theme';
 
 import { GatherMemberProfileList } from '../components/GatherMemberProfile/GatherMemberProfileList';
 import { GatherMemberSearchInput } from '../components/GatherMemberSearch/GatherMemberSearchInput';

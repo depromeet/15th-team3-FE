@@ -27,6 +27,6 @@ export const useInActiveEventMutation = ({ options }: Args = {}) => {
 
 export async function inactiveEvent(params: Params): Promise<{}> {
   const { eventId } = params;
-  const data = await Http.PATCH<Params, {}>(`/v1/events/${eventId}/inactive`, {});
+  const data = await Http.PATCH<Params, {}>(`/v1/events/${eventId}/inactivate`, {});
   return data;
 }

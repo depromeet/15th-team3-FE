@@ -8,6 +8,7 @@ import { AngleUpIcon } from './assets/AngleUp';
 import { BellIcon } from './assets/BellIcon';
 import { CaretDownIcon } from './assets/CaretDown';
 import { CloseIcon } from './assets/CloseIcon';
+import { CheckIcon } from './assets/Check';
 import { CommentsIcon } from './assets/CommentsIcon';
 import { ConnectStar } from './assets/ConnectStar';
 import { CrownIcon } from './assets/Crown';
@@ -50,4 +51,5 @@ export const iconMap = {
   crown: CrownIcon,
   stats: Stats,
   upload: Upload,
+  check: CheckIcon,
 };

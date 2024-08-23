@@ -10,6 +10,7 @@ export const wrapperCss = css({
   justifyContent: 'space-between',
   minHeight: '100dvh',
   backgroundColor: colors.primary50,
+  overflow: 'hidden',
 });
 
 export const backgroundWrapperCss = css({

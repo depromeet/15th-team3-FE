@@ -12,10 +12,19 @@
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build"
   },
+  "peerDependencies": {
+    "react": "^18",
+    "react-dom": "^18",
+    "@emotion/react": "^11"
+  },
+  "dependencies": {
+    "@radix-ui/react-toggle-group": "^1.1.0",
+    "@sambad/react-utils": "workspace:*",
+    "@sambad/css-utils": "workspace:*"
+  },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
     "@sambad/eslint-config": "workspace:*",
-    "@sambad/react-utils": "workspace:^",
     "@sambad/types-utils": "workspace:*",
     "@sambad/typescript-config": "workspace:*",
     "@storybook/addon-essentials": "^8.2.2",
@@ -37,8 +46,5 @@
     "eslint-plugin-storybook": "^0.8.0",
     "storybook": "^8.2.2",
     "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "@radix-ui/react-toggle-group": "^1.1.0"
   }
 }
