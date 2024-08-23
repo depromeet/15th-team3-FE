@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
 
-import { subTitleAttribute } from './constants';
+import { checkboxAttribute, subTitleAttribute } from './constants';
 
 export const segmentedSectionCss = css({
   backgroundColor: colors.white,
@@ -64,5 +64,13 @@ export const profileRootCss = css({
 
   '& > * + *': {
     marginTop: size['xs'],
+  },
+});
+
+export const checkboxAndTriggerCss = css({
+  display: 'flex',
+
+  [`& ${checkboxAttribute.querySelector}`]: {
+    marginRight: size['6xs'],
   },
 });

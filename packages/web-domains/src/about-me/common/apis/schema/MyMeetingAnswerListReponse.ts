@@ -5,6 +5,6 @@ export interface MyMeetingAnswerListResponse {
 interface Content {
   idx: number;
   title: string;
-  content: string;
+  content: Array<string>;
   commentContent: string;
 }
