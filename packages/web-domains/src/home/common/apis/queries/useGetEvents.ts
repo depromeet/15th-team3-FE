@@ -1,5 +1,5 @@
 import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
-import { useQuery } from '@tanstack/react-query';
+import { QueryClient, useQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
@@ -29,6 +29,23 @@ export const useGetEvents = ({ params, options }: Args) => {
     },
     ...options,
   });
+};
+
+export const getEventsPrefetch = (params: Params, queryClient: QueryClient, cookie?: ReadonlyRequestCookies) => {
+  const prefetch = queryClient.prefetchQuery({
+    queryKey: [EVENTS_QUERY_KEY, params.meetingId],
+    queryFn: async () => {
+      try {
+        return await getEvents(params, cookie);
+      } catch (error) {
+        if (isAxiosError(error)) {
+          console.log(error);
+        }
+      }
+    },
+  });
+
+  return prefetch;
 };
 
 export async function getEvents(params: Params, cookie?: ReadonlyRequestCookies): Promise<AlarmEventListResponseType> {

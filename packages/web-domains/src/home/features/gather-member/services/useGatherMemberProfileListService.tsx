@@ -6,6 +6,7 @@ import { getWebDomain } from '@/common';
 import { generateInviteLink } from '@/common/utils/generateInviteLink';
 import { getKeywordRegex } from '@/common/utils/getKeywordRegex';
 import { useGetInviteCode } from '@/home/common/apis/queries/useGetInviteCode';
+import { useGetMyInfo } from '@/home/common/apis/queries/useGetMyInfo';
 import { MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 import { HomeAtoms } from '@/home/common/atoms/home.atom';
 
@@ -17,6 +18,11 @@ export const useGatherMemberProfileListService = () => {
   const [searchInput, setSearchInput] = useState<string>('');
   const [gatherMemberList, setGatherMemberList] = useState<MemberType[]>([]);
   const meetingId = currentMeeting?.meetingId;
+
+  const { data: myInfo } = useGetMyInfo({
+    params: { meetingId: meetingId! },
+    options: { enabled: !!meetingId },
+  });
 
   const { data } = useGetGatherMemberList({
     params: { meetingId: meetingId! },
@@ -53,15 +59,17 @@ export const useGatherMemberProfileListService = () => {
   };
 
   useEffect(() => {
-    if (data?.contents) {
-      setGatherMemberList(data?.contents);
+    if (data?.contents && myInfo) {
+      setGatherMemberList(data?.contents.filter((member) => member.meetingMemberId !== myInfo?.meetingMemberId));
     }
-  }, [data]);
+  }, [data, myInfo]);
 
   useEffect(() => {
     let filter;
     filter = debounce(handleChangeGatherMemberList, 300);
-    filter(searchInput);
+    if (searchInput.length) {
+      filter(searchInput);
+    }
 
     return () => {
       filter = null;

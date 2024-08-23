@@ -6,10 +6,10 @@ import { ProgressingQuestionContainer } from '../features/progressing-question/c
 import { TobBarContainer } from '../features/top-bar/containers/TopBarContainer';
 
 interface Params {
-  meetingId: number;
+  params: { meetingId: number };
 }
 
-export const AnswerOpeningScreen = async ({ meetingId }: Params) => {
+export const AnswerOpeningScreen = async ({ params: { meetingId } }: Params) => {
   const { queryClient } = await getServerSideProps({ meetingId });
 
   return (
@@ -20,7 +20,7 @@ export const AnswerOpeningScreen = async ({ meetingId }: Params) => {
   );
 };
 
-const getServerSideProps = async ({ meetingId }: Params) => {
+const getServerSideProps = async ({ meetingId }: Params['params']) => {
   const queryClient = new QueryClient();
 
   try {

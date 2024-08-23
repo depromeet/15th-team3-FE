@@ -1,4 +1,4 @@
-import { Button, Icon, Txt } from '@sds/components';
+import { Txt } from '@sds/components';
 import { colors } from '@sds/theme';
 import dayjs from 'dayjs';
 import { ReactNode } from 'react';
@@ -52,34 +52,8 @@ const SelectedTarget = () => {
   );
 };
 
-const Greeting = ({ fromId, alarm }: { fromId?: number; alarm: AlarmEventType }) => {
-  const { additionalData, createdAt, messages } = alarm;
-
-  return (
-    <div css={{ padding: '16px 20px' }}>
-      {messages.map((message, i) => (
-        <Txt key={i} as="p" typography="title2" color={colors.black}>
-          {message}
-        </Txt>
-      ))}
-      <Txt typography="title4" color={colors.grey500} css={{ marginTop: '8px' }}>
-        {dayjs(createdAt).format('YY-MM-DD')}
-      </Txt>
-      <div>
-        <Button variant="primary" leftDecor={<Icon name="close-icon" />}>
-          나도 인사 건네기
-        </Button>
-        <Button variant="sub" leftDecor={<Icon name="close-icon" />}>
-          다음에 인사하기
-        </Button>
-      </div>
-    </div>
-  );
-};
-
 export const NotificationItem = {
   AlarmItem,
   ArrivedNewQuestion,
   SelectedTarget,
-  Greeting,
 };

@@ -19,6 +19,7 @@ export const NotificationList = ({ notificationList, renderItem }: NotificationL
         'li + li': {
           borderTop: `1px solid ${colors.grey400}`,
         },
+        borderBottom: `1px solid ${colors.grey400}`,
       }}
     >
       {notificationList?.map((value) => <li key={value.eventId}>{renderItem(value)}</li>)}

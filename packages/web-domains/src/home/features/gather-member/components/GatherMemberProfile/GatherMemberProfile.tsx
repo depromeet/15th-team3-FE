@@ -1,6 +1,5 @@
 import { Icon, Txt } from '@sambad/sds/components';
 import { colors } from '@sds/theme';
-import { borderRadiusVariants } from '@sds/theme';
 import Link from 'next/link';
 
 import { MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
