@@ -36,7 +36,7 @@ export const Questioner = ({ meetingId, meetingMemberId, imageUrl, name }: Quest
         { questionId, meetingMemberId },
         {
           onSuccess: () => {
-            router.push(`/share-group?question-id=${questionId}&questioner-name=${name}`);
+            router.push(`/${meetingId}/share-group?question-id=${questionId}&questioner-name=${name}`);
           },
         },
       );
