@@ -24,14 +24,15 @@
     "@toss/use-overlay": "^1.4.0",
     "axios": "^1.7.2",
     "react-copy-to-clipboard": "^5.1.0",
-    "react-hook-form": "^7.52.1",
-    "react-countdown": "^2.3.5"
+    "react-countdown": "^2.3.5",
+    "react-hook-form": "^7.52.1"
   },
   "devDependencies": {
     "@sambad/eslint-config": "workspace:*",
     "@sambad/sds": "workspace:*",
     "@sambad/types-utils": "workspace:*",
     "@sambad/typescript-config": "workspace:*",
+    "@tanstack/react-query-devtools": "^5.52.1",
     "@types/eslint": "^8.56.5",
     "@types/node": "^20.11.24",
     "@types/qs": "^6.9.15",
