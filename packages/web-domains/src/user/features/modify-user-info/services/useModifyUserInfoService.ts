@@ -17,8 +17,7 @@ export const useModifyUserInfoService = () => {
     options: {
       onSuccess: (_, varables) => {
         queryClient.invalidateQueries({ queryKey: [MEMBER_ME_QUERY_KEY, varables.meetingId] });
-        // Todo: meetingId 변경
-        router.push('/about/me');
+        router.push('/home/me');
       },
       onError: (error) => {
         console.log(error);
