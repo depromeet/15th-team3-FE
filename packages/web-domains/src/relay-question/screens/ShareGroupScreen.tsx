@@ -28,9 +28,9 @@ const getServerSideProps = async ({ meetingId }: MeetingId) => {
   try {
     const cookie = cookies();
 
-    const myInfoPrefetch = getActiveQuestionPrefetch(meetingId, queryClient, cookie);
+    const activeQuestionPrefetch = getActiveQuestionPrefetch(meetingId, queryClient, cookie);
 
-    await Promise.all([myInfoPrefetch]);
+    await Promise.all([activeQuestionPrefetch]);
   } catch (error: unknown) {
     console.log(error);
   }
