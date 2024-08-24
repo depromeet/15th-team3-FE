@@ -16,7 +16,7 @@ export const KakaoLoginButton = ({ redirectUrl }: { redirectUrl?: string }) => {
         size="large"
         css={{
           backgroundColor: '#FEE500',
-          '&:hover': {
+          '&&&:hover': {
             backgroundColor: '#FEE500',
           },
         }}

@@ -2,13 +2,14 @@
 
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
-import { forwardRef, InputHTMLAttributes } from 'react';
+import { forwardRef, InputHTMLAttributes, ReactNode, useId } from 'react';
 
 import { RadioGroupImpl, useRadioContext } from './RadioGroupImpl';
-import { radioCss } from './styled';
+import { RadioLabel } from './RadioLabel';
+import { radioCss } from './styles';
 
 export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label: string | ((isChecked?: boolean) => ReactNode);
 }
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
@@ -18,21 +19,26 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
 
   const isChecked = checkedValue === value;
 
+  const radioId = useId();
+
   return (
-    <label htmlFor={label} css={[radioCss.base, isChecked ? radioCss.selected : radioCss.default]}>
-      <Txt typography="subTitle2" color={isChecked ? colors.primary500 : colors.black}>
-        {label}
-      </Txt>
+    <label htmlFor={radioId} css={[radioCss.base, isChecked ? radioCss.selected : radioCss.default]}>
+      {typeof label === 'string' ? (
+        <Txt typography="body3" color={isChecked ? colors.primary500 : colors.black}>
+          {label}
+        </Txt>
+      ) : (
+        label(isChecked)
+      )}
       {children}
       <input
         css={{ display: 'none' }}
         type="radio"
-        id={label}
+        id={radioId}
         ref={ref}
         value={value}
         checked={isChecked}
         aria-checked={isChecked}
-        aria-label={label}
         onChange={(event) => handleChange(event.target.value)}
         {...restProps}
       />
@@ -44,4 +50,5 @@ Radio.displayName = 'RadioGroup.item';
 
 export const RadioGroup = Object.assign(RadioGroupImpl, {
   Item: Radio,
+  Label: RadioLabel,
 });
