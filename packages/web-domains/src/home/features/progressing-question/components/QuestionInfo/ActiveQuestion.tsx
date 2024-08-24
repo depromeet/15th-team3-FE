@@ -7,10 +7,11 @@ import { ProgressingQuestionType } from '../../../../common/apis/schema/useGetPr
 import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
 interface ActiveQuestionProps {
+  meetingId?: number;
   question: ProgressingQuestionType;
 }
 
-export const ActiveQuestion = ({ question }: ActiveQuestionProps) => {
+export const ActiveQuestion = ({ meetingId, question }: ActiveQuestionProps) => {
   const {
     responseCount,
     targetMember,
@@ -88,7 +89,7 @@ export const ActiveQuestion = ({ question }: ActiveQuestionProps) => {
           />
         </div>
         {!isAnswered && (
-          <Link href="/answer/opening">
+          <Link href={`/${meetingId}/answer/opening`}>
             <button
               css={{
                 flexShrink: 0,

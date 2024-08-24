@@ -20,7 +20,7 @@ export const aboutMeSectionCss = css({
   [`& ${subTitleAttribute.querySelector}`]: {
     paddingBottom: size['6xs'],
 
-    '&:not(:first-child)': {
+    '&:not(:first-of-type)': {
       paddingTop: size['sm'],
     },
   },

@@ -1,48 +1,53 @@
 import { useAtomValue } from 'jotai';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import { useDialogContext } from '@/common/contexts/DialogProvider';
-import {
-  homeGlobalTimeAtom,
-  isNextTargetAtom,
-  isProgessingQuestionAtom,
-  isSelectedTargetAtom,
-} from '@/home/common/atoms/home.atom';
+import { HomeAtoms } from '@/home/common/atoms/home.atom';
 
 export const useFloatingButtonService = () => {
+  const currentMeeting = useAtomValue(HomeAtoms.currentMeeting);
+  const [buttonType, setButtonType] = useState<'start' | 'countdown' | null>(null);
+
   const { isOpen, open, close } = useDialogContext();
-  const { push } = useRouter();
 
-  const homeGlobalTime = useAtomValue(homeGlobalTimeAtom);
-  const isProgessingQuestion = useAtomValue(isProgessingQuestionAtom);
-  const isSelectedTarget = useAtomValue(isSelectedTargetAtom);
-  const isNextTarget = useAtomValue(isNextTargetAtom);
-  let buttonType: 'start' | 'countdown' | null = null;
+  const homeGlobalTime = useAtomValue(HomeAtoms.homeGlobalTimeAtom);
+  const isProgessingQuestion = useAtomValue(HomeAtoms.isProgessingQuestionAtom);
+  const isSelectedTarget = useAtomValue(HomeAtoms.isSelectedTargetAtom);
+  const isNextTarget = useAtomValue(HomeAtoms.isNextTargetAtom);
 
-  const showButton = isProgessingQuestion;
+  useEffect(() => {
+    const showButton = isProgessingQuestion;
+    const startButtonActive = !showButton && isSelectedTarget;
+    const countDownButtonActive = showButton && isNextTarget;
 
-  const startButtonActive = !showButton && isSelectedTarget;
-  const countDownButtonActive = showButton && isNextTarget;
+    if (startButtonActive) {
+      setButtonType('start');
+      return;
+    }
 
-  if (startButtonActive) {
-    buttonType = 'start';
-  }
+    if (countDownButtonActive) {
+      setButtonType('countdown');
+      return;
+    }
 
-  if (countDownButtonActive) {
-    buttonType = 'countdown';
-  }
+    setButtonType(null);
+  }, [isProgessingQuestion, isSelectedTarget, isNextTarget]);
+
+  useEffect(() => {
+    close();
+  }, [currentMeeting]);
 
   const handleClose = () => {
     close();
   };
 
-  const handleClickRelayStartButton = () => {
-    if (isProgessingQuestion) {
-      open();
-      return;
-    }
-    push('/start-relay-question');
-  };
+  // const handleClickRelayStartButton = () => {
+  //   if (isProgessingQuestion) {
+  //     open();
+  //     return;
+  //   }
+  //   push(`${currentMeeting?.meetingId}/start-relay-question`);
+  // };
 
   return {
     isOpen,
@@ -50,6 +55,6 @@ export const useFloatingButtonService = () => {
     homeGlobalTime: homeGlobalTime ?? 0,
     open,
     handleClose,
-    handleClickRelayStartButton,
+    // handleClickRelayStartButton,
   };
 };
