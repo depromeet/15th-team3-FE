@@ -1,5 +1,5 @@
 import { Button, Txt } from '@sambad/sds/components';
-import { colors } from '@sambad/sds/theme';
+import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 import dynamic from 'next/dynamic';
 import Countdown from 'react-countdown';
 
@@ -18,6 +18,22 @@ const CountdownRender = dynamic(
     import('./ProgressingQuestionModalCountdownRender.tsx').then((mod) => mod.ProgressingQuestionModalCountdownRender),
   {
     ssr: true,
+    loading: () => (
+      <div
+        css={{
+          width: '198px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '76px',
+          padding: '20px 28px',
+          borderRadius: borderRadiusVariants.medium,
+          backgroundColor: colors.grey200,
+          marginTop: '20px',
+          marginBottom: '28px',
+        }}
+      />
+    ),
   },
 );
 

@@ -1,5 +1,5 @@
-import { NotificationScreen } from '@sambad/web-domains/home';
+import { AlarmScreen } from '@/home';
 
 export const dynamic = 'force-dynamic';
 
-export default NotificationScreen;
+export default AlarmScreen;

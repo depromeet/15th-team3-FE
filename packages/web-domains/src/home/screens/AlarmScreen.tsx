@@ -6,14 +6,14 @@ import { getCurrentMeeting } from '@/common/utils/getCurrentMeeting';
 import { getEventsPrefetch } from '../common/apis/queries/useGetEvents';
 import { getMeetingInfoPrefetch } from '../common/apis/queries/useGetMeetingName';
 import { HomeNavigationConatiner } from '../features/home-navigation/containers/HomeNavigationContainer';
-import { NotificationListContainer } from '../features/notification/containers/NotificationListContainer';
+import { AlarmListContainer } from '../features/notification/containers/AlarmListContainer';
 
-export const NotificationScreen = async () => {
+export const AlarmScreen = async () => {
   const { queryClient } = await getServerSideProps();
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <NotificationListContainer />
+      <AlarmListContainer />
       <HomeNavigationConatiner />
     </HydrationBoundary>
   );

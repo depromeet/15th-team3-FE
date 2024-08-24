@@ -4,4 +4,4 @@ export { PreviousQuestionLayout } from './common/components/Layout/PreviousQuest
 export { PreviousQuestionScreen } from './screens/PreviousQuestionScreen';
 export { QuestionScreen } from './screens/QuestionScreen';
 export { HomeMeScreen } from './screens/HomeMeScreen';
-export { NotificationScreen } from './screens/NotificationScreen';
+export { AlarmScreen } from './screens/AlarmScreen';

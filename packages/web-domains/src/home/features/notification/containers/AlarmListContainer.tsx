@@ -8,10 +8,10 @@ import { AlarmEventType } from '@/home/common/apis/schema/Notification.schema';
 
 import { NotificationItem } from '../components/NotificationItem';
 import { NotificationList } from '../components/NotificationList';
-import { useNotificationListService } from '../services/useNotificationListService';
+import { useAlarmListService } from '../services/useAlarmListService';
 
-export const NotificationListContainer = () => {
-  const { notficationList, meetingId, handWavingResponse } = useNotificationListService();
+export const AlarmListContainer = () => {
+  const { notficationList, meetingId, handWavingResponse } = useAlarmListService();
 
   const renderNotification = (notifiaciton: AlarmEventType, meetingId?: number) => {
     switch (notifiaciton.type) {
@@ -22,13 +22,14 @@ export const NotificationListContainer = () => {
           <NotificationItem.AlarmItem
             alarm={notifiaciton}
             footer={
-              <div>
+              <div css={{ display: 'flex', marginTop: '12px' }}>
                 <Button
                   onClick={() => handWavingResponse({ meetingId: meetingId!, handWavingId })}
                   variant="primary"
                   leftDecor={
                     <Icon
-                      name="close-icon"
+                      name="hand-shaving"
+                      size={15}
                       css={{
                         '& svg, & path': {
                           width: 20,
@@ -38,13 +39,14 @@ export const NotificationListContainer = () => {
                       }}
                     />
                   }
+                  css={{ marginRight: '8px' }}
                 >
                   나도 인사 건네기
                 </Button>
                 <Button
                   onClick={() => ignoreHandwaving({ meetingId: meetingId!, handWavingId })}
                   variant="sub"
-                  leftDecor={<Icon name="close-icon" />}
+                  leftDecor={<Icon name="close-icon" size={15} />}
                 >
                   다음에 인사하기
                 </Button>

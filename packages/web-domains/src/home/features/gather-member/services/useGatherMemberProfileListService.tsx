@@ -60,16 +60,14 @@ export const useGatherMemberProfileListService = () => {
 
   useEffect(() => {
     if (data?.contents && myInfo) {
-      setGatherMemberList(data?.contents.filter((member) => member.meetingMemberId !== myInfo?.meetingMemberId));
+      setGatherMemberList(data?.contents);
     }
   }, [data, myInfo]);
 
   useEffect(() => {
     let filter;
     filter = debounce(handleChangeGatherMemberList, 300);
-    if (searchInput.length) {
-      filter(searchInput);
-    }
+    filter(searchInput);
 
     return () => {
       filter = null;

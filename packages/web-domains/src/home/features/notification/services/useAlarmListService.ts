@@ -4,7 +4,7 @@ import { useGetEvents } from '@/home/common/apis/queries/useGetEvents';
 import { useGetMyInfo } from '@/home/common/apis/queries/useGetMyInfo';
 import { useSetCurrentMeeting } from '@/home/common/hooks/useSetCurrentMeeting';
 
-export const useNotificationListService = () => {
+export const useAlarmListService = () => {
   const { meetingId } = useSetCurrentMeeting();
 
   const { data: myInfo } = useGetMyInfo({
