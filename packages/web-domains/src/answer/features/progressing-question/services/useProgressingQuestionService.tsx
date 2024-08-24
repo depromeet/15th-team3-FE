@@ -3,16 +3,12 @@ import { useSetAtom } from 'jotai';
 import { useParams } from 'next/navigation';
 
 import { answerAtoms } from '@/answer/common/atoms/answer.atom';
-import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 
 import { useGetProgressingQuestion } from '../../../common/apis/queries/useGetProgressingQuestion';
 
 export const useProgressingQuestionService = () => {
   const { meetingId } = useParams<{ meetingId: string }>();
   const setAnswerGlobalTime = useSetAtom(answerAtoms.answerGlobalTime);
-  const { data: meetingInfo } = useGetMeetingInfo({
-    options: { gcTime: Infinity },
-  });
 
   const { data: progressingQuestion } = useGetProgressingQuestion({
     params: { meetingId: parseInt(meetingId) },
@@ -23,7 +19,7 @@ export const useProgressingQuestionService = () => {
         }
         return data;
       },
-      enabled: !!meetingInfo,
+      enabled: !!meetingId,
     },
   });
 
