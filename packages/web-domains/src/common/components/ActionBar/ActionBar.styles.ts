@@ -26,7 +26,6 @@ export const addOnStyles = css({
   right: 0,
   position: 'absolute',
   height: '100%',
-  width: '48px',
   cursor: 'pointer',
   display: 'inline-flex',
   alignItems: 'center',

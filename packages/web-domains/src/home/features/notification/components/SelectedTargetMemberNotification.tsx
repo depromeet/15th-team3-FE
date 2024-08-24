@@ -3,20 +3,22 @@ import { colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 import { Modal, ModalProps } from '../../../../common/components/Modal/Modal';
-import { useDialogContext } from '../../../../common/contexts/DialogProvider';
 
 interface SelectedTargetMemberNotificationProps extends ModalProps {
   onClickAnswerLater?: () => void;
+
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export const SelectedTargetMemberNotification = ({
+  isOpen,
+  onClose,
   onClickAnswerLater,
   ...rest
 }: SelectedTargetMemberNotificationProps) => {
-  const { isOpen, close } = useDialogContext();
-
   return (
-    <Modal {...rest} isOpen={isOpen} onClose={close}>
+    <Modal {...rest} isOpen={isOpen} onClose={onClose}>
       <div css={{ padding: '12px 0 0' }}>
         <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Txt as="p" typography="heading2" css={{ marginBottom: '8px' }}>
@@ -37,7 +39,7 @@ export const SelectedTargetMemberNotification = ({
             css={{ border: 'none' }}
             onClick={() => {
               onClickAnswerLater?.();
-              close();
+              onClose();
             }}
           >
             <Txt typography="title3" color={colors.black}>
