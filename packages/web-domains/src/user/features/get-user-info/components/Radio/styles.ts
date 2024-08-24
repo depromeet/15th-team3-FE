@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { borderRadiusVariants, colors } from '@sambad/sds/theme';
+import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
 
 export const radioCss = {
   base: css({
@@ -20,3 +20,9 @@ export const radioCss = {
     borderColor: colors.primary500,
   },
 };
+
+export const itemCss = css({
+  '& > * + *': {
+    paddingLeft: size['6xs'],
+  },
+});
