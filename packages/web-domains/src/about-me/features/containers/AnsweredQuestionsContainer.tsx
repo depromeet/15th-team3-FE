@@ -3,24 +3,53 @@
 import { If } from '@sambad/react-utils';
 import { Accordion, Checkbox, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
+import { useRouter } from 'next/navigation';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 
+import { useUpdateQuestionsActive } from '@/about-me/common/apis/mutates/useUpdateQuestionsActive';
 import { EmptyView } from '@/common/components';
 
 import { useGetAnswersByParams } from '../hooks/useGetAnswersByParams';
+import { useGetFirstMeetingId } from '../hooks/useGetFirstMeetingId';
 import { useGetIsModifyPage } from '../hooks/useGetIsModifyPage';
 
 import { checkboxAttribute } from './constants';
 import { answerContentCss, checkboxAndTriggerCss } from './styles';
 
-export const AnsweredQuestionsContainer = () => {
+interface Ref {
+  onMutate: () => void;
+}
+
+export const AnsweredQuestionsContainer = forwardRef<Ref>((_, ref) => {
+  const router = useRouter();
+
+  const { meetingId } = useGetFirstMeetingId();
   const isModifyPage = useGetIsModifyPage();
   const { data: answers } = useGetAnswersByParams();
-
   const answersLength = answers?.contents?.length;
+
+  const { mutate } = useUpdateQuestionsActive({
+    options: { onSuccess: () => router.push('/about/me') },
+  });
+
+  const checkboxRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   if (answersLength === 0) {
     return <EmptyView title="아직 답변한 릴레이 질문이 없어요" style={{ height: '300px' }} />;
   }
+
+  const handleModify = () => {
+    const checkedIdx = checkboxRefs.current
+      .filter((checkbox) => checkbox?.checked)
+      .map((checkbox) => Number(checkbox?.id));
+
+    mutate({ meetingId, activeMeetingQuestionIds: checkedIdx });
+  };
+
+  // NOTE: ScreenContainer에서 호출하기 위해 ref에 추가
+  useImperativeHandle(ref, () => ({
+    onMutate: handleModify,
+  }));
 
   return (
     <section>
@@ -34,7 +63,14 @@ export const AnsweredQuestionsContainer = () => {
           <Accordion.Item key={answer.idx} value={`${answer.idx}`}>
             <div css={checkboxAndTriggerCss}>
               <If condition={isModifyPage}>
-                <Checkbox defaultChecked={!answer.isHidden} {...checkboxAttribute.attribute} />
+                <Checkbox
+                  id={`${answer.idx}`}
+                  ref={(el) => {
+                    checkboxRefs.current[index] = el;
+                  }}
+                  defaultChecked={!answer.isHidden}
+                  {...checkboxAttribute.attribute}
+                />
               </If>
               <Accordion.Trigger>
                 <Txt typography="subtitle1" color={colors.primary500} style={{ paddingRight: size['6xs'] }}>
@@ -54,4 +90,6 @@ export const AnsweredQuestionsContainer = () => {
       </Accordion>
     </section>
   );
-};
+});
+
+AnsweredQuestionsContainer.displayName = 'AnsweredQuestionsContainer';

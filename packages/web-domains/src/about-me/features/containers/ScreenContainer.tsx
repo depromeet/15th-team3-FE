@@ -3,6 +3,7 @@
 import { colors, shadow, size } from '@sambad/sds/theme';
 import { Button, TextButton, Txt } from '@sds/components';
 import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
 
 import { useCreateHandWavings } from '@/about-me/common/apis/mutates/useCreateHandWavings';
 import { useGetHandWavingsStatus } from '@/about-me/common/apis/queries/useGetHandWavingsStatus';
@@ -17,6 +18,7 @@ import { SegmentedControlContainer } from './SegmentedControlContainer';
 import { handWavingButtonCss, screenRootCss } from './styles';
 
 export const ScreenContainer = () => {
+  const segmentedRef = useRef<{ onMutate: () => void }>(null);
   const isModifyPage = useGetIsModifyPage();
   const router = useRouter();
 
@@ -39,7 +41,7 @@ export const ScreenContainer = () => {
   };
 
   const handleModify = () => {
-    // 수정 api
+    segmentedRef.current?.onMutate();
   };
 
   return (
@@ -63,7 +65,7 @@ export const ScreenContainer = () => {
       />
       <div style={layoutStyle}>
         <ProfileContainer style={{ marginBottom: size['5xs'] }} />
-        <SegmentedControlContainer style={sectionStyle} />
+        <SegmentedControlContainer ref={segmentedRef} style={sectionStyle} />
       </div>
       {!isMy && getWavingStatusSuccess && (
         <Button

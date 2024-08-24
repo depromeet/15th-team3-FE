@@ -1,7 +1,7 @@
 'use client';
 
 import { SegmentedControl } from '@sambad/sds/components';
-import { HTMLAttributes, useState } from 'react';
+import { forwardRef, HTMLAttributes, useImperativeHandle, useRef, useState } from 'react';
 
 import { useGetIsModifyPage } from '../hooks/useGetIsModifyPage';
 
@@ -13,13 +13,22 @@ type TabType = 'about-me' | 'answered-questions';
 
 type SegmentedControlContainerProps = HTMLAttributes<HTMLDivElement>;
 
-export const SegmentedControlContainer = (props: SegmentedControlContainerProps) => {
+interface Ref {
+  onMutate: () => void;
+}
+
+export const SegmentedControlContainer = forwardRef<Ref, SegmentedControlContainerProps>((props, ref) => {
+  const answeredQuestionContainerRef = useRef<Ref>(null);
   const isModifyPage = useGetIsModifyPage();
   const [tab, setTab] = useState<TabType>(isModifyPage ? 'answered-questions' : 'about-me');
 
   const handleTab = (value: string) => {
     setTab(value as TabType);
   };
+
+  useImperativeHandle(ref, () => ({
+    onMutate: answeredQuestionContainerRef.current?.onMutate || (() => {}),
+  }));
 
   return (
     <section css={segmentedSectionCss} {...props}>
@@ -30,8 +39,10 @@ export const SegmentedControlContainer = (props: SegmentedControlContainerProps)
 
       <div css={aboutMeSectionCss}>
         {tab === 'about-me' && <AboutMeContainer />}
-        {tab === 'answered-questions' && <AnsweredQuestionsContainer />}
+        {tab === 'answered-questions' && <AnsweredQuestionsContainer ref={answeredQuestionContainerRef} />}
       </div>
     </section>
   );
-};
+});
+
+SegmentedControlContainer.displayName = 'SegmentedControlContainer';
