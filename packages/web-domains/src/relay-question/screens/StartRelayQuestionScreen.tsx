@@ -1,12 +1,16 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import { cookies } from 'next/headers';
 
-import { StartQuestionContainer } from '../features/start-relay-question/containers/StartQuestionContainer/StartQuestionContainer';
-import { useMyInfoQueryPrefetch } from '../features/start-relay-question/hooks/queries/useMyInfoQuery';
-import { useMyMeetingsPrefetch } from '../features/start-relay-question/hooks/queries/useMyMeetingsQuery';
+import { getMyInfoPrefetch } from '@/home/common/apis/queries/useGetMyInfo';
 
-export const StartRelayQuestionScreen = async () => {
-  const queryClient = await getServerSideProps();
+import { StartQuestionContainer } from '../features/start-relay-question/containers/StartQuestionContainer/StartQuestionContainer';
+
+interface Params {
+  params: { meetingId: number };
+}
+
+export const StartRelayQuestionScreen = async ({ params: { meetingId } }: Params) => {
+  const queryClient = await getServerSideProps({ meetingId });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
@@ -15,15 +19,15 @@ export const StartRelayQuestionScreen = async () => {
   );
 };
 
-const getServerSideProps = async () => {
+const getServerSideProps = async ({ meetingId }: Params['params']) => {
   const queryClient = new QueryClient();
   const cookie = cookies();
 
   try {
-    const myInfoPrefetch = useMyInfoQueryPrefetch(queryClient, cookie);
-    const myMeetingsPrefetch = useMyMeetingsPrefetch(queryClient, cookie);
+    const params = { meetingId };
+    const myInfoPrefetch = getMyInfoPrefetch(params, queryClient, cookie);
 
-    await Promise.all([myInfoPrefetch, myMeetingsPrefetch]);
+    await Promise.all([myInfoPrefetch]);
   } catch (error: unknown) {
     console.log(error);
   }
