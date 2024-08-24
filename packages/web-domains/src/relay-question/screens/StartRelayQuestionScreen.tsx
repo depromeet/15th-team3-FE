@@ -21,9 +21,10 @@ export const StartRelayQuestionScreen = async ({ params: { meetingId } }: Params
 
 const getServerSideProps = async ({ meetingId }: Params['params']) => {
   const queryClient = new QueryClient();
-  const cookie = cookies();
 
   try {
+    const cookie = cookies();
+
     const params = { meetingId };
     const myInfoPrefetch = getMyInfoPrefetch(params, queryClient, cookie);
 
