@@ -1,9 +1,8 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import { cookies } from 'next/headers';
 
-import { getMyInfoPrefetch } from '@/home/common/apis/queries/useGetMyInfo';
-
 import { CurrentRelayQuestionCountContainer } from '../features/share-group/containers/CurrentRelayQuestionCountContainer/CurrentRelayQuestionCountContainer';
+import { getActiveQuestionPrefetch } from '../features/share-group/hooks/useActiveQuestionQuery';
 
 interface MeetingId {
   meetingId: number;
@@ -29,8 +28,7 @@ const getServerSideProps = async ({ meetingId }: MeetingId) => {
   try {
     const cookie = cookies();
 
-    const params = { meetingId };
-    const myInfoPrefetch = getMyInfoPrefetch(params, queryClient, cookie);
+    const myInfoPrefetch = getActiveQuestionPrefetch(meetingId, queryClient, cookie);
 
     await Promise.all([myInfoPrefetch]);
   } catch (error: unknown) {
