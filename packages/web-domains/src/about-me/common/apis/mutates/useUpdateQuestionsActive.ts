@@ -1,4 +1,5 @@
-import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 import { Http } from '@/common/apis/base.api';
 
@@ -9,11 +10,8 @@ interface Request {
   activeMeetingQuestionIds: Array<number>;
 }
 
-interface MutationProps {
-  options?: UseMutationOptions<unknown, unknown, Request>;
-}
-
-export const useUpdateQuestionsActive = ({ options }: MutationProps = {}) => {
+export const useUpdateQuestionsActive = () => {
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   const mutationFn = ({ meetingId, activeMeetingQuestionIds }: Request) => {
@@ -27,10 +25,9 @@ export const useUpdateQuestionsActive = ({ options }: MutationProps = {}) => {
 
   return useMutation({
     mutationFn,
-    onSuccess: (data, variable, context) => {
-      queryClient.invalidateQueries({ queryKey: [ANSWERS_ME_QUERY_KEY, variable.meetingId] });
-      options?.onSuccess?.(data, variable, context);
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [ANSWERS_ME_QUERY_KEY] });
+      router.push('/about/me');
     },
-    ...options,
   });
 };

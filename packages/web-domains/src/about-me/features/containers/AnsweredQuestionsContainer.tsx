@@ -3,7 +3,6 @@
 import { If } from '@sambad/react-utils';
 import { Accordion, Checkbox, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
-import { useRouter } from 'next/navigation';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 
 import { useUpdateQuestionsActive } from '@/about-me/common/apis/mutates/useUpdateQuestionsActive';
@@ -21,16 +20,12 @@ interface Ref {
 }
 
 export const AnsweredQuestionsContainer = forwardRef<Ref>((_, ref) => {
-  const router = useRouter();
-
   const { meetingId } = useGetFirstMeetingId();
   const isModifyPage = useGetIsModifyPage();
   const { data: answers } = useGetAnswersByParams();
   const answersLength = answers?.contents?.length;
 
-  const { mutate } = useUpdateQuestionsActive({
-    options: { onSuccess: () => router.push('/about/me') },
-  });
+  const { mutate } = useUpdateQuestionsActive();
 
   const checkboxRefs = useRef<(HTMLInputElement | null)[]>([]);
 
