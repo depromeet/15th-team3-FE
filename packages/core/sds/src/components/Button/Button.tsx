@@ -18,7 +18,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
     disabled = false,
     style: styleFromProps,
     leftDecor: leftDecorFromProps,
-    loading,
+    loading = false,
     children,
     ...restProps
   } = props;
