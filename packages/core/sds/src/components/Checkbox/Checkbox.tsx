@@ -17,6 +17,7 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
   const {
+    id: idFromProps,
     label,
     checked: checkedFromProps,
     defaultChecked,
@@ -26,7 +27,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
     ...restProps
   } = props;
 
-  const id = useId();
+  const id = idFromProps ?? useId();
 
   const [checked = false, setChecked] = useControllableState({
     prop: checkedFromProps,
