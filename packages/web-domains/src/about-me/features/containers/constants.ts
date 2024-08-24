@@ -5,3 +5,11 @@ export const subTitleAttribute = {
   },
   querySelector: `[${subTitleAttributeKey}=""]`,
 };
+
+const checkboxAttributeKey = 'data-sambad-checkbox';
+export const checkboxAttribute = {
+  attribute: {
+    [checkboxAttributeKey]: '',
+  },
+  querySelector: `[${checkboxAttributeKey}=""]`,
+};

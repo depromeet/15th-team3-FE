@@ -19,7 +19,8 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@sambad/css-utils": "workspace:^",
+    "@sambad/css-utils": "workspace:*",
+    "@sambad/react-utils": "workspace:*",
     "@tanstack/react-query": "^5.50.1",
     "@toss/use-overlay": "^1.4.0",
     "axios": "^1.7.2",

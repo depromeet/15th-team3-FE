@@ -321,8 +321,11 @@ importers:
   packages/web-domains:
     dependencies:
       '@sambad/css-utils':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../core/css-utils
+      '@sambad/react-utils':
+        specifier: workspace:*
+        version: link:../core/react-utils
       '@tanstack/react-query':
         specifier: ^5.50.1
         version: 5.51.1(react@18.2.0)
