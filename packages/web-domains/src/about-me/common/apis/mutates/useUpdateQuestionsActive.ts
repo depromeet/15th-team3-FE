@@ -16,16 +16,21 @@ interface MutationProps {
 export const useUpdateQuestionsActive = ({ options }: MutationProps = {}) => {
   const queryClient = useQueryClient();
 
+  const mutationFn = ({ meetingId, activeMeetingQuestionIds }: Request) => {
+    const params =
+      activeMeetingQuestionIds.length > 0
+        ? `?${activeMeetingQuestionIds.map((id) => `activeMeetingQuestionIds=${id}`).join('&')}`
+        : '';
+
+    return Http.PATCH(`/v1/meetings/${meetingId}/questions/active${params}`);
+  };
+
   return useMutation({
-    mutationFn: ({ meetingId, activeMeetingQuestionIds }: Request) => {
-      // NOTE: PATCH지만, params로 넘겨줘야 해서 전처리
-      const params = activeMeetingQuestionIds.map((id) => `activeMeetingQuestionIds=${id}`).join('&');
-      return Http.PATCH(`/v1/meetings/${meetingId}/questions/active?${params}`);
-    },
+    mutationFn,
     onSuccess: (data, variable, context) => {
       queryClient.invalidateQueries({ queryKey: [ANSWERS_ME_QUERY_KEY, variable.meetingId] });
-
       options?.onSuccess?.(data, variable, context);
     },
+    ...options,
   });
 };

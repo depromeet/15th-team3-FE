@@ -39,11 +39,11 @@ export const AnsweredQuestionsContainer = forwardRef<Ref>((_, ref) => {
   }
 
   const handleModify = () => {
-    const checkedIdx = checkboxRefs.current
+    const checkedIds = checkboxRefs.current
       .filter((checkbox) => checkbox?.checked)
       .map((checkbox) => Number(checkbox?.id));
 
-    mutate({ meetingId, activeMeetingQuestionIds: checkedIdx });
+    mutate({ meetingId, activeMeetingQuestionIds: checkedIds });
   };
 
   // NOTE: ScreenContainer에서 호출하기 위해 ref에 추가
@@ -64,7 +64,7 @@ export const AnsweredQuestionsContainer = forwardRef<Ref>((_, ref) => {
             <div css={checkboxAndTriggerCss}>
               <If condition={isModifyPage}>
                 <Checkbox
-                  id={`${answer.idx}`}
+                  id={`${answer.meetingQuestionId}`}
                   ref={(el) => {
                     checkboxRefs.current[index] = el;
                   }}

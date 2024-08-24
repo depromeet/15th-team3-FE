@@ -3,6 +3,7 @@ export interface MyMeetingAnswerListResponse {
 }
 
 interface Content {
+  meetingQuestionId: number;
   idx: number;
   title: string;
   content: Array<string>;
