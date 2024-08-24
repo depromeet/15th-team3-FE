@@ -112,3 +112,9 @@ export const leftDecorCss = css({
     fill: `var(${buttonColorVar})`,
   },
 });
+
+export const spinnerCss = css({
+  '& path': {
+    fill: `var(${buttonColorVar})`,
+  },
+});
