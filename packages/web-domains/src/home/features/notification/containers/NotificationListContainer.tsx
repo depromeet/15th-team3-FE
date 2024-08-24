@@ -26,7 +26,18 @@ export const NotificationListContainer = () => {
                 <Button
                   onClick={() => handWavingResponse({ meetingId: meetingId!, handWavingId })}
                   variant="primary"
-                  leftDecor={<Icon name="close-icon" />}
+                  leftDecor={
+                    <Icon
+                      name="close-icon"
+                      css={{
+                        '& svg, & path': {
+                          width: 20,
+                          height: 20,
+                          fill: `none`,
+                        },
+                      }}
+                    />
+                  }
                 >
                   나도 인사 건네기
                 </Button>

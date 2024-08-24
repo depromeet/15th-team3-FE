@@ -28,7 +28,23 @@ export const NotificationList = ({ notificationList, renderItem }: NotificationL
           alarm={notificationList?.[0]!}
           footer={
             <div css={{ display: 'flex', marginTop: '12px' }}>
-              <Button variant="primary" leftDecor={<Icon name="hand-shaving" size={15} />} css={{ marginRight: '8px' }}>
+              <Button
+                variant="primary"
+                leftDecor={
+                  <Icon
+                    name="hand-shaving"
+                    size={15}
+                    css={{
+                      '& svg, & path': {
+                        width: 20,
+                        height: 20,
+                        fill: `none`,
+                      },
+                    }}
+                  />
+                }
+                css={{ marginRight: '8px' }}
+              >
                 나도 인사 건네기
               </Button>
               <Button variant="sub" leftDecor={<Icon name="close-icon" size={15} />}>

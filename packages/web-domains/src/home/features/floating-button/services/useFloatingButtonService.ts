@@ -1,5 +1,4 @@
 import { useAtomValue } from 'jotai';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { useDialogContext } from '@/common/contexts/DialogProvider';
@@ -10,7 +9,6 @@ export const useFloatingButtonService = () => {
   const [buttonType, setButtonType] = useState<'start' | 'countdown' | null>(null);
 
   const { isOpen, open, close } = useDialogContext();
-  const { push } = useRouter();
 
   const homeGlobalTime = useAtomValue(HomeAtoms.homeGlobalTimeAtom);
   const isProgessingQuestion = useAtomValue(HomeAtoms.isProgessingQuestionAtom);
@@ -31,19 +29,25 @@ export const useFloatingButtonService = () => {
       setButtonType('countdown');
       return;
     }
-  }, [isProgessingQuestion, isSelectedTarget, isNextTarget, currentMeeting]);
+
+    setButtonType(null);
+  }, [isProgessingQuestion, isSelectedTarget, isNextTarget]);
+
+  useEffect(() => {
+    close();
+  }, [currentMeeting]);
 
   const handleClose = () => {
     close();
   };
 
-  const handleClickRelayStartButton = () => {
-    if (isProgessingQuestion) {
-      open();
-      return;
-    }
-    push(`${currentMeeting?.meetingId}/start-relay-question`);
-  };
+  // const handleClickRelayStartButton = () => {
+  //   if (isProgessingQuestion) {
+  //     open();
+  //     return;
+  //   }
+  //   push(`${currentMeeting?.meetingId}/start-relay-question`);
+  // };
 
   return {
     isOpen,
@@ -51,6 +55,6 @@ export const useFloatingButtonService = () => {
     homeGlobalTime: homeGlobalTime ?? 0,
     open,
     handleClose,
-    handleClickRelayStartButton,
+    // handleClickRelayStartButton,
   };
 };

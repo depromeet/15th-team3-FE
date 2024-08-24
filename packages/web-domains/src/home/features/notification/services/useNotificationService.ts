@@ -23,18 +23,11 @@ export const useNotificationService = () => {
     meetingId,
   ]);
 
-  const { data: notfication, isRefetching } = useGetNotification({
+  const { data: notfication } = useGetNotification({
     params: { meetingId: meetingId! },
     options: {
       enabled: !!meetingId,
       refetchInterval: 1000 * 30,
-      select: (data) => {
-        if (!data?.contents.length) {
-          close();
-        }
-
-        return data;
-      },
     },
   });
 
@@ -57,21 +50,19 @@ export const useNotificationService = () => {
   };
 
   useEffect(() => {
-    if (notfication?.contents[0]) {
+    if (notfication?.contents?.[0]) {
       open();
+    } else {
+      close();
     }
-  }, [notfication]);
-
-  useEffect(() => {
-    close();
-  }, [currentMeeting]);
+  }, [notfication, currentMeeting]);
 
   return {
-    notfication: notfication?.contents[0],
+    notfication: notfication?.contents?.[0],
     isOpen,
     handleClose,
     handleClickActionLater,
-    isRefetching,
+
     isNotAnswerd: !progressingQuestionData?.isAnswered,
     isNotRegistered: !progressingQuestionData?.isQuestionRegistered,
   };

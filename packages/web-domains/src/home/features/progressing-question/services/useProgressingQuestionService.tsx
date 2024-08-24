@@ -46,20 +46,24 @@ export const useProgressingQuestionService = () => {
   }, [isOpen]);
 
   useEffect(() => {
-    if (progressingQuestion?.isQuestionRegistered) {
-      setIsProgressingQuestion(true);
+    if (progressingQuestion) {
+      if (progressingQuestion?.isQuestionRegistered) {
+        setIsProgressingQuestion(true);
+      }
+
+      if (progressingQuestion?.startTime) {
+        setHomeGlobalTime(dayjs(progressingQuestion.startTime).valueOf());
+      }
     }
 
-    if (progressingQuestion?.startTime) {
-      setHomeGlobalTime(dayjs(progressingQuestion.startTime).valueOf());
-    }
+    if (progressingQuestion && myInfo) {
+      if (progressingQuestion?.targetMember?.meetingMemberId === myInfo?.meetingMemberId) {
+        setSelectedTarget(true);
+      }
 
-    if (progressingQuestion?.targetMember?.meetingMemberId === myInfo?.meetingMemberId) {
-      setSelectedTarget(true);
-    }
-
-    if (progressingQuestion?.nextTargetMember?.meetingMemberId === myInfo?.meetingMemberId) {
-      setIsNextTarget(true);
+      if (progressingQuestion?.nextTargetMember?.meetingMemberId === myInfo?.meetingMemberId) {
+        setIsNextTarget(true);
+      }
     }
   }, [progressingQuestion, myInfo]);
 
