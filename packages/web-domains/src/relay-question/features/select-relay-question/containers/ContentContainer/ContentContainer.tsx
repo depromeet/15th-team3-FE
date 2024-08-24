@@ -2,13 +2,12 @@
 
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
+import { useParams } from 'next/navigation';
 
 import { useMyInfoQuery } from '@/relay-question/features/start-relay-question/hooks/queries/useMyInfoQuery';
-import { findCurrentMeetingId } from '@/relay-question/utils/findCurrentMeetingId';
 
 import { FIRST_STEP } from '../../../../constants';
 import { useIntersect } from '../../../../hooks/useIntersection';
-import { useMyMeetingsQuery } from '../../../start-relay-question/hooks/queries/useMyMeetingsQuery';
 import { Question } from '../../components/Question/Question';
 import { Questioner } from '../../components/Questioner/Questioner';
 import { useQueryStringContext } from '../../contexts/QueryStringContext';
@@ -17,17 +16,21 @@ import { useRelayQuestionListQuery } from '../../hooks/queries/useRelayQuestionL
 
 import { questionListCss, questionTextBoxCss } from './ContentContainer.styles';
 
+interface Props {
+  meetingId: number;
+}
+
 export const ContentContainer = () => {
+  const { meetingId } = useParams<{ meetingId: string }>();
   const { currentStep } = useQueryStringContext();
 
-  if (currentStep === FIRST_STEP) return <QuestionList />;
+  if (currentStep === FIRST_STEP) return <QuestionList meetingId={Number(meetingId)} />;
 
-  return <NextQuestionerList />;
+  return <NextQuestionerList meetingId={Number(meetingId)} />;
 };
 
-const QuestionList = () => {
-  const { myMeetings } = useMyMeetingsQuery();
-  const { questions, fetchStatus, fetchNextPage } = useRelayQuestionListQuery(findCurrentMeetingId(myMeetings));
+const QuestionList = ({ meetingId }: Props) => {
+  const { questions, fetchStatus, fetchNextPage } = useRelayQuestionListQuery(meetingId);
 
   const { targetRef } = useIntersect({
     onIntersect: (entry) => {
@@ -37,7 +40,7 @@ const QuestionList = () => {
     },
   });
 
-  if (!questions) return <div>loading</div>;
+  if (!questions) return;
   if (questions.length === 0) return <div>empty list</div>;
 
   return (
@@ -55,6 +58,7 @@ const QuestionList = () => {
             imageUrl={questionImageFileUrl}
             title={title}
             usedCount={usedCount}
+            meetingId={meetingId}
           />
         ))}
         <div ref={targetRef} />
@@ -63,13 +67,12 @@ const QuestionList = () => {
   );
 };
 
-const NextQuestionerList = () => {
-  const { myMeetings } = useMyMeetingsQuery();
-  const { meetingMembers } = useMeetingMemberQuery(findCurrentMeetingId(myMeetings));
+const NextQuestionerList = ({ meetingId }: Props) => {
+  const { meetingMembers } = useMeetingMemberQuery(meetingId);
 
   const { myInfo } = useMyInfoQuery();
 
-  if (!meetingMembers || !myInfo) return <div>loading</div>;
+  if (!meetingMembers || !myInfo) return;
 
   return (
     <section>
@@ -95,7 +98,7 @@ const NextQuestionerList = () => {
             imageUrl={profileImageFileUrl}
             name={name}
             meetingMemberId={meetingMemberId}
-            meetingId={findCurrentMeetingId(myMeetings)}
+            meetingId={meetingId}
           />
         ))}
       </ul>
