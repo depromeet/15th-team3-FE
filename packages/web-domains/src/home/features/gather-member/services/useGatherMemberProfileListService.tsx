@@ -75,6 +75,7 @@ export const useGatherMemberProfileListService = () => {
   }, [searchInput]);
 
   return {
+    meetingId,
     isOpen,
     inviteLink: generateInviteLink(inviteCode?.code) ?? `${getWebDomain()}`,
     searchInput,

@@ -6,10 +6,11 @@ import { MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQ
 import { Avatar } from '@/home/common/components/Avatar/Avatar';
 
 interface GatherMemberProfileProps {
+  meetingId: number;
   member: MemberType;
 }
 
-export const GatherMemberProfile = ({ member }: GatherMemberProfileProps) => {
+export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfileProps) => {
   const { name, role, profileImageFileUrl, meetingMemberId, isHandWaved } = member;
   const isOwner = role === 'OWNER';
 
@@ -24,7 +25,7 @@ export const GatherMemberProfile = ({ member }: GatherMemberProfileProps) => {
         padding: '12px 16px',
       }}
     >
-      <Link href={`/about/${meetingMemberId}`}>
+      <Link href={`${meetingId}/about/${meetingMemberId}`}>
         <div css={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
           <ProfileImage imageUrl={profileImageFileUrl} isConnection={isHandWaved} />
           <Txt typography="title2" css={{ marginTop: '12px' }}>

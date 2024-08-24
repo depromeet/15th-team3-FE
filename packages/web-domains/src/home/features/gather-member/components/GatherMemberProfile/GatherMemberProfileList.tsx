@@ -3,10 +3,11 @@ import { MemberType } from '../../../../common/apis/schema/useGetProgressingQues
 import { GatherMemberProfile } from './GatherMemberProfile';
 
 interface GatherMemberProfileListProps {
+  meetingId: number;
   memberList?: MemberType[];
 }
 
-export const GatherMemberProfileList = ({ memberList }: GatherMemberProfileListProps) => {
+export const GatherMemberProfileList = ({ memberList, meetingId }: GatherMemberProfileListProps) => {
   return (
     <ul
       css={{
@@ -23,7 +24,9 @@ export const GatherMemberProfileList = ({ memberList }: GatherMemberProfileListP
         },
       }}
     >
-      {memberList?.map((member) => <GatherMemberProfile key={member.meetingMemberId} member={member} />)}
+      {memberList?.map((member) => (
+        <GatherMemberProfile key={member.meetingMemberId} member={member} meetingId={meetingId} />
+      ))}
     </ul>
   );
 };
