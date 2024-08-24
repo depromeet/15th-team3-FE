@@ -5,12 +5,14 @@ import Link from 'next/link';
 import { Modal, ModalProps } from '../../../../common/components/Modal/Modal';
 
 interface ArrivedQuestionNotificationProps extends ModalProps {
+  meetingId?: number;
   isOpen: boolean;
   onClose: () => void;
   onClickAnswerLater?: () => void;
 }
 
 export const ArrivedQuestionNotification = ({
+  meetingId,
   isOpen,
   onClose,
   onClickAnswerLater,
@@ -26,7 +28,7 @@ export const ArrivedQuestionNotification = ({
           <Txt as="p" typography="body3" color={colors.grey600}>
             릴레이 질문에 바로 답변해볼까요?
           </Txt>
-          <Link href="/answer/opening" css={{ marginTop: '28px', width: '100%' }}>
+          <Link href={`/${meetingId}/answer/opening`} css={{ marginTop: '28px', width: '100%' }}>
             <Button>
               <Txt typography="subTitle2" color={colors.white}>
                 지금 답변할래요!

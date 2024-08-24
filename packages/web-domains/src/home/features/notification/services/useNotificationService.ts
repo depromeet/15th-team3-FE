@@ -58,6 +58,7 @@ export const useNotificationService = () => {
   }, [notfication, currentMeeting]);
 
   return {
+    meetingId,
     notfication: notfication?.contents?.[0],
     isOpen,
     handleClose,

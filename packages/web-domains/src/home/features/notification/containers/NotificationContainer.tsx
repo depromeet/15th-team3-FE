@@ -4,13 +4,14 @@ import { ArrivedQuestionNotification } from '../components/ArrivedQuestionNotifi
 import { SelectedTargetMemberNotification } from '../components/SelectedTargetMemberNotification';
 import { useNotificationService } from '../services/useNotificationService';
 export const NotificationContainer = () => {
-  const { notfication, handleClose, isOpen, isNotAnswerd, isNotRegistered, handleClickActionLater } =
+  const { meetingId, notfication, handleClose, isOpen, isNotAnswerd, isNotRegistered, handleClickActionLater } =
     useNotificationService();
 
   return (
     <>
       {notfication?.eventType === 'QUESTION_REGISTERED' && isNotAnswerd && (
         <ArrivedQuestionNotification
+          meetingId={meetingId}
           isOpen={isOpen}
           onClose={handleClose}
           onClickAnswerLater={handleClickActionLater}
@@ -18,6 +19,7 @@ export const NotificationContainer = () => {
       )}
       {notfication?.eventType === 'TARGET_MEMBER' && isNotRegistered && (
         <SelectedTargetMemberNotification
+          meetingId={meetingId}
           isOpen={isOpen}
           onClose={handleClose}
           onClickAnswerLater={handleClickActionLater}
