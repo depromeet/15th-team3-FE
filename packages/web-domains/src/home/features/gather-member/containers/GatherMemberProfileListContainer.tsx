@@ -10,6 +10,7 @@ import { useGatherMemberProfileListService } from '../services/useGatherMemberPr
 
 export const GatherMemberProfileListContainer = () => {
   const {
+    meetingId,
     isOpen,
     gatherMemberList,
     searchInput,
@@ -33,7 +34,7 @@ export const GatherMemberProfileListContainer = () => {
           </span>
         </button>
       </div>
-      <GatherMemberProfileList memberList={gatherMemberList} />
+      <GatherMemberProfileList memberList={gatherMemberList} meetingId={meetingId!} />
       <KakaoShareModal
         isOpen={isOpen}
         onClose={inviteModalClose}
