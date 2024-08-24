@@ -26,7 +26,7 @@ export const MyprofileContainer = () => {
         title="마이 프로필"
         disableBack
         css={{ height: '64px' }}
-        addOn={
+        rightDecor={
           <Link href={`/${meetingId}/user/modify`}>
             <Txt typography="subTitle2" color={colors.primary500}>
               수정하기
