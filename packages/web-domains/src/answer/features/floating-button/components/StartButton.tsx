@@ -12,7 +12,7 @@ export const StartButton = ({ questionId }: StartButtonProps) => {
   return (
     <div
       css={{
-        position: 'absolute',
+        position: 'fixed',
         bottom: '40px',
         margin: '0 auto',
         width: '100%',
