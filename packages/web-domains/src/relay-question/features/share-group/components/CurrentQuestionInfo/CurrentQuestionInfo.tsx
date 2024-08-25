@@ -30,7 +30,13 @@ export const CurrentQuestionInfo = ({ questionCount, questioner }: CurrentQuesti
           {questioner.name}
         </Txt>
         <div css={imgWrapperCss}>
-          <Image src={questioner.imageUrl} alt={questioner.name} width={20} height={20} />
+          <Image
+            src={questioner.imageUrl}
+            alt={questioner.name}
+            width={20}
+            height={20}
+            style={{ objectFit: 'cover' }}
+          />
         </div>
       </div>
     </div>

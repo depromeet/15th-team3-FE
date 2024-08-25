@@ -18,6 +18,7 @@ export const headingWrapperCss = css({
   justifyContent: 'center',
   alignItems: 'center',
   paddingTop: size['2xl'],
+  maxWidth: '300px',
 });
 
 export const footerWrapperCss = css({
@@ -29,7 +30,6 @@ export const footerWrapperCss = css({
 
 export const buttonWrapperCss = css({
   width: '100%',
-  maxWidth: '430px',
 });
 
 export const shareButtonCss = css({

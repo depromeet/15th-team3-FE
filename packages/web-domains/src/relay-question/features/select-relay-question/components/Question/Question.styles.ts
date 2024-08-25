@@ -16,8 +16,8 @@ export const questionTextWrapperCss = css({
 });
 
 export const questionImgWrapperCss = css({
-  minWidth: `${size['4xl']}`,
-  minHeight: `${size['4xl']}`,
+  minWidth: size['4xl'],
+  height: size['4xl'],
   borderRadius: `${borderRadiusVariants.medium}`,
   overflow: 'hidden',
 });
