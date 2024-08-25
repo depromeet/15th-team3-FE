@@ -2,7 +2,15 @@ import { ElementType, forwardRef, HTMLAttributes } from 'react';
 
 import { colors } from '@sds/theme';
 
-import { fontSizeByTypography, fontWeightByTypography, fontWeightVariants } from './styles';
+import {
+  colorVar,
+  fontSizeByTypography,
+  fontSizeVar,
+  fontWeightByTypography,
+  fontWeightVar,
+  fontWeightVariants,
+  TxtCss,
+} from './styles';
 import { FontWeight, Typography } from './types';
 
 /**
@@ -31,14 +39,13 @@ export const Txt = forwardRef<HTMLSpanElement, TxtProps>((props, ref) => {
   const fontSize = fontSizeByTypography[typography];
 
   const style = {
-    color,
-    fontWeight,
-    fontSize,
-    lineHeight: '150%',
+    [colorVar]: color,
+    [fontWeightVar]: fontWeight,
+    [fontSizeVar]: fontSize,
     ...styleFromProps,
   };
 
-  return <Tag ref={ref} style={style} {...restProps} />;
+  return <Tag ref={ref} css={TxtCss} style={style} {...restProps} />;
 });
 
 Txt.displayName = 'Txt';
