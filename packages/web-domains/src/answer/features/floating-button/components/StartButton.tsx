@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Txt } from '@sambad/sds/components';
-import { size, colors } from '@sambad/sds/theme';
+import { colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 interface StartButtonProps {
@@ -21,7 +21,7 @@ export const StartButton = ({ questionId }: StartButtonProps) => {
       }}
     >
       <Link href={`/answer/${questionId}`}>
-        <Button css={{ height: size['3xl'] }}>
+        <Button size="large">
           <Txt typography="subtitle1" color={colors.white}>
             시작하기
           </Txt>
