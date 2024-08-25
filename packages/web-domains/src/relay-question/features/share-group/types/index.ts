@@ -1,3 +1,10 @@
+interface TargetMember {
+  meetingMemberId: number;
+  name: string;
+  profileImageFileUrl: string;
+  role: string;
+}
+
 export interface ActiveQuestionResponse {
   meetingQuestionId: number;
   questionImageFileUrl: string;
@@ -9,10 +16,6 @@ export interface ActiveQuestionResponse {
   startTime: string;
   isAnswered: boolean;
   isQuestionRegistered: boolean;
-  targetMember: {
-    meetingMemberId: number;
-    name: string;
-    profileImageFileUrl: string;
-    role: string;
-  };
+  targetMember: TargetMember;
+  nextTargetMember: TargetMember;
 }
