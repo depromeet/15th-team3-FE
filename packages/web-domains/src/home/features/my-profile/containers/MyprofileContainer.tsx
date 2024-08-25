@@ -27,6 +27,7 @@ export const MyprofileContainer = () => {
         title="마이 프로필"
         rightDecor={
           <TextButton
+            css={{ height: '100%' }}
             variant="normal"
             color={colors.primary500}
             onClick={isModifyPage ? handleModify : handleMoveToModifyPage}
@@ -43,7 +44,7 @@ export const MyprofileContainer = () => {
 
         <section css={segmentedSectionCss} style={sectionStyle}>
           <SegmentedControl value={tab} onValueChange={handleTab} css={segmentedCss}>
-            <SegmentedControl.Item value="about-me">자기소개</SegmentedControl.Item>
+            {!isModifyPage && <SegmentedControl.Item value="about-me">자기소개</SegmentedControl.Item>}
             <SegmentedControl.Item value="answered-questions">릴레이 질문</SegmentedControl.Item>
           </SegmentedControl>
           <div css={aboutMeSectionCss}>
