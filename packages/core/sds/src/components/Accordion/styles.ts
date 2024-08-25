@@ -15,6 +15,8 @@ export const triggerCss = css({
   [`& ${arrowIconAttribute.querySelector}`]: {
     position: 'absolute',
     right: 0,
+    // NOTE: 상단 여백만큼 top 부여하여 정렬에 맞게 상단에 붙도록 top 부여
+    top: size['4xs'],
   },
 });
 
