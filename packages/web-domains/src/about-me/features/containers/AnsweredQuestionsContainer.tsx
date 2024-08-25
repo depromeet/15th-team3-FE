@@ -68,10 +68,14 @@ export const AnsweredQuestionsContainer = forwardRef<Ref>((_, ref) => {
                 />
               </If>
               <Accordion.Trigger>
-                <Txt typography="subtitle1" color={colors.primary500} style={{ paddingRight: size['6xs'] }}>
-                  #{index + 1}
-                </Txt>
-                <Txt typography="subtitle1">{answer.title}</Txt>
+                <div style={{ display: 'flex' }}>
+                  <Txt typography="subtitle1" color={colors.primary500} style={{ paddingRight: size['6xs'] }}>
+                    #{index + 1}
+                  </Txt>
+                  <Txt as="p" typography="subtitle1">
+                    {answer.title}
+                  </Txt>
+                </div>
               </Accordion.Trigger>
             </div>
             <Accordion.Content>
