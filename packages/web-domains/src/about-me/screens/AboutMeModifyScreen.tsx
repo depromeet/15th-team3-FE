@@ -2,19 +2,17 @@ import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query
 
 import { getAnswersPrefetch } from '../common/apis/queries/useGetAnswers';
 import { getAnswersMePrefetch } from '../common/apis/queries/useGetAnswersMe';
-import { getMeetingsPrefetch, MEETINGS_QUERY_KEY } from '../common/apis/queries/useGetMeetings';
 import { getMemberPrefetch } from '../common/apis/queries/useGetMember';
 import { getMemberMePrefetch } from '../common/apis/queries/useGetMemberMe';
-import { MeetingResponse } from '../common/apis/schema/MeetingResponse';
 import { ScreenContainer } from '../features/containers/ScreenContainer';
 
 interface AboutMeScreenParams {
-  meetingMemberId?: number;
+  meetingId: string;
+  meetingMemberId?: string;
 }
 
 export const AboutMeModifyScreen = async (params: AboutMeScreenParams) => {
-  const { meetingMemberId } = params;
-  const { queryClient } = await getServerSideProps(meetingMemberId);
+  const { queryClient } = await getServerSideProps(params);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
@@ -23,18 +21,13 @@ export const AboutMeModifyScreen = async (params: AboutMeScreenParams) => {
   );
 };
 
-export const getServerSideProps = async (meetingMemberId?: number) => {
+export const getServerSideProps = async (params: AboutMeScreenParams) => {
+  const { meetingId: _meetingId, meetingMemberId: _meetingMemberId } = params;
+  const meetingId = Number(_meetingId);
+  const meetingMemberId = Number(_meetingMemberId);
   const queryClient = new QueryClient();
 
   try {
-    await getMeetingsPrefetch({ queryClient });
-    const data = queryClient.getQueryData<MeetingResponse>([MEETINGS_QUERY_KEY]);
-    const meetingId = data?.meetings[0]?.meetingId;
-
-    if (!meetingId) {
-      throw new Error('No meetingId found');
-    }
-
     if (meetingMemberId) {
       await Promise.all([
         getMemberPrefetch({ meetingId, meetingMemberId, queryClient }),
