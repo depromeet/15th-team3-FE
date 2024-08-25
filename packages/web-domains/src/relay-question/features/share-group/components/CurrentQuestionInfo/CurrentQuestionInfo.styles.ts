@@ -5,7 +5,7 @@ export const wrapperCss = css({
   width: '100%',
   maxWidth: '168px',
   position: 'absolute',
-  top: 94,
+  top: 104,
   left: '50.5%',
   transform: 'translateX(-50%)',
 });
