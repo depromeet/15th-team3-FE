@@ -15,7 +15,7 @@ export const AboutMeContainer = () => {
   if (hasNoInfo) return <EmptyView title="아직 입력한 정보가 없어요" style={{ height: '300px' }} />;
 
   return (
-    <section style={{ padding: `${size['4xs']} 0` }}>
+    <section style={{ padding: `${size['4xs']} 0`, marginBottom: '180px' }}>
       <HobbyList contents={data?.hobbies} />
       <IntroduceBox content={data?.introduction} />
     </section>

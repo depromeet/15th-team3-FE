@@ -13,6 +13,7 @@ import { CheckIconMeet } from './assets/CheckIcon';
 import { CloseIcon } from './assets/CloseIcon';
 import { CommentsIcon } from './assets/CommentsIcon';
 import { ConnectStar } from './assets/ConnectStar';
+import { CrossCircle } from './assets/CrossCircle';
 import { CrownIcon } from './assets/Crown';
 import { HandShaving } from './assets/HandShaving';
 import { HomeIcon } from './assets/HomeIcon';
@@ -56,4 +57,5 @@ export const iconMap = {
   stats: Stats,
   upload: Upload,
   check: CheckIcon,
+  'cross-circle': CrossCircle,
 };
