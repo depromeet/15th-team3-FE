@@ -53,7 +53,9 @@ export const ShareNextQuestionerContainer = () => {
               다음 질문인에게 공유하기
             </Button>
             <Link href={`/${meetingId}/answer/opening`}>
-              <Button variant="sub">제일 먼저 답변하기</Button>
+              <Button variant="sub" size="large">
+                제일 먼저 답변하기
+              </Button>
             </Link>
           </div>
         </div>
@@ -65,7 +67,7 @@ export const ShareNextQuestionerContainer = () => {
         topTitle="다음 릴레이 질문인에게"
         bottomTitle="공유해 보세요!"
         shareImageUrl={KAKAO_IMAGE_URL}
-        shareDescription={`다음 질문인은 ${activeQuestion?.targetMember.name}님이에요! 현재 진행 중인 릴레이 질문이 끝나면 질문을 꼭! 생성해주세요`}
+        shareDescription={`다음 질문인은 ${activeQuestion?.nextTargetMember?.name || '000'}님이에요! 현재 진행 중인 릴레이 질문이 끝나면 질문을 꼭! 생성해주세요`}
         shareLink={`${getWebDomain()}/${meetingId}/answer/opening`}
       />
     </>
