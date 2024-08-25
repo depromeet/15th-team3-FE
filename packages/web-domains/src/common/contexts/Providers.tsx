@@ -1,5 +1,6 @@
 'use client';
 
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { OverlayProvider } from '@toss/use-overlay';
 import { Provider as AtomProvider } from 'jotai';
 import { PropsWithChildren } from 'react';
@@ -12,6 +13,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
       <AtomProvider>
         <OverlayProvider>{children}</OverlayProvider>
       </AtomProvider>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 };

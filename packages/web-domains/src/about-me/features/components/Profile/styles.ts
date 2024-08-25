@@ -1,14 +1,5 @@
 import { css } from '@emotion/react';
-import { colors, size } from '@sambad/sds/theme';
-
-export const rootCss = css({
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  padding: `${size['xs']} ${size['2xs']} ${size['md']}`,
-  backgroundColor: colors.white,
-});
+import { size } from '@sambad/sds/theme';
 
 export const nameCss = css({
   marginTop: size['2xs'],

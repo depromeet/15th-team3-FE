@@ -3,8 +3,10 @@ export interface MyMeetingAnswerListResponse {
 }
 
 interface Content {
+  meetingQuestionId: number;
   idx: number;
   title: string;
-  content: string;
+  content: Array<string>;
   commentContent: string;
+  isHidden: boolean;
 }

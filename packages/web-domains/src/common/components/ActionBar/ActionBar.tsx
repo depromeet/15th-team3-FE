@@ -10,11 +10,11 @@ import { actionBarWrapperStyles, addOnStyles, buttonStyles } from './ActionBar.s
 
 interface ActionBarProps extends HTMLAttributes<HTMLHeadElement> {
   title?: string;
-  addOn?: ReactNode;
+  rightDecor?: ReactNode;
   onBack?: () => void;
 }
 
-export const ActionBar = ({ title, addOn, onBack, ...rest }: ActionBarProps) => {
+export const ActionBar = ({ title, rightDecor, onBack, ...rest }: ActionBarProps) => {
   const { back } = useRouter();
 
   const handleBack = () => {
@@ -29,7 +29,7 @@ export const ActionBar = ({ title, addOn, onBack, ...rest }: ActionBarProps) => 
           <BackIcon size={24} />
         </button>
         <Txt typography="title2">{title}</Txt>
-        <button css={addOnStyles}>{addOn}</button>
+        <button css={addOnStyles}>{rightDecor}</button>
       </div>
     </header>
   );
