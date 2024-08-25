@@ -6,8 +6,8 @@ import { StatisticsContainer } from '../containers/StatisticsContainer';
 
 export const StatisticsScreen = (params: BaseParams) => {
   return (
-    <BaseLayout title="전체 통계 결과" header={<HeaderContainer {...params} />}>
-      <StatisticsContainer {...params} />
+    <BaseLayout title="전체 통계 결과" header={<HeaderContainer />}>
+      <StatisticsContainer />
     </BaseLayout>
   );
 };

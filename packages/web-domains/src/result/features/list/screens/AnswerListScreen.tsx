@@ -1,8 +1,7 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
 import { getAnswersPrefetch } from '@/result/common/apis/queries/useGetAnswers';
-import { getMeetingsPrefetch, MEETINGS_QUERY_KEY } from '@/result/common/apis/queries/useGetMeetings';
-import { MeetingResponse } from '@/result/common/apis/schema/MeetingResponse';
+import { getMeetingsPrefetch } from '@/result/common/apis/queries/useGetMeetings';
 import { BaseParams } from '@/result/common/types/BaseParams';
 
 import { AnswerListContainer } from '../containers/AnswerListContainer';
@@ -12,7 +11,7 @@ export const AnswerListScreen = async (params: BaseParams) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <AnswerListContainer {...params} />
+      <AnswerListContainer />
     </HydrationBoundary>
   );
 };
@@ -22,14 +21,12 @@ const getServerSideProps = async (params: BaseParams) => {
 
   try {
     await getMeetingsPrefetch({ queryClient });
-    const data = queryClient.getQueryData<MeetingResponse>([MEETINGS_QUERY_KEY]);
-    const meetingId = data?.meetings[0]?.meetingId;
 
-    if (!meetingId) {
-      throw new Error('No meetingId found');
-    }
-
-    await getAnswersPrefetch({ queryClient, meetingId, questionId: params.questionId });
+    await getAnswersPrefetch({
+      queryClient,
+      meetingId: Number(params.meetingId),
+      questionId: Number(params.questionId),
+    });
   } catch (error) {
     console.error(error);
   }

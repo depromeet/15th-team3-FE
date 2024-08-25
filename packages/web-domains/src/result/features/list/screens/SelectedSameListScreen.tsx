@@ -1,8 +1,7 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
-import { getMeetingsPrefetch, MEETINGS_QUERY_KEY } from '@/result/common/apis/queries/useGetMeetings';
+import { getMeetingsPrefetch } from '@/result/common/apis/queries/useGetMeetings';
 import { getSameSelectedPrefetch } from '@/result/common/apis/queries/useGetSameSelected';
-import { MeetingResponse } from '@/result/common/apis/schema/MeetingResponse';
 import { BaseParams } from '@/result/common/types/BaseParams';
 
 import { SelectedSameListContainer } from '../containers/SelectedSameListContainer';
@@ -12,7 +11,7 @@ export const SelectedSameListScreen = async (params: BaseParams) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <SelectedSameListContainer {...params} />
+      <SelectedSameListContainer />
     </HydrationBoundary>
   );
 };
@@ -22,16 +21,11 @@ const getServerSideProps = async (params: BaseParams) => {
 
   try {
     await getMeetingsPrefetch({ queryClient });
-    const data = queryClient.getQueryData<MeetingResponse>([MEETINGS_QUERY_KEY]);
-    const meetingId = data?.meetings[0]?.meetingId;
-
-    if (!meetingId) {
-      throw new Error('No meetingId found');
-    }
-
-    const prefetchParams = { queryClient, meetingId, questionId: params.questionId };
-
-    await getSameSelectedPrefetch(prefetchParams);
+    await getSameSelectedPrefetch({
+      queryClient,
+      meetingId: Number(params.meetingId),
+      questionId: Number(params.questionId),
+    });
   } catch (error) {
     console.error(error);
   }

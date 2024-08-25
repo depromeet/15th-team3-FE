@@ -1,3 +1,4 @@
-export interface BaseParams {
-  questionId: number;
-}
+export type BaseParams = {
+  questionId: string;
+  meetingId: string;
+};
