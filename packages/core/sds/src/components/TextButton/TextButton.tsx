@@ -4,7 +4,7 @@ import { colors } from '@sds/theme';
 
 import { Icon } from '../Icon';
 
-import { arrowIconCss, textButtonCss } from './styles';
+import { arrowIconCss, colorVar, textButtonCss, textDecorationVar } from './styles';
 import { TextButtonVariant } from './types';
 
 export interface TextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,8 +19,8 @@ export const TextButton = forwardRef<HTMLButtonElement, TextButtonProps>((props,
   const isArrowVariant = variant === 'arrow';
 
   const style = {
-    color,
-    ...(isUnderlineVariant && { textDecoration: 'underline' }),
+    [colorVar]: color,
+    [textDecorationVar]: isUnderlineVariant ? 'underline' : 'none',
     ...styleFromProps,
   };
 
