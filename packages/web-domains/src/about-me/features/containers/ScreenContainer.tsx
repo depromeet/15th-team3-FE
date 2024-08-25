@@ -9,7 +9,7 @@ import { useCreateHandWavings } from '@/about-me/common/apis/mutates/useCreateHa
 import { useGetHandWavingsStatus } from '@/about-me/common/apis/queries/useGetHandWavingsStatus';
 import { ActionBar } from '@/common/components/ActionBar/ActionBar';
 
-import { useGetFirstMeetingId } from '../hooks/useGetFirstMeetingId';
+import { useConvertTypeParams } from '../hooks/useConvertTypeParams';
 import { useGetIsModifyPage } from '../hooks/useGetIsModifyPage';
 import { useIsMyByParams } from '../hooks/useIsMyByParams';
 
@@ -18,12 +18,12 @@ import { SegmentedControlContainer } from './SegmentedControlContainer';
 import { handWavingButtonCss, screenRootCss } from './styles';
 
 export const ScreenContainer = () => {
+  const { isMy } = useIsMyByParams();
+  const { meetingId, meetingMemberId } = useConvertTypeParams();
   const segmentedRef = useRef<{ onMutate: () => void }>(null);
   const isModifyPage = useGetIsModifyPage();
   const router = useRouter();
 
-  const { isMy, meetingMemberId } = useIsMyByParams();
-  const { meetingId } = useGetFirstMeetingId();
   const { data: wavingStatusData, isSuccess: getWavingStatusSuccess } = useGetHandWavingsStatus({
     meetingId,
     receiverMemberId: meetingMemberId,
@@ -37,7 +37,7 @@ export const ScreenContainer = () => {
   };
 
   const handleMoveToModifyPage = () => {
-    router.push('/about/me/modify');
+    router.push(`/${meetingId}/about/me/modify`);
   };
 
   const handleModify = () => {

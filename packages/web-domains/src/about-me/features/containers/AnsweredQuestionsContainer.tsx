@@ -8,8 +8,8 @@ import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { useUpdateQuestionsActive } from '@/about-me/common/apis/mutates/useUpdateQuestionsActive';
 import { EmptyView } from '@/common/components';
 
+import { useConvertTypeParams } from '../hooks/useConvertTypeParams';
 import { useGetAnswersByParams } from '../hooks/useGetAnswersByParams';
-import { useGetFirstMeetingId } from '../hooks/useGetFirstMeetingId';
 import { useGetIsModifyPage } from '../hooks/useGetIsModifyPage';
 
 import { checkboxAttribute } from './constants';
@@ -20,7 +20,7 @@ interface Ref {
 }
 
 export const AnsweredQuestionsContainer = forwardRef<Ref>((_, ref) => {
-  const { meetingId } = useGetFirstMeetingId();
+  const { meetingId } = useConvertTypeParams();
   const isModifyPage = useGetIsModifyPage();
   const { data: answers } = useGetAnswersByParams();
   const answersLength = answers?.contents?.length;
