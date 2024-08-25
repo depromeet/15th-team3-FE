@@ -3,8 +3,10 @@
 import { Button, Icon, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 import { Fragment } from 'react/jsx-runtime';
+
+import { useConvertTypeParams } from '@/result/common/hooks/useConvertTypeParams';
+import { BaseParams } from '@/result/common/types/BaseParams';
 
 import { SadUserIcon } from '../../assets';
 
@@ -24,17 +26,17 @@ interface MostAnsweredProps {
 }
 
 export const MostAnswered = (props: MostAnsweredProps) => {
-  const params = useParams<{ questionId: string }>();
+  const { meetingId, questionId } = useConvertTypeParams<BaseParams>();
   const { contents: contentsFromProps } = props;
 
   const contentText = contentsFromProps?.join(', ');
 
   return (
     <Fragment>
-      <Txt typography="heading1" color={colors.tertiary500} css={mostAnsweredTitleCss}>
+      <Txt typography="heading1" color={colors.primary500} css={mostAnsweredTitleCss}>
         {contentText}
       </Txt>
-      <Link href={`/question-result/${params.questionId}/statistics`}>
+      <Link href={`/${meetingId}/question-result/${questionId}/statistics`}>
         <Button css={mostAnsweredButtonCss} leftDecor={<Icon name="stats" />}>
           전체 통계보기
         </Button>
@@ -49,7 +51,7 @@ interface WithMeMembersProps {
 }
 
 export const WithMeMembers = (props: WithMeMembersProps) => {
-  const params = useParams<{ questionId: string }>();
+  const { meetingId, questionId } = useConvertTypeParams<BaseParams>();
   const { count = 0, members } = props;
 
   const noMembers = count === 0;
@@ -79,7 +81,7 @@ export const WithMeMembers = (props: WithMeMembersProps) => {
         <CountByMemberList
           showName={members?.[0]?.name}
           count={count}
-          href={`/question-result/${params.questionId}/answers/most-selected`}
+          href={`/${meetingId}/question-result/${questionId}/answers/same-selected`}
         />
       )}
     </div>

@@ -315,8 +315,11 @@ importers:
   packages/web-domains:
     dependencies:
       '@sambad/css-utils':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../core/css-utils
+      '@sambad/react-utils':
+        specifier: workspace:*
+        version: link:../core/react-utils
       '@tanstack/react-query':
         specifier: ^5.50.1
         version: 5.51.1(react@18.2.0)
@@ -348,6 +351,9 @@ importers:
       '@sambad/typescript-config':
         specifier: workspace:*
         version: link:../core/typescript-config
+      '@tanstack/react-query-devtools':
+        specifier: ^5.52.1
+        version: 5.52.1(@tanstack/react-query@5.51.1)(react@18.2.0)
       '@types/eslint':
         specifier: ^8.56.5
         version: 8.56.10
@@ -4120,7 +4126,21 @@ packages:
 
   /@tanstack/query-core@5.51.1:
     resolution: {integrity: sha512-fJBMQMpo8/KSsWW5ratJR5+IFr7YNJ3K2kfP9l5XObYHsgfVy1w3FJUWU4FT2fj7+JMaEg33zOcNDBo0LMwHnw==}
-    dev: false
+
+  /@tanstack/query-devtools@5.51.16:
+    resolution: {integrity: sha512-ajwuq4WnkNCMj/Hy3KR8d3RtZ6PSKc1dD2vs2T408MdjgKzQ3klVoL6zDgVO7X+5jlb5zfgcO3thh4ojPhfIaw==}
+    dev: true
+
+  /@tanstack/react-query-devtools@5.52.1(@tanstack/react-query@5.51.1)(react@18.2.0):
+    resolution: {integrity: sha512-6KwSm9vcIIK26osQJtT52Gyccz/DyHPT216B7kt4ihg22G2rtGZ7sCXYQO25XEHyVwVingwHdZ7auj+ydgg4Zg==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.52.1
+      react: ^18 || ^19
+    dependencies:
+      '@tanstack/query-devtools': 5.51.16
+      '@tanstack/react-query': 5.51.1(react@18.2.0)
+      react: 18.2.0
+    dev: true
 
   /@tanstack/react-query@5.51.1(react@18.2.0):
     resolution: {integrity: sha512-s47HKFnQ4HOJAHoIiXcpna/roMMPZJPy6fJ6p4ZNVn8+/onlLBEDd1+xc8OnDuwgvecqkZD7Z2mnSRbcWefrKw==}
@@ -4129,7 +4149,6 @@ packages:
     dependencies:
       '@tanstack/query-core': 5.51.1
       react: 18.2.0
-    dev: false
 
   /@testing-library/dom@10.1.0:
     resolution: {integrity: sha512-wdsYKy5zupPyLCW2Je5DLHSxSfbIp6h80WoHOQc+RPtmPGA52O9x5MJEkv92Sjonpq+poOAtUKhh1kBGAXBrNA==}

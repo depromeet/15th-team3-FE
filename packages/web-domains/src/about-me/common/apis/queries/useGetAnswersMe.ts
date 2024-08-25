@@ -1,4 +1,4 @@
-import { QueryClient, useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { QueryClient, UseQueryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
 import { Http } from '@/common/apis/base.api';
 
@@ -20,7 +20,7 @@ const queryFn = ({ meetingId }: Params) =>
 export const useGetAnswersMe = (props: QueryProps) => {
   const { options, ...params } = props;
 
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: [ANSWERS_ME_QUERY_KEY, params],
     queryFn: () => queryFn(params),
     enabled: params.meetingId !== -1,
