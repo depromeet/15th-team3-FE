@@ -67,7 +67,7 @@ export const IntroInfoForm = () => {
     <form onSubmit={handleSubmit(handleParticipateMeeting)} css={{ padding: '0 20px', marginTop: '48px' }}>
       <TextArea
         maxLength={MAX_LENGTH}
-        placeholder="저는 이런 사람이에요."
+        placeholder="저는 이런 사람이에요"
         {...register('introduction', { maxLength: MAX_LENGTH })}
       />
       <Txt as="p" typography="body4" color={colors.grey600}>

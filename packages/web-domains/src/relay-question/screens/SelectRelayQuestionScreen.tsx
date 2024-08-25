@@ -1,43 +1,53 @@
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { cookies } from 'next/headers';
 import { Suspense } from 'react';
 
 import { ContentContainer } from '../features/select-relay-question/containers/ContentContainer/ContentContainer';
 import { ProgressIndicatorContainer } from '../features/select-relay-question/containers/ProgressIndicatorContainer/ProgressIndicatorContainer';
 import { RandomPickContainer } from '../features/select-relay-question/containers/RandomPickContainer/RandomPickContainer';
 import { QueryStringProvider } from '../features/select-relay-question/contexts/QueryStringContext';
+import { useRelayQuestionListQueryPrefetch } from '../features/select-relay-question/hooks/queries/useRelayQuestionListQuery';
 
-export const SelectRelayQuestionScreen = async () => {
-  // const queryClient = await getServerSideProps();
+interface MeetingId {
+  meetingId: number;
+}
+
+interface Params {
+  params: MeetingId;
+}
+
+export const SelectRelayQuestionScreen = async ({ params: { meetingId } }: Params) => {
+  const queryClient = await getServerSideProps({ meetingId });
 
   return (
-    // <HydrationBoundary state={dehydrate(queryClient)}>
-    <Suspense>
-      <QueryStringProvider>
-        <ProgressIndicatorContainer />
-        <ContentContainer />
-        <RandomPickContainer />
-      </QueryStringProvider>
-    </Suspense>
-    // </HydrationBoundary>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Suspense>
+        <QueryStringProvider>
+          <ProgressIndicatorContainer />
+          <ContentContainer />
+          <RandomPickContainer />
+        </QueryStringProvider>
+      </Suspense>
+    </HydrationBoundary>
   );
 };
 
-// const getServerSideProps = async () => {
-//   const queryClient = new QueryClient();
-//   const cookie = cookies();
+const getServerSideProps = async ({ meetingId }: MeetingId) => {
+  const queryClient = new QueryClient();
 
-//   try {
-//     await useMyMeetingsPrefetch(queryClient, cookie);
-//     const meetingId = queryClient.getQueryData<MyMeetingsResponse>([MY_MEETINGS_QUERY_KEY])?.meetingIds[0];
-//     const relayQuestionListPrefetch = useRelayQuestionListQueryPrefetch({
-//       queryClient,
-//       meetingId: meetingId || 1,
-//       cookie,
-//     });
+  try {
+    const cookie = cookies();
 
-//     await Promise.all([relayQuestionListPrefetch]);
-//   } catch (error: unknown) {
-//     console.log(error);
-//   }
+    const relayQuestionListPrefetch = useRelayQuestionListQueryPrefetch({
+      queryClient,
+      meetingId,
+      cookie,
+    });
 
-//   return queryClient;
-// };
+    await Promise.all([relayQuestionListPrefetch]);
+  } catch (error: unknown) {
+    console.log(error);
+  }
+
+  return queryClient;
+};
