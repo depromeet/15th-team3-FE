@@ -4,3 +4,4 @@ export { QueryClientProvider } from './contexts/QueryClientProvider';
 export { RootLayout } from './layout/RootLayout';
 export { GlobalStyle } from './styles/GlobalStyles';
 export { getWebDomain } from './utils/getWebDomain';
+export { Error404 } from './components/Error';
