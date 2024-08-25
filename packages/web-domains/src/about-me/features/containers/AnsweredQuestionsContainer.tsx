@@ -29,10 +29,6 @@ export const AnsweredQuestionsContainer = forwardRef<Ref>((_, ref) => {
 
   const checkboxRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  if (answersLength === 0) {
-    return <EmptyView title="아직 답변한 릴레이 질문이 없어요" style={{ height: '300px' }} />;
-  }
-
   const handleModify = () => {
     const checkedIds = checkboxRefs.current
       .filter((checkbox) => checkbox?.checked)
@@ -45,6 +41,10 @@ export const AnsweredQuestionsContainer = forwardRef<Ref>((_, ref) => {
   useImperativeHandle(ref, () => ({
     onMutate: handleModify,
   }));
+
+  if (answersLength === 0) {
+    return <EmptyView title="아직 답변한 릴레이 질문이 없어요" style={{ height: '300px' }} />;
+  }
 
   return (
     <section>
