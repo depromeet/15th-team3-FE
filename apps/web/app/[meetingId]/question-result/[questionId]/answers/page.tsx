@@ -2,16 +2,15 @@ import { AnswerListScreen } from '@sambad/web-domains/result';
 
 interface QuestionResultPageProps {
   params: {
+    meetingId: string;
     questionId: string;
   };
 }
 
 const AnswersPage = (props: QuestionResultPageProps) => {
-  const {
-    params: { questionId },
-  } = props;
+  const { params } = props;
 
-  return <AnswerListScreen questionId={Number(questionId)} />;
+  return <AnswerListScreen {...params} />;
 };
 
 export default AnswersPage;

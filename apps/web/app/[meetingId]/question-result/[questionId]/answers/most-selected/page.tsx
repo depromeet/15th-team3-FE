@@ -2,16 +2,15 @@ import { MostSelectedListScreen } from '@sambad/web-domains/result';
 
 interface QuestionResultPageProps {
   params: {
+    meetingId: string;
     questionId: string;
   };
 }
 
 const QuestionResultPage = (props: QuestionResultPageProps) => {
-  const {
-    params: { questionId },
-  } = props;
+  const { params } = props;
 
-  return <MostSelectedListScreen questionId={Number(questionId)} />;
+  return <MostSelectedListScreen {...params} />;
 };
 
 export default QuestionResultPage;
