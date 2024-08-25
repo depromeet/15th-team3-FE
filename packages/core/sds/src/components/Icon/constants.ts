@@ -7,6 +7,7 @@ import { AngleUpIcon } from './assets/AngleUp';
 import { CaretDownIcon } from './assets/CaretDown';
 import { CheckIcon } from './assets/Check';
 import { CommentsIcon } from './assets/CommentsIcon';
+import { CrossCircle } from './assets/CrossCircle';
 import { CrownIcon } from './assets/Crown';
 import { Landscape } from './assets/Landscape';
 import { SadUserIcon } from './assets/SadUserIcon';
@@ -32,4 +33,5 @@ export const iconMap = {
   stats: Stats,
   upload: Upload,
   check: CheckIcon,
+  'cross-circle': CrossCircle,
 };
