@@ -47,7 +47,7 @@ export const AnswerQuestions = forwardRef<Ref, AnswerQuestionsProps>(({ isModify
   }
 
   return (
-    <section>
+    <section style={{ marginBottom: '180px' }}>
       <If condition={isModifyPage}>
         <Txt typography="title4" color={colors.grey600}>
           프로필에 표시할 질문 선택하기
