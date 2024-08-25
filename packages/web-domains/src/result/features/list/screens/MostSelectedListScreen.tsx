@@ -11,7 +11,7 @@ export const MostSelectedListScreen = async (params: BaseParams) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <MostSelectedListContainer {...params} />
+      <MostSelectedListContainer />
     </HydrationBoundary>
   );
 };

@@ -18,7 +18,7 @@ export const ResultMainScreen = async (params: BaseParams) => {
       <BaseLayout title="릴레이 질문 결과" header={<HeaderContainer />}>
         <MostAnsweredContainers />
         <WithMyMembersContainers />
-        <CommentListContainer {...params} />
+        <CommentListContainer />
       </BaseLayout>
     </HydrationBoundary>
   );
