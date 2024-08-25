@@ -27,7 +27,7 @@ export const useUpdateQuestionsActive = () => {
     mutationFn,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [ANSWERS_ME_QUERY_KEY] });
-      router.push('/about/me');
+      router.push('/home/me');
     },
   });
 };

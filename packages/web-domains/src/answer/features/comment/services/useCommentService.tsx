@@ -4,6 +4,7 @@ import { useAtomValue } from 'jotai';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import { ANSWERS_ME_QUERY_KEY } from '@/about-me/common/apis/queries/useGetAnswersMe';
 import { useAnswerQuestionMutation } from '@/answer/common/apis/mutations/useAnswerQuestionMutation';
 import { useCommentMutation } from '@/answer/common/apis/mutations/useCommentMutation';
 import { PROGRESSING_QUESTION_QUERY_KEY } from '@/answer/common/apis/queries/useGetProgressingQuestion';
@@ -46,8 +47,17 @@ export const useCommentService = () => {
       const notificationInvalidate = queryClient.invalidateQueries({
         queryKey: [NOTIFICATION_QUERY_KEY],
       });
+      const myAnswersInvalidate = queryClient.invalidateQueries({
+        queryKey: [ANSWERS_ME_QUERY_KEY, meetingId],
+      });
 
-      Promise.all([questionInvalidate, topPreviousQuestionInvalidate, gatherMemberInvalidate, notificationInvalidate]);
+      Promise.all([
+        questionInvalidate,
+        topPreviousQuestionInvalidate,
+        gatherMemberInvalidate,
+        notificationInvalidate,
+        myAnswersInvalidate,
+      ]);
 
       push(`/${meetingId}/answer/closing`);
     } catch (error) {

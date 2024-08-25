@@ -32,7 +32,7 @@ export const ActionBar = ({ disableBack = false, title, rightDecor, onBack, ...r
           </button>
         )}
         <Txt typography="title2">{title}</Txt>
-        <button css={addOnStyles}>{rightDecor}</button>
+        <span css={addOnStyles}>{rightDecor}</span>
       </div>
     </header>
   );

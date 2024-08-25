@@ -1,10 +1,8 @@
 'use client';
 
 import { colors, size } from '@sambad/sds/theme';
-import { SegmentedControl, Txt } from '@sds/components';
-import Link from 'next/link';
+import { SegmentedControl, TextButton, Txt } from '@sds/components';
 
-import { Profile } from '@/about-me/features/components';
 import {
   aboutMeSectionCss,
   screenRootCss,
@@ -15,37 +13,33 @@ import { ActionBar } from '@/common/components/ActionBar/ActionBar';
 
 import { AboutMe } from '../components/AboutMe';
 import { AnswerQuestions } from '../components/AnswerQuestions';
+import { MyProfile } from '../components/MyProfile';
 import { useMyprofileService } from '../services/useMyprofileService';
 
 export const MyprofileContainer = () => {
-  const { data, answers, handleTab, tab, meetingId } = useMyprofileService();
+  const { segmentedRef, data, answers, handleTab, tab, meetingId, isModifyPage, handleModify, handleMoveToModifyPage } =
+    useMyprofileService();
 
   return (
     <div css={screenRootCss}>
       <ActionBar
-        title="마이 프로필"
         disableBack
-        css={{ height: '64px' }}
-        addOn={
-          <Link href={`/${meetingId}/user/modify`}>
-            <Txt typography="subTitle2" color={colors.primary500}>
-              수정하기
+        title="마이 프로필"
+        rightDecor={
+          <TextButton
+            variant="normal"
+            color={colors.primary500}
+            onClick={isModifyPage ? handleModify : handleMoveToModifyPage}
+          >
+            {/* NOTE: sds에서 Txt 컴포넌트가 css로 오버라이딩이 되지 않는 무제 해결 후 inherit 제거 예정 */}
+            <Txt typography="subTitle2" style={{ color: 'inherit' }}>
+              {isModifyPage ? '수정완료' : '수정하기'}
             </Txt>
-          </Link>
+          </TextButton>
         }
       />
       <div style={layoutStyle}>
-        <section style={{ marginBottom: size['5xs'] }}>
-          <Profile
-            name={data?.name}
-            imageUrl={data?.profileImageFileUrl}
-            birth={data?.birth}
-            gender={data?.gender}
-            mbti={data?.mbti}
-            location={data?.location}
-            job={data?.job}
-          />
-        </section>
+        <MyProfile meetingId={meetingId} profileInfo={data} />
 
         <section css={segmentedSectionCss} style={sectionStyle}>
           <SegmentedControl value={tab} onValueChange={handleTab} css={segmentedCss}>
@@ -53,8 +47,12 @@ export const MyprofileContainer = () => {
             <SegmentedControl.Item value="answered-questions">릴레이 질문</SegmentedControl.Item>
           </SegmentedControl>
           <div css={aboutMeSectionCss}>
-            {tab === 'about-me' && <AboutMe info={data} />}
-            {tab === 'answered-questions' && <AnswerQuestions answers={answers} />}
+            <div css={aboutMeSectionCss}>
+              {tab === 'about-me' && <AboutMe info={data} />}
+              {tab === 'answered-questions' && (
+                <AnswerQuestions isModifyPage={isModifyPage} answers={answers} ref={segmentedRef} />
+              )}
+            </div>
           </div>
         </section>
       </div>
