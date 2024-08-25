@@ -41,8 +41,11 @@ export const answerContentCss = css({
 });
 
 export const handWavingButtonCss = css({
-  position: 'absolute',
-  bottom: size['xl'],
+  position: 'fixed',
+  // NOTE: 좌우 여백을 고려한 너비 계산
+  width: `calc(100% - ${size['2xs']} * 2)`,
+  bottom: size['2xs'],
+  left: size['2xs'],
 });
 
 export const screenRootCss = css({
