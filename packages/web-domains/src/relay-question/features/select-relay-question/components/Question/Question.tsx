@@ -14,9 +14,10 @@ interface QuestionProps {
   imageUrl: string;
   title: string;
   usedCount: number;
+  meetingId: number;
 }
 
-export const Question = ({ id, imageUrl, title, usedCount }: QuestionProps) => {
+export const Question = ({ id, imageUrl, title, usedCount, meetingId }: QuestionProps) => {
   const openModal = useModal();
   const { refetch } = useRelayQuestionQuery(1);
 
@@ -25,7 +26,7 @@ export const Question = ({ id, imageUrl, title, usedCount }: QuestionProps) => {
   const handleOpenModal = async () => {
     const question = (await refetch()).data;
 
-    if (!question) return <div>loading...</div>;
+    if (!question) return;
 
     const { answers } = question;
 
@@ -35,14 +36,14 @@ export const Question = ({ id, imageUrl, title, usedCount }: QuestionProps) => {
     });
 
     if (isConfirm) {
-      router.push(`/select-relay-question?current-step=2&question-id=${id}`);
+      router.push(`/${meetingId}/select-relay-question?current-step=2&question-id=${id}`);
     }
   };
 
   return (
     <li css={wrapperCss} onClick={handleOpenModal}>
       <div css={questionImgWrapperCss}>
-        <Image src={imageUrl} alt={title} width={64} height={64} />
+        <Image src={imageUrl} alt={title} width={64} height={64} css={{ objectFit: 'cover' }} />
       </div>
       <div css={questionTextWrapperCss}>
         <Txt color={colors.black} typography="title2" fontWeight="medium">
