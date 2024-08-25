@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { HTMLAttributes } from 'react';
 
 import { Profile } from '../components';
-import { useGetFirstMeetingId } from '../hooks/useGetFirstMeetingId';
+import { useConvertTypeParams } from '../hooks/useConvertTypeParams';
 import { useGetMemberByParams } from '../hooks/useGetMemberByParams';
 
 import { profileRootCss } from './styles';
@@ -14,7 +14,7 @@ type ProfileContainerProps = HTMLAttributes<HTMLDivElement>;
 
 export const ProfileContainer = (props: ProfileContainerProps) => {
   const { data } = useGetMemberByParams();
-  const { meetingId } = useGetFirstMeetingId();
+  const { meetingId } = useConvertTypeParams();
 
   return (
     <section {...props} css={profileRootCss}>
