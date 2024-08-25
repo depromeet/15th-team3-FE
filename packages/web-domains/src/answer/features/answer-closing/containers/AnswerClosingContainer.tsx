@@ -8,7 +8,7 @@ import { ClosingMessage } from '../components/ClosingMessage';
 import { useAnswerClosingService } from '../services/useAnswerClosingService';
 
 export const AnswerClosingContainer = () => {
-  const { answerGlobalTime, isOpen, basePath, close } = useAnswerClosingService();
+  const { meetingId, answerGlobalTime, isOpen, basePath, close } = useAnswerClosingService();
 
   return (
     <>
@@ -27,7 +27,7 @@ export const AnswerClosingContainer = () => {
           onClose={close}
           topTitle="모임원들에게 릴레이 질문을"
           bottomTitle="공유해보세요!"
-          shareLink={`${basePath}/answer/opening`}
+          shareLink={`${basePath}/${meetingId}/answer/opening`}
         />
       </section>
     </>

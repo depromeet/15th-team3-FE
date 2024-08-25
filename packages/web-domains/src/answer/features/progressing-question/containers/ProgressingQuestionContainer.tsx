@@ -10,7 +10,7 @@ import { ResponseGuageBar } from '../components/ResponseGuageBar';
 import { useProgressingQuestionService } from '../services/useProgressingQuestionService';
 
 export const ProgressingQuestionContainer = () => {
-  const { progressingQuestion } = useProgressingQuestionService();
+  const { progressingQuestion, meetingId } = useProgressingQuestionService();
   const isNowAnswered = !progressingQuestion?.isAnswered;
 
   if (!progressingQuestion) {
@@ -33,7 +33,9 @@ export const ProgressingQuestionContainer = () => {
         totalMeetingMemberCount={progressingQuestion.totalMeetingMemberCount}
       />
       <AnswerCountDown timer={progressingQuestion.startTime} css={{ marginTop: '40px' }} />
-      {isNowAnswered && <StartButton questionId={progressingQuestion.meetingQuestionId} />}
+      {isNowAnswered && (
+        <StartButton questionId={progressingQuestion.meetingQuestionId} meetingId={parseInt(meetingId)} />
+      )}
     </section>
   );
 };

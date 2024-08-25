@@ -3,17 +3,23 @@ import { colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 import { Modal, ModalProps } from '../../../../common/components/Modal/Modal';
-import { useDialogContext } from '../../../../common/contexts/DialogProvider';
 
 interface ArrivedQuestionNotificationProps extends ModalProps {
+  meetingId?: number;
+  isOpen: boolean;
+  onClose: () => void;
   onClickAnswerLater?: () => void;
 }
 
-export const ArrivedQuestionNotification = ({ onClickAnswerLater, ...rest }: ArrivedQuestionNotificationProps) => {
-  const { isOpen, close } = useDialogContext();
-
+export const ArrivedQuestionNotification = ({
+  meetingId,
+  isOpen,
+  onClose,
+  onClickAnswerLater,
+  ...rest
+}: ArrivedQuestionNotificationProps) => {
   return (
-    <Modal {...rest} isOpen={isOpen} onClose={close}>
+    <Modal {...rest} isOpen={isOpen} onClose={onClose}>
       <div css={{ padding: '12px 0 0' }}>
         <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Txt as="p" typography="heading2" css={{ marginBottom: '8px' }} color={colors.black}>
@@ -22,7 +28,7 @@ export const ArrivedQuestionNotification = ({ onClickAnswerLater, ...rest }: Arr
           <Txt as="p" typography="body3" color={colors.grey600}>
             릴레이 질문에 바로 답변해볼까요?
           </Txt>
-          <Link href="/answer/opening" css={{ marginTop: '28px', width: '100%' }}>
+          <Link href={`/${meetingId}/answer/opening`} css={{ marginTop: '28px', width: '100%' }}>
             <Button>
               <Txt typography="subTitle2" color={colors.white}>
                 지금 답변할래요!
@@ -34,7 +40,7 @@ export const ArrivedQuestionNotification = ({ onClickAnswerLater, ...rest }: Arr
             css={{ border: 'none' }}
             onClick={() => {
               onClickAnswerLater?.();
-              close();
+              onClose();
             }}
           >
             <Txt typography="title3" color={colors.black}>

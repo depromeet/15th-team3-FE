@@ -6,16 +6,22 @@ import { StartRelayQuestionButton } from '../components/StartRelayQuestionButton
 import { useFloatingButtonService } from '../services/useFloatingButtonService';
 
 export const FloatingButtonContainer = () => {
-  const { buttonType, homeGlobalTime, handleClose, isOpen, handleClickRelayStartButton, open } =
-    useFloatingButtonService();
+  const { buttonType, homeGlobalTime, handleClose, isOpen, open } = useFloatingButtonService();
 
   return (
     <div
-      css={{ position: 'fixed', bottom: '40px', margin: '0 auto', width: '100%', maxWidth: '600px', padding: '0 20px' }}
+      css={{
+        position: 'fixed',
+        bottom: '98px',
+        margin: '0 auto',
+        width: '100%',
+        maxWidth: '600px',
+        padding: '0 20px',
+      }}
     >
-      {buttonType === 'start' && <StartRelayQuestionButton onClick={handleClickRelayStartButton} />}
+      {buttonType === 'start' && <StartRelayQuestionButton />}
       {buttonType === 'countdown' && <AlreadyProgressingQuestionButton time={homeGlobalTime} onClick={open} />}
-      <ProgressingQuestionModal isOpen={isOpen} countdownTimer={homeGlobalTime} onClose={handleClose} />
+      <ProgressingQuestionModal isOpen={isOpen} time={homeGlobalTime} onClose={handleClose} />
     </div>
   );
 };
