@@ -15,17 +15,19 @@ export const WithMyMembersContainers = () => {
   const { data } = useGetSameSelected({ meetingId, questionId });
 
   const answered = data?.content?.join(', ');
-  const title =
-    answered !== '' ? (
-      <Fragment>
-        나와 같이 <span style={{ color: colors.primary500 }}>{answered}</span>을 선택한 모임원은?
-      </Fragment>
-    ) : (
-      '아직 선택하지 않았어요!'
-    );
+
+  // NOTE: 204로 아직 답변을 선택하지 않은 상태일 경우를 처리
+  if (!data) return;
 
   return (
-    <Section title={title} style={{ marginTop: size['2xs'] }}>
+    <Section
+      title={
+        <>
+          나와 같이 <span style={{ color: colors.primary500 }}>{answered}</span>을 선택한 모임원은?
+        </>
+      }
+      style={{ marginTop: size['2xs'] }}
+    >
       <WithMeMembers count={data?.count} members={data?.selectedMembers} />
     </Section>
   );
