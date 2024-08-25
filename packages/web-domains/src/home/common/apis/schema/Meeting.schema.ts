@@ -10,7 +10,7 @@ export type MeetingTypeResponse =
   | undefined;
 
 export type MeetingInfoType = {
-  meetingName: string;
+  name: string;
   meetingId: number;
 };
 
@@ -18,9 +18,7 @@ export type MeetingInfoResponse = MeetingInfoType | undefined;
 
 export type MeetingIdListResponseType =
   | {
-      meetings: Array<{
-        meetingId: number;
-        name: string;
-      }>;
+      meetings: Array<MeetingInfoType>;
+      lastMeetingId: number;
     }
   | undefined;

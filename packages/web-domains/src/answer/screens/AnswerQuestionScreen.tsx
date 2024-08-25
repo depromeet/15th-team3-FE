@@ -6,8 +6,15 @@ import { getMeetingInfoPrefetch } from '@/home/common/apis/queries/useGetMeeting
 import { getProgressingQuestionPrefetch } from '../common/apis/queries/useGetProgressingQuestion';
 import { AnswerQuestionContainer } from '../features/answer-question/containers/AnswerQuestionContainer';
 
-export const AnswerQuestionScreen = async () => {
-  const { queryClient } = await getServerSideProps();
+type Params = {
+  params: {
+    meetingId: string;
+    questionId: string;
+  };
+};
+
+export const AnswerQuestionScreen = async ({ params: { meetingId, questionId } }: Params) => {
+  const { queryClient } = await getServerSideProps({ meetingId, questionId });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
@@ -16,19 +23,14 @@ export const AnswerQuestionScreen = async () => {
   );
 };
 
-const getServerSideProps = async () => {
+const getServerSideProps = async ({ meetingId }: Params['params']) => {
   const queryClient = new QueryClient();
 
   try {
     const cookie = cookies();
-    const data = await getMeetingInfoPrefetch(queryClient, cookie);
-    const meetingId = data?.meetings[0]?.meetingId;
 
-    if (typeof meetingId === 'number') {
-      const params = { meetingId };
-      await getMeetingInfoPrefetch(queryClient, cookie);
-      await getProgressingQuestionPrefetch(params, queryClient, cookie);
-    }
+    await getMeetingInfoPrefetch(queryClient, cookie);
+    await getProgressingQuestionPrefetch({ meetingId: parseInt(meetingId) }, queryClient, cookie);
   } catch (error: unknown) {
     console.log(error);
   }
