@@ -11,7 +11,8 @@
     "./user": "./src/user/index.ts",
     "./participate-meeting": "./src/participate-meeting/index.ts",
     "./common": "./src/common/index.ts",
-    "./relay-question": "./src/relay-question/index.ts"
+    "./relay-question": "./src/relay-question/index.ts",
+    "./onboarding": "./src/onboarding/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
