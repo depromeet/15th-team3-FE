@@ -20,7 +20,7 @@ export const StartQuestionContainer = () => {
   const router = useRouter();
   const { myInfo } = useMyInfoQuery();
 
-  if (!myInfo) return <div>loading</div>;
+  if (!myInfo) return;
 
   return (
     <>

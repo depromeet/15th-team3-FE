@@ -37,7 +37,7 @@ const QuestionList = () => {
     },
   });
 
-  if (!questions) return <div>loading</div>;
+  if (!questions) return;
   if (questions.length === 0) return <div>empty list</div>;
 
   return (
@@ -69,7 +69,7 @@ const NextQuestionerList = () => {
 
   const { myInfo } = useMyInfoQuery();
 
-  if (!meetingMembers || !myInfo) return <div>loading</div>;
+  if (!meetingMembers || !myInfo) return;
 
   return (
     <section>

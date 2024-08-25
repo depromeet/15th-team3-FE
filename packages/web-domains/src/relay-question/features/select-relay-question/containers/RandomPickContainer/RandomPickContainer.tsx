@@ -67,7 +67,7 @@ const QuestionRandomPick = () => {
         </Button>
       </section>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        {question ? (
+        {question && (
           <QuestionDetail
             imageUrl={question.questionImageFileUrl}
             title={question.title}
@@ -77,8 +77,6 @@ const QuestionRandomPick = () => {
             onRefetch={refetchQuestion}
             isRandom
           />
-        ) : (
-          <div>loading...</div>
         )}
       </Modal>
     </>
@@ -136,7 +134,7 @@ const QuestionerRandomPick = () => {
         </Button>
       </section>
       <Modal isOpen={isOpen} onClose={handleCloseModal}>
-        {questioner ? (
+        {questioner && (
           <QuestionerDetail
             imageUrl={questioner.profileImageFileUrl}
             name={questioner.name}
@@ -145,8 +143,6 @@ const QuestionerRandomPick = () => {
             onRefetch={refetchQuestioner}
             isRandom
           />
-        ) : (
-          <div>loading...</div>
         )}
       </Modal>
     </>

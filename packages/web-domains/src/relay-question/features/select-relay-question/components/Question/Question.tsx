@@ -25,7 +25,7 @@ export const Question = ({ id, imageUrl, title, usedCount }: QuestionProps) => {
   const handleOpenModal = async () => {
     const question = (await refetch()).data;
 
-    if (!question) return <div>loading...</div>;
+    if (!question) return;
 
     const { answers } = question;
 
