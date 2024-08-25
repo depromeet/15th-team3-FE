@@ -1,6 +1,7 @@
 'use client';
 
 import { TextButton } from '@sds/components';
+import { size } from '@sds/theme';
 import Link from 'next/link';
 import { HTMLAttributes } from 'react';
 
@@ -27,7 +28,7 @@ export const ProfileContainer = (props: ProfileContainerProps) => {
         location={data?.location}
         job={data?.job}
       />
-      <Link href={`/${meetingId}/user/modify`}>
+      <Link href={`/${meetingId}/user/modify`} style={{ marginTop: size.xs }}>
         <TextButton variant="arrow">기본 정보 수정하러 가기</TextButton>
       </Link>
     </section>

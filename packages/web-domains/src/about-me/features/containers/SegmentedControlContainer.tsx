@@ -1,8 +1,9 @@
 'use client';
 
 import { SegmentedControl } from '@sambad/sds/components';
-import { forwardRef, HTMLAttributes, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, HTMLAttributes, Suspense, useImperativeHandle, useRef, useState } from 'react';
 
+import { AnsweredQuestionContainerSkeletons } from '../components/Loading';
 import { useGetIsModifyPage } from '../hooks/useGetIsModifyPage';
 
 import { AboutMeContainer } from './AboutMeContainer';
@@ -39,7 +40,11 @@ export const SegmentedControlContainer = forwardRef<Ref, SegmentedControlContain
 
       <div css={aboutMeSectionCss}>
         {tab === 'about-me' && <AboutMeContainer />}
-        {tab === 'answered-questions' && <AnsweredQuestionsContainer ref={answeredQuestionContainerRef} />}
+        {tab === 'answered-questions' && (
+          <Suspense fallback={<AnsweredQuestionContainerSkeletons />}>
+            <AnsweredQuestionsContainer ref={answeredQuestionContainerRef} />
+          </Suspense>
+        )}
       </div>
     </section>
   );

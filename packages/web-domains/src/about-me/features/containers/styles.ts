@@ -13,10 +13,6 @@ export const segmentedCss = css({
 });
 
 export const aboutMeSectionCss = css({
-  '& > * + *': {
-    paddingTop: size.sm,
-  },
-
   [`& ${subTitleAttribute.querySelector}`]: {
     paddingBottom: size['6xs'],
 
@@ -61,10 +57,6 @@ export const profileRootCss = css({
   alignItems: 'center',
   padding: `${size['xs']} ${size['2xs']} ${size['md']}`,
   backgroundColor: colors.white,
-
-  '& > * + *': {
-    marginTop: size['xs'],
-  },
 });
 
 export const checkboxAndTriggerCss = css({

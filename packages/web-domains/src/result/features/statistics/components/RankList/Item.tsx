@@ -10,7 +10,7 @@ interface RankListItemProps {
   percentage: number;
 }
 
-const RANK_COLOR_MAP = [colors.tertiary400, colors.primary400, colors.secondary400];
+const RANK_COLOR_MAP = [colors.primary400, colors.tertiary400, colors.secondary400];
 
 export const RankListItem = (props: RankListItemProps) => {
   const { rank, content, count, percentage } = props;

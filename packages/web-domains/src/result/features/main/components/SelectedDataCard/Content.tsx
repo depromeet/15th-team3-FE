@@ -33,7 +33,7 @@ export const MostAnswered = (props: MostAnsweredProps) => {
 
   return (
     <Fragment>
-      <Txt typography="heading1" color={colors.tertiary500} css={mostAnsweredTitleCss}>
+      <Txt typography="heading1" color={colors.primary500} css={mostAnsweredTitleCss}>
         {contentText}
       </Txt>
       <Link href={`/${meetingId}/question-result/${questionId}/statistics`}>
