@@ -7,9 +7,9 @@ import { AngleUpIcon } from './assets/AngleUp';
 import { CaretDownIcon } from './assets/CaretDown';
 import { CheckIcon } from './assets/Check';
 import { CommentsIcon } from './assets/CommentsIcon';
+import { CrossCircle } from './assets/CrossCircle';
 import { CrownIcon } from './assets/Crown';
 import { Landscape } from './assets/Landscape';
-import { NotFound } from './assets/NotFound';
 import { SadUserIcon } from './assets/SadUserIcon';
 import { ShareIcon } from './assets/Share';
 import { Stats } from './assets/Stats';
@@ -33,5 +33,5 @@ export const iconMap = {
   stats: Stats,
   upload: Upload,
   check: CheckIcon,
-  'not-found': NotFound,
+  'cross-circle': CrossCircle,
 };

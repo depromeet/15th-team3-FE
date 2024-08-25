@@ -1,6 +1,6 @@
 import { IconAssetProps } from '../types';
 
-export const NotFound = (props: IconAssetProps) => {
+export const CrossCircle = (props: IconAssetProps) => {
   const { color, size } = props;
 
   return (

@@ -9,7 +9,7 @@ import { titleCss } from './styles';
 export const Error404 = () => {
   return (
     <div css={containerCss}>
-      <Icon name="not-found" size={65} color={colors.grey400} style={{ marginBottom: size.sm }} />
+      <Icon name="cross-circle" size={65} color={colors.grey400} style={{ marginBottom: size.sm }} />
       <h1 css={titleCss}>페이지를 찾을 수 없습니다</h1>
       <Txt typography="body2" as="h2" color={colors.grey600} css={{ textAlign: 'center' }}>
         죄송합니다. 원하시는 페이지를 찾을 수 없습니다.
