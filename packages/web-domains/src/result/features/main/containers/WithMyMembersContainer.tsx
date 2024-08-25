@@ -18,7 +18,7 @@ export const WithMyMembersContainers = () => {
   const title =
     answered !== '' ? (
       <Fragment>
-        나와 같이 <span style={{ color: colors.tertiary500 }}>{answered}</span>을 선택한 모임원은?
+        나와 같이 <span style={{ color: colors.primary500 }}>{answered}</span>을 선택한 모임원은?
       </Fragment>
     ) : (
       '아직 선택하지 않았어요!'
