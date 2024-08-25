@@ -1,16 +1,13 @@
-import { Interpolation, Theme } from '@emotion/react';
-import { HTMLAttributes } from 'react';
+import { IconAssetProps } from '../types';
 
-interface NotFoundProps extends HTMLAttributes<SVGSVGElement> {
-  css?: Interpolation<Theme>;
-}
+export const NotFound = (props: IconAssetProps) => {
+  const { color, size } = props;
 
-export const NotFoundIcon = (props: NotFoundProps) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="65" height="64" viewBox="0 0 65 64" fill="none" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 65 64" fill="none" {...props}>
       <path
         d="M32.5 0C14.8269 0 0.5 14.3269 0.5 32C0.5 49.6731 14.8269 64 32.5 64C50.1731 64 64.5 49.6731 64.5 32C64.4809 14.3347 50.1653 0.019125 32.5 0ZM43.1666 38.8986C44.2503 39.896 44.3203 41.583 43.3229 42.6666C42.3255 43.7503 40.6385 43.8203 39.5549 42.8229C39.5006 42.773 39.4486 42.7209 39.3986 42.6666L32.5 35.7706L25.604 42.6666C24.5446 43.6898 22.8565 43.6604 21.8334 42.601C20.8354 41.5676 20.8354 39.9294 21.8334 38.896L28.7294 32L21.8334 25.104C20.8103 24.0446 20.8396 22.3565 21.899 21.3334C22.9324 20.3354 24.5706 20.3354 25.604 21.3334L32.5 28.2294L39.3986 21.3334C40.396 20.2498 42.083 20.1798 43.1666 21.1771C44.2503 22.1745 44.3203 23.8615 43.3229 24.9451C43.273 24.9994 43.2209 25.0514 43.1666 25.1014L36.2706 32L43.1666 38.8986Z"
-        fill="#E1E1E1"
+        fill={color}
       />
     </svg>
   );
