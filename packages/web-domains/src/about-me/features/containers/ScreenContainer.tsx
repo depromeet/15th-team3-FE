@@ -64,7 +64,7 @@ export const ScreenContainer = () => {
         }
       />
       <div style={layoutStyle}>
-        <ProfileContainer style={{ marginBottom: size['5xs'] }} />
+        <ProfileContainer style={{ marginBottom: size['5xs'] }} isMy={isMy} />
         <SegmentedControlContainer ref={segmentedRef} style={sectionStyle} />
       </div>
       {!isMy && getWavingStatusSuccess && (

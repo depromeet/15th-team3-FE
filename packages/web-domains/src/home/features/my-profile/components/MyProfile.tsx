@@ -23,7 +23,7 @@ export const MyProfile = ({ profileInfo, meetingId }: MyProfileProps) => {
         location={profileInfo?.location}
         job={profileInfo?.job}
       />
-      <Link href={`/${meetingId}/user/modify`}>
+      <Link href={`/${meetingId}/user/modify`} style={{ marginTop: size.xs }}>
         <TextButton variant="arrow">기본 정보 수정하러 가기</TextButton>
       </Link>
     </section>

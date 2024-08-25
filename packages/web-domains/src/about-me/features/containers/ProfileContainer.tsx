@@ -11,7 +11,9 @@ import { useGetMemberByParams } from '../hooks/useGetMemberByParams';
 
 import { profileRootCss } from './styles';
 
-type ProfileContainerProps = HTMLAttributes<HTMLDivElement>;
+interface ProfileContainerProps extends HTMLAttributes<HTMLDivElement> {
+  isMy: boolean;
+}
 
 export const ProfileContainer = (props: ProfileContainerProps) => {
   const { data } = useGetMemberByParams();
@@ -28,9 +30,11 @@ export const ProfileContainer = (props: ProfileContainerProps) => {
         location={data?.location}
         job={data?.job}
       />
-      <Link href={`/${meetingId}/user/modify`} style={{ marginTop: size.xs }}>
-        <TextButton variant="arrow">기본 정보 수정하러 가기</TextButton>
-      </Link>
+      {props.isMy && (
+        <Link href={`/${meetingId}/user/modify`} style={{ marginTop: size.xs }}>
+          <TextButton variant="arrow">기본 정보 수정하러 가기</TextButton>
+        </Link>
+      )}
     </section>
   );
 };
