@@ -6,6 +6,7 @@ import { accordionItemStateAttribute, arrowIconAttribute, contentAttribute } fro
 
 export const triggerCss = css({
   display: 'flex',
+  width: '100%',
   alignItems: 'center',
   position: 'relative',
   padding: `${size['4xs']} 0`,

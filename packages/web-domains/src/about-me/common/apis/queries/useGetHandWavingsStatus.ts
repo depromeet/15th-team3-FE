@@ -24,7 +24,7 @@ export const useGetHandWavingsStatus = (props: QueryProps) => {
   return useQuery({
     queryKey: [HAND_WAVINGS_STATUS_QUERY_KEY, params],
     queryFn: () => queryFn(params),
-    enabled: params.meetingId > 0,
+    enabled: params.meetingId > 0 && params.receiverMemberId > 0,
     staleTime: 1000 * 60 * 10, // 10분
     ...options,
   });
