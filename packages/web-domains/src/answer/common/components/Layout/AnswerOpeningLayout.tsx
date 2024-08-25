@@ -10,7 +10,7 @@ export const AnswerOpeningLayout = ({ children }: PropsWithChildren) => {
 
   const layoutStyles: CSSProperties = {
     backgroundColor: colors.primary50,
-    height: `calc(var(--vh, 1vh) * 100)`,
+    minHeight: `calc(var(--vh, 1vh) * 100)`,
     paddingTop: '8px',
     position: 'relative',
   };

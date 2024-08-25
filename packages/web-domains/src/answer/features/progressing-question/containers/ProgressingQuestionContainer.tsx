@@ -32,7 +32,7 @@ export const ProgressingQuestionContainer = () => {
         responseCount={progressingQuestion.responseCount}
         totalMeetingMemberCount={progressingQuestion.totalMeetingMemberCount}
       />
-      <AnswerCountDown timer={progressingQuestion.startTime} css={{ marginTop: '40px' }} />
+      <AnswerCountDown timer={progressingQuestion.startTime} css={{ marginTop: '40px', paddingBottom: '100px' }} />
       {isNowAnswered && <StartButton questionId={progressingQuestion.meetingQuestionId} />}
     </section>
   );

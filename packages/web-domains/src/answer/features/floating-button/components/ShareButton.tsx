@@ -7,7 +7,7 @@ export const ShareButton = () => {
   const { open } = useDialogContext();
 
   return (
-    <Button onClick={open}>
+    <Button size="large" onClick={open}>
       <Icon name="share-icon" color={colors.white} css={{ marginRight: '8px' }} />
       질문 공유하기
     </Button>
