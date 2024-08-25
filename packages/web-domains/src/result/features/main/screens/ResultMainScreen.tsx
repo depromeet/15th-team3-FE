@@ -2,7 +2,6 @@ import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query
 
 import { getCommentsPrefetch } from '@/result/common/apis/queries/useGetComments';
 import { getDetailedQuestionDataPrefetch } from '@/result/common/apis/queries/useGetDetailedQuestionData';
-import { getMeetingsPrefetch } from '@/result/common/apis/queries/useGetMeetings';
 import { getMostSelectedPrefetch } from '@/result/common/apis/queries/useGetMostSelected';
 import { getSameSelectedPrefetch } from '@/result/common/apis/queries/useGetSameSelected';
 import { BaseLayout } from '@/result/common/components';
@@ -28,10 +27,7 @@ const getServerSideProps = async (params: BaseParams) => {
   const queryClient = new QueryClient();
 
   try {
-    await getMeetingsPrefetch({ queryClient });
-
     const prefetchParams = { queryClient, meetingId: Number(params.meetingId), questionId: Number(params.questionId) };
-
     await Promise.all([
       getMostSelectedPrefetch(prefetchParams),
       getSameSelectedPrefetch(prefetchParams),

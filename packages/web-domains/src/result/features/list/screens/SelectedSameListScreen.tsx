@@ -1,6 +1,5 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
-import { getMeetingsPrefetch } from '@/result/common/apis/queries/useGetMeetings';
 import { getSameSelectedPrefetch } from '@/result/common/apis/queries/useGetSameSelected';
 import { BaseParams } from '@/result/common/types/BaseParams';
 
@@ -20,7 +19,6 @@ const getServerSideProps = async (params: BaseParams) => {
   const queryClient = new QueryClient();
 
   try {
-    await getMeetingsPrefetch({ queryClient });
     await getSameSelectedPrefetch({
       queryClient,
       meetingId: Number(params.meetingId),
