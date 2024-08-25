@@ -37,7 +37,7 @@ export const ScreenContainer = () => {
   };
 
   const handleMoveToModifyPage = () => {
-    router.push('/about/me/modify');
+    router.push(`/${meetingId}/about/me/modify`);
   };
 
   const handleModify = () => {
