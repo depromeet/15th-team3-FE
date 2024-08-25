@@ -1,30 +1,37 @@
-import { Txt } from '@sambad/sds/components';
+import { Icon, Skeleton, Txt } from '@sambad/sds/components';
 import { colors } from '@sds/theme';
-import Link from 'next/link';
 import { HTMLAttributes } from 'react';
-
-import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
 interface GatherNameProps extends HTMLAttributes<HTMLDivElement> {
   gatherName?: string;
-  profileImage?: string;
+  subTitle: string;
+  onClick?: () => void;
 }
 
-export const GatherName = ({ gatherName, profileImage, ...rest }: GatherNameProps) => {
+export const GatherName = ({ gatherName, subTitle, onClick, ...rest }: GatherNameProps) => {
   return (
     <div css={{ padding: '32px 0 24px', display: 'flex', justifyContent: 'space-between' }} {...rest}>
       <div>
-        <Txt typography="heading1" color="#ff7664" as="h1" css={{ marginBottom: '4px' }}>
-          {gatherName}
-        </Txt>
+        <button
+          css={{ cursor: 'pointer', display: 'flex', alignItems: 'center', marginBottom: '4px' }}
+          onClick={onClick}
+        >
+          {gatherName ? (
+            <>
+              <Txt typography="heading1" color="#ff7664" as="h1">
+                {gatherName}
+              </Txt>
+              <Icon name="up-and-down" size={20} />
+            </>
+          ) : (
+            <Skeleton
+              css={{ width: '150px', height: '24px', marginBottom: '12px', top: '8px', position: 'relative' }}
+            />
+          )}
+        </button>
         <Txt typography="heading2" color={colors.black} as="h2">
-          모임원들과 더 가까워져 볼까요?
+          {subTitle}
         </Txt>
-      </div>
-      <div css={{ marginLeft: '4px', position: 'relative', top: '11px' }}>
-        <Link href="/about/me">
-          <Avatar imageUrl={profileImage} width={48} height={48} css={{ borderRadius: '50%' }} />
-        </Link>
       </div>
     </div>
   );

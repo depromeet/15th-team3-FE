@@ -7,7 +7,7 @@ import { Icon } from '../Icon';
 
 import { arrowIconAttribute } from './constants';
 import { useAccordionContext, useAccordionItemContext } from './context';
-import { triggerCss } from './styles';
+import { triggerChildCss, triggerCss } from './styles';
 
 export interface AccordionTriggerProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -32,7 +32,7 @@ export const AccordionTrigger = forwardRef<HTMLDivElement, AccordionTriggerProps
       onClick={composeEventHandlers(onClick, handleItemOpen)}
       {...restProps}
     >
-      {children}
+      <span css={triggerChildCss}>{children}</span>
       <Icon name="angle-small-up" color={colors.grey600} {...arrowIconAttribute.attribute} />
     </div>
   );

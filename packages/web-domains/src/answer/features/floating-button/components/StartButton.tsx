@@ -1,14 +1,15 @@
 'use client';
 
 import { Button, Txt } from '@sambad/sds/components';
-import { colors } from '@sambad/sds/theme';
+import { colors, size } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 interface StartButtonProps {
   questionId: number;
+  meetingId?: number;
 }
 
-export const StartButton = ({ questionId }: StartButtonProps) => {
+export const StartButton = ({ questionId, meetingId }: StartButtonProps) => {
   return (
     <div
       css={{
@@ -20,8 +21,8 @@ export const StartButton = ({ questionId }: StartButtonProps) => {
         padding: '0 20px',
       }}
     >
-      <Link href={`/answer/${questionId}`}>
-        <Button size="large">
+      <Link href={`/${meetingId}/answer/${questionId}`}>
+        <Button css={{ height: size['3xl'] }}>
           <Txt typography="subtitle1" color={colors.white}>
             시작하기
           </Txt>
