@@ -1,14 +1,14 @@
 'use client';
 
 import { Button } from '@sambad/sds/components';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
+import { useGetMyInfo } from '@/home/common/apis/queries/useGetMyInfo';
 import { ActionBar } from '@/relay-question/common/ActionBar/ActionBar';
 
 import { RelayStartBackground } from '../../../../assets/RelayStartBackground';
 import { Z_INDEX } from '../../../../constants';
 import { Profile } from '../../components/Profile/Profile';
-import { useMyInfoQuery } from '../../hooks/queries/useMyInfoQuery';
 
 import {
   startQuestionBackgroundCss,
@@ -17,10 +17,11 @@ import {
 } from './StartQuestionContainer.styles';
 
 export const StartQuestionContainer = () => {
+  const { meetingId } = useParams<{ meetingId: string }>();
   const router = useRouter();
-  const { myInfo } = useMyInfoQuery();
+  const { data: myInfo } = useGetMyInfo({ params: { meetingId: Number(meetingId) } });
 
-  if (!myInfo) return <div>loading</div>;
+  if (!myInfo) return;
 
   return (
     <>
@@ -34,7 +35,7 @@ export const StartQuestionContainer = () => {
             <Button
               size="large"
               style={{ zIndex: Z_INDEX.relayStartButton }}
-              onClick={() => router.push('/select-relay-question?current-step=1')}
+              onClick={() => router.push(`/${meetingId}/select-relay-question?current-step=1`)}
             >
               시작하기
             </Button>

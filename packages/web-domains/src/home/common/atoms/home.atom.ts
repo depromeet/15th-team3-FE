@@ -1,9 +1,19 @@
 import { atom } from 'jotai';
 
-export const isProgessingQuestionAtom = atom<boolean>(false);
+const isProgessingQuestionAtom = atom<boolean>(false);
 
-export const isSelectedTargetAtom = atom<boolean>(false);
+const isSelectedTargetAtom = atom<boolean>(false);
 
-export const homeGlobalTimeAtom = atom<number | null>(null);
+const homeGlobalTimeAtom = atom<number | null>(null);
 
-export const isNextTargetAtom = atom<boolean>(false);
+const isNextTargetAtom = atom<boolean>(false);
+
+const currentMeeting = atom<{ meetingId: number; name: string } | null>(null);
+
+export const HomeAtoms = {
+  isNextTargetAtom,
+  homeGlobalTimeAtom,
+  isSelectedTargetAtom,
+  isProgessingQuestionAtom,
+  currentMeeting,
+};

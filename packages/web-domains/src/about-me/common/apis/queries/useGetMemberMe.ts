@@ -1,4 +1,5 @@
-import { QueryClient, useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { UseQueryOptionsExcludedQueryKey } from '@sambad/types-utils/tanstack';
+import { QueryClient, useQuery } from '@tanstack/react-query';
 
 import { Http } from '@/common/apis/base.api';
 
@@ -9,7 +10,7 @@ interface Params {
 }
 
 interface QueryProps extends Params {
-  options?: UseQueryOptions<MeetingMemberResponse>;
+  options?: UseQueryOptionsExcludedQueryKey<MeetingMemberResponse>;
 }
 
 export const MEMBER_ME_QUERY_KEY = 'MEMBER_ME_QUERY_KEY';
