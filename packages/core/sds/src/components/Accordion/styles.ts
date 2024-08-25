@@ -18,6 +18,10 @@ export const triggerCss = css({
   },
 });
 
+export const triggerChildCss = css({
+  maxWidth: '93%',
+});
+
 export const itemCss = css({
   overflow: 'hidden',
 
