@@ -25,7 +25,7 @@ export const PreviousQuestionItem = ({ meetingId, question }: PreviousQuestionIt
         listStyle: 'none',
       }}
     >
-      <Link href={`${meetingId}/question-result/${meetingQuestionId}`} css={{ display: 'flex' }}>
+      <Link href={`/${meetingId}/question-result/${meetingQuestionId}`} css={{ display: 'flex' }}>
         <div
           css={{
             display: 'flex',

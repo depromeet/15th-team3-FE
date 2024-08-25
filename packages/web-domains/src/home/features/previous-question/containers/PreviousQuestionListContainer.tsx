@@ -2,6 +2,8 @@
 
 import { MutableRefObject } from 'react';
 
+import { EmptyView } from '@/common/components';
+
 import { ActionBar } from '../../../../common/components/ActionBar/ActionBar';
 import { PreviousQuestionItem } from '../components/PreviousQuestion/PreviousQuestionItem';
 import { PreviousQuestionList } from '../components/PreviousQuestion/PreviousQuestionList';
@@ -11,7 +13,12 @@ export const PreviousQuestionListContainer = () => {
   const { previousQuestionList, targetRef, meetingId } = usePreviousQuestionListService();
 
   if (!previousQuestionList || !previousQuestionList.length) {
-    return <ActionBar title="이전 질문" css={{ paddingTop: '8px' }} />;
+    return (
+      <>
+        <ActionBar title="이전 질문" css={{ paddingTop: '8px' }} />
+        <EmptyView title="이전 질문이 없어요!" style={{ height: '100vh' }} />
+      </>
+    );
   }
 
   return (
