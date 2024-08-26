@@ -25,7 +25,7 @@ export const useAlarmListService = () => {
 
   return {
     meetingId,
-    notficationList: data?.contents ?? [],
+    notificationList: data?.contents ?? [],
     myMemberId: myInfo?.meetingMemberId,
     ignoreHandWaving,
     handWavingResponse,
