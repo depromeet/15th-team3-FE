@@ -1,6 +1,7 @@
 import { Txt } from '@sambad/sds/components';
-import Image from 'next/image';
 import { HTMLAttributes } from 'react';
+
+import { Avatar } from '@/home/common/components/Avatar/Avatar';
 
 import { containerCss, ownerEmojiCss } from './styles';
 
@@ -15,7 +16,7 @@ export const MemberListItem = (props: MemberListItemProps) => {
 
   return (
     <div css={containerCss} {...restProps}>
-      {imgUrl && <Image src={imgUrl} width={40} height={40} alt={`${name}_프로필_이미지`} />}
+      {imgUrl && <Avatar imageUrl={imgUrl} width={40} height={40} alt={`${name}_프로필_이미지`} />}
       <Txt typography="title2">{name}</Txt>
       {isOwner && (
         <Txt typography="title1" css={ownerEmojiCss}>

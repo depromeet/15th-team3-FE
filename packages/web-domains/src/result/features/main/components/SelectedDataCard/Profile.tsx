@@ -2,8 +2,9 @@
 
 import { Txt, TxtProps } from '@sambad/sds/components';
 import { borderRadiusVariants } from '@sds/theme';
-import Image from 'next/image';
 import { HTMLAttributes } from 'react';
+
+import { Avatar } from '@/home/common/components/Avatar/Avatar';
 
 import { profileCss } from './styles';
 
@@ -20,8 +21,8 @@ export const Profile = (props: ProfileProps) => {
   return (
     <div css={profileCss} {...restProps}>
       {imgUrl && (
-        <Image
-          src={imgUrl}
+        <Avatar
+          imageUrl={imgUrl}
           width={imgSize}
           height={imgSize}
           alt={`${name}_프로필_이미지`}

@@ -1,6 +1,7 @@
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
-import Image from 'next/image';
+
+import { Avatar } from '@/home/common/components/Avatar/Avatar';
 
 import { RelayStartDecoCircle } from '../../../../assets/RelayStartDecoCircle';
 import { RelayStartDecoStar } from '../../../../assets/RelayStartDecoStar';
@@ -25,7 +26,7 @@ const convertProfileImage = (profileImageUrl: string) => {
 
   return (
     <div css={profileImgWrapperCss}>
-      <Image src={profileImageUrl} alt="profile image" width={142} height={142} style={{ objectFit: 'cover' }} />
+      <Avatar imageUrl={profileImageUrl} width={142} height={142} />
     </div>
   );
 };

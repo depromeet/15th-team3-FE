@@ -2,7 +2,8 @@
 
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
-import Image from 'next/image';
+
+import { Avatar } from '@/home/common/components/Avatar/Avatar';
 
 import { commentAttribute } from './constants';
 import { commentCss, commentProfileCss } from './styles';
@@ -22,7 +23,7 @@ export const Comment = (props: CommentProps) => {
         {comment}
       </Txt>
       <div css={commentProfileCss}>
-        <Image src={imgUrl} width={16} height={16} alt={`${name}_프로필_이미지`} />
+        <Avatar imageUrl={imgUrl} width={16} height={16} alt={`${name}_프로필_이미지`} />
         <Txt typography="body4" color={colors.grey600}>
           {name}
         </Txt>

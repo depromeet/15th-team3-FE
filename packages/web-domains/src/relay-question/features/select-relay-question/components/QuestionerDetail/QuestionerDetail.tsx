@@ -1,7 +1,8 @@
 import { css } from '@emotion/react';
 import { Button, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
-import Image from 'next/image';
+
+import { Avatar } from '@/home/common/components/Avatar/Avatar';
 
 import { RelayRePickQuestioner } from '../../../../assets/RelayRePickQuestioner';
 import { RePick } from '../RePick/RePick';
@@ -28,7 +29,7 @@ export const QuestionerDetail = ({
   return (
     <div css={wrapperCss}>
       <div css={imgWrapperCss}>
-        <Image src={imageUrl} alt={name} width={80} height={80} style={{ objectFit: 'cover' }} />
+        <Avatar imageUrl={imageUrl} alt={name} width={80} height={80} />
       </div>
       <Txt typography="heading2" color={colors.black} fontWeight="bold" css={nameCss}>
         {name}
