@@ -1,0 +1,11 @@
+{
+  "extends": "@sambad/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./pages/*"],
+      "@sds/*": ["../../packages/core/sds/src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,10 @@
+import { SummaryCard } from '@/../components';
+import { articles } from '@/../constants';
+
+<img src="https://file.moring.one/defaults/banner.png" style={{ borderRadius: '8px' }} />
+
+<div>
+  {articles.map((ariticle) => (
+    <SummaryCard {...ariticle} />
+  ))}
+</div>
