@@ -29,21 +29,6 @@ export const MeetingChoiceBottomSheet = ({
 
   return (
     <BottomSheet title="모임 변경하기" isOpen={isOpen} onClose={onClose}>
-      <div
-        css={{
-          display: 'flex',
-          alignItems: 'center',
-          padding: '0 20px',
-          height: '48px',
-          borderRadius: borderRadiusVariants.medium,
-          backgroundColor: colors.white,
-          marginBottom: '16px',
-        }}
-      >
-        <Txt typography="title2" color={colors.black}>
-          전체 모임(체험판)
-        </Txt>
-      </div>
       <ul
         css={{
           listStyle: 'none',
