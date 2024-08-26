@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
 import { KakaoShareModal, getWebDomain } from '@/common';
+import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 
 import { ShareGroupBackground } from '../../../../assets/ShareGroupBackground';
 import { ShareGroupCheckIcon } from '../../../../assets/ShareGroupCheckIcon';
@@ -28,12 +29,15 @@ export const CurrentRelayQuestionCountContainer = () => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const { activeQuestion } = useActiveQuestionQuery(Number(meetingId));
+  const { data } = useGetMeetingInfo({});
 
   const handleOpenShare = () => {
     setIsOpenModal(true);
   };
 
-  if (!activeQuestion) return;
+  if (!activeQuestion || !data) return;
+
+  const currentMeetingName = data.meetings.find(({ meetingId }) => meetingId === Number(meetingId))?.name;
 
   return (
     <>
@@ -50,7 +54,7 @@ export const CurrentRelayQuestionCountContainer = () => {
               fontWeight="regular"
               style={{ textAlign: 'center', marginTop: size['6xs'] }}
             >
-              친해지고 싶은 삼봤드의 모험 모임원들에게 <br />
+              친해지고 싶은 {currentMeetingName} 모임원들에게 <br />
               질문을 공유해 보세요
             </Txt>
           </div>
