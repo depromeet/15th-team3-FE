@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { ToolTip } from '@/common/components/ToolTip/ToolTip';
 
 import { ArrowIcon } from '../../../../../common/asset/arrow';
+import { Avatar } from '../../../../../common/components/Avatar/Avatar';
 import { ProgressingQuestionType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
-import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
 interface ActiveQuestionProps {
   meetingId?: number;

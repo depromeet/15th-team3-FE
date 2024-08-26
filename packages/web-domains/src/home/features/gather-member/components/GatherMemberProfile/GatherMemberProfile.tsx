@@ -2,8 +2,8 @@ import { Icon, Txt } from '@sambad/sds/components';
 import { colors } from '@sds/theme';
 import Link from 'next/link';
 
+import { Avatar } from '@/common/components/Avatar/Avatar';
 import { MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
-import { Avatar } from '@/home/common/components/Avatar/Avatar';
 
 interface GatherMemberProfileProps {
   meetingId: number;

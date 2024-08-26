@@ -6,8 +6,8 @@ import dynamic from 'next/dynamic';
 import Countdown from 'react-countdown';
 
 import { ClockIcon } from '../../../../../common/asset/clock';
+import { Avatar } from '../../../../../common/components/Avatar/Avatar.tsx';
 import { MemberType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
-import { Avatar } from '../../../../common/components/Avatar/Avatar';
 import { getRemainTime } from '../../../../common/utils/getRemainTime';
 
 const CountdownRender = dynamic(

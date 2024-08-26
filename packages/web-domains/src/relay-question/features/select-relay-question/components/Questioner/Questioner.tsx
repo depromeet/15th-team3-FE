@@ -1,7 +1,8 @@
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sds/theme';
-import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
+
+import { Avatar } from '@/common/components/Avatar/Avatar';
 
 import { useModal } from '../../../../hooks/useModal';
 import { usePostRelayQuestionInfo } from '../../hooks/mutations/usePostRelayQuestionInfo';
@@ -46,7 +47,7 @@ export const Questioner = ({ meetingId, meetingMemberId, imageUrl, name }: Quest
   return (
     <li css={wrapperCss} onClick={handleOpenModal}>
       <div css={imgWrapperCss}>
-        <Image src={imageUrl} alt={name} width={40} height={40} style={{ objectFit: 'cover' }} />
+        <Avatar imageUrl={imageUrl} alt={name} width={40} height={40} />
       </div>
       <Txt typography="title2" color={colors.black} fontWeight="medium">
         {name}

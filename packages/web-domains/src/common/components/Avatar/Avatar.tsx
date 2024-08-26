@@ -7,7 +7,7 @@ interface AvatarProps extends Omit<ImageProps, 'src' | 'alt'> {
   Icon?: React.ComponentType<{ size?: number }>;
 }
 
-export const Avatar = ({ imageUrl, alt = 'profile-image', size, Icon, ...rest }: AvatarProps) => {
+export const Avatar = ({ imageUrl, alt = 'profile-image', size, Icon, style, ...rest }: AvatarProps) => {
   if (!imageUrl) {
     return (
       <span css={{ display: 'inline-flex' }} {...rest}>
@@ -16,5 +16,5 @@ export const Avatar = ({ imageUrl, alt = 'profile-image', size, Icon, ...rest }:
     );
   }
 
-  return <Image src={imageUrl} alt={alt} {...rest} />;
+  return <Image src={imageUrl} alt={alt} style={{ ...style, objectFit: 'cover' }} {...rest} />;
 };

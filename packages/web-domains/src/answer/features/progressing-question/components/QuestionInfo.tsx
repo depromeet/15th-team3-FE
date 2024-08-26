@@ -1,8 +1,8 @@
 import { Txt } from '@sambad/sds/components';
 import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 
+import { Avatar } from '@/common/components/Avatar/Avatar';
 import { ProgressingQuestionType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
-import { Avatar } from '@/home/common/components/Avatar/Avatar';
 
 interface QuestionInfoProps {
   question: ProgressingQuestionType;
