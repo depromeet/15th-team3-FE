@@ -20,12 +20,34 @@ const CountdownRender = dynamic(
 interface InActiveQuestionProps {
   time: number;
   targetMember: MemberType;
+  isOnlyOne: boolean;
 }
 
-export const InActiveQuestion = ({ time, targetMember }: InActiveQuestionProps) => {
+export const InActiveQuestion = ({ time, targetMember, isOnlyOne }: InActiveQuestionProps) => {
   const { name } = targetMember;
 
   const timer = getRemainTime(time);
+
+  if (isOnlyOne) {
+    return (
+      <div css={{ backgroundColor: colors.white, padding: '32px 20px', borderRadius: '16px', height: '182px' }}>
+        <div
+          css={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            height: '100%',
+          }}
+        >
+          <Avatar Icon={ClockIcon} size={40} />
+          <Txt as="p" typography="title3" color={colors.grey600} css={{ marginTop: '12px' }}>
+            모임원이 입장해야 시작할 수 있어요!
+          </Txt>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div css={{ backgroundColor: colors.white, padding: '32px 20px', borderRadius: '16px', height: '182px' }}>

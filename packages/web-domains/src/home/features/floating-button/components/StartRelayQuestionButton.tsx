@@ -3,10 +3,13 @@ import { colors, size } from '@sambad/sds/theme';
 import Link from 'next/link';
 import { HTMLAttributes } from 'react';
 
-export const StartRelayQuestionButton = ({ ...rest }: HTMLAttributes<HTMLButtonElement>) => {
+interface StartRelayQuestionButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  meetingId?: number;
+}
+
+export const StartRelayQuestionButton = ({ meetingId, ...rest }: StartRelayQuestionButtonProps) => {
   return (
-    // <Link href={`${currentMeeting?.meetingId}/start-relay-question`}>
-    <Link href="/start-relay-question">
+    <Link href={`${meetingId}/start-relay-question`}>
       <Button css={{ height: size['3xl'] }} {...rest}>
         <Txt typography="subtitle1" color={colors.white}>
           릴레이 질문 시작하기

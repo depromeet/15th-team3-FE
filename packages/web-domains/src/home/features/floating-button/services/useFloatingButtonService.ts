@@ -2,6 +2,7 @@ import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 
 import { useDialogContext } from '@/common/contexts/DialogProvider';
+import { useGetGatherMemberList } from '@/home/common/apis/queries/useGetGatherMemberList';
 import { HomeAtoms } from '@/home/common/atoms/home.atom';
 
 export const useFloatingButtonService = () => {
@@ -14,6 +15,13 @@ export const useFloatingButtonService = () => {
   const isProgessingQuestion = useAtomValue(HomeAtoms.isProgessingQuestionAtom);
   const isSelectedTarget = useAtomValue(HomeAtoms.isSelectedTargetAtom);
   const isNextTarget = useAtomValue(HomeAtoms.isNextTargetAtom);
+
+  const { data: memberList } = useGetGatherMemberList({
+    params: { meetingId: currentMeeting?.meetingId! },
+    options: {
+      enabled: !!currentMeeting?.meetingId,
+    },
+  });
 
   useEffect(() => {
     const showButton = isProgessingQuestion;
@@ -41,20 +49,15 @@ export const useFloatingButtonService = () => {
     close();
   };
 
-  // const handleClickRelayStartButton = () => {
-  //   if (isProgessingQuestion) {
-  //     open();
-  //     return;
-  //   }
-  //   push(`${currentMeeting?.meetingId}/start-relay-question`);
-  // };
+  const isOnlyOne = !!memberList && memberList.contents.length < 2;
 
   return {
+    meetingId: currentMeeting?.meetingId,
     isOpen,
     buttonType,
     homeGlobalTime: homeGlobalTime ?? 0,
     open,
     handleClose,
-    // handleClickRelayStartButton,
+    isOnlyOne,
   };
 };

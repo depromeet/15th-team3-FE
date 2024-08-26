@@ -20,6 +20,7 @@ export const ProgressingQuestionContainer = () => {
     gatherName,
     progressingQuestion,
     meetingId,
+    isOnlyOne,
   } = useProgressingQuestionService();
 
   return (
@@ -46,6 +47,7 @@ export const ProgressingQuestionContainer = () => {
               <InActiveQuestion
                 targetMember={progressingQuestion.targetMember}
                 time={dayjs(progressingQuestion.startTime).valueOf()}
+                isOnlyOne={isOnlyOne}
               />
             )
           }
