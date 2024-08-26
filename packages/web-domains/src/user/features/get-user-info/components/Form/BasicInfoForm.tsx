@@ -56,12 +56,19 @@ export const BasicInfoForm = () => {
         answerNumber={1}
         placeholder="이름을 입력해주세요"
         errorMessage="2자 이상, 5자 이하로 입력해주세요"
-        {...register('userName', { required: true, minLength: 2, maxLength: 5 })}
+        maxLength={5}
+        {...register('userName', {
+          required: true,
+          minLength: 2,
+          maxLength: 5,
+          pattern: /^\S.*\S$/,
+        })}
       />
       <TextInput
         label="나이가 어떻게 되나요?"
         answerNumber={2}
         placeholder="생년월일 8자리를 입력해주세요"
+        maxLength={8}
         {...register('birth', {
           required: true,
           maxLength: 8,

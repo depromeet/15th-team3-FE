@@ -13,10 +13,11 @@ export const CheckboxContext = createContext<CheckboxContextValue | undefined>(u
 export interface CheckboxGroupImplProps {
   value?: (string | number)[];
   onValueChange?: (value: (string | number)[]) => void;
+  maxLength?: number;
 }
 
 export const CheckboxGroupImpl = (props: PropsWithChildren<CheckboxGroupImplProps>) => {
-  const { children, value: valueProp, onValueChange: onChangeProp } = props;
+  const { maxLength, children, value: valueProp, onValueChange: onChangeProp } = props;
 
   const [uncontrolledvalue, setUncontrolledvalueValue] = useState(() => valueProp);
 
@@ -40,7 +41,11 @@ export const CheckboxGroupImpl = (props: PropsWithChildren<CheckboxGroupImplProp
 
   const actions = useMemo(
     () => ({
-      handleItemCheck: (itemValue: string | number) => handleChangeValue((prevValue = []) => [...prevValue, itemValue]),
+      handleItemCheck: (itemValue: string | number) =>
+        handleChangeValue((prevValue = []) => {
+          if (maxLength && prevValue.length >= maxLength) return prevValue;
+          return [...prevValue, itemValue];
+        }),
       handleItemUncheck: (itemValue: string | number) =>
         handleChangeValue((prevValue = []) => prevValue.filter((value) => value !== itemValue)),
     }),

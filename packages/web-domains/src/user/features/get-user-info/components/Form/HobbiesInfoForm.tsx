@@ -51,7 +51,7 @@ export const HobbiesInfoForm = ({ hobbyList }: HobbiesFormProps) => {
             validate: (value) => value.length <= 3 || '최대 3개까지 선택할 수 있습니다',
           }}
           render={({ field: { value, onChange } }) => (
-            <CheckboxGroup value={value} onValueChange={onChange}>
+            <CheckboxGroup value={value} onValueChange={onChange} maxLength={3}>
               {hobbyList?.map(({ hobbyId, content }) => (
                 <CheckboxGroup.Item
                   key={hobbyId}

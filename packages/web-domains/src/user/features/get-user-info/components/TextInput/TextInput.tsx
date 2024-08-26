@@ -1,6 +1,6 @@
 import { Txt } from '@sambad/sds/components';
 import { size, colors } from '@sambad/sds/theme';
-import { forwardRef, InputHTMLAttributes } from 'react';
+import { ChangeEvent, forwardRef, InputHTMLAttributes } from 'react';
 
 import { inputCss, textInputcss } from './styles';
 
@@ -11,9 +11,16 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
-  const { label, errorMessage, answerNumber, ...restProps } = props;
+  const { maxLength, label, errorMessage, answerNumber, onChange, ...restProps } = props;
 
   const formattedAnswerNumber = answerNumber.toString().padStart(2, '0');
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (maxLength && event.target.value.length > maxLength) {
+      event.target.value = event.target.value.slice(0, maxLength);
+    }
+    onChange && onChange(event);
+  };
 
   return (
     <div css={textInputcss}>
@@ -25,7 +32,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
           {label}
         </Txt>
       </label>
-      <input ref={ref} css={inputCss} {...restProps} />
+      <input ref={ref} css={inputCss} onChange={handleChange} {...restProps} />
       {errorMessage && (
         <Txt as="p" typography="body4" color={colors.grey600}>
           {errorMessage}
