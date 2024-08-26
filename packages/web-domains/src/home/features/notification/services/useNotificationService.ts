@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { PROGRESSING_QUESTION_QUERY_KEY } from '@/answer/common/apis/queries/useGetProgressingQuestion';
 import { useDialogContext } from '@/common/contexts/DialogProvider';
 import { useInActiveEventMutation } from '@/home/common/apis/mutations/useInActiveEventMutation';
+import { useGetGatherMemberList } from '@/home/common/apis/queries/useGetGatherMemberList';
 import { useGetNotification } from '@/home/common/apis/queries/useGetNotification';
 import { ProgressingQuestionType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 import { HomeAtoms } from '@/home/common/atoms/home.atom';
@@ -22,6 +23,13 @@ export const useNotificationService = () => {
     PROGRESSING_QUESTION_QUERY_KEY,
     meetingId,
   ]);
+
+  const { data: memberList } = useGetGatherMemberList({
+    params: { meetingId: meetingId! },
+    options: {
+      enabled: !!meetingId,
+    },
+  });
 
   const { data: notfication } = useGetNotification({
     params: { meetingId: meetingId! },
@@ -57,13 +65,15 @@ export const useNotificationService = () => {
     }
   }, [notfication, currentMeeting]);
 
+  const isOnlyOne = !!memberList && memberList.contents.length < 2;
+
   return {
     meetingId,
     notfication: notfication?.contents?.[0],
     isOpen,
     handleClose,
     handleClickActionLater,
-
+    isOnlyOne,
     isNotAnswerd: !progressingQuestionData?.isAnswered,
     isNotRegistered: !progressingQuestionData?.isQuestionRegistered,
   };

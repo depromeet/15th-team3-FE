@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
+import { useGetGatherMemberList } from '@/home/common/apis/queries/useGetGatherMemberList';
 import { useGetMyInfo } from '@/home/common/apis/queries/useGetMyInfo';
 import { HomeAtoms } from '@/home/common/atoms/home.atom';
 import { useSetCurrentMeeting } from '@/home/common/hooks/useSetCurrentMeeting';
@@ -20,6 +21,13 @@ export const useProgressingQuestionService = () => {
   const { data: myInfo } = useGetMyInfo({
     params: { meetingId: meetingId! },
     options: { enabled: !!meetingId },
+  });
+
+  const { data: memberList } = useGetGatherMemberList({
+    params: { meetingId: meetingId! },
+    options: {
+      enabled: !!meetingId,
+    },
   });
 
   const { data: progressingQuestion } = useGetProgressingQuestion({
@@ -67,7 +75,10 @@ export const useProgressingQuestionService = () => {
     }
   }, [progressingQuestion, myInfo]);
 
+  const isOnlyOne = !!memberList && memberList.contents.length < 2;
+
   return {
+    isOnlyOne,
     meetingInfo,
     isOpen,
     meetingId,
