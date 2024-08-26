@@ -14,9 +14,10 @@ interface QuestionProps {
   imageUrl: string;
   title: string;
   usedCount: number;
+  meetingId: number;
 }
 
-export const Question = ({ id, imageUrl, title, usedCount }: QuestionProps) => {
+export const Question = ({ id, imageUrl, title, usedCount, meetingId }: QuestionProps) => {
   const openModal = useModal();
   const { refetch } = useRelayQuestionQuery(1);
 
@@ -35,7 +36,7 @@ export const Question = ({ id, imageUrl, title, usedCount }: QuestionProps) => {
     });
 
     if (isConfirm) {
-      router.push(`/select-relay-question?current-step=2&question-id=${id}`);
+      router.push(`/${meetingId}/select-relay-question?current-step=2&question-id=${id}`);
     }
   };
 

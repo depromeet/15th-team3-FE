@@ -75,7 +75,7 @@ export const withMeMembersCss = css({
 export const commentCss = css({
   width: '100%',
   borderRadius: '8px',
-  backgroundColor: colors.tertiary50,
+  backgroundColor: colors.primary50,
   padding: size['3xs'],
   display: 'flex',
   flexDirection: 'column',

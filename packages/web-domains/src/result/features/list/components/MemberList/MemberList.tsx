@@ -1,6 +1,7 @@
 import { useRouter } from 'next/navigation';
 import { CSSProperties } from 'react';
 
+import { useConvertTypeParams } from '@/about-me/features/hooks/useConvertTypeParams';
 import { SelectedAnswerResponse } from '@/result/common/apis/schema/SelectedAnswerResponse';
 
 import { MemberListItem } from '../MemberListItem/MemberListItem';
@@ -12,6 +13,7 @@ interface MemberListProps {
 export const MemberList = (props: MemberListProps) => {
   const { members } = props;
   const router = useRouter();
+  const { meetingId } = useConvertTypeParams();
 
   const style = {
     display: 'flex',
@@ -26,7 +28,7 @@ export const MemberList = (props: MemberListProps) => {
           imgUrl={member.profileImageFileUrl}
           name={member.name}
           isOwner={member.role === 'OWNER'}
-          onClick={() => router.push(`/about/${member.meetingMemberId}`)}
+          onClick={() => router.push(`/${meetingId}/about/${member.meetingMemberId}`)}
         />
       ))}
     </div>

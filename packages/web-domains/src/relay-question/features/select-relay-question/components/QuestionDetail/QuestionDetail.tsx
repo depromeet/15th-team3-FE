@@ -43,7 +43,7 @@ export const QuestionDetail = ({
         질문 미리보기
       </Txt>
       <div css={imageWrapperCss}>
-        <Image src={imageUrl} alt={title} width={64} height={64} />
+        <Image src={imageUrl} alt={title} width={64} height={64} css={{ objectFit: 'cover' }} />
       </div>
       <Txt
         typography="heading2"

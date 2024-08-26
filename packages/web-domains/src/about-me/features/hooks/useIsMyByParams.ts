@@ -1,13 +1,12 @@
-import { useParams } from 'next/navigation';
+import { useConvertTypeParams } from './useConvertTypeParams';
 
 /**
  * isMy가 true인 경우 meetingMemberId가 NaN입니다.
  */
 export const useIsMyByParams = () => {
-  const params = useParams<{ meetingMemberId?: string }>();
-  const meetingMemberId = Number(params.meetingMemberId);
+  const { meetingMemberId } = useConvertTypeParams();
 
   const isMy = !!meetingMemberId === false;
 
-  return { isMy, meetingMemberId };
+  return { isMy };
 };
