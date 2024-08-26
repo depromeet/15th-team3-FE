@@ -4,7 +4,7 @@ import { Badge, Txt } from '@sambad/sds/components';
 import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 import { Fragment } from 'react';
 
-import { Avatar } from '@/home/common/components/Avatar/Avatar';
+import { Avatar } from '@/common/components/Avatar/Avatar';
 
 import { badgeContainerCss, nameCss } from './styles';
 import { generateAge, generateGender } from './utils';

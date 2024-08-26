@@ -3,7 +3,7 @@
 import { Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 
-import { Avatar } from '@/home/common/components/Avatar/Avatar';
+import { Avatar } from '@/common/components/Avatar/Avatar';
 
 import { commentAttribute } from './constants';
 import { commentCss, commentProfileCss } from './styles';

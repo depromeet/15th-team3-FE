@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import { Button, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
 
-import { Avatar } from '@/home/common/components/Avatar/Avatar';
+import { Avatar } from '@/common/components/Avatar/Avatar';
 
 import { RelayRePickQuestioner } from '../../../../assets/RelayRePickQuestioner';
 import { RePick } from '../RePick/RePick';

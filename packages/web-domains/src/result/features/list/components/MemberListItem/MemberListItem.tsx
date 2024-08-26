@@ -1,7 +1,7 @@
 import { Txt } from '@sambad/sds/components';
 import { HTMLAttributes } from 'react';
 
-import { Avatar } from '@/home/common/components/Avatar/Avatar';
+import { Avatar } from '@/common/components/Avatar/Avatar';
 
 import { containerCss, ownerEmojiCss } from './styles';
 

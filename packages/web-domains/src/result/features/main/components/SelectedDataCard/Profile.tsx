@@ -4,7 +4,7 @@ import { Txt, TxtProps } from '@sambad/sds/components';
 import { borderRadiusVariants } from '@sds/theme';
 import { HTMLAttributes } from 'react';
 
-import { Avatar } from '@/home/common/components/Avatar/Avatar';
+import { Avatar } from '@/common/components/Avatar/Avatar';
 
 import { profileCss } from './styles';
 

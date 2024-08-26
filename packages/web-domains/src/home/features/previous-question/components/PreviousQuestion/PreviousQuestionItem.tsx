@@ -3,8 +3,8 @@ import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
+import { Avatar } from '../../../../../common/components/Avatar/Avatar';
 import { PreviousQuestionType } from '../../../../common/apis/schema/useGetPreviousQuestionListQuery.type';
-import { Avatar } from '../../../../common/components/Avatar/Avatar';
 
 interface PreviousQuestionItemProps {
   meetingId?: number;

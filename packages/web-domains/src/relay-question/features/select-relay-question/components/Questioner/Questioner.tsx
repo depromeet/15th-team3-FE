@@ -2,7 +2,7 @@ import { Txt } from '@sambad/sds/components';
 import { colors } from '@sds/theme';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { Avatar } from '@/home/common/components/Avatar/Avatar';
+import { Avatar } from '@/common/components/Avatar/Avatar';
 
 import { useModal } from '../../../../hooks/useModal';
 import { usePostRelayQuestionInfo } from '../../hooks/mutations/usePostRelayQuestionInfo';
