@@ -118,7 +118,7 @@ const QuestionerRandomPick = ({ meetingId }: Props) => {
       { questionId, meetingMemberId },
       {
         onSuccess: () => {
-          router.push(`/${meetingId}/share-group?question-id=${questionId}&questioner-name=${questioner.name}`);
+          router.push(`/${meetingId}/share-group?question-id=${questionId}`);
         },
       },
     );

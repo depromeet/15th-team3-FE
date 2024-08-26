@@ -45,7 +45,12 @@ export const QuestionDetail = ({
       <div css={imageWrapperCss}>
         <Image src={imageUrl} alt={title} width={64} height={64} css={{ objectFit: 'cover' }} />
       </div>
-      <Txt typography="heading2" color={colors.black} fontWeight="bold" css={{ textAlign: 'center' }}>
+      <Txt
+        typography="heading2"
+        color={colors.black}
+        fontWeight="bold"
+        css={{ textAlign: 'center', wordBreak: 'keep-all' }}
+      >
         {title}
       </Txt>
       <Txt color={colors.grey500} typography="title4" fontWeight="medium" css={answerExampleTextCss}>

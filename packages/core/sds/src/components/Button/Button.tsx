@@ -1,12 +1,22 @@
 import { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react';
 
-import { buttonCss, buttonDisabledVariants, buttonSizeVariants, buttonVariantVariants, leftDecorCss } from './styles';
+import { Spinner } from '../Spinner/Spinner';
+
+import {
+  buttonCss,
+  buttonDisabledVariants,
+  buttonSizeVariants,
+  buttonVariantVariants,
+  leftDecorCss,
+  spinnerCss,
+} from './styles';
 import { ButtonSize, ButtonVariant } from './types';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
   variant?: ButtonVariant;
   leftDecor?: ReactNode;
+  loading?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
@@ -16,6 +26,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
     disabled = false,
     style: styleFromProps,
     leftDecor,
+    loading = false,
     children,
     ...restProps
   } = props;
@@ -29,8 +40,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
 
   return (
     <button ref={ref} disabled={disabled} style={style} css={buttonCss} {...restProps}>
-      {leftDecor != null && <span css={leftDecorCss}>{leftDecor}</span>}
-      {children}
+      {loading && <Spinner css={spinnerCss} />}
+      {!loading && leftDecor != null && <span css={leftDecorCss}>{leftDecor}</span>}
+      {!loading && children}
     </button>
   );
 });

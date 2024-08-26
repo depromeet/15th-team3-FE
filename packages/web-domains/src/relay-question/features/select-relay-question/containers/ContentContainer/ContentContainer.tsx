@@ -46,7 +46,7 @@ const QuestionList = ({ meetingId }: Props) => {
   return (
     <section>
       <div css={questionTextBoxCss}>
-        <Txt typography="heading1" color={colors.black} fontWeight="bold">
+        <Txt typography="heading1" color={colors.black} fontWeight="bold" style={{ wordBreak: 'keep-all' }}>
           어떤 질문으로 물어볼까요?
         </Txt>
       </div>
