@@ -25,7 +25,7 @@ const convertProfileImage = (profileImageUrl: string) => {
 
   return (
     <div css={profileImgWrapperCss}>
-      <Image src={profileImageUrl} alt="profile image" width={142} height={142} />
+      <Image src={profileImageUrl} alt="profile image" width={142} height={142} style={{ objectFit: 'cover' }} />
     </div>
   );
 };
