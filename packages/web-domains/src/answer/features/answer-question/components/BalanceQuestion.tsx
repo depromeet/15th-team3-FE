@@ -1,8 +1,8 @@
 'use client';
-import { Interpolation, Theme } from '@emotion/react';
-import { Button, Txt, fontWeightVariants } from '@sambad/sds/components';
+import { css, Interpolation, Theme } from '@emotion/react';
+import { Txt, fontWeightVariants } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
-import { useEffect, useState } from 'react';
+import { ButtonHTMLAttributes, useEffect, useState } from 'react';
 
 import { AnswerQuestionOptionType } from '@/answer/common/apis/schema/AnswerQuestion';
 
@@ -10,25 +10,6 @@ interface BalanceQuestionProps {
   answerOptionList: [AnswerQuestionOptionType, AnswerQuestionOptionType];
   onChangeAnswerList?: (answerIdList: number[]) => void;
 }
-
-const buttonStyles: Record<'selected' | 'default', Interpolation<Theme>> = {
-  selected: {
-    borderRadius: '24px',
-    height: '90px',
-    backgroundColor: colors.primary500,
-    fontWeight: fontWeightVariants.medium,
-    fontSize: '20px',
-    color: colors.white,
-  },
-  default: {
-    borderRadius: '24px',
-    height: '90px',
-    backgroundColor: colors.grey400,
-    fontWeight: fontWeightVariants.medium,
-    fontSize: '20px',
-    color: colors.grey700,
-  },
-};
 
 export const BalanceQuestion = ({ answerOptionList, onChangeAnswerList }: BalanceQuestionProps) => {
   const [selectedOption, setSelectedOption] = useState<AnswerQuestionOptionType | null>(answerOptionList[0] || null);
@@ -48,23 +29,57 @@ export const BalanceQuestion = ({ answerOptionList, onChangeAnswerList }: Balanc
 
   return (
     <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-      <Button
-        size="large"
+      <SelectButton
+        isSelected={selectedOption?.answerId === topQuestion.answerId}
         onClick={handleClickAnswer(topQuestion)}
-        css={selectedOption?.answerId === topQuestion.answerId ? buttonStyles['selected'] : buttonStyles['default']}
       >
         {topQuestion.content}
-      </Button>
+      </SelectButton>
       <Txt typography="heading2" css={{ display: 'inline-block', padding: '12px 0' }}>
         VS
       </Txt>
-      <Button
-        size="large"
+      <SelectButton
+        isSelected={selectedOption?.answerId === bottomQuestion.answerId}
         onClick={handleClickAnswer(bottomQuestion)}
-        css={selectedOption?.answerId === bottomQuestion.answerId ? buttonStyles['selected'] : buttonStyles['default']}
       >
         {bottomQuestion.content}
-      </Button>
+      </SelectButton>
     </div>
   );
+};
+
+interface SelectButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  isSelected: boolean;
+}
+
+export const SelectButton = (props: SelectButtonProps) => {
+  const { isSelected, ...restProps } = props;
+
+  return (
+    <button css={[buttonBaseStyle, isSelected ? buttonStyles['selected'] : buttonStyles['default']]} {...restProps} />
+  );
+};
+
+const buttonBaseStyle = css({
+  width: '100%',
+  cursor: 'pointer',
+});
+
+const buttonStyles: Record<'selected' | 'default', Interpolation<Theme>> = {
+  selected: {
+    borderRadius: '24px',
+    height: '90px',
+    backgroundColor: colors.primary500,
+    fontWeight: fontWeightVariants.medium,
+    fontSize: '20px',
+    color: colors.white,
+  },
+  default: {
+    borderRadius: '24px',
+    height: '90px',
+    backgroundColor: colors.grey400,
+    fontWeight: fontWeightVariants.medium,
+    fontSize: '20px',
+    color: colors.grey700,
+  },
 };
