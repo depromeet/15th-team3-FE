@@ -28,7 +28,7 @@ export const QuestionerDetail = ({
   return (
     <div css={wrapperCss}>
       <div css={imgWrapperCss}>
-        <Image src={imageUrl} alt={name} width={80} height={80} />
+        <Image src={imageUrl} alt={name} width={80} height={80} style={{ objectFit: 'cover' }} />
       </div>
       <Txt typography="heading2" color={colors.black} fontWeight="bold" css={nameCss}>
         {name}

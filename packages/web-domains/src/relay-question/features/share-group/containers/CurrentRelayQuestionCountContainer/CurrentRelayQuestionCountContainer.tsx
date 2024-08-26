@@ -34,7 +34,7 @@ export const CurrentRelayQuestionCountContainer = () => {
     setIsOpenModal(true);
   };
 
-  if (!activeQuestion) return <div>loading</div>;
+  if (!activeQuestion) return;
 
   return (
     <>

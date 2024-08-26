@@ -37,13 +37,13 @@ const QuestionList = () => {
     },
   });
 
-  if (!questions) return <div>loading</div>;
+  if (!questions) return;
   if (questions.length === 0) return <div>empty list</div>;
 
   return (
     <section>
       <div css={questionTextBoxCss}>
-        <Txt typography="heading1" color={colors.black} fontWeight="bold">
+        <Txt typography="heading1" color={colors.black} fontWeight="bold" style={{ wordBreak: 'keep-all' }}>
           어떤 질문으로 물어볼까요?
         </Txt>
       </div>
@@ -69,7 +69,7 @@ const NextQuestionerList = () => {
 
   const { myInfo } = useMyInfoQuery();
 
-  if (!meetingMembers || !myInfo) return <div>loading</div>;
+  if (!meetingMembers || !myInfo) return;
 
   return (
     <section>

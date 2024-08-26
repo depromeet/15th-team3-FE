@@ -36,10 +36,13 @@ export const ShareNextQuestionerContainer = () => {
     <>
       <section css={wrapperCss}>
         <div css={headingWrapperCss}>
-          <Txt color={colors.black} typography="heading1" fontWeight="bold">
-            다음 릴레이 질문을 만드는
-          </Txt>
-          <Txt color={colors.black} typography="heading1" fontWeight="bold">
+          <Txt
+            color={colors.black}
+            typography="heading1"
+            fontWeight="bold"
+            style={{ textAlign: 'center', wordBreak: 'keep-all' }}
+          >
+            다음 릴레이 질문을 만드는{' '}
             <Txt color={colors.primary500} typography="heading1" fontWeight="bold">
               질문인
             </Txt>

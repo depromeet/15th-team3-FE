@@ -36,7 +36,7 @@ export const Questioner = ({ meetingId, meetingMemberId, imageUrl, name }: Quest
         { questionId, meetingMemberId },
         {
           onSuccess: () => {
-            router.push(`/share-group?question-id=${questionId}&questioner-name=${name}`);
+            router.push(`/share-group?question-id=${questionId}`);
           },
         },
       );
@@ -46,7 +46,7 @@ export const Questioner = ({ meetingId, meetingMemberId, imageUrl, name }: Quest
   return (
     <li css={wrapperCss} onClick={handleOpenModal}>
       <div css={imgWrapperCss}>
-        <Image src={imageUrl} alt={name} width={40} height={40} />
+        <Image src={imageUrl} alt={name} width={40} height={40} style={{ objectFit: 'cover' }} />
       </div>
       <Txt typography="title2" color={colors.black} fontWeight="medium">
         {name}

@@ -33,5 +33,4 @@ export const firstButtonCss = css({
 
 export const buttonWrapperCss = css({
   width: '100%',
-  maxWidth: '430px',
 });
