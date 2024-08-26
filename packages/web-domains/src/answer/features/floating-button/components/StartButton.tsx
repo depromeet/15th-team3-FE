@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Txt } from '@sambad/sds/components';
-import { size, colors } from '@sambad/sds/theme';
+import { colors, size } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 interface StartButtonProps {
@@ -13,7 +13,7 @@ export const StartButton = ({ questionId, meetingId }: StartButtonProps) => {
   return (
     <div
       css={{
-        position: 'absolute',
+        position: 'fixed',
         bottom: '40px',
         margin: '0 auto',
         width: '100%',

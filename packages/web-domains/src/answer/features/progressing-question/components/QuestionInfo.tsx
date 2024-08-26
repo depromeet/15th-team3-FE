@@ -27,7 +27,7 @@ export const QuestionInfo = ({ question }: QuestionInfoProps) => {
               {targetMember.name}
             </Txt>
             <Avatar
-              imageUrl={question.questionImageFileUrl ?? ''}
+              imageUrl={targetMember.profileImageFileUrl ?? ''}
               width={20}
               height={20}
               css={{ borderRadius: '50%' }}

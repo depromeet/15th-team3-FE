@@ -20,22 +20,27 @@ export const useMyprofileService = () => {
     setTab(value as TabType);
   };
 
-  const data = useGetMemberMe({ meetingId: meetingId!, options: { staleTime: 0 } });
+  const { data: myData } = useGetMemberMe({ meetingId: meetingId!, options: { staleTime: 0 } });
 
-  const answers = useGetAnswersMe({ meetingId: meetingId!, options: { staleTime: 0 } });
+  const { data: answers } = useGetAnswersMe({ meetingId: meetingId!, options: { staleTime: 0 } });
 
   const handleMoveToModifyPage = () => {
     router.push(`/home/me/modify`);
   };
 
   const handleModify = () => {
+    // NOTE: 답변이 없을 경우 요청을 하지 않고 라우팅만 처리하기 위해 추가
+    if (answers.contents.length === 0) {
+      router.push('/home/me');
+      return;
+    }
     segmentedRef.current?.onMutate(meetingId);
   };
 
   return {
     segmentedRef,
-    data: data.data,
-    answers: answers.data,
+    data: myData,
+    answers,
     tab,
     handleTab,
     meetingId,
