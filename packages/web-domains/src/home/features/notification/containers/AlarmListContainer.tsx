@@ -11,20 +11,24 @@ import { NotificationList } from '../components/NotificationList';
 import { useAlarmListService } from '../services/useAlarmListService';
 
 export const AlarmListContainer = () => {
-  const { notficationList, meetingId, handWavingResponse } = useAlarmListService();
+  const { notificationList, meetingId, handWavingResponse } = useAlarmListService();
 
-  const renderNotification = (notifiaciton: AlarmEventType, meetingId?: number) => {
-    switch (notifiaciton.type) {
+  const renderNotification = (notification: AlarmEventType, meetingId?: number) => {
+    switch (notification.type) {
       case 'HAND_WAVING_REQUESTED': {
-        const handWavingId = notifiaciton.additionalData.handWavingId;
+        const handWavingId = notification.additionalData?.handWavingId;
 
         return (
           <NotificationItem.AlarmItem
-            alarm={notifiaciton}
+            alarm={notification}
             footer={
               <div css={{ display: 'flex', marginTop: '12px' }}>
                 <Button
-                  onClick={() => handWavingResponse({ meetingId: meetingId!, handWavingId })}
+                  onClick={() => {
+                    if (handWavingId && meetingId) {
+                      handWavingResponse({ meetingId, handWavingId });
+                    }
+                  }}
                   variant="primary"
                   leftDecor={
                     <Icon
@@ -44,7 +48,11 @@ export const AlarmListContainer = () => {
                   나도 인사 건네기
                 </Button>
                 <Button
-                  onClick={() => ignoreHandwaving({ meetingId: meetingId!, handWavingId })}
+                  onClick={() => {
+                    if (handWavingId && meetingId) {
+                      ignoreHandwaving({ meetingId, handWavingId });
+                    }
+                  }}
                   variant="sub"
                   leftDecor={<Icon name="close-icon" size={15} />}
                 >
@@ -58,7 +66,7 @@ export const AlarmListContainer = () => {
 
       case 'QUESTION_REGISTERED':
       case 'TARGET_MEMBER':
-        return <NotificationItem.AlarmItem alarm={notifiaciton} />;
+        return <NotificationItem.AlarmItem alarm={notification} />;
     }
   };
 
@@ -70,8 +78,8 @@ export const AlarmListContainer = () => {
         </Txt>
       </header>
       <NotificationList
-        notificationList={notficationList}
-        renderItem={(notfication) => renderNotification(notfication, meetingId)}
+        notificationList={notificationList}
+        renderItem={(notification) => renderNotification(notification, meetingId)}
       />
     </section>
   );

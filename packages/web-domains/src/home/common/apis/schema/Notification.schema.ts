@@ -18,7 +18,7 @@ export type AlarmEventType = {
   status: 'ACTIVE' | 'INACTIVE';
   additionalData: {
     handWavingId: number;
-  };
+  } | null;
   createdAt: number;
 };
 
