@@ -6,7 +6,7 @@ import { StartRelayQuestionButton } from '../components/StartRelayQuestionButton
 import { useFloatingButtonService } from '../services/useFloatingButtonService';
 
 export const FloatingButtonContainer = () => {
-  const { buttonType, homeGlobalTime, handleClose, isOpen, open } = useFloatingButtonService();
+  const { buttonType, homeGlobalTime, handleClose, isOpen, open, meetingId } = useFloatingButtonService();
 
   return (
     <div
@@ -19,7 +19,7 @@ export const FloatingButtonContainer = () => {
         padding: '0 20px',
       }}
     >
-      {buttonType === 'start' && <StartRelayQuestionButton />}
+      {buttonType === 'start' && <StartRelayQuestionButton meetingId={meetingId} />}
       {buttonType === 'countdown' && <AlreadyProgressingQuestionButton time={homeGlobalTime} onClick={open} />}
       <ProgressingQuestionModal isOpen={isOpen} time={homeGlobalTime} onClose={handleClose} />
     </div>

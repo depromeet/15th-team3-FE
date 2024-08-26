@@ -41,20 +41,12 @@ export const useFloatingButtonService = () => {
     close();
   };
 
-  // const handleClickRelayStartButton = () => {
-  //   if (isProgessingQuestion) {
-  //     open();
-  //     return;
-  //   }
-  //   push(`${currentMeeting?.meetingId}/start-relay-question`);
-  // };
-
   return {
+    meetingId: currentMeeting?.meetingId,
     isOpen,
     buttonType,
     homeGlobalTime: homeGlobalTime ?? 0,
     open,
     handleClose,
-    // handleClickRelayStartButton,
   };
 };
