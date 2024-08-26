@@ -21,6 +21,7 @@ export const RoleRadioButton = (props: PropsWithChildren<RoleRadioButtonProps>) 
           display: 'block',
           position: 'relative',
           overflow: 'hidden',
+          cursor: 'pointer',
           backgroundColor: colors.grey200,
           padding: '40px',
           borderRadius: borderRadiusVariants.medium,
