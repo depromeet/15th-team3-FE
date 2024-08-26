@@ -60,7 +60,9 @@ export const GetMeetingInfo = (props: GetMeetingInfoProps) => {
               required: '이름은 필수 입력 사항입니다',
               minLength: { value: 2, message: '2자 이상 입력해주세요' },
               maxLength: { value: 10, message: '10자 이하로 입력해주세요' },
+              pattern: /^\S.*\S$/,
             })}
+            maxLength={10}
             errorMessage="2자 이상, 10자 이하로 입력해주세요"
             placeholder="모임의 이름을 입력해주세요"
             css={{ marginTop: '8px' }}
@@ -76,7 +78,7 @@ export const GetMeetingInfo = (props: GetMeetingInfoProps) => {
                 validate: (value) => value.length <= 2 || '최대 2개까지 선택해주세요',
               }}
               render={({ field: { value, onChange } }) => (
-                <CheckboxGroup value={value} onValueChange={onChange}>
+                <CheckboxGroup value={value} onValueChange={onChange} maxLength={2}>
                   {meetingTypes?.map((type, idx) => (
                     <CheckboxGroup.Item
                       key={idx}

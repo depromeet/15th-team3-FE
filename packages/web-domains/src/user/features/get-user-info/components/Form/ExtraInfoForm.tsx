@@ -50,15 +50,27 @@ export const ExtraInfoForm = () => {
         label="직업이 무엇인가요?"
         answerNumber={4}
         placeholder="예) 돈 많은 백수"
+        maxLength={15}
         errorMessage="1자 이상, 15자 이하로 입력해주세요"
-        {...register('job', { required: true, minLength: 1, maxLength: 15 })}
+        {...register('job', {
+          required: true,
+          minLength: 1,
+          maxLength: 15,
+          pattern: /^\S.*\S$/,
+        })}
       />
       <TextInput
         answerNumber={5}
         label="어디에 거주하고 계신가요?"
+        maxLength={15}
         placeholder="예) 사랑시 고백구 행복동"
         errorMessage="1자 이상, 15자 이하로 입력해주세요"
-        {...register('location', { required: true, minLength: 1, maxLength: 15 })}
+        {...register('location', {
+          required: true,
+          minLength: 1,
+          maxLength: 15,
+          pattern: /^\S.*\S$/,
+        })}
       />
       <div css={buttonWrapperCss}>
         <Button type="submit" size="large" disabled={!isValid}>

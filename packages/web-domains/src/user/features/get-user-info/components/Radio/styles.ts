@@ -10,6 +10,7 @@ export const radioCss = {
     justifyContent: 'center',
     border: '1px solid',
     height: '48px',
+    cursor: 'pointer',
   }),
   default: {
     backgroundColor: colors.grey200,
