@@ -17,7 +17,7 @@ export const NotificationList = ({ notificationList, renderItem }: NotificationL
           borderTop: `1px solid ${colors.grey400}`,
         }}
       >
-        <EmptyView title="알림이 없어요" style={{ height: 'calc(100vh - 142px)' }} />;
+        <EmptyView title="아직 알림이 없어요!" style={{ height: 'calc(100vh - 142px)' }} />;
       </div>
     );
   }
