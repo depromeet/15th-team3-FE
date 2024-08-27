@@ -6,6 +6,7 @@ import { getWebDomain } from '@/common';
 import { generateInviteLink } from '@/common/utils/generateInviteLink';
 import { getKeywordRegex } from '@/common/utils/getKeywordRegex';
 import { useGetInviteCode } from '@/home/common/apis/queries/useGetInviteCode';
+import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 import { MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 import { HomeAtoms } from '@/home/common/atoms/home.atom';
 
@@ -29,6 +30,10 @@ export const useGatherMemberProfileListService = () => {
     params: { meetingId: meetingId! },
     options: { enabled: !!meetingId },
   });
+
+  const { data: meetingInfo } = useGetMeetingInfo({});
+
+  const meetingName = meetingInfo?.meetings.find((meeting) => meeting.meetingId === Number(meetingId))?.name;
 
   const handleChangeSearchInput = (value: string) => {
     setSearchInput(value);
@@ -70,6 +75,7 @@ export const useGatherMemberProfileListService = () => {
 
   return {
     meetingId,
+    meetingName,
     isOpen,
     inviteLink: generateInviteLink(inviteCode?.code) ?? `${getWebDomain()}`,
     searchInput,

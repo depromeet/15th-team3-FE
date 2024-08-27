@@ -11,6 +11,7 @@ import { useGatherMemberProfileListService } from '../services/useGatherMemberPr
 export const GatherMemberProfileListContainer = () => {
   const {
     meetingId,
+    meetingName,
     isOpen,
     gatherMemberList,
     searchInput,
@@ -40,6 +41,8 @@ export const GatherMemberProfileListContainer = () => {
         onClose={inviteModalClose}
         topTitle="모임원들을 모링으로"
         bottomTitle="초대해보세요!"
+        shareDescription={`${meetingName} 모임에 여러분들을 초대합니다`}
+        shareImageUrl="https://file.moring.one/defaults/invite_narrow.png"
         shareLink={inviteLink}
       />
     </section>
