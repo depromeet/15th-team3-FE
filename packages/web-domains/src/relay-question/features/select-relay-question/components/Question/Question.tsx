@@ -19,7 +19,7 @@ interface QuestionProps {
 
 export const Question = ({ id, imageUrl, title, usedCount, meetingId }: QuestionProps) => {
   const openModal = useModal();
-  const { refetch } = useRelayQuestionQuery(1);
+  const { refetch } = useRelayQuestionQuery(id);
 
   const router = useRouter();
 

@@ -10,6 +10,12 @@ interface ShareToKakaoProps {
   shareLink: string;
 }
 
+const buttonTextMap: Record<string, string> = {
+  'https://file.moring.one/defaults/invite_narrow.png': '모임 참여하기',
+  'https://file.moring.one/defaults/question_narrow.png': '답변하러 가기',
+  'https://file.moring.one/defaults/new_question_narrow.png': '답변하러 가기',
+};
+
 export const generateKakaoShare = ({ shareLink, shareImageUrl, shareDescription }: ShareToKakaoProps) => {
   const { Kakao } = window;
 
@@ -26,5 +32,14 @@ export const generateKakaoShare = ({ shareLink, shareImageUrl, shareDescription 
         mobileWebUrl: shareLink,
       },
     },
+    buttons: [
+      {
+        title: buttonTextMap[shareImageUrl],
+        link: {
+          webUrl: shareLink,
+          mobileWebUrl: shareLink,
+        },
+      },
+    ],
   });
 };
