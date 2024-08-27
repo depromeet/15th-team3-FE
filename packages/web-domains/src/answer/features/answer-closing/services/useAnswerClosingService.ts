@@ -14,7 +14,7 @@ export const useAnswerClosingService = () => {
   const { data: meetingInfo } = useGetMeetingInfo({});
 
   const { close, isOpen } = useDialogContext();
-  const meetingName = meetingInfo?.meetings.find(({ meetingId }) => meetingId === Number(meetingId))?.name;
+  const meetingName = meetingInfo?.meetings.find((meeting) => meeting.meetingId === Number(meetingId))?.name;
   const basePath = getWebDomain();
 
   useGetProgressingQuestion({

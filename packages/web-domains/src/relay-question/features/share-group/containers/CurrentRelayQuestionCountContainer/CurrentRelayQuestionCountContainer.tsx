@@ -37,7 +37,7 @@ export const CurrentRelayQuestionCountContainer = () => {
 
   if (!activeQuestion || !data) return;
 
-  const currentMeetingName = data.meetings.find(({ meetingId }) => meetingId === Number(meetingId))?.name;
+  const currentMeetingName = data.meetings.find((meeting) => meeting.meetingId === Number(meetingId))?.name;
 
   return (
     <>
