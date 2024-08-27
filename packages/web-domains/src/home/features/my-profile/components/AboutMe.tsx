@@ -9,7 +9,7 @@ interface AboutMeProps {
 }
 
 export const AboutMe = ({ info }: AboutMeProps) => {
-  const hasNoInfo = !info?.hobbies.length && !info?.introduction;
+  const hasNoInfo = info?.hobbies == null && (info?.introduction == null || info?.introduction === '');
 
   if (hasNoInfo) return <EmptyView title="아직 입력한 정보가 없어요" style={{ height: '300px' }} />;
 
