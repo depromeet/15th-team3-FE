@@ -1,7 +1,7 @@
 import { Txt } from '@sambad/sds/components';
 import { size, colors } from '@sambad/sds/theme';
 
-import { generateKakaoShare } from '@/common';
+import { generateKakaoShare, getWebDomain } from '@/common';
 import { CircleKakao } from '@/new-meeting/common/assets/icons/CircleKakao';
 
 interface shareKakaoButtonProps {
@@ -11,6 +11,7 @@ interface shareKakaoButtonProps {
 
 const ShareKakaoButton = (props: shareKakaoButtonProps) => {
   const { inviteCode, name } = props;
+  const domain = getWebDomain();
 
   if (!inviteCode) {
     return null;
@@ -20,7 +21,7 @@ const ShareKakaoButton = (props: shareKakaoButtonProps) => {
     generateKakaoShare({
       shareDescription: `${name} 모임에 여러분들을 초대합니다`,
       shareImageUrl: 'https://file.moring.one/defaults/invite_narrow.png',
-      shareLink: `${window.location.origin}/meeting/participate/closing?inviteCode=${inviteCode}`,
+      shareLink: `${domain}/meeting/participate/closing?inviteCode=${inviteCode}`,
     });
   };
 
