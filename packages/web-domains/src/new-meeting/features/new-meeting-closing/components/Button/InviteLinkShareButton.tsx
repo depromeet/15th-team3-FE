@@ -2,6 +2,7 @@ import { Txt } from '@sambad/sds/components';
 import { size, colors } from '@sambad/sds/theme';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
+import { getWebDomain } from '@/common';
 import { CircleCopy } from '@/new-meeting/common/assets/icons/CircleCopy';
 import { useToast } from '@/new-meeting/common/components/Toast/ToastProvider';
 
@@ -13,6 +14,7 @@ interface InviteLinkShareButtonProps {
 
 export const InviteLinkShareButton = (props: InviteLinkShareButtonProps) => {
   const { inviteCode } = props;
+  const domain = getWebDomain();
 
   if (!inviteCode) {
     return null;
@@ -24,7 +26,7 @@ export const InviteLinkShareButton = (props: InviteLinkShareButtonProps) => {
     addToast(() => CopyToast({ content: '링크를 복사했어요!' }));
   };
 
-  const copyUrl = `${window.location.origin}/meeting/participate/closing?inviteCode=${inviteCode}`;
+  const copyUrl = `${domain}/meeting/participate/closing?inviteCode=${inviteCode}`;
 
   return (
     <div css={{ margin: `${size['3xs']} ${size.xs}`, textAlign: 'center' }}>
