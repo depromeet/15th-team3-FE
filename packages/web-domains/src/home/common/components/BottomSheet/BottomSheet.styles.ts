@@ -33,6 +33,6 @@ export const ContentWrapperCss = css({
   transition: 'transform 0.2s ease',
   height: 'calc(100% - 54px)',
   backgroundColor: `${colors.grey200}`,
-  padding: '8px 0',
-  overflow: 'auto',
+  padding: '8px 0 40px',
+  overflow: 'hidden',
 });
