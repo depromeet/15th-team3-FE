@@ -37,6 +37,11 @@ export const useSetCurrentMeeting = () => {
       }
     }
   };
+  useEffect(() => {
+    if (currentMeeting) {
+      setCurrentMeeting(null);
+    }
+  }, []);
 
   useEffect(() => {
     if (!currentMeeting) {
