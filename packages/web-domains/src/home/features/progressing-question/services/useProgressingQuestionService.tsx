@@ -75,7 +75,7 @@ export const useProgressingQuestionService = () => {
     }
   }, [progressingQuestion, myInfo]);
 
-  const isOnlyOne = !!memberList && memberList.contents.length < 2;
+  const isOnlyOne = !!memberList && memberList.contents.length < 1;
 
   return {
     isOnlyOne,

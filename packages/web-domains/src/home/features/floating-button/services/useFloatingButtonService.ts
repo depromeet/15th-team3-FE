@@ -49,7 +49,7 @@ export const useFloatingButtonService = () => {
     close();
   };
 
-  const isOnlyOne = !!memberList && memberList.contents.length < 2;
+  const isOnlyOne = !!memberList && memberList.contents.length < 1;
 
   return {
     meetingId: currentMeeting?.meetingId,
