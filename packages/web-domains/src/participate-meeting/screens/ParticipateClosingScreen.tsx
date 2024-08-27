@@ -1,4 +1,8 @@
-import { HydrationBoundary, dehydrate, QueryClient } from '@tanstack/react-query';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
+import { getMeetingNamePrefetch } from '@/common/apis/queries/useGetMeetingName';
 
 import { ParticipateClosingContainer } from '../features/participate-meeting-closing/containers/ParticipateClosingContainer';
 
@@ -11,7 +15,7 @@ interface SearchParams {
 export const ParticipateClosingScreen = async (searchParams: SearchParams) => {
   const { inviteCode } = searchParams;
 
-  const { queryClient } = await getServerSideProps();
+  const { queryClient } = await getServerSideProps(inviteCode);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
@@ -21,16 +25,22 @@ export const ParticipateClosingScreen = async (searchParams: SearchParams) => {
 };
 
 // async (searchParams: SearchParams) => {
-const getServerSideProps = async () => {
-  // const { inviteCode } = searchParams;
+const getServerSideProps = async (inviteCode: string) => {
   const queryClient = new QueryClient();
+  let isJoinedMeeting = null;
 
-  // const prefetchProps = {
-  //   queryClient: queryClient,
-  //   inviteCode,
-  // };
+  try {
+    const cookie = cookies();
+    const { joined } = await getMeetingNamePrefetch({ queryClient, cookie, inviteCode });
 
-  // await getMeetingNamePrefetch(prefetchProps);
+    isJoinedMeeting = joined;
+  } catch (error) {
+    console.error(error);
+  }
+
+  if (isJoinedMeeting) {
+    redirect('/home');
+  }
 
   return { queryClient };
 };
