@@ -27,7 +27,7 @@ export const Profile = (props: ProfileProps) => {
   const age = birthFromProps && generateAge(birthFromProps);
   const gender = generateGender(genderFromProps);
 
-  const infoBadges = [age, gender, mbti, location, job].filter(Boolean);
+  const infoBadges = [age, gender, mbti, location, job].filter((value) => value != null);
 
   return (
     <Fragment>

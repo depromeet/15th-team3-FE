@@ -7,7 +7,7 @@ export interface MeetingMemberResponse {
   birth: string;
   job: string;
   location: string;
-  hobbies: Array<string>;
-  mbti: string;
-  introduction: string;
+  hobbies?: Array<string>;
+  mbti?: string;
+  introduction?: string;
 }

@@ -10,7 +10,7 @@ import { useGetMemberByParams } from '../hooks/useGetMemberByParams';
 export const AboutMeContainer = () => {
   const { data } = useGetMemberByParams();
 
-  const hasNoInfo = !data?.hobbies.length && !data?.introduction.length;
+  const hasNoInfo = data?.hobbies == null && (data?.introduction == null || data?.introduction === '');
 
   if (hasNoInfo) return <EmptyView title="아직 입력한 정보가 없어요" style={{ height: '300px' }} />;
 
