@@ -89,7 +89,7 @@ export const CurrentRelayQuestionCountContainer = () => {
         topTitle="모임원들에게 릴레이 질문을"
         bottomTitle="공유해 보세요!"
         shareImageUrl={KAKAO_IMAGE_URL}
-        shareDescription={`새로운 질문이 도착했어요! 지금 바로 답변 하러 가볼까요? 다음 질문인은 ${activeQuestion.nextTargetMember.name}님이에요`}
+        shareDescription={`새로운 질문이 도착했어요! 지금 바로 답변 하러 가볼까요? 다음 질문인은 ${activeQuestion?.nextTargetMember?.name || '000'}님이에요`}
         shareLink={`${getWebDomain()}/${meetingId}/answer/opening`}
       />
     </>
