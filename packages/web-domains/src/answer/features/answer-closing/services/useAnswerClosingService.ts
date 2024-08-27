@@ -6,12 +6,15 @@ import { useGetProgressingQuestion } from '@/answer/common/apis/queries/useGetPr
 import { answerAtoms } from '@/answer/common/atoms/answer.atom';
 import { getWebDomain } from '@/common';
 import { useDialogContext } from '@/common/contexts/DialogProvider';
+import { useGetMeetingInfo } from '@/home/common/apis/queries/useGetMeetingName';
 
 export const useAnswerClosingService = () => {
   const { meetingId } = useParams<{ meetingId: string }>();
   const [answerGlobalTime, setAnswerGlobalTime] = useAtom(answerAtoms.answerGlobalTime);
+  const { data: meetingInfo } = useGetMeetingInfo({});
 
   const { close, isOpen } = useDialogContext();
+  const meetingName = meetingInfo?.meetings.find(({ meetingId }) => meetingId === Number(meetingId))?.name;
   const basePath = getWebDomain();
 
   useGetProgressingQuestion({
@@ -29,6 +32,7 @@ export const useAnswerClosingService = () => {
 
   return {
     meetingId,
+    meetingName,
     answerGlobalTime: answerGlobalTime ?? 0,
     isOpen,
     close,
