@@ -65,7 +65,7 @@ export const useNotificationService = () => {
     }
   }, [notfication, currentMeeting]);
 
-  const isOnlyOne = !!memberList && memberList.contents.length < 2;
+  const isOnlyOne = !!memberList && memberList.contents.length < 1;
 
   return {
     meetingId,
