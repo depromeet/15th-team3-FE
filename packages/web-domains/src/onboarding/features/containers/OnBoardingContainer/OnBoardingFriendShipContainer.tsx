@@ -12,8 +12,8 @@ import { OnBoardingContent } from '../../components/OnBoardingContent/OnBoarding
 export const OnBoardingFriendShipContainer = () => {
   return (
     <Fragment>
-      <Header Icon={<HandIcon />} title="릴레이 질문으로" subTitle="나만의 자기소개서 완성!" />
-      <OnBoardingContent imageUrl={OnBoardingImage} bgImageUrl={BgImage} />
+      <Header Icon={<HandIcon />} title="친해지고 싶은 모임원을 찾아" subTitle="손 흔들어 인사해보세요!" />
+      <OnBoardingContent imageUrl={OnBoardingImage} imageWidth="50%" imageTopPosition={-69} bgImageUrl={BgImage} />
     </Fragment>
   );
 };

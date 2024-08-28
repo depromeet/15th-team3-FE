@@ -12,7 +12,7 @@ export const OnBoardingQuestionContainer = () => {
   return (
     <Fragment>
       <Header Icon={<QuestionIcon />} title="모임원들에게" subTitle="궁금한 것을 물어보면" />
-      <OnBoardingContent imageUrl={OnBoardingImage} bgImageUrl={BgImage} />
+      <OnBoardingContent imageUrl={OnBoardingImage} imageTopPosition={-69} bgImageUrl={BgImage} />
     </Fragment>
   );
 };

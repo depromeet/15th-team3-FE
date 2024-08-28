@@ -1,10 +1,11 @@
 'use client';
 
 import { Button } from '@sds/components';
-import { colors } from '@sds/theme';
 import { useRouter } from 'next/navigation';
 
 import { useOnBoardingCompleteMutation } from '@/onboarding/common/apis/mutations/useOnBoardingMutation';
+
+import { onBoardingButtonCss } from './styles';
 
 interface StartButtonProps {
   redirectUrl?: string;
@@ -33,7 +34,7 @@ export const StartButton = (props: StartButtonProps) => {
   };
 
   return (
-    <Button size="large" color={colors.black} onClick={handleOnBoardingComplete}>
+    <Button size="large" css={onBoardingButtonCss} onClick={handleOnBoardingComplete}>
       시작하기
     </Button>
   );
