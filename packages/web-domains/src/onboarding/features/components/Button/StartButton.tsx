@@ -17,11 +17,11 @@ export const StartButton = (props: StartButtonProps) => {
   const { mutateAsync: onBoardingComplete } = useOnBoardingCompleteMutation();
 
   const handleOnBoardingComplete = async () => {
+    const data = await onBoardingComplete();
+
     if (redirectUrl) {
       router.push(redirectUrl);
     }
-
-    const data = await onBoardingComplete();
 
     // 만약 가입된 모임이 없다면
     if (data?.isNotEnteredAnyMeeting) {
