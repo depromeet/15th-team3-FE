@@ -32,13 +32,16 @@ export const useNotificationService = () => {
     },
   });
 
-  const { data: notfication } = useGetNotification<NotificationType[] | undefined>({
+  const { data: notfication } = useGetNotification<NotificationType[] | null>({
     params: { meetingId: meetingId! },
     options: {
       enabled: !!meetingId,
       refetchInterval: 1000 * 30,
       select: (data) => {
-        return data?.contents.filter((notify) => notify.eventType !== 'HAND_WAVING_REQUESTED');
+        if (data) {
+          return data.contents.filter((notify) => notify.eventType !== 'HAND_WAVING_REQUESTED');
+        }
+        return null;
       },
     },
   });

@@ -6,14 +6,15 @@ import { useIntersect } from '@/common/hooks/useIntersect';
 import { useGetPreviousQuestionList } from '@/home/common/apis/queries/useGetPreviousQuestionList';
 import { PreviousQuestionType } from '@/home/common/apis/schema/useGetPreviousQuestionListQuery.type';
 import { HomeAtoms } from '@/home/common/atoms/home.atom';
+import { useSetCurrentMeeting } from '@/home/common/hooks/useSetCurrentMeeting';
 
 export const usePreviousQuestionListService = () => {
   const currentMeeting = useAtomValue(HomeAtoms.currentMeeting);
+  const { meetingId: existMeetingId } = useSetCurrentMeeting();
   const [previousQuestionList, setPreviousQuestionList] = useState<Array<PreviousQuestionType>>([]);
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
-
-  const meetingId = currentMeeting?.meetingId;
+  const meetingId = currentMeeting?.meetingId ?? existMeetingId;
 
   const { data, isFetching } = useGetPreviousQuestionList({
     params: { meetingId: meetingId!, page },
