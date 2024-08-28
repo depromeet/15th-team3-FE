@@ -27,7 +27,7 @@ export const ProgressingQuestionContainer = () => {
     <section css={{ width: '100%', backgroundColor: colors.primary100, padding: '0 20px' }}>
       <GatherName
         gatherName={gatherName}
-        subTitle="릴레이질문으로 더 가까워져 볼까요?"
+        subTitle="릴레이 질문으로 더 가까워져 볼까요?"
         onClick={handleOpenBottmSheet}
       />
       <MeetingChoiceBottomSheet
