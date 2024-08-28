@@ -1,5 +1,7 @@
-import { HydrationBoundary, dehydrate, QueryClient } from '@tanstack/react-query';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 import { getCurrentMeeting } from '@/common/utils/getCurrentMeeting';
 
@@ -23,6 +25,9 @@ export const HomeScreen = async () => {
 
 const getServerSideProps = async () => {
   const queryClient = new QueryClient();
+
+  let errorStatus;
+
   try {
     const cookie = cookies();
     const data = await getMeetingInfoPrefetch(queryClient, cookie);
@@ -34,7 +39,16 @@ const getServerSideProps = async () => {
       await Promise.all([gatherMemberPrefetch]);
     }
   } catch (error: unknown) {
-    console.log(error);
+    if (isAxiosError(error)) {
+      errorStatus = error.response?.status;
+    }
+
+    console.error(error);
   }
+
+  if (errorStatus === 401) {
+    redirect('/auth');
+  }
+
   return { queryClient };
 };
