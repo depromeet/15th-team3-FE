@@ -3,6 +3,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import { StepType, STEPS } from '@/onboarding/common/constants/steps';
 
+import { onBoardingButtonCss } from './styles';
+
 const stepOrder: StepType[] = [STEPS.QUESTION, STEPS.RESULT, STEPS.FRIENDSHIP, STEPS.ABOUT_ME];
 
 export const NextButton = () => {
@@ -19,7 +21,7 @@ export const NextButton = () => {
   };
 
   return (
-    <Button size="large" onClick={handleGoToNextPage}>
+    <Button size="large" css={onBoardingButtonCss} onClick={handleGoToNextPage}>
       다음
     </Button>
   );
