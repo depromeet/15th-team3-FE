@@ -1,12 +1,13 @@
 'use client';
 
 import { colors, shadow, size } from '@sambad/sds/theme';
-import { Button, TextButton, Txt } from '@sds/components';
+import { TextButton, Txt } from '@sds/components';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 
 import { useCreateHandWavings } from '@/about-me/common/apis/mutates/useCreateHandWavings';
 import { useGetHandWavingsStatus } from '@/about-me/common/apis/queries/useGetHandWavingsStatus';
+import { FloatingButton } from '@/common/components';
 import { ActionBar } from '@/common/components/ActionBar/ActionBar';
 
 import { useConvertTypeParams } from '../hooks/useConvertTypeParams';
@@ -15,7 +16,7 @@ import { useIsMyByParams } from '../hooks/useIsMyByParams';
 
 import { ProfileContainer } from './ProfileContainer';
 import { SegmentedControlContainer } from './SegmentedControlContainer';
-import { handWavingButtonCss, screenRootCss } from './styles';
+import { screenRootCss } from './styles';
 
 export const ScreenContainer = () => {
   const { isMy } = useIsMyByParams();
@@ -68,15 +69,14 @@ export const ScreenContainer = () => {
         <SegmentedControlContainer ref={segmentedRef} style={sectionStyle} />
       </div>
       {!isMy && getWavingStatusSuccess && (
-        <Button
+        <FloatingButton
           size="large"
           disabled={isProgressHandWavings}
           onClick={handleHandWaving}
-          css={handWavingButtonCss}
           style={{ boxShadow: isProgressHandWavings ? shadow.elevation3 : undefined }}
         >
           {isProgressHandWavings ? '손 흔들어 인사하기 완료!' : '손 흔들어 인사하기'}
-        </Button>
+        </FloatingButton>
       )}
     </div>
   );

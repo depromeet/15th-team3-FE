@@ -40,16 +40,6 @@ export const answerContentCss = css({
   },
 });
 
-export const handWavingButtonCss = css({
-  position: 'fixed',
-  // NOTE: 좌우 여백을 고려한 너비 계산
-  width: `calc(100% - ${size['2xs']} * 2)`,
-  bottom: size['2xs'],
-  left: '50%',
-  transform: 'translateX(-50%)',
-  maxWidth: `calc(600px - ${size['2xs']} * 2)`,
-});
-
 export const screenRootCss = css({
   position: 'relative',
   height: '100dvh',
