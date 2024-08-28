@@ -8,14 +8,14 @@ import { NotificationResponseType } from '../schema/Notification.schema';
 
 type Params = { meetingId: number };
 
-interface Args {
+interface Args<T = NotificationResponseType> {
   params: Params;
-  options?: UseQueryOptionsExcludedQueryKey<NotificationResponseType>;
+  options?: UseQueryOptionsExcludedQueryKey<NotificationResponseType, T>;
 }
 
 export const NOTIFICATION_QUERY_KEY = 'NOTIFICATION_QUERY_KEY';
 
-export const useGetNotification = ({ params, options }: Args) => {
+export const useGetNotification = <T>({ params, options }: Args<T>) => {
   return useQuery({
     queryKey: [NOTIFICATION_QUERY_KEY, params.meetingId],
     queryFn: async () => {

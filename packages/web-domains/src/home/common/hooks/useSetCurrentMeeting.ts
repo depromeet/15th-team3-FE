@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { useAtom, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
@@ -5,11 +6,12 @@ import { useEffect } from 'react';
 import { getCurrentMeeting } from '@/common/utils/getCurrentMeeting';
 
 import { useUpdateLastMeeting } from '../apis/mutations/useUpdateLastMeeting';
-import { useGetMeetingInfo } from '../apis/queries/useGetMeetingName';
+import { MEETING_INFO_QUERY_KEY, useGetMeetingInfo } from '../apis/queries/useGetMeetingName';
 import { MeetingInfoType } from '../apis/schema/Meeting.schema';
 import { HomeAtoms } from '../atoms/home.atom';
 
 export const useSetCurrentMeeting = () => {
+  const queryClient = useQueryClient();
   const [currentMeeting, setCurrentMeeting] = useAtom(HomeAtoms.currentMeeting);
   const setIsProgressingQuestion = useSetAtom(HomeAtoms.isProgessingQuestionAtom);
   const setHomeGlobalTime = useSetAtom(HomeAtoms.homeGlobalTimeAtom);
@@ -18,7 +20,13 @@ export const useSetCurrentMeeting = () => {
 
   const { data: meetingInfo } = useGetMeetingInfo({});
 
-  const { mutateAsync } = useUpdateLastMeeting();
+  const { mutateAsync } = useUpdateLastMeeting({
+    options: {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: [MEETING_INFO_QUERY_KEY] });
+      },
+    },
+  });
 
   const handleChangeCurrentMeeting = async (meeting: MeetingInfoType) => {
     if (meeting.meetingId === currentMeeting?.meetingId) {
@@ -43,8 +51,8 @@ export const useSetCurrentMeeting = () => {
     try {
       if (lastVisitedMeeting) {
         mutateAsync({ meetingId: lastVisitedMeeting.meetingId });
+        setCurrentMeeting(lastVisitedMeeting);
       }
-      setCurrentMeeting(lastVisitedMeeting);
     } catch (error) {
       console.log(error);
     }

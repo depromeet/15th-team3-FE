@@ -12,7 +12,7 @@ import { usePreviousQuestionListService } from '../services/usePreviousQuestionL
 export const PreviousQuestionListContainer = () => {
   const { previousQuestionList, targetRef, meetingId } = usePreviousQuestionListService();
 
-  if (!previousQuestionList || !previousQuestionList.length) {
+  if (!previousQuestionList.length) {
     return (
       <>
         <ActionBar title="이전 질문" css={{ paddingTop: '8px' }} />

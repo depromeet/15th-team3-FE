@@ -8,6 +8,7 @@ import { useDialogContext } from '@/common/contexts/DialogProvider';
 import { useInActiveEventMutation } from '@/home/common/apis/mutations/useInActiveEventMutation';
 import { useGetGatherMemberList } from '@/home/common/apis/queries/useGetGatherMemberList';
 import { useGetNotification } from '@/home/common/apis/queries/useGetNotification';
+import { NotificationType } from '@/home/common/apis/schema/Notification.schema';
 import { ProgressingQuestionType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 import { HomeAtoms } from '@/home/common/atoms/home.atom';
 
@@ -31,11 +32,17 @@ export const useNotificationService = () => {
     },
   });
 
-  const { data: notfication } = useGetNotification({
+  const { data: notfication } = useGetNotification<NotificationType[] | null>({
     params: { meetingId: meetingId! },
     options: {
       enabled: !!meetingId,
       refetchInterval: 1000 * 30,
+      select: (data) => {
+        if (data) {
+          return data.contents.filter((notify) => notify.eventType !== 'HAND_WAVING_REQUESTED');
+        }
+        return null;
+      },
     },
   });
 
@@ -58,7 +65,7 @@ export const useNotificationService = () => {
   };
 
   useEffect(() => {
-    if (notfication?.contents?.[0]) {
+    if (notfication?.[0]) {
       open();
     } else {
       close();
@@ -69,7 +76,7 @@ export const useNotificationService = () => {
 
   return {
     meetingId,
-    notfication: notfication?.contents?.[0],
+    notfication: notfication?.[0],
     isOpen,
     handleClose,
     handleClickActionLater,
