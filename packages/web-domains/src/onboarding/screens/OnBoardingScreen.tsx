@@ -20,7 +20,7 @@ export const OnBoardingScreen = ({ step }: OnBoardingScreenProps) => {
   }
 
   const cookieStore = cookies();
-  const redirectUrl = cookieStore.get('client_redirect_url')?.value ?? '';
+  const redirectUrl = cookieStore.get('redirect_url')?.value ?? '';
 
   return (
     <OnBoardingLayout step={step}>
