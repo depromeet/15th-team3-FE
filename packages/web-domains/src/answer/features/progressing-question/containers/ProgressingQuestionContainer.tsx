@@ -1,7 +1,10 @@
 'use client';
 
-import { Txt } from '@sambad/sds/components';
+import { Button, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
+import Link from 'next/link';
+
+import { EmptyView } from '@/common/components';
 
 import { AnswerCountDown } from '../../../common/components/Countdown/AnswerCountdown';
 import { StartButton } from '../../floating-button/components/StartButton';
@@ -11,10 +14,42 @@ import { useProgressingQuestionService } from '../services/useProgressingQuestio
 
 export const ProgressingQuestionContainer = () => {
   const { progressingQuestion, meetingId } = useProgressingQuestionService();
+
   const isNowAnswered = !progressingQuestion?.isAnswered;
 
   if (!progressingQuestion) {
     return null;
+  }
+
+  if (!progressingQuestion.isQuestionRegistered) {
+    return (
+      <section css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <EmptyView
+          title={
+            !progressingQuestion?.isQuestionRegistered ? '답변 시간이 만료되었어요!' : '현재 진행중인 질문이 없어요!'
+          }
+          style={{ height: '50%' }}
+          css={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}
+        />
+        <Link
+          href="/home"
+          css={{
+            position: 'fixed',
+            bottom: '40px',
+            margin: '0 auto',
+            width: '100%',
+            maxWidth: '600px',
+            padding: '0 20px',
+          }}
+        >
+          <Button size="large">
+            <Txt typography="subtitle1" color={colors.white}>
+              홈으록 가기
+            </Txt>
+          </Button>
+        </Link>
+      </section>
+    );
   }
 
   return (

@@ -1,5 +1,4 @@
 import { UseMutationOptions, useMutation } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
 
 import { Http } from '@/common/apis/base.api';
 
@@ -12,14 +11,8 @@ interface Args {
 export const useUpdateLastMeeting = ({ options }: Args = {}) => {
   return useMutation({
     mutationFn: async (params: Params) => {
-      try {
-        const data = await updateLastMeeting(params);
-        return data;
-      } catch (error) {
-        if (isAxiosError(error)) {
-          console.error(error);
-        }
-      }
+      const data = await updateLastMeeting(params);
+      return data;
     },
     ...options,
   });
