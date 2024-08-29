@@ -22,6 +22,7 @@ import { QuestionIcon } from './assets/QuestionIcon';
 import { SadUserIcon } from './assets/SadUserIcon';
 import { SearchIcon } from './assets/SearchIcon';
 import { ShareIcon } from './assets/Share';
+import { StarIcon } from './assets/Star';
 import { Stats } from './assets/Stats';
 import { UpAndDown } from './assets/UpAndDown';
 import { Upload } from './assets/Upload';
@@ -58,4 +59,5 @@ export const iconMap = {
   upload: Upload,
   check: CheckIcon,
   'cross-circle': CrossCircle,
+  star: StarIcon,
 };

@@ -13,3 +13,11 @@ export const checkboxAttribute = {
   },
   querySelector: `[${checkboxAttributeKey}=""]`,
 };
+
+const wavingAcceptedAttributeKey = 'data-sambad-waving-accepted';
+export const wavingAcceptedAttribute = {
+  attribute: (isAccepted: boolean) => ({
+    [wavingAcceptedAttributeKey]: isAccepted ? '' : undefined,
+  }),
+  querySelector: `[${wavingAcceptedAttributeKey}=""]`,
+};
