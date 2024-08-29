@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -12,6 +12,7 @@ import { answerAtoms } from '@/answer/common/atoms/answer.atom';
 import { GATHER_MEMBER_QUERY_KEY } from '@/home/common/apis/queries/useGetGatherMemberList';
 import { NOTIFICATION_QUERY_KEY } from '@/home/common/apis/queries/useGetNotification';
 import { TOP_PREVIOUS_QUESTION_QUERY_KEY } from '@/home/common/apis/queries/useGetTopPreviousQuestionList';
+import { HomeAtoms } from '@/home/common/atoms/home.atom';
 
 export const useCommentService = () => {
   const queryClient = useQueryClient();
@@ -21,6 +22,11 @@ export const useCommentService = () => {
   const { meetingId, questionId } = useParams<{ meetingId: string; questionId: string }>();
   const { mutateAsync: sendCommentMutate } = useCommentMutation({});
   const { mutateAsync: sendAnswerMutate } = useAnswerQuestionMutation({});
+
+  const setIsProgressingQuestion = useSetAtom(HomeAtoms.isProgessingQuestionAtom);
+  const setHomeGlobalTime = useSetAtom(HomeAtoms.homeGlobalTimeAtom);
+  const setSelectedTarget = useSetAtom(HomeAtoms.isSelectedTargetAtom);
+  const setIsNextTarget = useSetAtom(HomeAtoms.isNextTargetAtom);
 
   const handleSubmit = async () => {
     if (!meetingId) {
@@ -36,6 +42,7 @@ export const useCommentService = () => {
       const questionInvalidate = queryClient.invalidateQueries({
         queryKey: [PROGRESSING_QUESTION_QUERY_KEY],
       });
+
       const topPreviousQuestionInvalidate = queryClient.invalidateQueries({
         queryKey: [TOP_PREVIOUS_QUESTION_QUERY_KEY],
       });
@@ -58,6 +65,11 @@ export const useCommentService = () => {
         notificationInvalidate,
         myAnswersInvalidate,
       ]);
+
+      setIsNextTarget(false);
+      setSelectedTarget(false);
+      setHomeGlobalTime(null);
+      setIsProgressingQuestion(false);
 
       push(`/${meetingId}/answer/closing`);
     } catch (error) {

@@ -1,5 +1,5 @@
 import { Txt } from '@sambad/sds/components';
-import { size, colors } from '@sambad/sds/theme';
+import { colors, size } from '@sambad/sds/theme';
 
 import { generateKakaoShare, getWebDomain } from '@/common';
 import { CircleKakao } from '@/new-meeting/common/assets/icons/CircleKakao';
@@ -27,7 +27,7 @@ const ShareKakaoButton = (props: shareKakaoButtonProps) => {
 
   return (
     <div css={{ margin: `${size['3xs']} ${size.xs}`, textAlign: 'center' }}>
-      <CircleKakao onClick={handleGenerateKakaoShare} />
+      <CircleKakao onClick={handleGenerateKakaoShare} style={{ cursor: 'pointer' }} />
       <Txt as="p" typography="title4" color={colors.grey700} css={{ marginTop: size['6xs'] }}>
         카카오톡 공유
       </Txt>
