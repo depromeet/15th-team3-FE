@@ -2,7 +2,6 @@
 
 import { Txt, Button } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
-import debounce from 'lodash-es/debounce';
 import { useForm } from 'react-hook-form';
 
 import { Params as MeetingParams } from '@/common/apis/queries/useCreateMeeting';
@@ -56,10 +55,7 @@ export const IntroInfoForm = () => {
         meetingTypeIds: meetingTypeIds ? meetingTypeIds.split(',').map(Number) : [],
       } as MeetingParams;
 
-      const mutate = debounce(() => {
-        createMeeting(meetingParams, meetingMemberParams);
-      }, 300);
-      mutate();
+      createMeeting(meetingParams, meetingMemberParams);
     }
     // 모임원인 경우 모임 가입 초대코드
     if (role.params === 'MEMBER') {
