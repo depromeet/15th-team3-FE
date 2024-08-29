@@ -1,5 +1,5 @@
 import { Txt } from '@sambad/sds/components';
-import { size, colors } from '@sambad/sds/theme';
+import { colors, size } from '@sambad/sds/theme';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 import { getWebDomain } from '@/common';
@@ -31,7 +31,7 @@ export const InviteLinkShareButton = (props: InviteLinkShareButtonProps) => {
   return (
     <div css={{ margin: `${size['3xs']} ${size.xs}`, textAlign: 'center' }}>
       <CopyToClipboard text={copyUrl} onCopy={handleCopyUrl}>
-        <CircleCopy />
+        <CircleCopy style={{ cursor: 'pointer' }} />
       </CopyToClipboard>
       <Txt as="p" typography="title4" color={colors.grey700} css={{ marginTop: size['6xs'] }}>
         링크 복사
