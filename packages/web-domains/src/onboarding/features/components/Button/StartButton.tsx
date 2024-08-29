@@ -22,6 +22,7 @@ export const StartButton = (props: StartButtonProps) => {
     if (redirectUrl) {
       const url = new URL(decodeURIComponent(redirectUrl));
       router.push(`${url.pathname}?${url.searchParams}`);
+      return;
     }
 
     // 만약 가입된 모임이 없다면
