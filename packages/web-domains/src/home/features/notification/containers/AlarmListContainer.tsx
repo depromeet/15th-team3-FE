@@ -3,7 +3,6 @@
 import { Button, Icon, Txt } from '@sds/components';
 import { colors } from '@sds/theme';
 
-import { ignoreHandwaving } from '@/home/common/apis/mutations/useHandWavingIgnoreMutation';
 import { AlarmEventType } from '@/home/common/apis/schema/Notification.schema';
 
 import { NotificationItem } from '../components/NotificationItem';
@@ -11,7 +10,7 @@ import { NotificationList } from '../components/NotificationList';
 import { useAlarmListService } from '../services/useAlarmListService';
 
 export const AlarmListContainer = () => {
-  const { notificationList, meetingId, handWavingResponse } = useAlarmListService();
+  const { notificationList, meetingId, handWavingResponse, ignoreHandWaving } = useAlarmListService();
 
   const renderNotification = (notification: AlarmEventType, meetingId?: number) => {
     switch (notification.type) {
@@ -51,7 +50,7 @@ export const AlarmListContainer = () => {
                   <Button
                     onClick={() => {
                       if (handWavingId && meetingId) {
-                        ignoreHandwaving({ meetingId, handWavingId });
+                        ignoreHandWaving({ meetingId, handWavingId });
                       }
                     }}
                     variant="sub"
