@@ -20,7 +20,7 @@ export const StartButton = (props: StartButtonProps) => {
     const data = await onBoardingComplete();
 
     if (redirectUrl) {
-      const url = new URL(decodeURIComponent(redirectUrl));
+      const url = new URL(redirectUrl);
       router.push(`${url.pathname}?${url.searchParams}`);
       return;
     }
