@@ -38,7 +38,7 @@ export const useSetCurrentMeeting = () => {
     setIsProgressingQuestion(false);
     try {
       setCurrentMeeting(meeting);
-      mutateAsync({ meetingId: meeting.meetingId });
+      await mutateAsync({ meetingId: meeting.meetingId });
     } catch (error) {
       if (isAxiosError(error)) {
         console.log(error);
