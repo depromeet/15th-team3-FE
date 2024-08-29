@@ -10,16 +10,21 @@ import { actionBarWrapperStyles, addOnStyles, buttonStyles } from './ActionBar.s
 
 interface ActionBarProps extends HTMLAttributes<HTMLHeadElement> {
   disableBack?: boolean;
+  pushLink?: string;
   title?: string;
   rightDecor?: ReactNode;
   onBack?: () => void;
 }
 
-export const ActionBar = ({ disableBack = false, title, rightDecor, onBack, ...rest }: ActionBarProps) => {
-  const { back } = useRouter();
+export const ActionBar = ({ disableBack = false, pushLink, title, rightDecor, onBack, ...rest }: ActionBarProps) => {
+  const { back, push } = useRouter();
 
   const handleBack = () => {
-    back();
+    if (pushLink) {
+      push(pushLink);
+    } else {
+      back();
+    }
     onBack?.();
   };
 
