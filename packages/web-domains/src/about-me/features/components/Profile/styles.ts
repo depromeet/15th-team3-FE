@@ -1,8 +1,16 @@
 import { css } from '@emotion/react';
-import { size } from '@sambad/sds/theme';
+import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
+
+import { wavingAcceptedMemberAttribute } from './constants';
 
 export const nameCss = css({
   marginTop: size['2xs'],
+});
+
+export const AvatarCss = css({
+  [`&${wavingAcceptedMemberAttribute.querySelector}`]: {
+    border: `4.5px solid ${colors.primary500}`,
+  },
 });
 
 export const badgeContainerCss = css({
@@ -22,4 +30,18 @@ export const badgeContainerCss = css({
       marginRight: size['6xs'],
     },
   },
+});
+
+export const wavingAcceptedBadgeCss = css({
+  position: 'absolute',
+  width: '32px',
+  height: '32px',
+  backgroundColor: colors.primary500,
+  borderRadius: borderRadiusVariants.round,
+  // NOTE: 위치 보정
+  bottom: 4,
+  left: 0,
+  display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 });

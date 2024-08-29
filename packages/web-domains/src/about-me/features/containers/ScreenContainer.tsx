@@ -31,7 +31,7 @@ export const ScreenContainer = () => {
   });
   const { mutate, isSuccess: sendWavingSuccess } = useCreateHandWavings();
 
-  const hiddenForWavingButton = wavingStatusData?.status === 'ACCEPTED';
+  const hiddenForWavingButton = isMy || wavingStatusData?.status === 'ACCEPTED' || !getWavingStatusSuccess;
   const isProgressHandWavings = sendWavingSuccess || wavingStatusData?.status === 'REQUESTED';
 
   const handleHandWaving = () => {
@@ -69,7 +69,7 @@ export const ScreenContainer = () => {
         <ProfileContainer style={{ marginBottom: size['5xs'] }} isMy={isMy} />
         <SegmentedControlContainer ref={segmentedRef} style={sectionStyle} />
       </div>
-      {!isMy && getWavingStatusSuccess && !hiddenForWavingButton && (
+      {!hiddenForWavingButton && (
         <FloatingButton
           size="large"
           disabled={isProgressHandWavings}
