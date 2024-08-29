@@ -20,14 +20,15 @@ export const StartButton = (props: StartButtonProps) => {
     const data = await onBoardingComplete();
 
     if (redirectUrl) {
-      router.push(redirectUrl);
+      const url = new URL(decodeURIComponent(redirectUrl));
+      router.push(`${url.pathname}?${url.searchParams}`);
     }
 
     // 만약 가입된 모임이 없다면
     if (data?.isNotEnteredAnyMeeting) {
       router.push('/user');
     }
-    // 만약 가입된 모임이 있다면
+    // // 만약 가입된 모임이 있다면
     else {
       router.push('/home');
     }
