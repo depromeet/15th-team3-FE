@@ -40,8 +40,12 @@ const QuestionRandomPick = ({ meetingId }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isShowToolTip } = useToolTipShow({ showTime: 5000 });
 
-  const { memberMe } = useMemberMeQuery(meetingId);
-  const { question, refetchQuestion } = useRandomQuestionQuery([memberMe?.meetingMemberId!]);
+  const { memberMe, isLoading: isLoadingMember } = useMemberMeQuery(meetingId);
+  const {
+    question,
+    refetchQuestion,
+    isLoading: isLoadingQuestion,
+  } = useRandomQuestionQuery([memberMe?.meetingMemberId!]);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -57,6 +61,8 @@ const QuestionRandomPick = ({ meetingId }: Props) => {
 
     handleCloseModal();
   };
+
+  if (isLoadingMember || isLoadingQuestion) return;
 
   return (
     <>
@@ -91,8 +97,12 @@ const QuestionerRandomPick = ({ meetingId }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isShowToolTip } = useToolTipShow({ showTime: 5000 });
 
-  const { memberMe } = useMemberMeQuery(meetingId);
-  const { questioner, refetchQuestioner } = useRandomNextQuestionerQuery({
+  const { memberMe, isLoading: isLoadingMember } = useMemberMeQuery(meetingId);
+  const {
+    questioner,
+    refetchQuestioner,
+    isLoading: isLoadingQuestioner,
+  } = useRandomNextQuestionerQuery({
     meetingId,
     excludeMemberIds: [memberMe?.meetingMemberId!],
   });
@@ -123,6 +133,8 @@ const QuestionerRandomPick = ({ meetingId }: Props) => {
       },
     );
   };
+
+  if (isLoadingMember || isLoadingQuestioner) return;
 
   return (
     <>
