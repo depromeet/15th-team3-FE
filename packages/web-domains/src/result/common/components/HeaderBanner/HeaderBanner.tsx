@@ -23,7 +23,7 @@ export const HeaderBanner = (props: HeaderBannerProps) => {
       )}
       <Txt as="h1" typography="heading1" fontWeight="regular" css={titleCss}>
         우리 모임원들이
-        <strong>{title}</strong>
+        <strong style={{ wordBreak: 'keep-all' }}>{title}</strong>
       </Txt>
     </section>
   );

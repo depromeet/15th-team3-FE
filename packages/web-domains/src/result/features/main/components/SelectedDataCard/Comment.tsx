@@ -19,7 +19,7 @@ export const Comment = (props: CommentProps) => {
 
   return (
     <div css={commentCss} {...commentAttribute.attribute}>
-      <Txt as="p" typography="body2">
+      <Txt as="p" typography="body2" style={{ wordBreak: 'keep-all' }}>
         {comment}
       </Txt>
       <div css={commentProfileCss}>
