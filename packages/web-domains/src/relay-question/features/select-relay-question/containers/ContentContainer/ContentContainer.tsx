@@ -10,6 +10,7 @@ import { FIRST_STEP } from '../../../../constants';
 import { useIntersect } from '../../../../hooks/useIntersection';
 import { Question } from '../../components/Question/Question';
 import { Questioner } from '../../components/Questioner/Questioner';
+import { QuestionListSkeleton } from '../../components/Skeleton/QuestionListSkeleton';
 import { useQueryStringContext } from '../../contexts/QueryStringContext';
 import { useMeetingMemberQuery } from '../../hooks/queries/useMeetingMemberQuery';
 import { useRelayQuestionListQuery } from '../../hooks/queries/useRelayQuestionListQuery';
@@ -30,7 +31,7 @@ export const ContentContainer = () => {
 };
 
 const QuestionList = ({ meetingId }: Props) => {
-  const { questions, fetchStatus, fetchNextPage } = useRelayQuestionListQuery(meetingId);
+  const { questions, fetchStatus, fetchNextPage, isLoading } = useRelayQuestionListQuery(meetingId);
 
   const { targetRef } = useIntersect({
     onIntersect: (entry) => {
@@ -40,7 +41,7 @@ const QuestionList = ({ meetingId }: Props) => {
     },
   });
 
-  if (!questions) return;
+  if (!questions || isLoading) return <QuestionListSkeleton />;
   if (questions.length === 0) return <div>empty list</div>;
 
   return (
