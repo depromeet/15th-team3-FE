@@ -10,12 +10,15 @@ import { AnswerCountDown } from '../../../common/components/Countdown/AnswerCoun
 import { StartButton } from '../../floating-button/components/StartButton';
 import { QuestionInfo } from '../components/QuestionInfo';
 import { ResponseGuageBar } from '../components/ResponseGuageBar';
+import { ProgressingQuestionContainerSkeleton } from '../components/Skeleton/ProgressingQuestionContainerSkeleton';
 import { useProgressingQuestionService } from '../services/useProgressingQuestionService';
 
 export const ProgressingQuestionContainer = () => {
-  const { progressingQuestion, meetingId } = useProgressingQuestionService();
+  const { progressingQuestion, meetingId, isLoading } = useProgressingQuestionService();
 
   const isNowAnswered = !progressingQuestion?.isAnswered;
+
+  if (isLoading) return <ProgressingQuestionContainerSkeleton />;
 
   if (!progressingQuestion) {
     return null;
