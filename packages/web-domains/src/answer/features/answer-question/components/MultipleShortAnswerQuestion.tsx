@@ -1,7 +1,8 @@
 'use client';
 
-import { Button, fontWeightVariants } from '@sambad/sds/components';
-import { colors } from '@sambad/sds/theme';
+import { css } from '@emotion/react';
+import { Txt } from '@sambad/sds/components';
+import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
 import { Attributes, useEffect, useState } from 'react';
 
 import { AnswerQuestionOptionType } from '@/answer/common/apis/schema/AnswerQuestion';
@@ -14,23 +15,25 @@ interface MultipleShortAnswerQuestionProps {
 const buttonStyles: Record<'selected' | 'default', Attributes['css']> = {
   selected: {
     border: 'none',
-    borderRadius: '24px',
+    borderRadius: borderRadiusVariants.large,
     height: '64px',
     backgroundColor: colors.primary500,
-    fontWeight: fontWeightVariants.medium,
-    fontSize: '20px',
-    color: colors.white,
   },
   default: {
     border: 'none',
-    borderRadius: '24px',
+    borderRadius: borderRadiusVariants.large,
     height: '64px',
     backgroundColor: colors.grey400,
-    fontWeight: fontWeightVariants.medium,
-    fontSize: '20px',
-    color: colors.grey700,
   },
 };
+
+const baseButtonStyles = css({
+  padding: `${size['5xs']} ${size['4xs']}`,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  wordBreak: 'keep-all',
+});
 
 export const MultipleShortAnswerQuestion = ({
   answerOptionList,
@@ -66,14 +69,15 @@ export const MultipleShortAnswerQuestion = ({
   return (
     <div css={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', rowGap: '8px', columnGap: '8.75px' }}>
       {answerOptionList.map((answer) => (
-        <Button
+        <button
           onClick={handleClickAnswer(answer)}
           key={answer.answerId}
-          variant="sub"
-          css={isSelected(answer) ? buttonStyles['selected'] : buttonStyles['default']}
+          css={[baseButtonStyles, isSelected(answer) ? buttonStyles['selected'] : buttonStyles['default']]}
         >
-          {answer.content}
-        </Button>
+          <Txt typography="title2" color={isSelected(answer) ? colors.white : colors.grey700}>
+            {answer.content}
+          </Txt>
+        </button>
       ))}
     </div>
   );

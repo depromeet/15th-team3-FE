@@ -29,6 +29,7 @@ export const memberCharacterCss = css({
 
 export const mostAnsweredTitleCss = css({
   paddingTop: size.sm,
+  wordBreak: 'keep-all',
 });
 
 export const mostAnsweredButtonCss = css({

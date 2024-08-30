@@ -27,10 +27,10 @@ export const RankListItem = (props: RankListItemProps) => {
           {rank}
         </Txt>
       )}
-      <Txt typography="title2" style={{ paddingLeft: size['3xs'] }}>
+      <Txt typography="title2" style={{ paddingLeft: size['3xs'], wordBreak: 'keep-all' }}>
         {content}
       </Txt>
-      <Txt typography="body3" style={{ marginLeft: 'auto' }}>
+      <Txt typography="body3" style={{ marginLeft: 'auto', paddingLeft: '10px' }}>
         {count}
       </Txt>
       <Txt typography="subTitle2" color={color} style={{ paddingLeft: size['3xs'] }}>
