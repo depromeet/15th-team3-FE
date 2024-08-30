@@ -10,6 +10,7 @@ import { FIRST_STEP } from '../../../../constants';
 import { useIntersect } from '../../../../hooks/useIntersection';
 import { Question } from '../../components/Question/Question';
 import { Questioner } from '../../components/Questioner/Questioner';
+import { NextQuestionerListSkeleton } from '../../components/Skeleton/NextQuestionerListSkeleton';
 import { QuestionListSkeleton } from '../../components/Skeleton/QuestionListSkeleton';
 import { useQueryStringContext } from '../../contexts/QueryStringContext';
 import { useMeetingMemberQuery } from '../../hooks/queries/useMeetingMemberQuery';
@@ -69,11 +70,12 @@ const QuestionList = ({ meetingId }: Props) => {
 };
 
 const NextQuestionerList = ({ meetingId }: Props) => {
-  const { meetingMembers } = useMeetingMemberQuery(meetingId);
+  const { meetingMembers, isLoading: isMeetingMemberLoading } = useMeetingMemberQuery(meetingId);
+  const { myInfo, isLoading: isMyInfoLoading } = useMyInfoQuery();
 
-  const { myInfo } = useMyInfoQuery();
-
-  if (!meetingMembers || !myInfo) return;
+  if (!meetingMembers || !myInfo || isMeetingMemberLoading || isMyInfoLoading) {
+    return <NextQuestionerListSkeleton />;
+  }
 
   return (
     <section>

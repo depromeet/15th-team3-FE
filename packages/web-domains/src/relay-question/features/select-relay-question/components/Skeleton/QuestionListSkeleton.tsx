@@ -1,5 +1,3 @@
-'use client';
-
 import { Skeleton } from '@sds/components';
 
 export const QuestionListSkeleton = () => {
