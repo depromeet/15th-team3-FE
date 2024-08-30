@@ -97,7 +97,7 @@ const QuestionerRandomPick = ({ meetingId }: Props) => {
     excludeMemberIds: [memberMe?.meetingMemberId!],
   });
 
-  const { postRelayQuestionInfo } = usePostRelayQuestionInfo(meetingId);
+  const { postRelayQuestionInfo, isPending } = usePostRelayQuestionInfo(meetingId);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -142,6 +142,7 @@ const QuestionerRandomPick = ({ meetingId }: Props) => {
             onConfirm={handleConfirmModal}
             onRefetch={refetchQuestioner}
             isRandom
+            isPending={isPending}
           />
         )}
       </Modal>

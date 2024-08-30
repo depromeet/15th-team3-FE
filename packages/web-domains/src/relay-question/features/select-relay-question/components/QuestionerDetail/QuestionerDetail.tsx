@@ -16,6 +16,7 @@ interface QuestionerDetailProps {
   onClose: () => void;
   onConfirm: () => void;
   onRefetch?: () => void;
+  isPending?: boolean;
 }
 
 export const QuestionerDetail = ({
@@ -25,6 +26,7 @@ export const QuestionerDetail = ({
   onClose,
   onConfirm,
   onRefetch,
+  isPending = false,
 }: QuestionerDetailProps) => {
   return (
     <div css={wrapperCss}>
@@ -38,7 +40,9 @@ export const QuestionerDetail = ({
         <Button variant="sub" onClick={onClose}>
           닫기
         </Button>
-        <Button onClick={onConfirm}>질문인 선택</Button>
+        <Button onClick={onConfirm} loading={isPending}>
+          질문인 선택
+        </Button>
       </div>
       {isRandom && (
         <RePick onClick={onRefetch}>
