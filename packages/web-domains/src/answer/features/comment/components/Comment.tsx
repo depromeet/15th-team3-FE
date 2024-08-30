@@ -32,8 +32,8 @@ export const Comment = ({ comment, onChangeComment }: CommentProps) => {
         <CommentInput
           value={comment}
           onChange={onChangeComment}
-          maxLength={20}
-          errors={{ maxLength: 20 }}
+          maxLength={100}
+          errors={{ maxLength: 100 }}
           css={{ marginTop: '24px' }}
         />
       </div>

@@ -17,8 +17,8 @@ export const CommentInput = forwardRef<HTMLInputElement, CommentInputProps>(
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;
-      setInput(value);
-      onChange?.(value);
+      setInput(value.substring(0, maxLength));
+      onChange?.(value.substring(0, maxLength));
     };
 
     const handleReset = () => {
