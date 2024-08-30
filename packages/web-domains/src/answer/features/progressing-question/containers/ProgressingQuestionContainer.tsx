@@ -47,7 +47,7 @@ export const ProgressingQuestionContainer = () => {
         >
           <Button size="large">
             <Txt typography="subtitle1" color={colors.white}>
-              홈으록 가기
+              홈으로 가기
             </Txt>
           </Button>
         </Link>
