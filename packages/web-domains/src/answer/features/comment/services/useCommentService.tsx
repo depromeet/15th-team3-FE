@@ -20,8 +20,8 @@ export const useCommentService = () => {
   const [comment, setComment] = useState<string>('');
   const answerList = useAtomValue(answerAtoms.answerList);
   const { meetingId, questionId } = useParams<{ meetingId: string; questionId: string }>();
-  const { mutateAsync: sendCommentMutate } = useCommentMutation({});
-  const { mutateAsync: sendAnswerMutate } = useAnswerQuestionMutation({});
+  const { mutateAsync: sendCommentMutate, isPending: isSendCommentPending } = useCommentMutation({});
+  const { mutateAsync: sendAnswerMutate, isPending: isAnswerQuestionPending } = useAnswerQuestionMutation({});
 
   const setIsProgressingQuestion = useSetAtom(HomeAtoms.isProgessingQuestionAtom);
   const setHomeGlobalTime = useSetAtom(HomeAtoms.homeGlobalTimeAtom);
@@ -87,5 +87,7 @@ export const useCommentService = () => {
     comment,
     handleSubmit,
     handleChangeComment,
+    isAnswerQuestionPending,
+    isSendCommentPending,
   };
 };

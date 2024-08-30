@@ -5,7 +5,8 @@ import { Comment } from '../components/Comment';
 import { useCommentService } from '../services/useCommentService';
 
 export const CommentContainer = () => {
-  const { comment, handleChangeComment, handleSubmit } = useCommentService();
+  const { comment, handleChangeComment, handleSubmit, isSendCommentPending, isAnswerQuestionPending } =
+    useCommentService();
 
   return (
     <section
@@ -16,7 +17,7 @@ export const CommentContainer = () => {
       }}
     >
       <Comment comment={comment} onChangeComment={handleChangeComment} />
-      <CommentButton onClick={handleSubmit} />
+      <CommentButton onClick={handleSubmit} loading={isSendCommentPending || isAnswerQuestionPending} />
     </section>
   );
 };
