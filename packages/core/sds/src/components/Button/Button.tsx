@@ -39,7 +39,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
   };
 
   return (
-    <button ref={ref} disabled={disabled} style={style} css={buttonCss} {...restProps}>
+    <button ref={ref} disabled={loading || disabled} style={style} css={buttonCss} {...restProps}>
       {loading && <Spinner css={spinnerCss} />}
       {!loading && leftDecor != null && <span css={leftDecorCss}>{leftDecor}</span>}
       {!loading && children}
