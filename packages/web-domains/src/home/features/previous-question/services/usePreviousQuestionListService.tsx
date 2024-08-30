@@ -10,13 +10,17 @@ import { useSetCurrentMeeting } from '@/home/common/hooks/useSetCurrentMeeting';
 
 export const usePreviousQuestionListService = () => {
   const currentMeeting = useAtomValue(HomeAtoms.currentMeeting);
-  const { meetingId: existMeetingId } = useSetCurrentMeeting();
+  const { meetingId: existMeetingId, isLoadingMeetingInfo } = useSetCurrentMeeting();
   const [previousQuestionList, setPreviousQuestionList] = useState<Array<PreviousQuestionType>>([]);
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
   const meetingId = currentMeeting?.meetingId ?? existMeetingId;
 
-  const { data, isFetching } = useGetPreviousQuestionList({
+  const {
+    data,
+    isFetching,
+    isLoading: isLoadingPreviousQuestionList,
+  } = useGetPreviousQuestionList({
     params: { meetingId: meetingId!, page },
     options: {
       placeholderData: keepPreviousData,
@@ -46,5 +50,12 @@ export const usePreviousQuestionListService = () => {
     }
   }, [data]);
 
-  return { previousQuestionList, isFetching, targetRef, meetingId, fetchNextPage };
+  return {
+    previousQuestionList,
+    isFetching,
+    targetRef,
+    meetingId,
+    isLoading: isLoadingMeetingInfo || isLoadingPreviousQuestionList,
+    fetchNextPage,
+  };
 };

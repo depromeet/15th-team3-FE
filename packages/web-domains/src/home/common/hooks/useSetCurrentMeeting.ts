@@ -18,7 +18,7 @@ export const useSetCurrentMeeting = () => {
   const setSelectedTarget = useSetAtom(HomeAtoms.isSelectedTargetAtom);
   const setIsNextTarget = useSetAtom(HomeAtoms.isNextTargetAtom);
 
-  const { data: meetingInfo } = useGetMeetingInfo({});
+  const { data: meetingInfo, isLoading: isLoadingMeetingInfo } = useGetMeetingInfo({});
 
   const { mutateAsync } = useUpdateLastMeeting({
     options: {
@@ -64,6 +64,7 @@ export const useSetCurrentMeeting = () => {
 
   return {
     meetingInfo,
+    isLoadingMeetingInfo,
     meetingId: currentMeeting ? currentMeeting?.meetingId : getCurrentMeeting(meetingInfo)?.meetingId,
     gatherName: currentMeeting ? currentMeeting?.name : getCurrentMeeting(meetingInfo)?.name,
     handleChangeCurrentMeeting,

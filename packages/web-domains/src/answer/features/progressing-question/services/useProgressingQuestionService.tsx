@@ -27,7 +27,7 @@ export const useProgressingQuestionService = () => {
     },
   });
 
-  const { data: progressingQuestion } = useGetProgressingQuestion({
+  const { data: progressingQuestion, isLoading } = useGetProgressingQuestion({
     params: { meetingId: parseInt(meetingId) },
     options: {
       select: (data) => {
@@ -46,6 +46,7 @@ export const useProgressingQuestionService = () => {
 
   return {
     meetingId,
+    isLoading,
     gatherName: '삼봤드의 모험',
     progressingQuestion,
   };

@@ -10,12 +10,15 @@ import { AnswerCountDown } from '../../../common/components/Countdown/AnswerCoun
 import { StartButton } from '../../floating-button/components/StartButton';
 import { QuestionInfo } from '../components/QuestionInfo';
 import { ResponseGuageBar } from '../components/ResponseGuageBar';
+import { ProgressingQuestionContainerSkeleton } from '../components/Skeleton/ProgressingQuestionContainerSkeleton';
 import { useProgressingQuestionService } from '../services/useProgressingQuestionService';
 
 export const ProgressingQuestionContainer = () => {
-  const { progressingQuestion, meetingId } = useProgressingQuestionService();
+  const { progressingQuestion, meetingId, isLoading } = useProgressingQuestionService();
 
   const isNowAnswered = !progressingQuestion?.isAnswered;
+
+  if (isLoading) return <ProgressingQuestionContainerSkeleton />;
 
   if (!progressingQuestion) {
     return null;
@@ -44,7 +47,7 @@ export const ProgressingQuestionContainer = () => {
         >
           <Button size="large">
             <Txt typography="subtitle1" color={colors.white}>
-              홈으록 가기
+              홈으로 가기
             </Txt>
           </Button>
         </Link>
