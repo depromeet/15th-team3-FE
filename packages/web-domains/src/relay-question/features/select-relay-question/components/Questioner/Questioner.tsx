@@ -19,7 +19,7 @@ interface QuestionerProps {
 
 export const Questioner = ({ meetingId, meetingMemberId, imageUrl, name }: QuestionerProps) => {
   const openModal = useModal();
-  const { postRelayQuestionInfo } = usePostRelayQuestionInfo(meetingId);
+  const { postRelayQuestionInfo, isPending } = usePostRelayQuestionInfo(meetingId);
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -27,7 +27,7 @@ export const Questioner = ({ meetingId, meetingMemberId, imageUrl, name }: Quest
   const handleOpenModal = async () => {
     const isConfirm = await openModal({
       component: QuestionerDetail,
-      componentProps: { imageUrl, name, isRandom: false },
+      componentProps: { imageUrl, name, isRandom: false, isPending },
     });
 
     if (isConfirm) {
