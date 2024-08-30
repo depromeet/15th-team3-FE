@@ -14,6 +14,7 @@ export const IntroduceBox = (props: IntroduceBoxProps) => {
   const { content } = props;
 
   const hasContent = !!content?.length;
+  const formattedText = content?.replace(/\n/g, '<br/>') || '';
 
   if (!hasContent) return;
 
@@ -23,7 +24,7 @@ export const IntroduceBox = (props: IntroduceBoxProps) => {
         저는 이런 사람이에요
       </Txt>
       <div css={boxCss}>
-        <Txt typography="body3">{content}</Txt>
+        <Txt typography="body3" dangerouslySetInnerHTML={{ __html: formattedText }} />
       </div>
     </Fragment>
   );
