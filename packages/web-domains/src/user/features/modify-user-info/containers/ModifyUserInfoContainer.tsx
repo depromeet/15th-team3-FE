@@ -1,7 +1,9 @@
 'use client';
 
-import { notFound, redirect, useSearchParams } from 'next/navigation';
+import { useParams, useSearchParams, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
+import { useGetMemberMe } from '@/about-me/common/apis/queries/useGetMemberMe';
 import { STEPS } from '@/user/common/constants/step';
 
 import { GetUserBasicInfoContainer } from '../../get-user-info/containers/GetUserBasicInfoContainer';
@@ -12,11 +14,35 @@ import { GetUserMbtiContainer } from '../../get-user-info/containers/GetUserMbti
 import { ModifyUserIntroContainer } from './ModifyUserIntroContainer';
 
 export const ModifyUserInfoContainer = () => {
+  const { meetingId } = useParams();
   const searchParams = useSearchParams();
+  const router = useRouter();
   const step = searchParams.get('step');
 
-  if (!step) {
-    redirect(`?step=${STEPS.BASIC_INFO}`);
+  const { data: memberMe, isLoading } = useGetMemberMe({ meetingId: Number(meetingId) });
+
+  useEffect(() => {
+    if (memberMe && !step) {
+      const params = new URLSearchParams();
+      params.append('step', STEPS.BASIC_INFO);
+      params.append('userName', memberMe?.name);
+      params.append('birth', memberMe?.birth.replaceAll('-', ''));
+      params.append('gender', memberMe.gender);
+      params.append('job', memberMe.job);
+      params.append('location', memberMe.location);
+      if (memberMe.mbti) {
+        params.append('mbti', memberMe.mbti);
+      }
+      if (memberMe.hobbyDetails && memberMe.hobbyDetails.length > 0) {
+        const hobbyIds = memberMe.hobbyDetails.map((hobby) => hobby.hobbyId).toString();
+        params.append('hobbyIds', hobbyIds);
+      }
+      router.replace(`?${params.toString()}`);
+    }
+  }, [memberMe, step]);
+
+  if (!step || isLoading) {
+    return null;
   }
 
   switch (step) {
@@ -31,6 +57,6 @@ export const ModifyUserInfoContainer = () => {
     case STEPS.INTRO_INFO:
       return <ModifyUserIntroContainer />;
     default:
-      notFound();
+      return <GetUserBasicInfoContainer />;
   }
 };

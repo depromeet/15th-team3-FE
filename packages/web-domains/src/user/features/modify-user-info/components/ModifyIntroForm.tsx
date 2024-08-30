@@ -28,7 +28,6 @@ export const ModifyIntroForm = () => {
         maxLength={MAX_LENGTH}
         {...register('introduction', {
           maxLength: MAX_LENGTH,
-          validate: (value) => (value.trim().length >= 1 ? true : false),
         })}
       />
       <Txt as="p" typography="body4" color={colors.grey600}>

@@ -70,7 +70,6 @@ export const IntroInfoForm = () => {
         placeholder="저는 이런 사람이에요"
         {...register('introduction', {
           maxLength: MAX_LENGTH,
-          validate: (value) => (value.trim().length >= 1 ? true : false),
         })}
       />
       <Txt as="p" typography="body4" color={colors.grey600}>
