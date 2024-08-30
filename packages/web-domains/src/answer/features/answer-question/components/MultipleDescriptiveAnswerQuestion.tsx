@@ -34,6 +34,7 @@ const baseButtonStyle = css({
   justifyContent: 'center',
   alignItems: 'center',
   wordBreak: 'keep-all',
+  cursor: 'pointer',
 });
 
 export const MultipleDescriptiveAnswerQuestion = ({
