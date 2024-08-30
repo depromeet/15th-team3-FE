@@ -34,15 +34,15 @@ export const paragraphsContainer = css({
     marginTop: size['6xs'],
   },
 
-  '& > div:nth-child(3n + 1)': {
+  '& > div:nth-of-type(3n + 1)': {
     width: '80%',
   },
 
-  '& > div:nth-child(3n + 2)': {
+  '& > div:nth-of-type(3n + 2)': {
     width: '40%',
   },
 
-  '& > div:nth-child(3n)': {
+  '& > div:nth-of-type(3n)': {
     width: '55%',
   },
 });
