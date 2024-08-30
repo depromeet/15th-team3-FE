@@ -9,7 +9,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, r
 
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     if (maxLength && event.target.value.length > maxLength) {
-      event.target.value = event.target.value.slice(0, maxLength);
+      event.target.value = event.target.value.substring(0, maxLength);
+      return;
     }
     onChange && onChange(event);
   };

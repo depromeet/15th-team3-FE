@@ -68,7 +68,10 @@ export const IntroInfoForm = () => {
       <TextArea
         maxLength={MAX_LENGTH}
         placeholder="저는 이런 사람이에요"
-        {...register('introduction', { maxLength: MAX_LENGTH, pattern: /^\S.*\S$/ })}
+        {...register('introduction', {
+          maxLength: MAX_LENGTH,
+          validate: (value) => (value.trim().length >= 1 ? true : false),
+        })}
       />
       <Txt as="p" typography="body4" color={colors.grey600}>
         최대 {MAX_LENGTH}자까지 입력해주세요

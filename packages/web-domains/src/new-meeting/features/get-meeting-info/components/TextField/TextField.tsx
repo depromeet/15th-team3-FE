@@ -15,6 +15,7 @@ export const TextField = forwardRef<HTMLInputElement, PropsWithChildren<InputPro
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (maxLength && event.target.value.length > maxLength) {
       event.target.value = event.target.value.slice(0, maxLength);
+      return;
     }
     onChange && onChange(event);
   };

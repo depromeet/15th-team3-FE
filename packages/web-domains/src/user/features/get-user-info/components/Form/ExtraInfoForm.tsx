@@ -56,7 +56,7 @@ export const ExtraInfoForm = () => {
           required: true,
           minLength: 1,
           maxLength: 15,
-          pattern: /^\S.*\S$/,
+          validate: (value) => (value.trim().length >= 1 ? true : false),
         })}
       />
       <TextInput
@@ -69,7 +69,7 @@ export const ExtraInfoForm = () => {
           required: true,
           minLength: 1,
           maxLength: 15,
-          pattern: /^\S.*\S$/,
+          validate: (value) => (value.trim().length >= 1 ? true : false),
         })}
       />
       <div css={buttonWrapperCss}>
