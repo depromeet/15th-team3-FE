@@ -18,6 +18,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (maxLength && event.target.value.length > maxLength) {
       event.target.value = event.target.value.slice(0, maxLength);
+      return;
     }
     onChange && onChange(event);
   };
