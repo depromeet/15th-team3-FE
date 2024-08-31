@@ -1,81 +1,67 @@
-# Turborepo starter
+<img src="https://github.com/user-attachments/assets/7466d47a-da35-489c-90e6-f524b077e346" alt="main banner"/>
 
-This is an official starter Turborepo.
+<img src="https://github.com/user-attachments/assets/c7de5ba2-733f-4318-8e30-a6e0d97546b9" alt="moring" align="right" height="80" />
 
-## Using this example
+# moring
 
-Run the following command:
+[![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=amazing3-fe&style=flat)](https://github.com/depromeet/15th-team3-FE/actions)
 
-```sh
-npx create-turbo@latest
-```
+<br />
 
-## What's inside?
+**모임원들과 더 가까워지는 공간, moring**
 
-This Turborepo includes the following packages/apps:
+모임원들과의 만남 속에서 두려움 없이 설렘만 가득하도록 모링이 도와줄게요!
 
-### Apps and Packages
+### → [모링 바로가기](https://www.moring.one/)
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+<br />
+<br />
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+<img src="https://github.com/user-attachments/assets/ba30fc66-809e-46b1-a46e-92f1f827e8df" alt="description 1"/>
 
-### Utilities
+친밀감이 생길 수 있는 다양한 릴레이 질문들로 구성했어요.
 
-This Turborepo has some additional tools already setup for you:
+<br />
+<br />
+<br />
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+<img src="https://github.com/user-attachments/assets/e52e1ce7-8dbd-4531-81df-e6c5802ae3fe" alt="description 2" />
 
-### Build
+릴레이 질문을 만들 질문인을 선택할 수 있어요.
 
-To build all apps and packages, run the following command:
+<br />
+<br />
+<br />
 
-```
-cd my-turborepo
-pnpm build
-```
+<img src="https://github.com/user-attachments/assets/41730ddf-5327-4f29-9543-7a85ca43f73b" alt="description 3"/>
 
-### Develop
+나와 같은 선택을 한 모임원을 바로 찾을 수 있어요.
 
-To develop all apps and packages, run the following command:
+<br />
+<br />
+<br />
 
-```
-cd my-turborepo
-pnpm dev
-```
+<img src="https://github.com/user-attachments/assets/2c40d4f6-ff26-44d7-bb0c-d0eb52653de5" alt="description 4"/>
 
-### Remote Caching
+릴레이 질문에 참여하면 나만의 자기소개가 채워져요.
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+<br />
+<br />
+<br />
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+## 🛋️ Members
 
-```
-cd my-turborepo
-npx turbo login
-```
+|                                                                         FE                                                                         |                                                                         FE                                                                          |                                                                          FE                                                                           |                                                                          FE                                                                          |
+| :------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <a href="https://github.com/Andrevile"><img src="https://avatars.githubusercontent.com/u/65812122?v=4" alt="profile" width="140" height="140"></a> | <a href="https://github.com/semnil5202"><img src="https://avatars.githubusercontent.com/u/89172499?v=4" alt="profile" width="140" height="140"></a> | <a href="https://github.com/LeeJeongHooo"><img src="https://avatars.githubusercontent.com/u/92032081?v=4" alt="profile" width="140" height="140"></a> | <a href="https://github.com/Doeunnkimm"><img src="https://avatars.githubusercontent.com/u/112946860?v=4" alt="profile" width="140" height="140"></a> |
+|                                                       [장종오](https://github.com/Andrevile)                                                       |                                                       [이세민](https://github.com/semnil5202)                                                       |                                                       [이정호](https://github.com/LeeJeongHooo)                                                       |                                                       [김도은](https://github.com/Doeunnkimm)                                                        |
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+|                                                                        BE                                                                        |                                                                         BE                                                                         |                                                                         BE                                                                          |
+| :----------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <a href="https://github.com/kkjsw17"><img src="https://avatars.githubusercontent.com/u/39583312?v=4" alt="profile" width="140" height="140"></a> | <a href="https://github.com/nahyeon99"><img src="https://avatars.githubusercontent.com/u/69833665?v=4" alt="profile" width="140" height="140"></a> | <a href="https://github.com/LeeHanEum"><img src="https://avatars.githubusercontent.com/u/103233513?v=4" alt="profile" width="140" height="140"></a> |
+|                                                       [권기준](https://github.com/kkjsw17)                                                       |                                                       [김나현](https://github.com/nahyeon99)                                                       |                                                       [이한음](https://github.com/LeeHanEum)                                                        |
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+|                                                                                      Design                                                                                       |                                                                                          Design                                                                                           |                                                                                           Design                                                                                           |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <a href="https://www.behance.net/ksa39584d8f"><img src="https://mir-s3-cdn-cf.behance.net/user/230/4a6d4c319755129.64fb58638b5bc.jpg" alt="profile" width="140" height="140"></a> | <a href="https://www.behance.net/b2971c67/moodboards"><img src="https://mir-s3-cdn-cf.behance.net/user/230/579b29356531013.66cdd1f82ae09.jpg" alt="profile" width="140" height="140"></a> | <a href="https://www.behance.net/f7deda49/appreciated"><img src="https://mir-s3-cdn-cf.behance.net/user/230/34273d258694473.665bed87e15c0.jpg" alt="profile" width="140" height="140"></a> |
+|                                                                   [김시은](https://www.behance.net/ksa39584d8f)                                                                   |                                                                   [조유진](https://www.behance.net/b2971c67/moodboards)                                                                   |                                                                   [이서영](https://www.behance.net/f7deda49/appreciated)                                                                   |
