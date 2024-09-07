@@ -2,9 +2,9 @@ import { ToolTip, Txt } from '@sambad/sds/components';
 import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
 import Link from 'next/link';
 
-import { ArrowIcon } from '../../../../../common/asset/arrow';
-import { Avatar } from '../../../../../common/components/Avatar/Avatar';
-import { ProgressingQuestionType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
+import { ArrowIcon } from '@/common/asset/arrow';
+import { Avatar } from '@/common/components/Avatar/Avatar';
+import { ProgressingQuestionType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 
 interface ActiveQuestionProps {
   meetingId?: number;
