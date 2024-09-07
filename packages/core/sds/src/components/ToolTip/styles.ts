@@ -1,5 +1,5 @@
 import { css, keyframes } from '@emotion/react';
-import { getCssVar, getPadding } from '@sambad/css-utils';
+import { getPadding } from '@sambad/css-utils';
 
 import { borderRadiusVariants, colors, size } from '@sds/theme';
 
@@ -9,21 +9,6 @@ const bounceAnimation = keyframes`
     }
 `;
 
-const animateVar = '--sambad-tooltip-animate';
-
-interface AnimateVariants {
-  [animateVar]: string;
-}
-
-export const animateVariants: Record<'none' | 'active', AnimateVariants> = {
-  none: {
-    [animateVar]: 'none',
-  },
-  active: {
-    [animateVar]: `${bounceAnimation} 0.8s cubic-bezier(0, 0, 0.5, 0.99) infinite alternate`,
-  },
-};
-
 export const tooltipCss = css({
   position: 'relative',
   borderRadius: borderRadiusVariants.medium,
@@ -32,7 +17,7 @@ export const tooltipCss = css({
   display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',
-  animation: getCssVar(animateVar),
+  animation: `${bounceAnimation} 0.8s cubic-bezier(0, 0, 0.5, 0.99) infinite alternate`,
 });
 
 export const arrowCss = css({
