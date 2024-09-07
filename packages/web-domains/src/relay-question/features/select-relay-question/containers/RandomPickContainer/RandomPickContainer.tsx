@@ -18,7 +18,7 @@ import { useMemberMeQuery } from '../../hooks/queries/useMemberMeQuery';
 import { useRandomNextQuestionerQuery } from '../../hooks/queries/useRandomNextQuestionerQuery';
 import { useRandomQuestionQuery } from '../../hooks/queries/useRandomQuestionQuery';
 
-import { wrapperCss } from './RandomPickContainer.styles';
+import { randomButtonCss, tooltipCss, wrapperCss } from './RandomPickContainer.styles';
 
 interface Props {
   meetingId: number;
@@ -66,8 +66,8 @@ const QuestionRandomPick = ({ meetingId }: Props) => {
   return (
     <>
       <section css={wrapperCss}>
-        {isShowToolTip && <ToolTip>어떤 질문을 선택할지 고민인가요?</ToolTip>}
-        <Button css={css({ padding: `${size['4xs']} ${size['2xs']}` })} onClick={handleOpenModal}>
+        {isShowToolTip && <ToolTip css={tooltipCss}>어떤 질문을 선택할지 고민인가요?</ToolTip>}
+        <Button onClick={handleOpenModal} css={randomButtonCss}>
           <RelayRandomButtonDocumentIcon css={css({ marginRight: `${size['6xs']}` })} />
           랜덤 선택
         </Button>
