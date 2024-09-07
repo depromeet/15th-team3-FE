@@ -138,8 +138,8 @@ const QuestionerRandomPick = ({ meetingId }: Props) => {
   return (
     <>
       <section css={wrapperCss}>
-        {isShowToolTip && <ToolTip>다음 질문인을 누구로 할지 고민인가요?</ToolTip>}
-        <Button css={css({ padding: `${size['4xs']} ${size['2xs']}` })} onClick={handleOpenModal}>
+        {isShowToolTip && <ToolTip css={tooltipCss}>다음 질문인을 누구로 할지 고민인가요?</ToolTip>}
+        <Button onClick={handleOpenModal} css={randomButtonCss}>
           <RelayRandomButtonDocumentIcon css={css({ marginRight: `${size['6xs']}` })} />
           랜덤 선택
         </Button>

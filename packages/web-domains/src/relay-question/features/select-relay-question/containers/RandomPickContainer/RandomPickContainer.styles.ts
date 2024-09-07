@@ -8,6 +8,7 @@ export const wrapperCss = css({
   left: '50%',
   transform: 'translate(-50%, 0%)',
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
@@ -21,7 +22,7 @@ export const randomButtonCss = css({
 
 export const tooltipCss = css({
   position: 'absolute',
-  bottom: '120%',
+  bottom: '115%',
   left: '50%',
   width: 'auto',
   transform: 'translateX(-50%)',
