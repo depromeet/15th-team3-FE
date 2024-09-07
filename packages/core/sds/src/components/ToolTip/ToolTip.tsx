@@ -1,26 +1,25 @@
-import { forwardRef, HTMLAttributes } from 'react';
+import { CSSProperties, forwardRef, HTMLAttributes } from 'react';
 
 import { colors } from '@sds/theme';
 
 import { Txt } from '../Typography';
 
-import { animateVariants, arrowCss, tooltipCss } from './styles';
+import { arrowCss, tooltipCss } from './styles';
 
 export interface ToolTipProps extends HTMLAttributes<HTMLSpanElement> {
   reduceAnimate?: boolean;
 }
 
 export const ToolTip = forwardRef<HTMLSpanElement, ToolTipProps>((props, ref) => {
-  const { children, reduceAnimate = false, style: styleFromProps, ...restProps } = props;
+  const { children, reduceAnimate = false, ...restProps } = props;
 
-  const style = {
-    ...animateVariants[reduceAnimate ? 'none' : 'active'],
-    ...styleFromProps,
+  const toolTipStyle: CSSProperties = {
+    ...(reduceAnimate && { animation: 'none' }),
   };
 
   return (
-    <span ref={ref} style={style} {...restProps}>
-      <span css={tooltipCss}>
+    <span ref={ref} {...restProps}>
+      <span css={tooltipCss} style={toolTipStyle}>
         <Txt typography="title3" color={colors.white}>
           {children}
         </Txt>
