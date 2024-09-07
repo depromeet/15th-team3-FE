@@ -1,14 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# apps 폴더에 변경사항이 있는지 확인
-if git diff --cached --name-only | grep '^apps/' > /dev/null; then
-  # apps 폴더에 변경사항이 있을 때만 .next 디렉터리 삭제
-  echo "apps 폴더에 변경사항이 있습니다. 🗑️ .next 디렉터리를 삭제합니다."
-  find . -type d -name ".next" -exec rm -rf {} +
-else
-  echo "apps 폴더에 변경사항이 없습니다. 💨 .next 디렉터리를 삭제를 넘어갑니다."
-fi
+echo "🗑️ .next 디렉터리를 삭제합니다."
+find . -type d -name ".next" -exec rm -rf {} +
 
 pnpm run lint
 pnpm run type-check
