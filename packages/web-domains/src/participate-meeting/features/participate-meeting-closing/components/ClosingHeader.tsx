@@ -6,8 +6,21 @@ interface ClosingHeaderProps {
 }
 
 export const ClosingHeader = ({ meetingName }: ClosingHeaderProps) => {
+  if (!meetingName) {
+    return null;
+  }
+
   return (
-    <header css={{ marginTop: size['4xl'], padding: `${size.xl} ${size['2xs']} ${size.xs}`, textAlign: 'center' }}>
+    <header
+      css={{
+        marginTop: size['4xl'],
+        padding: `${size.xl} ${size['2xs']} ${size.xs}`,
+        textAlign: 'center',
+        '@media (max-width: 320px)': {
+          marginTop: 0,
+        },
+      }}
+    >
       <Txt as="h1" color={colors.black} typography="heading1">
         {meetingName && (
           <Txt as="strong" color={colors.primary500} typography="heading1">

@@ -49,6 +49,9 @@ const NewMeetingClosingContainer = (props: NewMeetingClosingContainerProps) => {
           aspectRatio: '11/5',
           bottom: '184px',
           transform: 'translate(-3%, 0)',
+          '@media (max-width: 320px)': {
+            display: 'none',
+          },
         }}
       >
         <Image src={Character} alt="meeting-character" priority fill />

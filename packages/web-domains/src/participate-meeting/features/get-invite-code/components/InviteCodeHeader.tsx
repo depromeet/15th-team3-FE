@@ -3,7 +3,16 @@ import { size, colors } from '@sambad/sds/theme';
 
 export const InviteCodeHeader = () => {
   return (
-    <header css={{ marginTop: size['4xl'], padding: `${size.xl} ${size['2xs']} ${size.xs}`, textAlign: 'center' }}>
+    <header
+      css={{
+        marginTop: size['4xl'],
+        padding: `${size.xl} ${size['2xs']} ${size.xs}`,
+        textAlign: 'center',
+        '@media (max-width: 320px)': {
+          marginTop: 0,
+        },
+      }}
+    >
       <Txt as="h1" color={colors.black} typography="heading1">
         <Txt as="strong" color={colors.primary500} typography="heading1">
           모링

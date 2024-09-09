@@ -14,7 +14,7 @@ import { useCreateMeetingService } from '../../services/useCreateMeetingService'
 import { useMeetingMemberService } from '../../services/useMeetingMemberService';
 import { TextArea } from '../TextInput/TextArea';
 
-import { buttonWrapperCss } from './styles';
+import { buttonWrapperCss, formLayoutcss } from './styles';
 
 interface IntroFormType {
   introduction: string;
@@ -64,7 +64,7 @@ export const IntroInfoForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleParticipateMeeting)} css={{ padding: '0 20px', marginTop: '48px' }}>
+    <form onSubmit={handleSubmit(handleParticipateMeeting)} css={formLayoutcss}>
       <TextArea
         maxLength={MAX_LENGTH}
         placeholder="저는 이런 사람이에요"

@@ -18,8 +18,21 @@ export const SelectRoleContainer = () => {
 
   return (
     <>
-      <section css={{ overflow: 'hidden', padding: '0 20px' }}>
-        <Txt as="p" typography="heading1" color={colors.black} css={{ textAlign: 'center', marginTop: '118px' }}>
+      <section
+        css={{
+          overflow: 'hidden',
+          padding: '0 20px',
+        }}
+      >
+        <Txt
+          as="p"
+          typography="heading1"
+          color={colors.black}
+          css={{
+            textAlign: 'center',
+            marginTop: '118px',
+          }}
+        >
           <strong css={{ color: colors.primary500 }}>모링</strong>에 오신 걸 환영해요!
         </Txt>
         <Txt as="p" typography="body3" color={colors.grey600} css={{ textAlign: 'center', marginTop: size['6xs'] }}>
@@ -27,7 +40,7 @@ export const SelectRoleContainer = () => {
         </Txt>
       </section>
 
-      <section css={{ marginTop: '45px', padding: '0 20px' }}>
+      <section css={{ marginTop: '45px', padding: '0 20px', paddingBottom: '100px' }}>
         <RoleRadioButton
           label="모임장"
           subTitle="모임을 이끄는"

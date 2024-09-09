@@ -27,6 +27,9 @@ const ClosingMessage = (props: ClosingMessageProps) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        '@media (max-width: 365px)': {
+          top: '64px',
+        },
       }}
     >
       <div css={{ transform: 'translate(0, 20%)' }}>
@@ -46,7 +49,7 @@ const ClosingMessage = (props: ClosingMessageProps) => {
       <div
         css={{
           position: 'absolute',
-          width: '80%',
+          width: '90%',
           aspectRatio: '3/2',
           maxWidth: '500px',
         }}
