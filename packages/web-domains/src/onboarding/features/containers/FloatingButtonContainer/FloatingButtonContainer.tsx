@@ -35,5 +35,5 @@ const buttonWrapperCss = css({
   bottom: '0',
   width: '100%',
   maxWidth: '600px',
-  padding: '20px 106px 40px',
+  padding: '20px 20px 40px',
 });
