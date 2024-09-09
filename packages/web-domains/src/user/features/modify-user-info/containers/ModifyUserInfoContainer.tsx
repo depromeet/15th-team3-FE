@@ -37,6 +37,9 @@ export const ModifyUserInfoContainer = () => {
         const hobbyIds = memberMe.hobbyDetails.map((hobby) => hobby.hobbyId).toString();
         params.append('hobbyIds', hobbyIds);
       }
+      if (memberMe.introduction) {
+        params.append('introduction', memberMe.introduction);
+      }
       router.replace(`?${params.toString()}`);
     }
   }, [memberMe, step]);

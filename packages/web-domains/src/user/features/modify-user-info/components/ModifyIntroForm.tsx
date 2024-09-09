@@ -1,5 +1,6 @@
 import { Txt, Button } from '@sds/components';
 import { colors } from '@sds/theme';
+import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 import { buttonWrapperCss } from '../../get-user-info/components/Form/styles';
@@ -13,11 +14,13 @@ export interface IntroFormType {
 const MAX_LENGTH = 3000;
 
 export const ModifyIntroForm = () => {
+  const searchParams = useSearchParams();
+
   const {
     register,
     formState: { isValid },
     handleSubmit,
-  } = useForm<IntroFormType>({ defaultValues: { introduction: '' } });
+  } = useForm<IntroFormType>({ defaultValues: { introduction: searchParams.get('introduction') || '' } });
 
   const { handleModifyUserInfo } = useModifyUserInfoService();
 
