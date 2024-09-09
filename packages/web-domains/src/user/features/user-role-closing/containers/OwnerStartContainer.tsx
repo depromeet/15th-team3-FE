@@ -14,38 +14,59 @@ export const OwnerStartContainer = () => {
         width: '100%',
         height: '100dvh',
         overflow: 'hidden',
-
         backgroundColor: colors.primary50,
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
       <div
         css={{
-          marginTop: '118px',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
+          height: `calc(100% - 116px)`,
         }}
       >
-        <CheckIcon />
-        <Txt as="p" color={colors.black} typography="heading1" css={{ textAlign: 'center', marginTop: size['3xs'] }}>
-          모임 정보 입력이
-        </Txt>
-        <Txt as="p" color={colors.black} typography="heading1" css={{ textAlign: 'center' }}>
-          완료되었어요!
-        </Txt>
-      </div>
-      <div
-        css={{
-          position: 'absolute',
-          width: '100%',
-          bottom: '140px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <OnwerCaracter />
+        <div
+          css={{
+            marginTop: size['4xl'],
+            '@media (max-width: 320px)': {
+              marginTop: 0,
+            },
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: `${size.xl} ${size['2xs']} ${size.xs}`,
+          }}
+        >
+          <CheckIcon />
+          <Txt as="p" color={colors.black} typography="heading1" css={{ textAlign: 'center', marginTop: size['3xs'] }}>
+            모임 정보 입력이
+          </Txt>
+          <Txt as="p" color={colors.black} typography="heading1" css={{ textAlign: 'center' }}>
+            완료되었어요!
+          </Txt>
+        </div>
+        <div
+          css={{
+            width: '100%',
+            flexGrow: 1,
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <div
+            css={{
+              position: 'relative',
+              width: '80%',
+              '@media (max-width: 320px)': {
+                width: '232px',
+              },
+            }}
+          >
+            <OnwerCaracter css={{ position: 'absolute', height: '100%', width: '100%' }} />
+          </div>
+        </div>
       </div>
     </section>
   );
