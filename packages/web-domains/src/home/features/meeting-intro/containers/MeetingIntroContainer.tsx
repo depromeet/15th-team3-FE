@@ -19,7 +19,7 @@ export const MeetingIntroContainer = () => {
   } = useMeetingIntroService();
 
   return (
-    <section css={{ width: '100%', backgroundColor: colors.primary100, padding: '0 20px' }}>
+    <section css={{ width: '100%', backgroundColor: colors.primary50, padding: '0 20px' }}>
       <GatherName gatherName={gatherName} subTitle="우리 모임의 모임원들이에요!" onClick={handleOpenBottmSheet} />
       <MeetingChoiceBottomSheet
         isOpen={isOpen}
