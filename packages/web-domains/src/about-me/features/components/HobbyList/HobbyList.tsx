@@ -21,7 +21,7 @@ export const HobbyList = (props: HobbyListProps) => {
   return (
     <Fragment>
       <Txt typography="subtitle1" css={titleCss} {...subTitleAttribute.attribute}>
-        모임원들과 이런 걸 함께하고 싶어요
+        저는 이런 걸 좋아해요
       </Txt>
       <div css={itemContainerCss}>{contents?.map((hobby) => <HobbyItem key={hobby} title={hobby} />)}</div>
     </Fragment>
