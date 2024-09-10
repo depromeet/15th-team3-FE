@@ -43,7 +43,6 @@ const TabItem = ({ path, title, Icon }: TabItemProps) => {
       css={{
         flex: '0 1 100%',
         cursor: 'pointer',
-        WebkitTapHighlightColor: 'transparent',
       }}
     >
       <Link
