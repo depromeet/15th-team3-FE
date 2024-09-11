@@ -24,11 +24,11 @@ export const BaseLayout = (props: BaseLayoutProps) => {
 };
 
 const layoutStyle = {
-  backgroundColor: colors.grey200,
   paddingBottom: size['3xl'],
   height: '100dvh',
 };
 
 const contentStyle = {
   padding: size.xs,
+  backgroundColor: colors.grey200,
 };

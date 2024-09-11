@@ -54,6 +54,9 @@ export const WithMeMembers = (props: WithMeMembersProps) => {
   const { meetingId, questionId } = useConvertTypeParams<BaseParams>();
   const { count = 0, members } = props;
 
+  // NOTE: 최대 4개의 프로필만 표시
+  const slicedMembers = members?.slice(0, 4);
+
   const noMembers = count === 0;
   const moreMembers = count >= 5;
   const fewMembers = !noMembers && !moreMembers;
@@ -71,7 +74,7 @@ export const WithMeMembers = (props: WithMeMembersProps) => {
 
       {(fewMembers || moreMembers) && (
         <div css={withMeMembersCss}>
-          {members?.map((member) => (
+          {slicedMembers?.map((member) => (
             <Profile key={member.meetingMemberId} name={member.name} imgUrl={member.profileImageFileUrl} />
           ))}
         </div>
