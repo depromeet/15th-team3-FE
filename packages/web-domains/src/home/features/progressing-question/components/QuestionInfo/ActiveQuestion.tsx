@@ -1,12 +1,10 @@
-import { Txt } from '@sambad/sds/components';
+import { ToolTip, Txt } from '@sambad/sds/components';
 import { borderRadiusVariants, colors, size } from '@sambad/sds/theme';
 import Link from 'next/link';
 
-import { ToolTip } from '@/common/components/ToolTip/ToolTip';
-
-import { ArrowIcon } from '../../../../../common/asset/arrow';
-import { Avatar } from '../../../../../common/components/Avatar/Avatar';
-import { ProgressingQuestionType } from '../../../../common/apis/schema/useGetProgressingQuestionQuery.type';
+import { ArrowIcon } from '@/common/asset/arrow';
+import { Avatar } from '@/common/components/Avatar/Avatar';
+import { ProgressingQuestionType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 
 interface ActiveQuestionProps {
   meetingId?: number;
@@ -26,11 +24,7 @@ export const ActiveQuestion = ({ meetingId, question }: ActiveQuestionProps) => 
 
   return (
     <div css={{ backgroundColor: colors.white, padding: '20px', borderRadius: '16px', position: 'relative' }}>
-      {!isAnswered && (
-        <span css={{ position: 'absolute', top: 16, right: 72 }}>
-          <ToolTip>답변을 아직 안했어요!</ToolTip>
-        </span>
-      )}
+      {!isAnswered && <ToolTip style={{ position: 'absolute', top: -35, right: 0 }}>답변을 아직 안했어요!</ToolTip>}
       <div css={{ display: 'flex', justifyContent: 'space-between' }}>
         <Txt
           typography="title4"
