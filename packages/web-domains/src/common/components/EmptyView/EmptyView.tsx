@@ -21,7 +21,7 @@ export const EmptyView = (props: EmptyViewProps) => {
 
   return (
     <div style={style} {...restProps}>
-      <Icon name="sad-user" size={40} color={colors.grey600} style={{ paddingBottom: size['5xs'] }} />
+      <Icon name="sad-user" size={40} color={colors.grey400} style={{ paddingBottom: size['5xs'] }} />
       <Txt typography="title3" color={colors.grey600}>
         {title}
       </Txt>
