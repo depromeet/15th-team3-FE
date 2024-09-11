@@ -1,5 +1,6 @@
 'use client';
 
+import { mobileMediaQuery } from '@sambad/css-utils';
 import { Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
 
@@ -29,14 +30,12 @@ export const OwnerStartContainer = () => {
         <div
           css={{
             marginTop: size['4xl'],
-            '@media (max-width: 320px)': {
-              marginTop: 0,
-            },
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             padding: `${size.xl} ${size['2xs']} ${size.xs}`,
+            ...mobileMediaQuery({ marginTop: 0 }),
           }}
         >
           <CheckIcon />
@@ -59,9 +58,7 @@ export const OwnerStartContainer = () => {
             css={{
               position: 'relative',
               width: '80%',
-              '@media (max-width: 320px)': {
-                width: '232px',
-              },
+              ...mobileMediaQuery({ marginTop: 0 }),
             }}
           >
             <OnwerCaracter css={{ position: 'absolute', height: '100%', width: '100%' }} />

@@ -1,3 +1,4 @@
+import { mobileMediaQuery } from '@sambad/css-utils';
 import { Txt } from '@sambad/sds/components';
 import { size, colors } from '@sambad/sds/theme';
 
@@ -8,9 +9,7 @@ export const InviteCodeHeader = () => {
         marginTop: size['4xl'],
         padding: `${size.xl} ${size['2xs']} ${size.xs}`,
         textAlign: 'center',
-        '@media (max-width: 320px)': {
-          marginTop: 0,
-        },
+        ...mobileMediaQuery({ marginTop: 0 }),
       }}
     >
       <Txt as="h1" color={colors.black} typography="heading1">
