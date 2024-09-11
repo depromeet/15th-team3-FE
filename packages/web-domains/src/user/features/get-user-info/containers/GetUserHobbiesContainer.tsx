@@ -6,7 +6,7 @@ export const GetUserHobbiesContainer = () => {
 
   return (
     <>
-      <FormTitle title="취미를 최대" subTitle="세 개 까지만 선택해주세요" style={{ paddingTop: '28px' }} />
+      <FormTitle title="즐기는 취미를" subTitle="자유롭게 선택해주세요" style={{ paddingTop: '28px' }} />
       <HobbiesInfoForm hobbyList={hobbyList} />
     </>
   );
