@@ -26,6 +26,7 @@ export const BaseLayout = (props: BaseLayoutProps) => {
 const layoutStyle = {
   paddingBottom: size['3xl'],
   height: '100dvh',
+  backgroundColor: colors.grey200,
 };
 
 const contentStyle = {
