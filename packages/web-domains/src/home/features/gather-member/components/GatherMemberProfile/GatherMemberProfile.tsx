@@ -27,14 +27,9 @@ export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfilePr
     >
       <Link href={`${meetingId}/about/${meetingMemberId}`}>
         <div css={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
-          <ProfileImage imageUrl={profileImageFileUrl} isConnection={isHandWaved} />
+          <ProfileImage imageUrl={profileImageFileUrl} isConnection={isHandWaved} isOnwer={isOwner} />
           <Txt typography="title2" css={{ marginTop: '12px' }}>
             {isMe ? '나' : name}
-            {isOwner && (
-              <Txt typography="title1" css={{ paddingLeft: '4px', bottom: '1px', position: 'relative' }}>
-                👑
-              </Txt>
-            )}
           </Txt>
         </div>
       </Link>
@@ -42,12 +37,27 @@ export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfilePr
   );
 };
 
-const ProfileImage = ({ imageUrl, isConnection = false }: { imageUrl?: string; isConnection?: boolean }) => {
-  const borderStyles = isConnection ? { border: `3px solid ${colors.primary500}` } : {};
+const ProfileImage = ({
+  imageUrl,
+  isConnection = false,
+  isOnwer = false,
+}: {
+  imageUrl?: string;
+  isConnection?: boolean;
+  isOnwer?: boolean;
+}) => {
+  const borderColorStyles = isConnection ? { borderColor: `${colors.primary500}` } : {};
 
   return (
-    <span css={{ position: 'relative', borderRadius: '50%', ...borderStyles }}>
+    <span css={{ position: 'relative', borderRadius: '50%', border: '3px solid transparent', ...borderColorStyles }}>
       {isConnection && <Icon name="connect-star" css={{ position: 'absolute', bottom: '-4px', left: '-4px' }} />}
+      {isOnwer && (
+        <Icon
+          name="crown"
+          color={colors.primary500}
+          css={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translate(-50%, 0)' }}
+        />
+      )}
       <Avatar imageUrl={imageUrl} width={64} height={64} css={{ borderRadius: '50%' }} />
     </span>
   );
