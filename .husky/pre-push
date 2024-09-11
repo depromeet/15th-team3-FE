@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+echo "🗑️ .next 디렉터리를 삭제합니다."
+find . -type d -name ".next" -exec rm -rf {} +
+
 pnpm run lint
 pnpm run type-check
 pnpm run build

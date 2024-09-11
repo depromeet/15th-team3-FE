@@ -24,7 +24,7 @@ export const ProgressingQuestionContainer = () => {
   } = useProgressingQuestionService();
 
   return (
-    <section css={{ width: '100%', backgroundColor: colors.primary100, padding: '0 20px' }}>
+    <section css={{ width: '100%', backgroundColor: colors.primary50, padding: '0 20px' }}>
       <GatherName
         gatherName={gatherName}
         subTitle="릴레이 질문으로 더 가까워져 볼까요?"

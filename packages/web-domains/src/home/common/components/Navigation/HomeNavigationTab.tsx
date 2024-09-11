@@ -47,7 +47,12 @@ const TabItem = ({ path, title, Icon }: TabItemProps) => {
     >
       <Link
         href={path}
-        css={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
+        css={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
         {Icon}
         <Txt typography="title4" color={colors.black} css={{ marginTop: '8px' }}>

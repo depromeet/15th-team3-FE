@@ -4,6 +4,8 @@ import { Txt } from '@sds/components';
 import { colors, size } from '@sds/theme';
 import { ReactNode } from 'react';
 
+import { textWithSlideUpAnimationCss } from './styles';
+
 interface HeaderProps {
   title: string;
   subTitle: string;
@@ -25,10 +27,13 @@ export const Header = (props: HeaderProps) => {
         as="h1"
         typography="heading1"
         color={colors.black}
-        css={{ '& span': { display: 'block' }, marginTop: '12px' }}
+        css={textWithSlideUpAnimationCss}
+        style={{ marginTop: '12px' }}
       >
         {title}
-        <span>{subTitle}</span>
+        <span css={textWithSlideUpAnimationCss} style={{ display: 'block' }}>
+          {subTitle}
+        </span>
       </Txt>
     </header>
   );

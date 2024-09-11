@@ -18,6 +18,7 @@ const reset = css`
   html {
     -moz-text-size-adjust: none;
     -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: transparent;
     text-size-adjust: none;
   }
 
