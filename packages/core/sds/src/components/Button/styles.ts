@@ -69,6 +69,8 @@ export const buttonCss = css({
   width: '100%',
   height: `var(${buttonHeightVar})`,
   transition: 'background-color 0.3s ease',
+  paddingLeft: size['3xs'],
+  paddingRight: size['3xs'],
 
   display: 'flex',
   justifyContent: 'center',

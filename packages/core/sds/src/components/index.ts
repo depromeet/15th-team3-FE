@@ -9,3 +9,4 @@ export * from './Skeleton';
 export * from './Spinner';
 export * from './TextButton';
 export * from './Typography';
+export * from './ToolTip';
