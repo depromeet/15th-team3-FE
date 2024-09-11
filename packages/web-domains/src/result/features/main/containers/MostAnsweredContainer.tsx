@@ -22,7 +22,7 @@ export const MostAnsweredContainers = () => {
         <CountByMemberList
           showName={showName}
           count={data?.count}
-          profileUrls={profileUrls}
+          profileUrls={profileUrls?.slice(0, 5)}
           href={`/${meetingId}/question-result/${questionId}/answers/most-selected`}
         />
       )}
