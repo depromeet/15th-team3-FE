@@ -19,4 +19,5 @@ export type MemberType = {
   profileImageFileUrl?: string;
   role: 'OWNER' | 'ADMIN' | 'MEMBER';
   isHandWaved: boolean;
+  isMe: boolean;
 };
