@@ -3,7 +3,7 @@ import { colors } from '@sds/theme';
 import Link from 'next/link';
 
 import { Avatar } from '@/common/components/Avatar/Avatar';
-import { MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
+import { HandWavingStatusType, MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 
 interface GatherMemberProfileProps {
   meetingId: number;
@@ -11,7 +11,7 @@ interface GatherMemberProfileProps {
 }
 
 export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfileProps) => {
-  const { name, role, profileImageFileUrl, meetingMemberId, isHandWaved, isMe } = member;
+  const { name, role, profileImageFileUrl, meetingMemberId, isHandWaved, isMe, handWavingStatus } = member;
   const isOwner = role === 'OWNER';
 
   return (
@@ -27,7 +27,12 @@ export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfilePr
     >
       <Link href={`${meetingId}/about/${meetingMemberId}`}>
         <div css={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
-          <ProfileImage imageUrl={profileImageFileUrl} isConnection={isHandWaved} isOnwer={isOwner} />
+          <ProfileImage
+            imageUrl={profileImageFileUrl}
+            isConnection={isHandWaved}
+            isOnwer={isOwner}
+            handWavingStatus={handWavingStatus}
+          />
           <Txt typography="title2" css={{ marginTop: '12px' }}>
             {isMe ? '나' : name}
           </Txt>
@@ -37,20 +42,30 @@ export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfilePr
   );
 };
 
-const ProfileImage = ({
-  imageUrl,
-  isConnection = false,
-  isOnwer = false,
-}: {
+interface ProfileImageProps {
   imageUrl?: string;
   isConnection?: boolean;
   isOnwer?: boolean;
-}) => {
-  const borderColorStyles = isConnection ? { borderColor: `${colors.primary500}` } : {};
+  handWavingStatus: HandWavingStatusType;
+}
+
+const ProfileImage = ({ imageUrl, isConnection = false, isOnwer = false, handWavingStatus }: ProfileImageProps) => {
+  const isHandWaving = isConnection || handWavingStatus === 'REQUESTED' || handWavingStatus === 'ACCEPTED';
+
+  const color = handWavingStatus === 'ACCEPTED' ? colors.primary500 : colors.grey500;
 
   return (
-    <span css={{ position: 'relative', borderRadius: '50%', border: '3px solid transparent', ...borderColorStyles }}>
-      {isConnection && <Icon name="connect-star" css={{ position: 'absolute', bottom: '-4px', left: '-4px' }} />}
+    <span
+      css={{
+        position: 'relative',
+        borderRadius: '50%',
+        border: '3px solid transparent',
+        ...(isHandWaving && { borderColor: color }),
+      }}
+    >
+      {isHandWaving && (
+        <Icon name="connect-star" color={color} css={{ position: 'absolute', bottom: '-4px', left: '-4px' }} />
+      )}
       {isOnwer && (
         <Icon
           name="crown"
