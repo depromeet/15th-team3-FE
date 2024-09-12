@@ -25,7 +25,7 @@ export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfilePr
         padding: '12px 16px',
       }}
     >
-      <Link href={`${meetingId}/about/${meetingMemberId}`}>
+      <Link href={isMe ? '/home/me' : `${meetingId}/about/${meetingMemberId}`}>
         <div css={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
           <ProfileImage
             imageUrl={profileImageFileUrl}
