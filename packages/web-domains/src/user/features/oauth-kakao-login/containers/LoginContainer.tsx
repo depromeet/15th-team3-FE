@@ -29,7 +29,7 @@ export const LoginContainer = () => {
       >
         <LogoIcon />
         <Txt typography="subTitle2" color={colors.grey600} css={{ marginTop: size['6xs'] }}>
-          모임원들과 더 가까워지는 공간
+          모임으로 하나되는 우리, 모링
         </Txt>
       </div>
       <BackGround />
