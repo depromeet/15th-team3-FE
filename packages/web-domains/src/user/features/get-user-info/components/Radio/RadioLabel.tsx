@@ -16,7 +16,7 @@ export const RadioLabel = (props: RadioLabelProps) => {
   return (
     <span css={itemCss}>
       <Txt typography="title3">{emoji}</Txt>
-      <Txt typography="body3" color={isChecked ? colors.primary500 : colors.black}>
+      <Txt typography={isChecked ? 'title2' : 'body2'} color={isChecked ? colors.primary500 : colors.black}>
         {text}
       </Txt>
     </span>
