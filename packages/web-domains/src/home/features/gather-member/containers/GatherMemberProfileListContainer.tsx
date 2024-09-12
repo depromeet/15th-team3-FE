@@ -23,12 +23,7 @@ export const GatherMemberProfileListContainer = () => {
   } = useGatherMemberProfileListService();
 
   if (!gatherMemberList.length) {
-    return (
-      <EmptyView
-        title="아직 입장한 모임원이 없어요!"
-        css={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}
-      />
-    );
+    return <EmptyView title="아직 입장한 모임원이 없어요!" />;
   }
 
   return (
