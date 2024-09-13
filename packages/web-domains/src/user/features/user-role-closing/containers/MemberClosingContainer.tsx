@@ -1,12 +1,13 @@
 'use client';
 
-import { Txt } from '@sambad/sds/components';
+import { If } from '@sambad/react-utils';
+import { Skeleton, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import Image from 'next/image';
 
+import { Confetti } from '@/common';
 import { useGetMeetingName } from '@/common/apis/queries/useGetMeetingName';
 
-import ClosingBackground from '../../../common/assets/images/member-closing-background.png';
 import MemberCharacter from '../../../common/assets/images/member-closing-character.png';
 
 interface MemberClosingContainerProps {
@@ -16,59 +17,60 @@ interface MemberClosingContainerProps {
 export const MemberClosingContainer = (props: MemberClosingContainerProps) => {
   const { inviteCode } = props;
 
-  const { data } = useGetMeetingName({ inviteCode });
+  const { data, isLoading, isSuccess } = useGetMeetingName({ inviteCode });
 
   return (
-    <section
-      css={{
-        width: '100%',
-        height: '100dvh',
-        overflow: 'hidden',
-        backgroundColor: colors.primary50,
-      }}
-    >
-      <div
+    <>
+      <If condition={isSuccess}>
+        <Confetti position={{ top: 0, left: 0 }} height={350} />
+      </If>
+      <section
         css={{
-          position: 'relative',
-          marginTop: '28px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignContent: 'center',
-          justifyContent: 'center',
-          height: '280px',
-          zIndex: '10',
+          width: '100%',
+          height: '100dvh',
+          overflow: 'hidden',
+          backgroundColor: colors.primary50,
         }}
       >
-        {data?.name && (
-          <Txt as="p" color={colors.primary500} typography="heading1" css={{ textAlign: 'center' }}>
-            {data?.name}
+        <div
+          css={{
+            position: 'relative',
+            marginTop: '28px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignContent: 'center',
+            justifyContent: 'center',
+            height: '280px',
+            zIndex: '10',
+          }}
+        >
+          <If condition={isLoading}>
+            <Skeleton width={200} height={36} />
+          </If>
+          <If condition={isSuccess}>
+            {data?.name && (
+              <Txt as="p" color={colors.primary500} typography="heading1" css={{ textAlign: 'center' }}>
+                {data?.name}
+              </Txt>
+            )}
+          </If>
+          <Txt as="p" color={colors.black} typography="heading1" css={{ textAlign: 'center' }}>
+            가입이 완료되었어요!
           </Txt>
-        )}
-        <Txt as="p" color={colors.black} typography="heading1" css={{ textAlign: 'center' }}>
-          가입이 완료되었어요!
-        </Txt>
+        </div>
         <Image
-          alt="background"
-          src={ClosingBackground}
-          quality={100}
-          fill
+          src={MemberCharacter}
+          width={240}
+          height={240}
+          alt="character"
           style={{
-            objectFit: 'contain',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
           }}
         />
-      </div>
-      <Image
-        src={MemberCharacter}
-        width={240}
-        height={240}
-        alt="character"
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
-      />
-    </section>
+      </section>
+    </>
   );
 };
