@@ -19,4 +19,8 @@ export type MemberType = {
   profileImageFileUrl?: string;
   role: 'OWNER' | 'ADMIN' | 'MEMBER';
   isHandWaved: boolean;
+  isMe: boolean;
+  handWavingStatus: HandWavingStatusType;
 };
+
+export type HandWavingStatusType = 'NOT_REQUESTED' | 'REQUESTED' | 'ACCEPTED' | 'REJECTED';

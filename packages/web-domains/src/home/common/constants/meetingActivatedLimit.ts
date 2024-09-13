@@ -1,0 +1,1 @@
+export const MEETING_ACTIVATED_LIMIT = 2;

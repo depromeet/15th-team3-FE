@@ -3,7 +3,7 @@ import { colors } from '@sds/theme';
 import Link from 'next/link';
 
 import { Avatar } from '@/common/components/Avatar/Avatar';
-import { MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
+import { HandWavingStatusType, MemberType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 
 interface GatherMemberProfileProps {
   meetingId: number;
@@ -11,7 +11,7 @@ interface GatherMemberProfileProps {
 }
 
 export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfileProps) => {
-  const { name, role, profileImageFileUrl, meetingMemberId, isHandWaved } = member;
+  const { name, role, profileImageFileUrl, meetingMemberId, isHandWaved, isMe, handWavingStatus } = member;
   const isOwner = role === 'OWNER';
 
   return (
@@ -25,16 +25,16 @@ export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfilePr
         padding: '12px 16px',
       }}
     >
-      <Link href={`${meetingId}/about/${meetingMemberId}`}>
+      <Link href={isMe ? '/home/me' : `${meetingId}/about/${meetingMemberId}`}>
         <div css={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
-          <ProfileImage imageUrl={profileImageFileUrl} isConnection={isHandWaved} />
+          <ProfileImage
+            imageUrl={profileImageFileUrl}
+            isConnection={isHandWaved}
+            isOnwer={isOwner}
+            handWavingStatus={handWavingStatus}
+          />
           <Txt typography="title2" css={{ marginTop: '12px' }}>
-            {name}
-            {isOwner && (
-              <Txt typography="title1" css={{ paddingLeft: '4px', bottom: '1px', position: 'relative' }}>
-                👑
-              </Txt>
-            )}
+            {isMe ? '나' : name}
           </Txt>
         </div>
       </Link>
@@ -42,12 +42,37 @@ export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfilePr
   );
 };
 
-const ProfileImage = ({ imageUrl, isConnection = false }: { imageUrl?: string; isConnection?: boolean }) => {
-  const borderStyles = isConnection ? { border: `3px solid ${colors.primary500}` } : {};
+interface ProfileImageProps {
+  imageUrl?: string;
+  isConnection?: boolean;
+  isOnwer?: boolean;
+  handWavingStatus: HandWavingStatusType;
+}
+
+const ProfileImage = ({ imageUrl, isConnection = false, isOnwer = false, handWavingStatus }: ProfileImageProps) => {
+  const isHandWaving = isConnection || handWavingStatus === 'REQUESTED' || handWavingStatus === 'ACCEPTED';
+
+  const color = handWavingStatus === 'ACCEPTED' ? colors.primary500 : colors.grey500;
 
   return (
-    <span css={{ position: 'relative', borderRadius: '50%', ...borderStyles }}>
-      {isConnection && <Icon name="connect-star" css={{ position: 'absolute', bottom: '-4px', left: '-4px' }} />}
+    <span
+      css={{
+        position: 'relative',
+        borderRadius: '50%',
+        border: '3px solid transparent',
+        ...(isHandWaving && { borderColor: color }),
+      }}
+    >
+      {isHandWaving && (
+        <Icon name="connect-star" color={color} css={{ position: 'absolute', bottom: '-4px', left: '-4px' }} />
+      )}
+      {isOnwer && (
+        <Icon
+          name="crown"
+          color={colors.primary500}
+          css={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translate(-50%, 0)' }}
+        />
+      )}
       <Avatar imageUrl={imageUrl} width={64} height={64} css={{ borderRadius: '50%' }} />
     </span>
   );
