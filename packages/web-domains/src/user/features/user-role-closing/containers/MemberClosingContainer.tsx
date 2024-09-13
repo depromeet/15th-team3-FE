@@ -5,7 +5,7 @@ import { Skeleton, Txt } from '@sambad/sds/components';
 import { colors } from '@sambad/sds/theme';
 import Image from 'next/image';
 
-import { Confetti, Confetti } from '@/common';
+import { Confetti } from '@/common';
 import { useGetMeetingName } from '@/common/apis/queries/useGetMeetingName';
 
 import MemberCharacter from '../../../common/assets/images/member-closing-character.png';
