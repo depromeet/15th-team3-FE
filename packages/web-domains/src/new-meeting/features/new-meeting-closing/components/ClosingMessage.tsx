@@ -1,21 +1,21 @@
-import { Txt } from '@sambad/sds/components';
+import { If } from '@sambad/react-utils';
+import { Skeleton, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
 import Image from 'next/image';
 
 import { Confetti } from '@/common';
 
 import ClosingBackground from '../../../common/assets/images/closing-background.png';
+import { useGetMeetingNameService } from '../services/useGetMeetingNameService';
 
 interface ClosingMessageProps {
-  name?: string;
+  inviteCode: string;
 }
 
 const ClosingMessage = (props: ClosingMessageProps) => {
-  const { name } = props;
+  const { inviteCode } = props;
 
-  if (!name) {
-    null;
-  }
+  const { data, isLoading, isSuccess } = useGetMeetingNameService({ inviteCode });
 
   return (
     <>
@@ -34,11 +34,16 @@ const ClosingMessage = (props: ClosingMessageProps) => {
         }}
       >
         <div css={{ transform: 'translate(0, 20%)' }}>
-          {name && (
-            <Txt as="h1" color={colors.primary500} typography="heading1">
-              {name}
-            </Txt>
-          )}
+          <If condition={isLoading}>
+            <Skeleton width={200} height={36} />
+          </If>
+          <If condition={isSuccess}>
+            {data?.name && (
+              <Txt as="h1" color={colors.primary500} typography="heading1">
+                {data.name}
+              </Txt>
+            )}
+          </If>
           <Txt as="h2" color={colors.black} typography="heading1">
             모임을 만들었어요!
           </Txt>

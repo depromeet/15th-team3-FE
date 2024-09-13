@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Character from '../../../common/assets/images/meeting-character.png';
 import { InviteCodeShareButton } from '../components/Button/InviteCodeShareButton';
 import ClosingMessage from '../components/ClosingMessage';
-import { useGetMeetingNameService } from '../services/useGetMeetingNameService';
 
 interface NewMeetingClosingContainerProps {
   inviteCode: string;
@@ -14,8 +13,6 @@ interface NewMeetingClosingContainerProps {
 
 const NewMeetingClosingContainer = (props: NewMeetingClosingContainerProps) => {
   const { inviteCode } = props;
-
-  const { data } = useGetMeetingNameService({ inviteCode });
 
   return (
     <div
@@ -30,7 +27,7 @@ const NewMeetingClosingContainer = (props: NewMeetingClosingContainerProps) => {
         justifyContent: 'center',
       }}
     >
-      <ClosingMessage name={data?.name} />
+      <ClosingMessage inviteCode={inviteCode} />
       <div
         css={{
           position: 'relative',
