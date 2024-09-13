@@ -41,7 +41,7 @@ export const Modal = ({ isOpen, onClose, children, footer, ...rest }: PropsWithC
 
   return createPortal(
     <div
-      css={{ width: '100%', height: '100%', background: '#00000066', position: 'fixed', top: 0 }}
+      css={{ width: '100%', height: '100%', background: '#00000066', position: 'fixed', top: 0, zIndex: 100 }}
       onClick={handleClose}
     >
       <div
@@ -55,6 +55,7 @@ export const Modal = ({ isOpen, onClose, children, footer, ...rest }: PropsWithC
           transform: 'translate(-50%, -50%)',
           backgroundColor: colors.white,
           borderRadius: borderRadiusVariants.medium,
+          zIndex: 1000,
         }}
         {...rest}
       >
