@@ -11,6 +11,7 @@ import { useGetNotification } from '@/home/common/apis/queries/useGetNotificatio
 import { NotificationType } from '@/home/common/apis/schema/Notification.schema';
 import { ProgressingQuestionType } from '@/home/common/apis/schema/useGetProgressingQuestionQuery.type';
 import { HomeAtoms } from '@/home/common/atoms/home.atom';
+import { MEETING_ACTIVATED_LIMIT } from '@/home/common/constants/meetingActivatedLimit';
 
 export const useNotificationService = () => {
   const queryClient = useQueryClient();
@@ -72,7 +73,7 @@ export const useNotificationService = () => {
     }
   }, [notfication, currentMeeting]);
 
-  const isOnlyOne = !!memberList && memberList.contents.length < 1;
+  const isOnlyOne = !!memberList && memberList.contents.length < MEETING_ACTIVATED_LIMIT;
 
   return {
     meetingId,

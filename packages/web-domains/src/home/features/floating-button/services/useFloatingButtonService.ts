@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useDialogContext } from '@/common/contexts/DialogProvider';
 import { useGetGatherMemberList } from '@/home/common/apis/queries/useGetGatherMemberList';
 import { HomeAtoms } from '@/home/common/atoms/home.atom';
+import { MEETING_ACTIVATED_LIMIT } from '@/home/common/constants/meetingActivatedLimit';
 
 export const useFloatingButtonService = () => {
   const currentMeeting = useAtomValue(HomeAtoms.currentMeeting);
@@ -49,7 +50,7 @@ export const useFloatingButtonService = () => {
     close();
   };
 
-  const isOnlyOne = !!memberList && memberList.contents.length < 1;
+  const isOnlyOne = !!memberList && memberList.contents.length < MEETING_ACTIVATED_LIMIT;
 
   return {
     meetingId: currentMeeting?.meetingId,

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useGetGatherMemberList } from '@/home/common/apis/queries/useGetGatherMemberList';
 import { useGetMyInfo } from '@/home/common/apis/queries/useGetMyInfo';
 import { HomeAtoms } from '@/home/common/atoms/home.atom';
+import { MEETING_ACTIVATED_LIMIT } from '@/home/common/constants/meetingActivatedLimit';
 import { useSetCurrentMeeting } from '@/home/common/hooks/useSetCurrentMeeting';
 
 import { useGetProgressingQuestion } from '../../../common/apis/queries/useGetProgressingQuestion';
@@ -75,7 +76,7 @@ export const useProgressingQuestionService = () => {
     }
   }, [progressingQuestion, myInfo]);
 
-  const isOnlyOne = !!memberList && memberList.contents.length < 1;
+  const isOnlyOne = !!memberList && memberList.contents.length < MEETING_ACTIVATED_LIMIT;
 
   return {
     isOnlyOne,
