@@ -5,7 +5,7 @@ export type QuestionType = {
   questionType: 'MULTIPLE_DESCRIPTIVE_CHOICE' | 'MULTIPLE_SHORT_CHOICE' | 'SINGLE_CHOICE';
   content: {
     questionTitle?: {
-      subTitle: string;
+      subtitle: string;
       mainTitle: string;
       fullTitle: string;
     };

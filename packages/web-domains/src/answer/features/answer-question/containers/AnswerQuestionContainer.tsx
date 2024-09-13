@@ -8,7 +8,7 @@ import { useAnswerQuestionService } from '../services/useAnswerQuestionService';
 export const AnswerQuestionContainer = () => {
   const { question, questionType, isNotAnswerd, moveToCommentPage, handleAnswerList } = useAnswerQuestionService();
 
-  const subTitle = question?.questionTitle?.subTitle ?? '우리 모임원들은';
+  const subTitle = question?.questionTitle?.subtitle ?? '우리 모임원들은';
   const mainTitle = question?.questionTitle?.mainTitle;
   const answers = question?.answers;
 
