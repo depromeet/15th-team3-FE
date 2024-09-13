@@ -19,7 +19,7 @@ const ClosingMessage = (props: ClosingMessageProps) => {
 
   return (
     <>
-      <Confetti position={{ top: 0, left: 0 }} size={600} />
+      <Confetti position={{ top: 0, left: 0 }} height={350} />
       <div
         css={{
           position: 'absolute',

@@ -7,18 +7,20 @@ interface ConfettiProps {
     top: number;
     left: number;
   };
-  size?: number;
+  width?: number;
+  height?: number;
 }
 
 export const Confetti = (props: ConfettiProps) => {
   const {
     position: { top, left },
-    size = 500,
+    width,
+    height,
   } = props;
 
   const canvasStyles: CSSProperties = {
-    width: size,
-    height: size,
+    width: width ?? '100%',
+    height: height ?? '100%',
     zIndex: '3',
     position: 'absolute',
     top,
