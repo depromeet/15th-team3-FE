@@ -40,7 +40,6 @@ export const useModifyUserInfo = ({ options }: Args) => {
 
 async function modifyUserInfo(params: Params): Promise<MeetingMemberResponse> {
   const { meetingId, ...restParams } = params;
-  console.log(restParams);
   const data = await Http.PATCH<Params, MeetingMemberResponse>(`/v1/meetings/${meetingId}/members/me`, restParams);
   return data;
 }
