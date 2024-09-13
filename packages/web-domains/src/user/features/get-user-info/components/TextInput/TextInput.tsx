@@ -1,17 +1,19 @@
 import { Txt } from '@sambad/sds/components';
 import { size, colors } from '@sambad/sds/theme';
 import { ChangeEvent, forwardRef, InputHTMLAttributes } from 'react';
+import { FieldError } from 'react-hook-form';
 
 import { inputCss, textInputcss } from './styles';
 
 export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  errorMessage?: string;
+  hintMessage?: string;
   answerNumber: string | number;
+  error?: FieldError;
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
-  const { maxLength, label, errorMessage, answerNumber, onChange, ...restProps } = props;
+  const { maxLength, label, hintMessage, answerNumber, onChange, error, ...restProps } = props;
 
   const formattedAnswerNumber = answerNumber.toString().padStart(2, '0');
 
@@ -33,10 +35,15 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
           {label}
         </Txt>
       </label>
-      <input ref={ref} css={inputCss} onChange={handleChange} {...restProps} />
-      {errorMessage && (
-        <Txt as="p" typography="body4" color={colors.grey600}>
-          {errorMessage}
+      <input ref={ref} css={inputCss(!!error)} onChange={handleChange} {...restProps} />
+      {hintMessage && (
+        <Txt as="p" typography="body4" color={error ? colors.primary500 : colors.grey600}>
+          {hintMessage}
+        </Txt>
+      )}
+      {!hintMessage && error && (
+        <Txt as="p" typography="body4" color={colors.primary500}>
+          {error?.message}
         </Txt>
       )}
     </div>
