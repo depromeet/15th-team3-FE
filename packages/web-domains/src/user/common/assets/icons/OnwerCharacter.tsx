@@ -1,5 +1,8 @@
-export const OnwerCaracter = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={321} height={282} fill="none">
+import { HTMLAttributes } from 'react';
+
+interface OnwerCharacterProps extends HTMLAttributes<SVGSVGElement> {}
+export const OnwerCaracter = ({ ...rest }: OnwerCharacterProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={321} height={282} fill="none" viewBox="0 0 321 282" {...rest}>
     <path
       fill="#FFD7C1"
       fillRule="evenodd"

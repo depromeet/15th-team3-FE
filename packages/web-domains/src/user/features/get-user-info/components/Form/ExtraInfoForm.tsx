@@ -9,7 +9,7 @@ import { STEPS } from '@/user/common/constants/step';
 import { useGoNextStep } from '../../hooks/useGoNextStep';
 import { TextInput } from '../TextInput/TextInput';
 
-import { buttonWrapperCss } from './styles';
+import { buttonWrapperCss, formLayoutcss } from './styles';
 
 interface ExtraInfo {
   job: string;
@@ -36,16 +36,7 @@ export const ExtraInfoForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(goToNextPage)}
-      css={{
-        padding: '0 20px',
-        marginTop: '48px',
-        '& > *:not(:first-of-type)': {
-          marginTop: '32px',
-        },
-      }}
-    >
+    <form onSubmit={handleSubmit(goToNextPage)} css={formLayoutcss}>
       <TextInput
         label="직업이 무엇인가요?"
         answerNumber={4}

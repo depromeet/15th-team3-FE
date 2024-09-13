@@ -33,11 +33,20 @@ export const ParticipateClosingContainer = (props: ParticipateClosingContainerPr
         zIndex: 10,
       }}
     >
-      <ClosingHeader meetingName={data?.name} />
-      <BackgroundImage />
       <div
         css={{
-          position: 'absolute',
+          display: 'flex',
+          flexDirection: 'column',
+          height: `calc(100% - 116px)`,
+        }}
+      >
+        <ClosingHeader meetingName={data?.name} />
+        <BackgroundImage />
+      </div>
+
+      <div
+        css={{
+          position: 'fixed',
           bottom: '40px',
           width: '100%',
           maxWidth: '600px',

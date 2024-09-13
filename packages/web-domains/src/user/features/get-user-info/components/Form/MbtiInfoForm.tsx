@@ -10,7 +10,7 @@ import { STEPS } from '@/user/common/constants/step';
 import { useGoNextStep } from '../../hooks/useGoNextStep';
 import { RadioGroup } from '../Radio';
 
-import { buttonWrapperCss } from './styles';
+import { buttonWrapperCss, formLayoutcss } from './styles';
 
 interface MbtiFormType {
   mbti: string;
@@ -30,7 +30,7 @@ export const MbtiInfoForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(goToNextPage)} css={{ padding: '0 20px', marginTop: '48px' }}>
+    <form onSubmit={handleSubmit(goToNextPage)} css={formLayoutcss}>
       <div css={{ display: 'inline-flex', flexWrap: 'wrap', gap: '10px' }}>
         <Controller
           name="mbti"

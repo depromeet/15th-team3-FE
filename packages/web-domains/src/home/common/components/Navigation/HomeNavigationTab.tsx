@@ -16,6 +16,7 @@ const Tab = ({ tabList, children }: PropsWithChildren<TabProps>) => {
     <ul
       css={{
         display: 'flex',
+        zIndex: 10,
         alignItems: 'center',
         maxWidth: '600px',
         position: 'fixed',

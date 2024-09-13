@@ -6,23 +6,15 @@ export const BackgroundImage = () => {
   return (
     <div
       css={{
-        position: 'absolute',
-        bottom: '140px',
+        position: 'relative',
         width: '100%',
         display: 'flex',
+        flexGrow: 1,
         justifyContent: 'center',
         zIndex: -1,
       }}
     >
-      <div
-        css={{
-          position: 'relative',
-          width: '80%',
-          aspectRatio: '1',
-        }}
-      >
-        <Image src={Character} alt="meeting-character" priority fill />
-      </div>
+      <Image src={Character} alt="meeting-character" priority fill style={{ objectFit: 'contain' }} />
     </div>
   );
 };
