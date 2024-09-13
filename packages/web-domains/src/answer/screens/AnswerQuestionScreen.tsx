@@ -1,9 +1,7 @@
 import { HydrationBoundary, dehydrate, QueryClient } from '@tanstack/react-query';
 import { cookies } from 'next/headers';
 
-import { getMeetingInfoPrefetch } from '@/home/common/apis/queries/useGetMeetingName';
-
-import { getProgressingQuestionPrefetch } from '../common/apis/queries/useGetProgressingQuestion';
+import { getGetQuestionPrefetch } from '../common/apis/queries/useGetQuestion';
 import { AnswerQuestionContainer } from '../features/answer-question/containers/AnswerQuestionContainer';
 
 type Params = {
@@ -29,8 +27,7 @@ const getServerSideProps = async ({ meetingId }: Params['params']) => {
   try {
     const cookie = cookies();
 
-    await getMeetingInfoPrefetch(queryClient, cookie);
-    await getProgressingQuestionPrefetch({ meetingId: parseInt(meetingId) }, queryClient, cookie);
+    await getGetQuestionPrefetch({ meetingId: parseInt(meetingId) }, queryClient, cookie);
   } catch (error: unknown) {
     console.log(error);
   }
