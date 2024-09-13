@@ -17,7 +17,9 @@ export const ClosingMessage = (props: ClosingMessageProps) => {
 
   return (
     <>
-      <Confetti position={{ top: 0, left: 0 }} height={350} />
+      <If condition={isSuccess}>
+        <Confetti position={{ top: 0, left: 0 }} height={350} />
+      </If>
       <div
         css={{
           position: 'absolute',

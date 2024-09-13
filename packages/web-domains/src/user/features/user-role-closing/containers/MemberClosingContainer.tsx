@@ -21,7 +21,9 @@ export const MemberClosingContainer = (props: MemberClosingContainerProps) => {
 
   return (
     <>
-      <Confetti position={{ top: 0, left: 0 }} height={350} />
+      <If condition={isSuccess}>
+        <Confetti position={{ top: 0, left: 0 }} height={350} />
+      </If>
       <section
         css={{
           width: '100%',
