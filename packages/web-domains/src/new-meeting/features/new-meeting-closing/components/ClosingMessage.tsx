@@ -1,11 +1,9 @@
 import { If } from '@sambad/react-utils';
 import { Skeleton, Txt } from '@sambad/sds/components';
 import { colors, size } from '@sambad/sds/theme';
-import Image from 'next/image';
 
 import { Confetti } from '@/common';
 
-import ClosingBackground from '../../../common/assets/images/closing-background.png';
 import { useGetMeetingNameService } from '../services/useGetMeetingNameService';
 
 interface ClosingMessageProps {
@@ -50,17 +48,6 @@ const ClosingMessage = (props: ClosingMessageProps) => {
           <Txt as="p" color={colors.grey600} typography="body3" css={{ marginTop: size['6xs'] }}>
             이제 모임원을 초대해보세요!
           </Txt>
-        </div>
-
-        <div
-          css={{
-            position: 'absolute',
-            width: '80%',
-            aspectRatio: '3/2',
-            maxWidth: '500px',
-          }}
-        >
-          <Image alt="background-image" src={ClosingBackground} quality={100} fill style={{ objectFit: 'contain' }} />
         </div>
       </div>
     </>
