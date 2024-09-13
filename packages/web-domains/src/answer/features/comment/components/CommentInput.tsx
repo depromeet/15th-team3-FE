@@ -1,5 +1,5 @@
 import { Icon, Txt, fontWeightVariants } from '@sambad/sds/components';
-import { colors, borderRadiusVariants } from '@sambad/sds/theme';
+import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 import { HTMLAttributes, forwardRef, useState } from 'react';
 
 interface CommentInputProps extends Omit<HTMLAttributes<HTMLInputElement>, 'onChange'> {
@@ -32,7 +32,7 @@ export const CommentInput = forwardRef<HTMLInputElement, CommentInputProps>(
       width: '100%',
       height: '48px',
       borderRadius: borderRadiusVariants.medium,
-      padding: '12px 16px',
+      padding: '12px 40px 12px 16px',
       '::placeholder': {
         fontSize: '16px',
         fontWeight: fontWeightVariants.regular,
