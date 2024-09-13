@@ -27,13 +27,14 @@ export const BasicInfoForm = () => {
     register,
     handleSubmit,
     control,
-    formState: { isValid },
+    formState: { isValid, errors },
   } = useForm<BasicInfo>({
     defaultValues: {
       userName: searchParams.get('userName') || '',
       birth: searchParams.get('birth') || '',
       gender: searchParams.get('gender') || '',
     },
+    mode: 'onTouched',
   });
 
   const goToNextPage = (data: BasicInfo) => {
@@ -46,7 +47,8 @@ export const BasicInfoForm = () => {
         label="이름이 무엇인가요?"
         answerNumber={1}
         placeholder="이름을 입력해주세요"
-        errorMessage="2자 이상, 5자 이하로 입력해주세요"
+        hintMessage="2자 이상, 5자 이하로 입력해주세요"
+        error={errors.userName}
         maxLength={5}
         {...register('userName', {
           required: true,
@@ -56,16 +58,17 @@ export const BasicInfoForm = () => {
         })}
       />
       <TextInput
-        label="나이가 어떻게 되나요?"
+        label="생년월일을 입력해주세요"
         answerNumber={2}
+        error={errors.birth}
         placeholder="생년월일 8자리를 입력해주세요"
         maxLength={8}
         {...register('birth', {
           required: true,
           maxLength: 8,
           pattern: {
-            value: /^\d{8}$/,
-            message: '생년월일은 숫자 8자리여야 합니다',
+            value: /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/,
+            message: '생년월일 8자리를 입력해주세요',
           },
         })}
       />
