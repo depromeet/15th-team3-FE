@@ -10,6 +10,7 @@ interface GatherMemberSearchInputProps extends Omit<HTMLAttributes<HTMLInputElem
 
 export const GatherMemberSearchInput = forwardRef<HTMLInputElement, GatherMemberSearchInputProps>(
   ({ BeforeIcon, value, onChange, ...rest }, commentRef) => {
+    const [isFocus, setIsFocus] = useState<boolean>(false);
     const [input, setInput] = useState<string>(value ?? '');
     const isEnabledReset = !!input.length;
 
@@ -24,11 +25,18 @@ export const GatherMemberSearchInput = forwardRef<HTMLInputElement, GatherMember
       onChange?.('');
     };
 
+    const handleFocus = () => {
+      setIsFocus(true);
+    };
+    const handleBlur = () => {
+      setIsFocus(false);
+    };
+
     const inputStyles: Attributes['css'] = {
       position: 'relative',
       display: 'inline-flex',
       alignItems: 'center',
-      border: `1px solid ${colors.grey600}`,
+      border: `1px solid ${isFocus ? colors.grey600 : colors.grey400}`,
       backgroundColor: colors.grey200,
       width: '100%',
       height: '48px',
@@ -57,6 +65,8 @@ export const GatherMemberSearchInput = forwardRef<HTMLInputElement, GatherMember
           }}
           value={input}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           placeholder="검색"
           ref={commentRef}
           {...rest}
