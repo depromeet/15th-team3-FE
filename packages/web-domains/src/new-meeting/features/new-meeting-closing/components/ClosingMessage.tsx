@@ -10,7 +10,7 @@ interface ClosingMessageProps {
   inviteCode: string;
 }
 
-const ClosingMessage = (props: ClosingMessageProps) => {
+export const ClosingMessage = (props: ClosingMessageProps) => {
   const { inviteCode } = props;
 
   const { data, isLoading, isSuccess } = useGetMeetingNameService({ inviteCode });
@@ -53,5 +53,3 @@ const ClosingMessage = (props: ClosingMessageProps) => {
     </>
   );
 };
-
-export default ClosingMessage;

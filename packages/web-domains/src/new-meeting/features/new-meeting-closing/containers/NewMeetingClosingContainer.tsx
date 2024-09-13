@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 import Character from '../../../common/assets/images/meeting-character.png';
 import { InviteCodeShareButton } from '../components/Button/InviteCodeShareButton';
-import ClosingMessage from '../components/ClosingMessage';
+import { ClosingMessage } from '../components/ClosingMessage';
 
 interface NewMeetingClosingContainerProps {
   inviteCode: string;
