@@ -13,6 +13,7 @@ interface MultipleDescriptiveAnswerQuestionProps {
 
 const buttonStyles: Record<'selected' | 'default', Attributes['css']> = {
   selected: {
+    width: '100%',
     border: 'none',
     borderRadius: borderRadiusVariants.large,
     height: '64px',
@@ -20,6 +21,7 @@ const buttonStyles: Record<'selected' | 'default', Attributes['css']> = {
     color: colors.white,
   },
   default: {
+    width: '100%',
     border: 'none',
     borderRadius: borderRadiusVariants.large,
     height: '64px',

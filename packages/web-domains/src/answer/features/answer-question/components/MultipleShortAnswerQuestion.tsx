@@ -14,12 +14,14 @@ interface MultipleShortAnswerQuestionProps {
 
 const buttonStyles: Record<'selected' | 'default', Attributes['css']> = {
   selected: {
+    width: '100%',
     border: 'none',
     borderRadius: borderRadiusVariants.large,
     height: '64px',
     backgroundColor: colors.primary500,
   },
   default: {
+    width: '100%',
     border: 'none',
     borderRadius: borderRadiusVariants.large,
     height: '64px',

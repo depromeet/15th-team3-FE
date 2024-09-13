@@ -8,6 +8,10 @@ import { useAnswerQuestionService } from '../services/useAnswerQuestionService';
 export const AnswerQuestionContainer = () => {
   const { question, questionType, isNotAnswerd, moveToCommentPage, handleAnswerList } = useAnswerQuestionService();
 
+  const subTitle = question?.questionTitle?.subTitle ?? '우리 모임원들은';
+  const mainTitle = question?.questionTitle?.mainTitle;
+  const answers = question?.answers;
+
   return (
     <section
       css={{
@@ -16,11 +20,12 @@ export const AnswerQuestionContainer = () => {
       }}
     >
       <AnswerQuestion
-        questionTitle={question?.title ?? ''}
+        qustionSubTitle={subTitle}
+        questionTitle={mainTitle ?? ''}
         answers={
           <AnswerOptions
             questionType={questionType}
-            answerOptionList={question?.answers ?? []}
+            answerOptionList={answers ?? []}
             onChangeAnswer={handleAnswerList}
           />
         }

@@ -67,6 +67,7 @@ const buttonBaseStyle = css({
 
 const buttonStyles: Record<'selected' | 'default', Interpolation<Theme>> = {
   selected: {
+    width: '100%',
     borderRadius: '24px',
     height: '90px',
     backgroundColor: colors.primary500,
@@ -75,6 +76,7 @@ const buttonStyles: Record<'selected' | 'default', Interpolation<Theme>> = {
     color: colors.white,
   },
   default: {
+    width: '100%',
     borderRadius: '24px',
     height: '90px',
     backgroundColor: colors.grey400,

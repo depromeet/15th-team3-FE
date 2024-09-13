@@ -3,11 +3,12 @@ import { colors } from '@sambad/sds/theme';
 import { ReactNode } from 'react';
 
 interface AnswerQuestionProps {
+  qustionSubTitle: string;
   questionTitle: string;
   answers: ReactNode;
 }
 
-export const AnswerQuestion = ({ questionTitle, answers }: AnswerQuestionProps) => {
+export const AnswerQuestion = ({ qustionSubTitle, questionTitle, answers }: AnswerQuestionProps) => {
   return (
     <>
       <div css={{ padding: '20px' }}>
@@ -20,7 +21,7 @@ export const AnswerQuestion = ({ questionTitle, answers }: AnswerQuestionProps) 
           css={{ fontWeight: `${fontWeightVariants.regular} !important` }}
           color={colors.black}
         >
-          우리 모임원들은
+          {qustionSubTitle}
         </Txt>
         <Txt as="p" typography="heading1" color={colors.black}>
           {questionTitle}
