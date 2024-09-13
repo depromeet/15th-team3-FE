@@ -49,6 +49,15 @@
 <br />
 <br />
 
+## 🛠️ Tech Stack
+
+<img src="https://github.com/user-attachments/assets/0a8b39ab-fe30-4f97-abf0-20695fc15ff8" alt="tech stack" width="600" />
+
+<br />
+<br />
+<br />
+
+
 ## 🛋️ Members
 
 |                                                                         FE                                                                         |                                                                         FE                                                                          |                                                                          FE                                                                           |                                                                          FE                                                                          |
