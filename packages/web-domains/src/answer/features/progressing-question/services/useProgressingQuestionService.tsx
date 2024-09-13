@@ -27,18 +27,18 @@ export const useProgressingQuestionService = () => {
     },
   });
 
-  const { data: progressingQuestion, isLoading } = useGetProgressingQuestion({
+  const { data: progressingQuestion, isFetching } = useGetProgressingQuestion({
     params: { meetingId: parseInt(meetingId) },
     options: {
-      select: (data) => {
-        if (data?.startTime) {
-          setAnswerGlobalTime(dayjs(data.startTime).valueOf());
-        }
-        return data;
-      },
       enabled: !!meetingId,
     },
   });
+
+  useEffect(() => {
+    if (progressingQuestion?.startTime) {
+      setAnswerGlobalTime(dayjs(progressingQuestion.startTime).valueOf());
+    }
+  }, [progressingQuestion]);
 
   useEffect(() => {
     mutateAsync({ meetingId: parseInt(meetingId) });
@@ -46,7 +46,7 @@ export const useProgressingQuestionService = () => {
 
   return {
     meetingId,
-    isLoading,
+    isFetching,
     gatherName: '삼봤드의 모험',
     progressingQuestion,
   };
