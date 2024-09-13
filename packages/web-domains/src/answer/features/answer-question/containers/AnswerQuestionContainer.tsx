@@ -16,6 +16,7 @@ export const AnswerQuestionContainer = () => {
       }}
     >
       <AnswerQuestion
+        qustionSubTitle={question?.subtitle?.length ? question.subtitle : '우리 모임원들은'}
         questionTitle={question?.title ?? ''}
         answers={
           <AnswerOptions
