@@ -1,5 +1,6 @@
 'use client';
 
+import { mobileMediaQuery } from '@sambad/css-utils';
 import { colors } from '@sambad/sds/theme';
 import Image from 'next/image';
 
@@ -49,6 +50,7 @@ const NewMeetingClosingContainer = (props: NewMeetingClosingContainerProps) => {
           aspectRatio: '11/5',
           bottom: '184px',
           transform: 'translate(-3%, 0)',
+          ...mobileMediaQuery({ display: 'none' }),
         }}
       >
         <Image src={Character} alt="meeting-character" priority fill />
