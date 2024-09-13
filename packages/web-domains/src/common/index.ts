@@ -5,3 +5,4 @@ export { RootLayout } from './layout/RootLayout';
 export { GlobalStyle } from './styles/GlobalStyles';
 export { getWebDomain } from './utils/getWebDomain';
 export * from './components/Error';
+export * from './animates';
