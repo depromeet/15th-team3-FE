@@ -1,5 +1,4 @@
 import { useAtomValue } from 'jotai';
-import { debounce } from 'lodash-es';
 import { useEffect, useState } from 'react';
 
 import { getWebDomain } from '@/common';
@@ -64,13 +63,7 @@ export const useGatherMemberProfileListService = () => {
   }, [data]);
 
   useEffect(() => {
-    let filter;
-    filter = debounce(handleChangeGatherMemberList, 300);
-    filter(searchInput);
-
-    return () => {
-      filter = null;
-    };
+    handleChangeGatherMemberList(searchInput);
   }, [searchInput]);
 
   return {
