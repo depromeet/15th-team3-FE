@@ -8,8 +8,7 @@
     ],
     "baseUrl": "../../packages",
     "paths": {
-      "@/*": ["./web-domains/src/*"],
-      "@sds/*": ["./core/sds/src/*"]
+      "@/*": ["./web-domains/src/*"]
     }
   },
   "include": ["next-env.d.ts", "next.config.js", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

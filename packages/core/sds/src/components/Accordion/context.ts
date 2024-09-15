@@ -1,4 +1,4 @@
-import { buildContext } from '@sds/utils';
+import { buildContext } from '../../utils';
 
 interface Context {
   value?: Array<string>;
