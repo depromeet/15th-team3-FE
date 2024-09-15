@@ -1,7 +1,7 @@
 'use client';
 
-import { colors, size } from '@sambad/sds/theme';
 import { SegmentedControl, TextButton, Txt } from '@sambad/sds/components';
+import { colors, size } from '@sambad/sds/theme';
 
 import {
   aboutMeSectionCss,
