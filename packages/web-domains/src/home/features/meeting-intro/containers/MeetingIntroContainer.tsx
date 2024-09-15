@@ -1,6 +1,6 @@
 'use client';
 
-import { colors } from '@sds/theme';
+import { colors } from '@sambad/sds/theme';
 
 import { HomeNavigationConatiner } from '../../home-navigation/containers/HomeNavigationContainer';
 import { MeetingChoiceBottomSheet } from '../../meeting-choice/components/MeetingChoiceBottomSheet';

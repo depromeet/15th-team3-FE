@@ -1,4 +1,4 @@
-import { colors } from '@sds/theme';
+import { colors } from '@sambad/sds/theme';
 import { HTMLAttributes, PropsWithChildren, forwardRef } from 'react';
 
 import { progressIndicatorCss, stepCss } from './styles';

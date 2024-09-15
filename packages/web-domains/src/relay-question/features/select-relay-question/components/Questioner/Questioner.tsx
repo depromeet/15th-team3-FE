@@ -1,5 +1,5 @@
 import { Txt } from '@sambad/sds/components';
-import { colors } from '@sds/theme';
+import { colors } from '@sambad/sds/theme';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import { Avatar } from '@/common/components/Avatar/Avatar';

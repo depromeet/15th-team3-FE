@@ -1,6 +1,6 @@
 'use client';
 
-import { Icon } from '@sds/components';
+import { Icon } from '@sambad/sds/components';
 
 import { KakaoShareModal } from '@/common';
 

@@ -1,7 +1,7 @@
 'use client';
 
-import { Button, Icon, Txt } from '@sds/components';
-import { colors } from '@sds/theme';
+import { Button, Icon, Txt } from '@sambad/sds/components';
+import { colors } from '@sambad/sds/theme';
 
 import { AlarmEventType } from '@/home/common/apis/schema/Notification.schema';
 

@@ -1,4 +1,4 @@
-import { Skeleton } from '@sds/components';
+import { Skeleton } from '@sambad/sds/components';
 
 export const QuestionListSkeleton = () => {
   return (

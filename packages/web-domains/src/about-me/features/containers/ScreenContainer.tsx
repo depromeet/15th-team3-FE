@@ -1,7 +1,7 @@
 'use client';
 
+import { TextButton, Txt } from '@sambad/sds/components';
 import { colors, shadow, size } from '@sambad/sds/theme';
-import { TextButton, Txt } from '@sds/components';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 

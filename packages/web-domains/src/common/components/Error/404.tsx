@@ -1,8 +1,8 @@
 'use client';
 
 import { css } from '@emotion/react';
-import { Icon, Txt } from '@sds/components';
-import { colors, size } from '@sds/theme';
+import { Icon, Txt } from '@sambad/sds/components';
+import { colors, size } from '@sambad/sds/theme';
 
 import { titleCss } from './styles';
 

@@ -1,7 +1,7 @@
 'use client';
 
-import { Icon, Txt } from '@sds/components';
-import { colors } from '@sds/theme';
+import { Icon, Txt } from '@sambad/sds/components';
+import { colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 

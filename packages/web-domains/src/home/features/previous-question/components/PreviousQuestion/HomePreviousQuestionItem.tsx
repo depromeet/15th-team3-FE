@@ -1,6 +1,5 @@
-import { Txt } from '@sambad/sds/components';
+import { Icon, Txt } from '@sambad/sds/components';
 import { borderRadiusVariants, colors } from '@sambad/sds/theme';
-import { AngleRightIcon } from '@sds/components/Icon/assets/AngleRight';
 import Link from 'next/link';
 
 import { TopPreviousQuestionType } from '@/home/common/apis/schema/useGetPreviousQuestionListQuery.type';
@@ -59,7 +58,7 @@ export const HomePreviousQuestionItem = ({ meetingId, question }: HomePreviousQu
           </Txt>
         </div>
         <div css={{ marginLeft: '20px' }}>
-          <AngleRightIcon size={16} color={colors.grey600} />
+          <Icon name="angle-right" size={16} color={colors.grey600} />
         </div>
       </Link>
     </li>

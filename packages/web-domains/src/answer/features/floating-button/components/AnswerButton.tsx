@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@sds/components';
-import { colors } from '@sds/theme';
+import { Button } from '@sambad/sds/components';
+import { colors } from '@sambad/sds/theme';
 import { Attributes, HTMLAttributes } from 'react';
 
 interface AnswerButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {

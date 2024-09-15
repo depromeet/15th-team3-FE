@@ -1,5 +1,5 @@
 import { Icon, Txt } from '@sambad/sds/components';
-import { colors } from '@sds/theme';
+import { colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 import { Avatar } from '@/common/components/Avatar/Avatar';

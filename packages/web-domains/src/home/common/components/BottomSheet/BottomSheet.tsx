@@ -1,5 +1,5 @@
-import { Icon, Txt } from '@sds/components';
-import { colors } from '@sds/theme';
+import { Icon, Txt } from '@sambad/sds/components';
+import { colors } from '@sambad/sds/theme';
 import { CSSProperties, PropsWithChildren, useEffect, useState } from 'react';
 
 import { BodyScrollLock } from '@/common/utils/bodyScrollLock';

@@ -1,5 +1,5 @@
 import { Icon, Skeleton, Txt } from '@sambad/sds/components';
-import { colors } from '@sds/theme';
+import { colors } from '@sambad/sds/theme';
 import { HTMLAttributes } from 'react';
 
 interface GatherNameProps extends HTMLAttributes<HTMLDivElement> {
