@@ -16,7 +16,8 @@ export const itemCss = css({
 });
 
 export const itemContainerCss = css({
-  '& > * + *': {
-    marginLeft: size['6xs'],
+  '& > *': {
+    marginRight: size['6xs'],
+    marginBottom: size['6xs'],
   },
 });

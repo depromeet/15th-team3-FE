@@ -14,11 +14,11 @@ import { ProgressingQuestionContainerSkeleton } from '../components/Skeleton/Pro
 import { useProgressingQuestionService } from '../services/useProgressingQuestionService';
 
 export const ProgressingQuestionContainer = () => {
-  const { progressingQuestion, meetingId, isLoading } = useProgressingQuestionService();
+  const { progressingQuestion, meetingId, isFetching } = useProgressingQuestionService();
 
   const isNowAnswered = !progressingQuestion?.isAnswered;
 
-  if (isLoading) return <ProgressingQuestionContainerSkeleton />;
+  if (isFetching) return <ProgressingQuestionContainerSkeleton />;
 
   if (!progressingQuestion) {
     return null;

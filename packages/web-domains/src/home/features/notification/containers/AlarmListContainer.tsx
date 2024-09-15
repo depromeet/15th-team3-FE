@@ -64,7 +64,8 @@ export const AlarmListContainer = () => {
           />
         );
       }
-
+      case 'HAND_WAVING_ACCEPTED':
+      case 'HAND_WAVING_REJECTED':
       case 'QUESTION_REGISTERED':
       case 'TARGET_MEMBER':
         return <NotificationItem.AlarmItem alarm={notification} />;

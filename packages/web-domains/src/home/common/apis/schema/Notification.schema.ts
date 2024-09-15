@@ -3,7 +3,12 @@ export type NotificationType = {
   eventType: NotificationEventType;
 };
 
-export type NotificationEventType = 'QUESTION_REGISTERED' | 'TARGET_MEMBER' | 'HAND_WAVING_REQUESTED';
+export type NotificationEventType =
+  | 'QUESTION_REGISTERED'
+  | 'TARGET_MEMBER'
+  | 'HAND_WAVING_REQUESTED'
+  | 'HAND_WAVING_REJECTED'
+  | 'HAND_WAVING_ACCEPTED';
 
 export type NotificationResponseType =
   | {
