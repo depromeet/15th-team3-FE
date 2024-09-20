@@ -18,7 +18,6 @@ export type MemberType = {
   name: string;
   profileImageFileUrl?: string;
   role: 'OWNER' | 'ADMIN' | 'MEMBER';
-  isHandWaved: boolean;
   isMe: boolean;
   handWavingStatus: HandWavingStatusType;
 };

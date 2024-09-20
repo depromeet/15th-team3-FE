@@ -11,7 +11,7 @@ interface GatherMemberProfileProps {
 }
 
 export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfileProps) => {
-  const { name, role, profileImageFileUrl, meetingMemberId, isHandWaved, isMe, handWavingStatus } = member;
+  const { name, role, profileImageFileUrl, meetingMemberId, isMe, handWavingStatus } = member;
   const isOwner = role === 'OWNER';
 
   return (
@@ -27,12 +27,7 @@ export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfilePr
     >
       <Link href={isMe ? '/home/me' : `${meetingId}/about/${meetingMemberId}`}>
         <div css={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
-          <ProfileImage
-            imageUrl={profileImageFileUrl}
-            isConnection={isHandWaved}
-            isOnwer={isOwner}
-            handWavingStatus={handWavingStatus}
-          />
+          <ProfileImage imageUrl={profileImageFileUrl} isOnwer={isOwner} handWavingStatus={handWavingStatus} />
           <Txt typography="title2" css={{ marginTop: '12px' }}>
             {isMe ? '나' : name}
           </Txt>
@@ -44,13 +39,12 @@ export const GatherMemberProfile = ({ meetingId, member }: GatherMemberProfilePr
 
 interface ProfileImageProps {
   imageUrl?: string;
-  isConnection?: boolean;
   isOnwer?: boolean;
   handWavingStatus: HandWavingStatusType;
 }
 
-const ProfileImage = ({ imageUrl, isConnection = false, isOnwer = false, handWavingStatus }: ProfileImageProps) => {
-  const isHandWaving = isConnection || handWavingStatus === 'REQUESTED' || handWavingStatus === 'ACCEPTED';
+const ProfileImage = ({ imageUrl, isOnwer = false, handWavingStatus }: ProfileImageProps) => {
+  const isHandWaving = handWavingStatus === 'REQUESTED' || handWavingStatus === 'ACCEPTED';
 
   const color = handWavingStatus === 'ACCEPTED' ? colors.primary500 : colors.grey500;
 
