@@ -1,5 +1,5 @@
-import { Txt } from '@sds/components';
-import { colors, borderRadiusVariants, shadow } from '@sds/theme';
+import { Txt } from '@sambad/sds/components';
+import { colors, borderRadiusVariants, shadow } from '@sambad/sds/theme';
 
 export const AnswerCountdownRender = ({
   hours,

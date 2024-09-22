@@ -1,7 +1,7 @@
 'use client';
 
-import { Txt } from '@sds/components';
-import { colors, size } from '@sds/theme';
+import { Txt } from '@sambad/sds/components';
+import { colors, size } from '@sambad/sds/theme';
 import { ReactNode } from 'react';
 
 import { textWithSlideUpAnimationCss } from './styles';

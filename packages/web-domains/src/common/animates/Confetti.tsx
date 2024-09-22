@@ -1,4 +1,4 @@
-import { colors } from '@sds/theme';
+import { colors } from '@sambad/sds/theme';
 import { CSSProperties } from 'react';
 import Fireworks from 'react-canvas-confetti/dist/presets/fireworks';
 

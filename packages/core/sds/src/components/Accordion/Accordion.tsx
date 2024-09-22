@@ -1,6 +1,6 @@
 import { forwardRef, HTMLAttributes, useCallback } from 'react';
 
-import { useControllableState } from '@sds/hooks';
+import { useControllableState } from '../../hooks';
 
 import { AccordionContent } from './Content';
 import { AccordionProvider } from './context';

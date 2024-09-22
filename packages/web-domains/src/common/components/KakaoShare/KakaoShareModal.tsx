@@ -1,7 +1,7 @@
 'use client';
 
-import { Button, Txt } from '@sds/components';
-import { colors } from '@sds/theme';
+import { Button, Txt } from '@sambad/sds/components';
+import { colors } from '@sambad/sds/theme';
 import { HTMLAttributes, useEffect, useState } from 'react';
 
 import { Modal } from '../Modal/Modal';

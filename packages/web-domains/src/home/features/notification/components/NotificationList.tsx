@@ -1,4 +1,4 @@
-import { colors } from '@sds/theme';
+import { colors } from '@sambad/sds/theme';
 import { ReactNode } from 'react';
 
 import { EmptyView } from '@/common/components';

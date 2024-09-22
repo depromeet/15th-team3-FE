@@ -1,5 +1,5 @@
-import { Button, ButtonProps } from '@sds/components';
-import { size } from '@sds/theme';
+import { Button, ButtonProps } from '@sambad/sds/components';
+import { size } from '@sambad/sds/theme';
 import { CSSProperties } from 'react';
 
 interface FloatingButtonProps extends ButtonProps {

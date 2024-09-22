@@ -1,6 +1,6 @@
 'use client';
 
-import { Icon } from '@sds/components';
+import { Icon } from '@sambad/sds/components';
 import { usePathname } from 'next/navigation';
 
 import { HomeNavigation } from '@/home/common/components/Navigation/HomeNavigationTab';

@@ -1,4 +1,4 @@
-import { size } from '@sds/theme/size';
+import { size } from '@sambad/sds/theme';
 
 import { MeetingMemberResponse } from '@/about-me/common/apis/schema/MeetingMemberResponse';
 import { HobbyList, IntroduceBox } from '@/about-me/features/components';

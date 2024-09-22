@@ -1,5 +1,5 @@
-import { Txt, Icon } from '@sds/components';
-import { borderRadiusVariants, colors } from '@sds/theme';
+import { Txt, Icon } from '@sambad/sds/components';
+import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 import { MeetingInfoType } from '@/home/common/apis/schema/Meeting.schema';

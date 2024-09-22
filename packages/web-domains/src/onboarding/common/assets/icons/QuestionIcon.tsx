@@ -1,5 +1,5 @@
-import { IconAssetProps } from '@sds/components/Icon/types';
-import { colors } from '@sds/theme';
+import { IconAssetProps } from '@sambad/sds/components';
+import { colors } from '@sambad/sds/theme';
 
 export const QuestionIcon = (props: IconAssetProps) => {
   const { color = colors.primary500 } = props;

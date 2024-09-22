@@ -1,5 +1,5 @@
 'use client';
-import { colors } from '@sds/theme';
+import { colors } from '@sambad/sds/theme';
 import { Fragment } from 'react/jsx-runtime';
 
 import { QuestionIcon } from '@/onboarding/common/assets/icons/QuestionIcon';

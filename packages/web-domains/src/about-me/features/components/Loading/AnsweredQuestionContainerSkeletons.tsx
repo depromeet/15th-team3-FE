@@ -1,5 +1,5 @@
-import { Skeleton } from '@sds/components';
-import { size } from '@sds/theme';
+import { Skeleton } from '@sambad/sds/components';
+import { size } from '@sambad/sds/theme';
 
 export const AnsweredQuestionContainerSkeletons = () => {
   return (

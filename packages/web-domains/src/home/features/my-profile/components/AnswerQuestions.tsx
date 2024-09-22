@@ -1,6 +1,6 @@
 import { If } from '@sambad/react-utils';
-import { Accordion, Checkbox, Txt } from '@sds/components';
-import { colors, size } from '@sds/theme';
+import { Accordion, Checkbox, Txt } from '@sambad/sds/components';
+import { colors, size } from '@sambad/sds/theme';
 import { useRef, useImperativeHandle, forwardRef } from 'react';
 
 import { useUpdateQuestionsActive } from '@/about-me/common/apis/mutates/useUpdateQuestionsActive';

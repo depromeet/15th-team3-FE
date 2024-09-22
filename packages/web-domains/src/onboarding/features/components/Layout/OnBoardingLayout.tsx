@@ -1,4 +1,4 @@
-import { colors } from '@sds/theme';
+import { colors } from '@sambad/sds/theme';
 import { CSSProperties, PropsWithChildren } from 'react';
 
 import { STEPS, StepType } from '@/onboarding/common/constants/steps';
