@@ -8,7 +8,7 @@ export const MazeScript = () => {
   useEffect(() => {
     (() => {
       const { sessionStorage } = window;
-      const apiKey = '25a6123e-63e8-48d5-b806-25c44a0f0c80';
+      const apiKey = process.env.NEXT_PUBLIC_MAZE_API_KEY;
       const scriptUrl = 'https://snippet.maze.co/maze-universal-loader.js';
 
       try {
