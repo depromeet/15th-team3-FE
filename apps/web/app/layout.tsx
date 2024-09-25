@@ -1,9 +1,11 @@
-import { Providers, RootLayout as ViewportLayout } from '@/common';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import dayjs from 'dayjs';
 import localFont from 'next/font/local';
 
+import { Providers, RootLayout as ViewportLayout } from '@/common';
+
 import { KakaoScript } from '../scripts/KakaoScript';
+import { MazeScript } from '../scripts/MazeScript';
 
 import type { Metadata } from 'next';
 
@@ -28,6 +30,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <KakaoScript />
+      <head>
+        <MazeScript />
+      </head>
       <body className={pretendard.className}>
         <Providers>
           <ViewportLayout>{children}</ViewportLayout>
