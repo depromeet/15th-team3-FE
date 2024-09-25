@@ -1,7 +1,7 @@
 'use client';
 
-import { Txt } from '@sds/components';
-import { borderRadiusVariants, colors } from '@sds/theme';
+import { Txt } from '@sambad/sds/components';
+import { borderRadiusVariants, colors } from '@sambad/sds/theme';
 
 export const ProgressingQuestionModalCountdownRender = ({
   hours,

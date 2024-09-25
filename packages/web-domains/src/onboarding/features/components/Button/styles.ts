@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { size } from '@sds/theme';
+import { size } from '@sambad/sds/theme';
 
 export const onBoardingButtonCss = css({
   paddingLeft: size['4xl'],

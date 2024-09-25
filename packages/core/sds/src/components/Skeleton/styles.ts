@@ -1,6 +1,6 @@
 import { css, keyframes } from '@emotion/react';
 
-import { borderRadiusVariants, size } from '@sds/theme';
+import { borderRadiusVariants, size } from '../../theme';
 
 const waveAnimation = keyframes`
   0% {

@@ -1,9 +1,8 @@
 import { Item as RadixToggleItem, ToggleGroupItemProps } from '@radix-ui/react-toggle-group';
 import { forwardRef, useRef } from 'react';
 
-import { useComposedRefs, useResizeObserver } from '@sds/hooks';
-import { composeEventHandlers } from '@sds/utils';
-
+import { useComposedRefs, useResizeObserver } from '../../hooks';
+import { composeEventHandlers } from '../../utils';
 import { Txt } from '../Typography';
 
 import { useSegmentedControlContext } from './context';

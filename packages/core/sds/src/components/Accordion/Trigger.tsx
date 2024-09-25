@@ -1,8 +1,7 @@
 import { forwardRef, HTMLAttributes } from 'react';
 
-import { colors } from '@sds/theme';
-import { composeEventHandlers } from '@sds/utils';
-
+import { colors } from '../../theme';
+import { composeEventHandlers } from '../../utils';
 import { Icon } from '../Icon';
 
 import { arrowIconAttribute } from './constants';

@@ -1,7 +1,6 @@
 import { CSSProperties, forwardRef, HTMLAttributes } from 'react';
 
-import { colors } from '@sds/theme';
-
+import { colors } from '../../theme';
 import { Txt } from '../Typography';
 
 import { arrowCss, tooltipCss } from './styles';

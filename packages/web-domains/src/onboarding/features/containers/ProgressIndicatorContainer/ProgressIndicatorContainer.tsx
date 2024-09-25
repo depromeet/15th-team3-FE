@@ -1,6 +1,6 @@
 'use client';
 
-import { size } from '@sds/theme';
+import { size } from '@sambad/sds/theme';
 
 import { STEPS, StepType } from '@/onboarding/common/constants/steps';
 

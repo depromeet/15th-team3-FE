@@ -1,7 +1,7 @@
 import { css, keyframes } from '@emotion/react';
 import { getPadding } from '@sambad/css-utils';
 
-import { borderRadiusVariants, colors, size } from '@sds/theme';
+import { borderRadiusVariants, colors, size } from '../../theme';
 
 const bounceAnimation = keyframes`
    to{

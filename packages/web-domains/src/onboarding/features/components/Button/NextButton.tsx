@@ -1,4 +1,4 @@
-import { Button } from '@sds/components';
+import { Button } from '@sambad/sds/components';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import { StepType, STEPS } from '@/onboarding/common/constants/steps';

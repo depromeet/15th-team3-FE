@@ -1,7 +1,7 @@
 'use client';
 
 import { Txt, TxtProps } from '@sambad/sds/components';
-import { borderRadiusVariants } from '@sds/theme';
+import { borderRadiusVariants } from '@sambad/sds/theme';
 import { HTMLAttributes } from 'react';
 
 import { Avatar } from '@/common/components/Avatar/Avatar';

@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import { getCssVar } from '@sambad/css-utils';
 import { CSSProperties } from 'react';
 
-import { colors, size } from '@sds/theme';
+import { colors, size } from '../../theme';
 
 const inputBackgroundColorVar = '--sambad-checkbox-input-background-color';
 const inputBoxShadowVar = '--sambad-checkbox-input-box-shadow';

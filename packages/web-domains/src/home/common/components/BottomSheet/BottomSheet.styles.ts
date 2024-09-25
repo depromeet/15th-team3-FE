@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { colors } from '@sds/theme';
+import { colors } from '@sambad/sds/theme';
 
 export const BottomSheetContainerCss = css({
   position: 'fixed',

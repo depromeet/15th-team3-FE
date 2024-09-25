@@ -1,5 +1,5 @@
-import { Txt } from '@sds/components';
-import { colors } from '@sds/theme';
+import { Txt } from '@sambad/sds/components';
+import { colors } from '@sambad/sds/theme';
 import dayjs from 'dayjs';
 import { ReactNode } from 'react';
 

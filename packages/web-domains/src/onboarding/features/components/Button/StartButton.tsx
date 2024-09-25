@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@sds/components';
+import { Button } from '@sambad/sds/components';
 import { useRouter } from 'next/navigation';
 
 import { useOnBoardingCompleteMutation } from '@/onboarding/common/apis/mutations/useOnBoardingMutation';

@@ -1,7 +1,7 @@
 'use client';
 
-import { TextButton } from '@sds/components';
-import { size } from '@sds/theme';
+import { TextButton } from '@sambad/sds/components';
+import { size } from '@sambad/sds/theme';
 import Link from 'next/link';
 import { HTMLAttributes } from 'react';
 

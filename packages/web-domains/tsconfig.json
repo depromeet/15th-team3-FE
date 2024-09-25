@@ -4,8 +4,7 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@sds/*": ["../core/sds/src/*"]
+      "@/*": ["./src/*"]
     },
     "plugins": [
       {

@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 
-import { borderRadiusVariants, size } from '@sds/theme';
-
+import { borderRadiusVariants, size } from '../../theme';
 import { fontWeightVariants } from '../Typography/styles';
 
 export const badgeCss = css({

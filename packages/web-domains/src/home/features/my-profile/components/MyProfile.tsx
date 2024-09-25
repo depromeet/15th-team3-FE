@@ -1,5 +1,5 @@
-import { TextButton } from '@sds/components';
-import { size } from '@sds/theme/size';
+import { TextButton } from '@sambad/sds/components';
+import { size } from '@sambad/sds/theme';
 import Link from 'next/link';
 
 import { MeetingMemberResponse } from '@/about-me/common/apis/schema/MeetingMemberResponse';

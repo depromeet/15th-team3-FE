@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { fontWeightVariants } from '@sds/components';
-import { colors, size } from '@sds/theme';
+import { fontWeightVariants } from '@sambad/sds/components';
+import { colors, size } from '@sambad/sds/theme';
 
 export const containerCss = css({
   width: '100%',

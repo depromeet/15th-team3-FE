@@ -1,10 +1,9 @@
 import { useId } from '@sambad/react-utils';
 import { CSSProperties, forwardRef, InputHTMLAttributes, ReactNode } from 'react';
 
-import { useControllableState } from '@sds/hooks';
-import { colors } from '@sds/theme';
-import { composeEventHandlers } from '@sds/utils';
-
+import { useControllableState } from '../../hooks';
+import { colors } from '../../theme';
+import { composeEventHandlers } from '../../utils';
 import { Icon } from '../Icon';
 import { Txt } from '../Typography';
 

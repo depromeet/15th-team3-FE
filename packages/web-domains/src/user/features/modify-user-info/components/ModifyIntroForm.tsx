@@ -1,5 +1,5 @@
-import { Txt, Button } from '@sds/components';
-import { colors } from '@sds/theme';
+import { Txt, Button } from '@sambad/sds/components';
+import { colors } from '@sambad/sds/theme';
 import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
