@@ -1,8 +1,7 @@
+import { Providers, RootLayout as ViewportLayout } from '@/common';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import dayjs from 'dayjs';
 import localFont from 'next/font/local';
-
-import { Providers, RootLayout as ViewportLayout } from '@/common';
 
 import { KakaoScript } from '../scripts/KakaoScript';
 import { MazeScript } from '../scripts/MazeScript';
